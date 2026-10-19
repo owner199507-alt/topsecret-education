@@ -1,0 +1,3096 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>탑씨크리트학원 | 행복하게 배우며 나만의 꿈을 키우는</title>
+
+  <!-- Google Fonts 공식 서버 (한글 웹폰트 9종 + 영문 세리프) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cormorant+Garamond:wght@400;600;700&family=Do+Hyeon&family=Gothic+A1:wght@400;600;800&family=Gowun+Batang:wght@400;700&family=Jua&family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Swiper.js CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <style>
+    :root {
+      --brand-orange: #FF6B00;        /* 메뉴 오픈 시 완전 주황색 */
+      --brand-orange-sub: #F39200;    /* 로고 포인트 오렌지 */
+      --brand-charcoal: #3B3838;
+      --bg-deep-navy: #0F1A2E;        /* 하단 짙은 남색 */
+      --bg-deep-navy-light: #16243E;
+      --navy-border: #233656;
+      --topbar-h: 96px;
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+      --global-font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html, body, h1, h2, h3, h4, h5, h6, p, span, div, li, button, input, select, textarea {
+      font-family: var(--global-font);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: var(--brand-charcoal);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* 상단 반투명 고정바 (뒤쪽 메인 동영상이 비치도록 설계) */
+    .top-fixed-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--topbar-h);
+      background: rgba(255, 255, 255, 0.56);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      z-index: 100;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 28px;
+      transition: background-color 0.35s var(--ease-smooth), color 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
+    }
+
+    /* 메뉴(≡) 클릭 시 완전 주황색(#FF6B00)으로 반전 */
+    .top-fixed-bar.menu-open {
+      background: var(--brand-orange) !important;
+      backdrop-filter: none;
+      border-bottom-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+    .top-fixed-bar.menu-open .quick-item {
+      color: #ffffff;
+      border-left-color: rgba(255, 255, 255, 0.25);
+    }
+    .top-fixed-bar.menu-open .quick-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .top-fixed-bar.menu-open .sec-bar-bg {
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .top-fixed-bar.menu-open .sec-bar-fill {
+      background: #ffffff;
+    }
+    .top-fixed-bar.menu-open .hamburger-line {
+      background: #ffffff;
+    }
+    .top-fixed-bar.menu-open .fallback-logo-text {
+      color: #ffffff !important;
+    }
+    .top-fixed-bar.menu-open .history-nav-btn {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* 상단 로고: 웹페이지 정중앙(Absolute Center) 고정 */
+    .top-center-logo-wrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 105;
+    }
+
+    /* 2단 슬라이드 드로어 네비게이션 */
+    .drawer-backdrop {
+      position: fixed;
+      top: var(--topbar-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 26, 46, 0.5);
+      z-index: 85;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s var(--ease-smooth);
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-depth-1 {
+      position: fixed;
+      top: var(--topbar-h);
+      left: 0;
+      width: 280px;
+      height: calc(100vh - var(--topbar-h));
+      background: #ffffff;
+      z-index: 95;
+      padding: 60px 36px 40px 36px;
+      transform: translateX(-110%);
+      transition: transform 0.5s var(--ease-smooth);
+      box-shadow: 10px 0 30px rgba(0,0,0,0.08);
+    }
+    .drawer-depth-1.open {
+      transform: translateX(0);
+    }
+
+    .drawer-depth-2 {
+      position: fixed;
+      top: var(--topbar-h);
+      left: 280px;
+      width: 260px;
+      height: calc(100vh - var(--topbar-h));
+      background: #EBEBEB;
+      z-index: 90;
+      padding: 65px 36px 40px 36px;
+      transform: translateX(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s var(--ease-smooth), opacity 0.35s var(--ease-smooth);
+      overflow-y: auto;
+    }
+    .drawer-depth-2.open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .depth1-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      cursor: pointer;
+      color: #222;
+      transition: color 0.3s ease;
+    }
+    .depth1-item::after {
+      content: '';
+      width: 0;
+      height: 1.5px;
+      background: var(--brand-orange);
+      transition: width 0.3s var(--ease-smooth);
+    }
+    .depth1-item:hover, .depth1-item.active {
+      color: var(--brand-orange);
+    }
+    .depth1-item:hover::after, .depth1-item.active::after {
+      width: 28px;
+    }
+
+    .main-viewport {
+      width: 100%;
+      min-height: 100vh;
+      transition: opacity 0.35s var(--ease-smooth);
+    }
+    .subpage-top-offset {
+      padding-top: var(--topbar-h);
+    }
+
+    @media (max-width: 768px) {
+      .top-fixed-bar { padding: 0 14px; }
+      .topbar-progress { display: none !important; }
+      .quick-item span { display: none; }
+      .quick-item { padding: 0 10px !important; }
+      .drawer-depth-1 { width: 220px; padding: 40px 24px; }
+      .drawer-depth-2 { left: 220px; width: calc(100vw - 220px); padding: 40px 24px; }
+    }
+
+    /* 히어로 슬라이더 하단 원형 핸들 진행바 */
+    .hero-progress-track {
+      position: relative;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+    }
+    .hero-progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #ffffff;
+      transition: width 0.6s var(--ease-smooth);
+    }
+    .hero-progress-knob {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.6s var(--ease-smooth), transform 0.2s ease;
+    }
+    .hero-progress-knob::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+
+    /* CAMPUS & SYSTEM 카드 다크 오버레이 호버 효과 */
+    .campus-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .campus-card img {
+      transition: transform 0.75s var(--ease-smooth);
+    }
+    .campus-card:hover img {
+      transform: scale(1.06);
+    }
+    .campus-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 26, 46, 0.72);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px;
+      color: #ffffff;
+    }
+    .campus-card:hover .campus-overlay,
+    body.admin-edit-mode .campus-card .campus-overlay {
+      opacity: 1;
+    }
+    .campus-overlay-content {
+      transform: translateY(16px);
+      transition: transform 0.45s var(--ease-smooth);
+    }
+    .campus-card:hover .campus-overlay-content,
+    body.admin-edit-mode .campus-card .campus-overlay-content {
+      transform: translateY(0);
+    }
+
+    .custom-swiper-scrollbar {
+      height: 2px !important;
+      background: #e5e7eb !important;
+      position: relative !important;
+      margin-top: 48px;
+    }
+    .custom-swiper-scrollbar .swiper-scrollbar-drag {
+      background: #555555 !important;
+      height: 4px !important;
+      top: -1px !important;
+      border-radius: 2px;
+      cursor: grab;
+    }
+
+    .btn-learn-more {
+      background: var(--brand-orange);
+      color: #fff;
+      padding: 12px 26px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-learn-more:hover {
+      background: var(--brand-orange-sub);
+      transform: translateX(4px);
+    }
+
+    .btn-outline-fill {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.45);
+      color: #fff;
+      overflow: hidden;
+      z-index: 1;
+      transition: border-color 0.35s ease, color 0.35s ease;
+    }
+    .btn-outline-fill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--brand-orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-smooth);
+      z-index: -1;
+    }
+    .btn-outline-fill:hover {
+      border-color: var(--brand-orange);
+    }
+    .btn-outline-fill:hover::before {
+      transform: scaleX(1);
+    }
+
+    .view-section {
+      animation: fadeSlideIn 0.55s var(--ease-smooth);
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 관리자 인라인 편집 모드 스타일 */
+    body.admin-edit-mode [data-editable="true"] {
+      outline: 1.5px dashed rgba(255, 107, 0, 0.8);
+      outline-offset: 3px;
+      cursor: text;
+      transition: outline 0.15s ease, background-color 0.15s ease;
+      border-radius: 3px;
+    }
+    body.admin-edit-mode [data-editable="true"]:hover {
+      outline: 2px solid #FF6B00;
+      background-color: rgba(255, 107, 0, 0.1);
+    }
+    body.admin-edit-mode [data-editable="true"].active-selected-target {
+      outline: 3px solid #10B981 !important;
+      background-color: rgba(16, 185, 129, 0.14) !important;
+    }
+
+    .admin-only-control {
+      display: none !important;
+    }
+    body.admin-edit-mode .admin-only-control {
+      display: inline-flex !important;
+    }
+
+    .watermark-text {
+      font-size: clamp(60px, 10vw, 150px);
+      line-height: 0.9;
+      color: #F3F4F6;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================
+       0. 이미지 클릭 확대(Zoom) 라이트박스 모달 (지점 사진 클릭 시 작동)
+       ==================================================== -->
+  <div id="imageZoomModal" class="fixed inset-0 z-[350] bg-black/90 hidden items-center justify-center p-6 md:p-12" onclick="closeZoomModal()">
+    <button onclick="closeZoomModal()" class="absolute top-6 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-[#FF6B00] text-white text-xl flex items-center justify-center transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="max-w-6xl max-h-[88vh] relative flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="zoomedModalImg" src="" alt="확대 이미지" class="max-w-full max-h-[82vh] object-contain shadow-2xl border border-white/15" />
+      <p class="text-white/70 text-xs mt-3">이미지를 클릭하여 자동 슬라이드가 정지되고 확대되었습니다. (닫으려면 바깥 영역 또는 우측 상단 X 클릭)</p>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       1. 관리자 전용 플로팅 툴바 (뒤로가기/앞으로가기 작업 복원 탑재)
+       ==================================================== -->
+  <div id="adminToolbar" class="hidden fixed top-[102px] left-4 right-4 z-[200] bg-[#0F1A2E]/95 text-white px-4 py-2.5 rounded-2xl shadow-2xl border-2 border-orange-500/80 backdrop-blur-md flex flex-col gap-2 text-xs">
+    
+    <!-- 1열: 상태 표시 + 작업 뒤로/앞으로(Undo/Redo) + 지점 바로가기 + 현재 선택 문구 + 전체 저장 -->
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-2">
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="toggleEditModeBtn" onclick="toggleEditMode()" class="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 font-bold transition flex items-center gap-1.5">
+          <i class="fa-solid fa-pen-to-square"></i> <span id="editModeLabel">편집모드 ON</span>
+        </button>
+
+        <!-- 9. 작업 뒤로가기(Undo) / 앞으로가기(Redo) 버튼 -->
+        <div class="flex items-center gap-1 bg-slate-800 px-2 py-1 rounded-lg border border-slate-600">
+          <button onclick="undoAction()" class="px-2.5 py-1 hover:bg-orange-600 rounded font-bold flex items-center gap-1 transition" title="방금 한 편집 작업 취소 (단축키 Ctrl+Z)">
+            <i class="fa-solid fa-rotate-left"></i> 작업 뒤로
+          </button>
+          <span class="text-slate-600">|</span>
+          <button onclick="redoAction()" class="px-2.5 py-1 hover:bg-orange-600 rounded font-bold flex items-center gap-1 transition" title="취소한 작업 다시 실행 (단축키 Ctrl+Y)">
+            작업 앞으로 <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+
+        <!-- 지점 상세페이지 바로 들어가서 편집하기 -->
+        <div class="flex items-center gap-1 bg-slate-800 px-2.5 py-1.5 rounded-lg border border-orange-500/50">
+          <i class="fa-solid fa-door-open text-orange-400"></i>
+          <select id="adminCampusJumpSelect" onchange="if(this.value !== '') { openCampusDetail(Number(this.value)); this.value = ''; }" class="bg-slate-800 text-white text-xs font-semibold focus:outline-none cursor-pointer">
+          </select>
+        </div>
+
+        <!-- 현재 클릭하여 선택된 텍스트 대상 실시간 표시 -->
+        <div class="flex items-center gap-1.5 bg-emerald-950/90 border border-emerald-500/60 px-3 py-1.5 rounded-lg text-emerald-300">
+          <i class="fa-solid fa-bullseye"></i>
+          <span>선택문구:</span>
+          <strong id="currentSelectedLabel" class="text-white max-w-[160px] truncate">아무 글자나 클릭하세요</strong>
+        </div>
+      </div>
+
+      <!-- 우측 저장/초기화 버튼 -->
+      <div class="flex items-center gap-1.5">
+        <button onclick="saveAllChanges()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-bold transition flex items-center gap-1 shadow">
+          <i class="fa-solid fa-floppy-disk"></i> 지금 전체 저장
+        </button>
+        <button onclick="exportDataJson()" class="px-2.5 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 transition" title="백업 파일 다운로드">
+          <i class="fa-solid fa-download"></i> 백업
+        </button>
+        <button onclick="resetToDefault()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-red-700 transition text-slate-300 hover:text-white" title="모든 설정 초기화">
+          <i class="fa-solid fa-trash-can"></i> 초기화
+        </button>
+        <button onclick="adminLogout()" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white" title="로그아웃">
+          로그아웃
+        </button>
+      </div>
+    </div>
+
+    <!-- 2열: 글씨체(폰트) 변경 & 글자 크기·색상·굵기 컨트롤러 -->
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-600">
+        <span class="text-orange-400 font-bold"><i class="fa-solid fa-globe mr-1"></i>전체 글씨체 일괄변경:</span>
+        <select id="globalFontSelect" onchange="changeGlobalFont(this.value)" class="bg-slate-900 text-white px-2 py-1 rounded text-xs font-semibold focus:outline-none cursor-pointer border border-slate-700">
+          <option value="'Pretendard', sans-serif">1. 프리텐다드 (깔끔 고딕)</option>
+          <option value="'Noto Sans KR', sans-serif">2. 본고딕 (정통 고딕)</option>
+          <option value="'Nanum Gothic', sans-serif">3. 나눔고딕 (부드러운 고딕)</option>
+          <option value="'Noto Serif KR', serif">4. 본명조 (고급 명조체)</option>
+          <option value="'Nanum Myeongjo', serif">5. 나눔명조 (감성 명조체)</option>
+          <option value="'Gowun Batang', serif">6. 고운바탕체 (단아한 바탕체)</option>
+          <option value="'Do Hyeon', sans-serif">7. 배민 도현체 (강렬한 타이틀)</option>
+          <option value="'Jua', sans-serif">8. 배민 주아체 (친근한 둥근체)</option>
+          <option value="'Black Han Sans', sans-serif">9. 블랙한산스 (초강력 굵은체)</option>
+          <option value="'Cormorant Garamond', 'Noto Serif KR', serif">10. 코모란트 (영문 럭셔리 세리프)</option>
+        </select>
+        <button onclick="resetAllIndividualFonts()" class="px-2 py-1 bg-slate-700 hover:bg-orange-600 text-[11px] rounded text-slate-200 hover:text-white transition">
+          전체 통일적용
+        </button>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-emerald-500/50">
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-font mr-1"></i>선택 문구 개별변경:</span>
+        
+        <select id="selectedFontSelect" onchange="changeSelectedElementFont(this.value)" class="bg-slate-900 text-white px-2 py-1 rounded text-xs font-semibold focus:outline-none cursor-pointer border border-slate-700">
+          <option value="">-- 이 문구 글씨체 변경 --</option>
+          <option value="'Pretendard', sans-serif">프리텐다드 (고딕)</option>
+          <option value="'Noto Sans KR', sans-serif">본고딕 (Noto Sans)</option>
+          <option value="'Nanum Gothic', sans-serif">나눔고딕</option>
+          <option value="'Noto Serif KR', serif">본명조 (Noto Serif)</option>
+          <option value="'Nanum Myeongjo', serif">나눔명조</option>
+          <option value="'Gowun Batang', serif">고운바탕체</option>
+          <option value="'Do Hyeon', sans-serif">배민 도현체</option>
+          <option value="'Jua', sans-serif">배민 주아체</option>
+          <option value="'Black Han Sans', sans-serif">블랙한산스 (굵은체)</option>
+          <option value="'Cormorant Garamond', 'Noto Serif KR', serif">Cormorant (영문명조)</option>
+        </select>
+
+        <button onclick="toggleSelectedBold()" class="px-2.5 py-1 bg-slate-900 hover:bg-orange-600 rounded font-extrabold border border-slate-700">B (굵기)</button>
+        <button onclick="changeSelectedFontSize(-2)" class="px-2 py-1 bg-slate-900 hover:bg-orange-600 rounded font-bold border border-slate-700">A-</button>
+        <span id="currentFontSizeDisplay" class="text-[11px] text-slate-300 px-1 min-w-[36px] text-center">크기</span>
+        <button onclick="changeSelectedFontSize(2)" class="px-2 py-1 bg-slate-900 hover:bg-orange-600 rounded font-bold border border-slate-700">A+</button>
+
+        <label class="flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded border border-slate-700 cursor-pointer">
+          <span class="text-[10px] text-slate-300">색상</span>
+          <input type="color" id="inlineColorPicker" value="#FF6B00" oninput="changeSelectedColor(this.value)" class="w-5 h-5 rounded cursor-pointer bg-transparent border-0" />
+        </label>
+
+        <button onclick="resetSelectedElementStyle()" class="px-2 py-1 bg-slate-700 hover:bg-red-600 rounded text-[10px] text-slate-300 hover:text-white">
+          서식해제
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 숨겨진 이미지 & 동영상 파일 업로더 -->
+  <input type="file" id="globalImageInput" accept="image/*" class="hidden" />
+  <input type="file" id="globalVideoInput" accept="video/mp4,video/webm,video/*" class="hidden" />
+
+  <!-- ====================================================
+       2. 반투명 상단 고정바 (탑씨크리트인 제거 + 뒤로/앞으로가기 버튼 탑재)
+       ==================================================== -->
+  <header id="topFixedBar" class="top-fixed-bar">
+    <!-- 좌측: 햄버거 메뉴 버튼 + 페이지/작업 뒤로·앞으로가기 버튼 + 스크롤 진행 바 -->
+    <div class="flex items-center gap-4 relative z-10">
+      <button id="menuToggleBtn" onclick="toggleDrawerMenu()" class="w-10 h-10 flex flex-col justify-center items-center gap-1.5 focus:outline-none group" aria-label="메뉴 열기">
+        <span id="hamLine1" class="hamburger-line w-6 h-[1.5px] bg-neutral-900 transition-all duration-300"></span>
+        <span id="hamLine2" class="hamburger-line w-6 h-[1.5px] bg-neutral-900 transition-all duration-300"></span>
+        <span id="hamLine3" class="hamburger-line w-6 h-[1.5px] bg-neutral-900 transition-all duration-300"></span>
+      </button>
+
+      <!-- 9. 상단 뒤로가기 / 앞으로가기 버튼 (이전/다음 화면 및 작업 즉시 이동) -->
+      <div class="flex items-center gap-1.5">
+        <button onclick="handleUnifiedBack()" class="history-nav-btn w-8 h-8 rounded-full border border-neutral-400/60 flex items-center justify-center text-neutral-800 hover:bg-[#FF6B00] hover:text-white hover:border-[#FF6B00] transition" title="뒤로가기 (이전 화면 또는 이전 작업)">
+          <i class="fa-solid fa-chevron-left text-[11px]"></i>
+        </button>
+        <button onclick="handleUnifiedForward()" class="history-nav-btn w-8 h-8 rounded-full border border-neutral-400/60 flex items-center justify-center text-neutral-800 hover:bg-[#FF6B00] hover:text-white hover:border-[#FF6B00] transition" title="앞으로가기 (다음 화면 또는 다음 작업)">
+          <i class="fa-solid fa-chevron-right text-[11px]"></i>
+        </button>
+      </div>
+
+      <div class="topbar-progress relative w-20 h-[2px] bg-neutral-300/80 sec-bar-bg overflow-hidden">
+        <div id="sidebarProgressFill" class="sec-bar-fill h-full bg-neutral-900 transition-all duration-500" style="width: 33%;"></div>
+      </div>
+    </div>
+
+    <!-- 정중앙: 탑씨크리트학원 로고 -->
+    <div class="top-center-logo-wrap">
+      <div class="cursor-pointer flex items-center justify-center" onclick="navigateTo('home')">
+        <img id="sidebarLogoImg" src="remove_background.png" alt="탑씨크리트학원 로고"
+             class="object-contain transition-all duration-300"
+             style="width: 240px; max-height: 82px;"
+             onerror="this.style.display='none'; document.getElementById('fallbackSidebarLogo').style.display='flex';" />
+
+        <div id="fallbackSidebarLogo" style="display:none;" class="items-center gap-3 select-none">
+          <svg width="64" height="42" viewBox="0 0 120 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="topGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F59E0B" />
+                <stop offset="60%" stop-color="#F39200" />
+                <stop offset="100%" stop-color="#C84B00" />
+              </linearGradient>
+            </defs>
+            <path d="M26 8 L6 28 L14 36 L21 29 L21 48 C21 60 30 67 42 67 C51 67 59 54 M26 8 L46 28 L38 36 L31 29 L31 48 C31 54 35 57 41 57 C46 57 50 53 51 47" stroke="url(#topGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="67" cy="45" r="17" stroke="url(#topGrad)" stroke-width="10" />
+            <circle cx="98" cy="45" r="17" stroke="url(#topGrad)" stroke-width="10" />
+            <path d="M98 62 L98 73" stroke="url(#topGrad)" stroke-width="10" stroke-linecap="round"/>
+          </svg>
+          <div class="flex flex-col text-left">
+            <span data-editable="true" data-path="branding.logoSubText" onclick="event.stopPropagation()" class="fallback-logo-text text-[11px] tracking-tight text-neutral-700 font-medium leading-none"></span>
+            <span data-editable="true" data-path="branding.logoMainText" onclick="event.stopPropagation()" class="fallback-logo-text text-xl font-black tracking-tight text-neutral-900 mt-1 leading-none"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 관리자 전용: 정중앙 로고 교체 & 크기 조절 -->
+      <div class="admin-only-control items-center gap-1 ml-3 bg-slate-900/95 p-1.5 rounded-lg shadow-lg border border-orange-500/50 z-30">
+        <button onclick="triggerSidebarLogoChange()" class="px-2.5 py-1 bg-orange-600 hover:bg-orange-500 text-white text-[10px] font-bold rounded flex items-center gap-1 whitespace-nowrap">
+          <i class="fa-solid fa-camera"></i> 로고변경
+        </button>
+        <div class="flex items-center gap-1 text-white text-[10px]">
+          <button onclick="resizeSidebarLogo(-15)" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 rounded font-bold" title="로고 작게">-</button>
+          <span id="logoSizeDisplay" class="text-[10px] text-orange-300 font-bold px-1">240px</span>
+          <button onclick="resizeSidebarLogo(15)" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 rounded font-bold" title="로고 크게">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 우측 퀵 메뉴: [로그인 / 상담신청 / 지점안내] 3개 배치 -->
+    <div class="flex items-center h-full relative z-10">
+      <button onclick="navigateTo('login')" class="quick-item h-full px-5 border-l border-neutral-300/50 flex flex-col items-center justify-center gap-1 text-[11px] text-neutral-800 font-medium hover:text-orange-600 transition">
+        <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
+        <span id="sidebarLoginText">로그인</span>
+      </button>
+      <button onclick="navigateTo('consult')" class="quick-item h-full px-5 border-l border-neutral-300/50 flex flex-col items-center justify-center gap-1 text-[11px] text-neutral-800 font-medium hover:text-orange-600 transition">
+        <i class="fa-regular fa-user text-xs"></i>
+        <span data-editable="true" data-path="branding.quick3"></span>
+      </button>
+      <button onclick="navigateTo('campus')" class="quick-item h-full px-5 border-l border-neutral-300/50 flex flex-col items-center justify-center gap-1 text-[11px] text-neutral-800 font-medium hover:text-orange-600 transition">
+        <i class="fa-solid fa-location-dot text-xs"></i>
+        <span data-editable="true" data-path="branding.quick4"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====================================================
+       3. 2단 슬라이드 드로어 메뉴
+       ==================================================== -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closeDrawerMenu()"></div>
+
+  <nav id="drawerDepth1" class="drawer-depth-1">
+    <ul class="space-y-2" id="depth1List"></ul>
+  </nav>
+
+  <div id="drawerDepth2" class="drawer-depth-2">
+    <ul id="depth2List" class="space-y-3.5 text-sm text-neutral-700"></ul>
+  </div>
+
+  <!-- ====================================================
+       4. 메인 뷰포트 (SPA)
+       ==================================================== -->
+  <main id="mainViewport" class="main-viewport">
+
+    <!-- ==================== [VIEW 1: 메인 홈 화면] ==================== -->
+    <div id="view-home" class="view-section">
+
+      <!-- [섹션 1] 최상단 자동재생 동영상 섹션 -->
+      <section id="promoVideoSection" class="relative w-full bg-[#0F1A2E] overflow-hidden" style="height: 88vh; min-height: 560px;">
+        <video id="mainPromoVideo" class="w-full h-full object-cover" autoplay muted loop playsinline>
+          <source id="mainPromoVideoSource" src="" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end pb-14 px-10 md:px-20 bg-gradient-to-t from-black/45 via-transparent to-transparent">
+          <div class="max-w-3xl pointer-events-auto">
+            <h2 data-editable="true" data-path="videoSection.mainTitle" class="text-white text-2xl md:text-4xl font-semibold leading-snug drop-shadow-md whitespace-pre-line mb-2"></h2>
+            <p data-editable="true" data-path="videoSection.subTitle" class="text-white/90 text-xs md:text-sm font-medium underline underline-offset-4 tracking-wide drop-shadow cursor-pointer" onclick="if(!isEditMode) navigateTo('campus')"></p>
+          </div>
+        </div>
+
+        <div class="admin-only-control absolute bottom-6 right-8 z-30 flex-wrap items-center gap-2">
+          <button onclick="triggerVideoFileUpload()" class="px-4 py-2.5 bg-[#FF6B00] hover:bg-orange-500 text-white text-xs font-bold rounded-lg shadow-xl flex items-center gap-2">
+            <i class="fa-solid fa-film"></i> 내 컴퓨터 동영상(MP4) 올리기
+          </button>
+          <button onclick="triggerVideoUrlChange()" class="px-3.5 py-2.5 bg-slate-900/90 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow-xl flex items-center gap-1.5 border border-white/20">
+            <i class="fa-solid fa-link"></i> 동영상 URL 입력
+          </button>
+          <div class="flex items-center gap-1 bg-slate-900/90 text-white px-3 py-2 rounded-lg border border-white/20 text-xs">
+            <span>영상높이(흰색여백):</span>
+            <button onclick="adjustVideoHeight(-2)" class="px-2 py-0.5 bg-slate-700 hover:bg-orange-600 rounded font-bold">-</button>
+            <span id="videoHeightLabel" class="text-orange-400 font-bold px-1">88vh</span>
+            <button onclick="adjustVideoHeight(2)" class="px-2 py-0.5 bg-slate-700 hover:bg-orange-600 rounded font-bold">+</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- [섹션 2] CAMPUS 가로 캐러셀 -->
+      <section class="relative w-full min-h-[85vh] flex flex-col justify-center py-20 px-8 md:px-20 bg-white overflow-hidden">
+        <div class="watermark-text absolute bottom-6 right-0 text-right leading-none select-none">
+          TOP SECRET<br/>CAMPUS
+        </div>
+
+        <div class="max-w-[1600px] w-full mx-auto relative z-10">
+          <div class="flex flex-wrap items-end justify-between mb-12 gap-4">
+            <div>
+              <h2 data-editable="true" data-path="homeCampus.heading" class="text-5xl md:text-6xl font-normal text-neutral-900 tracking-wide"></h2>
+              <p data-editable="true" data-path="homeCampus.subHeading" class="text-sm text-neutral-500 mt-2"></p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] text-white text-xs font-bold rounded hover:bg-orange-500">
+                <i class="fa-solid fa-plus mr-1"></i> 새 지점 추가
+              </button>
+              <button onclick="navigateTo('campus')" class="btn-learn-more">
+                <span>LEARN MORE</span>
+                <span class="w-8 h-[1px] bg-white relative after:content-[''] after:absolute after:right-0 after:-top-[3px] after:w-2 after:h-2 after:border-t after:border-r after:border-white after:rotate-45"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="swiper campusSwiper w-full">
+            <div class="swiper-wrapper" id="homeCampusSliderWrapper"></div>
+            <div class="swiper-scrollbar custom-swiper-scrollbar campus-swiper-scrollbar"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- [섹션 3] 풀스크린 히어로 배너 슬라이더 (6초 자동전환) -->
+      <section class="relative w-full h-screen min-h-[640px] bg-[#0F1A2E] overflow-hidden">
+        <div class="admin-only-control absolute top-10 left-10 z-30 gap-2">
+          <button onclick="addHeroSlide()" class="px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow-lg hover:bg-orange-500">
+            <i class="fa-solid fa-plus mr-1"></i> 배너 슬라이드 추가
+          </button>
+        </div>
+
+        <div class="swiper heroSwiper w-full h-full">
+          <div class="swiper-wrapper" id="heroSlidesWrapper"></div>
+        </div>
+
+        <div class="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-10 md:px-24">
+          <div class="max-w-3xl pointer-events-auto">
+            <p id="heroSubtitle" data-editable="true" data-path="hero.subtitle"
+               class="text-white/90 text-sm md:text-base tracking-[0.25em] mb-3 font-light drop-shadow">
+            </p>
+            <h1 id="heroTitle" data-editable="true" data-path="hero.title"
+                class="text-white text-5xl md:text-7xl font-normal leading-[1.08] tracking-wide drop-shadow-md whitespace-pre-line">
+            </h1>
+            <p id="heroSlogan" data-editable="true" data-path="hero.slogan"
+               class="text-white text-xl md:text-3xl mt-6 tracking-[0.18em] drop-shadow">
+            </p>
+
+            <div class="flex items-center gap-4 mt-10 text-white">
+              <span id="heroSlideFraction" class="text-lg tracking-widest">1/3</span>
+              <span class="w-12 h-[1px] bg-white/60"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-9 left-10 right-10 md:left-24 md:right-24 z-20">
+          <div class="hero-progress-track" onclick="seekHeroSlide(event)">
+            <div id="heroProgressFill" class="hero-progress-fill" style="width: 33.33%;"></div>
+            <div id="heroProgressKnob" class="hero-progress-knob" style="left: 33.33%;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- [섹션 4] CURRICULUM & SYSTEM 가로 캐러셀 섹션 -->
+      <section class="relative w-full min-h-[85vh] flex flex-col justify-center py-24 px-8 md:px-20 bg-white overflow-hidden border-t border-neutral-100">
+        <div class="watermark-text absolute bottom-6 right-0 text-right leading-none select-none">
+          CURRICULUM<br/>&amp; SYSTEM
+        </div>
+
+        <div class="max-w-[1600px] w-full mx-auto relative z-10">
+          <div class="flex flex-wrap items-end justify-between mb-12 gap-4">
+            <div>
+              <h2 data-editable="true" data-path="homeSystem.heading" class="text-5xl md:text-6xl font-normal text-neutral-900 tracking-wide"></h2>
+              <p data-editable="true" data-path="homeSystem.subHeading" class="text-sm text-neutral-500 mt-2"></p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="addSystemShowcaseItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] text-white text-xs font-bold rounded hover:bg-orange-500">
+                <i class="fa-solid fa-plus mr-1"></i> 시스템/커리큘럼 카드 추가
+              </button>
+              <button onclick="navigateTo('curriculum')" class="btn-learn-more">
+                <span>LEARN MORE</span>
+                <span class="w-8 h-[1px] bg-white relative after:content-[''] after:absolute after:right-0 after:-top-[3px] after:w-2 after:h-2 after:border-t after:border-r after:border-white after:rotate-45"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="swiper systemSwiper w-full">
+            <div class="swiper-wrapper" id="homeSystemSliderWrapper"></div>
+            <div class="swiper-scrollbar custom-swiper-scrollbar system-swiper-scrollbar"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- [섹션 5] 짙은 남색(#0F1A2E) 통합 푸터 -->
+      <footer class="w-full bg-[#0F1A2E] text-white border-t border-[#233656]">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12">
+          <!-- 좌측 칸: 입학 상담 문의 -->
+          <div class="lg:col-span-5 p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-[#233656] flex flex-col justify-center">
+            <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-orange-400"></h3>
+            <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-slate-200 mb-6 leading-relaxed"></p>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square"></i> <span data-editable="true" data-path="footer.recruitBtnText"></span>
+              </button>
+              <button onclick="navigateTo('login')" class="btn-outline-fill px-8 py-3.5 text-xs flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인
+              </button>
+            </div>
+          </div>
+
+          <!-- 우측 칸: ACADEMY INFO + 서비스 이용약관 / 개인정보 취급방침 -->
+          <div class="lg:col-span-7 p-10 md:p-16 flex flex-col justify-center">
+            <h3 data-editable="true" data-path="footer.officeTitle" class="text-lg font-bold tracking-wider mb-4"></h3>
+            <div class="space-y-1.5 text-xs md:text-sm text-slate-300 leading-relaxed mb-6">
+              <p data-editable="true" data-path="footer.address"></p>
+              <p data-editable="true" data-path="footer.tel"></p>
+              <p data-editable="true" data-path="footer.company"></p>
+              <p data-editable="true" data-path="footer.bizNum"></p>
+              <p data-editable="true" data-path="footer.ceo"></p>
+            </div>
+
+            <div class="pt-5 border-t border-[#233656] flex flex-wrap items-center justify-between gap-4">
+              <div class="flex gap-4 text-xs text-slate-300">
+                <span data-editable="true" data-path="footer.termsText" class="cursor-pointer hover:text-orange-400"></span>
+                <span>|</span>
+                <span data-editable="true" data-path="footer.privacyPolicyText" class="cursor-pointer hover:text-orange-400 font-semibold text-white"></span>
+              </div>
+              <p data-editable="true" data-path="footer.copyright" class="text-xs text-slate-400"></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ==================== [VIEW 2: TOP SECRET 소개 (인사말 / 학습목표 / 연혁 / 명예의 전당)] ==================== -->
+    <div id="view-philosophy" class="view-section subpage-top-offset hidden min-h-screen flex flex-col">
+      <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3">
+        <span class="cursor-pointer hover:text-black" onclick="navigateTo('home')">HOME</span>
+        <span>&gt;</span>
+        <span>TOP SECRET</span>
+        <span>&gt;</span>
+        <span id="topSecretBreadcrumb" class="text-neutral-900 font-semibold">인사말</span>
+      </div>
+
+      <!-- 상단 짙은 남색 배너 -->
+      <div class="relative bg-[#0F1A2E] text-white py-16 px-10 md:px-24 overflow-hidden">
+        <div class="watermark-text absolute -bottom-6 right-6 opacity-10 text-white">TOP SECRET</div>
+        <div class="max-w-4xl relative z-10">
+          <h1 data-editable="true" data-path="philosophy.bannerTitle" class="text-4xl md:text-5xl mb-6"></h1>
+          <p data-editable="true" data-path="philosophy.bannerQuote" class="text-sm md:text-base text-slate-200 leading-loose whitespace-pre-line mb-6"></p>
+          <div class="flex items-center gap-3 text-sm text-orange-300">
+            <span data-editable="true" data-path="philosophy.ceoSign"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 좌측 4대 메뉴 탭 + 우측 탭별 컨텐츠 -->
+      <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 bg-[#15233D] text-white border-t border-[#233656]">
+        <div class="lg:col-span-3 bg-[#F4F4F4] text-neutral-800 p-8 md:p-12 border-r border-neutral-200">
+          <div class="space-y-3" id="topSecretSideTabs"></div>
+        </div>
+        <div class="lg:col-span-9 p-10 md:p-20 flex flex-col justify-center" id="topSecretTabContent"></div>
+      </div>
+    </div>
+
+    <!-- ==================== [VIEW 3: CURRICULUM (8대 교육과정/커리큘럼)] ==================== -->
+    <div id="view-curriculum" class="view-section subpage-top-offset hidden min-h-screen bg-white">
+      <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3">
+        <span class="cursor-pointer hover:text-black" onclick="navigateTo('home')">HOME</span>
+        <span>&gt;</span>
+        <span>CURRICULUM</span>
+        <span>&gt;</span>
+        <span id="curriculumBreadcrumb" class="text-neutral-900 font-semibold">전체보기</span>
+      </div>
+
+      <div class="max-w-[1600px] mx-auto px-8 md:px-20 py-16">
+        <div class="flex flex-wrap items-end justify-between mb-14 gap-6">
+          <div class="flex items-baseline gap-6">
+            <h1 data-editable="true" data-path="curriculum.title" class="text-5xl font-normal text-neutral-900"></h1>
+            <span data-editable="true" data-path="curriculum.subtitle" class="text-2xl text-neutral-400"></span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="addCurriculumItem()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded hover:bg-orange-500">
+              <i class="fa-solid fa-plus mr-1"></i> 현재 카테고리에 새 과정 추가
+            </button>
+            <div class="flex border border-neutral-200">
+              <input id="curriculumSearchInput" oninput="renderCurriculumGrid()" type="text" placeholder="과정명 또는 대상 검색" class="px-4 py-2 text-xs focus:outline-none w-48" />
+              <button class="px-3 text-neutral-500 hover:text-black"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-2 space-y-3 text-sm bg-[#F8F8F8] p-6 h-fit" id="curriculumCategoryList"></div>
+          <div class="lg:col-span-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8" id="curriculumGridContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== [VIEW 4: CAMPUS STORE LIST] ==================== -->
+    <div id="view-campus" class="view-section subpage-top-offset hidden min-h-screen bg-white">
+      <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3">
+        <span class="cursor-pointer hover:text-black" onclick="navigateTo('home')">HOME</span>
+        <span>&gt;</span>
+        <span>CAMPUS</span>
+        <span>&gt;</span>
+        <span class="text-neutral-900 font-semibold">전체 지점 안내</span>
+      </div>
+
+      <div class="max-w-[1600px] mx-auto px-8 md:px-20 py-16">
+        <div class="flex flex-wrap items-center justify-between mb-12 gap-4">
+          <div>
+            <h1 data-editable="true" data-path="campusPage.title" class="text-5xl font-normal text-neutral-900"></h1>
+            <p class="text-xs text-neutral-500 mt-2">좌측 메뉴에서 지역이나 지점을 클릭하거나, 우측 카드의 [지점 상세페이지 들어가기] 버튼을 클릭하세요.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="addCampusItem()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded hover:bg-orange-500">
+              <i class="fa-solid fa-plus mr-1"></i> 새 지점 추가
+            </button>
+            <div class="flex border border-neutral-200">
+              <input id="campusSearchInput" oninput="renderCampusPageList()" type="text" placeholder="지점명 또는 지역 검색" class="px-4 py-2.5 text-xs focus:outline-none w-56" />
+              <button class="px-3 text-neutral-500"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-3 bg-[#F8F8F8] p-7 h-fit space-y-3 text-sm" id="campusRegionFilterList"></div>
+          <div class="lg:col-span-9 grid grid-cols-1 xl:grid-cols-2 gap-10" id="campusPageGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== [VIEW 5: CAMPUS DETAIL (5초 자동슬라이드 + 클릭 확대 + 하단 지도)] ==================== -->
+    <div id="view-campus-detail" class="view-section subpage-top-offset hidden min-h-screen bg-white">
+      <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="cursor-pointer hover:text-black" onclick="navigateTo('home')">HOME</span>
+          <span>&gt;</span>
+          <span class="cursor-pointer hover:text-black" onclick="navigateTo('campus')">CAMPUS</span>
+          <span>&gt;</span>
+          <span id="detailBreadcrumbName" class="text-neutral-900 font-semibold"></span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2" id="detailCampusSwitcher"></div>
+      </div>
+
+      <div class="max-w-[1600px] mx-auto px-8 md:px-20 py-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="campusDetailContent"></div>
+      </div>
+    </div>
+
+    <!-- ==================== [VIEW 7: LOGIN] ==================== -->
+    <div id="view-login" class="view-section subpage-top-offset hidden min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
+      <div class="watermark-text absolute top-28 right-10 text-right">WELCOME<br/>TO TOP SECRET</div>
+
+      <div class="w-full max-w-md relative z-10">
+        <h1 class="text-5xl text-neutral-900 mb-8">Login</h1>
+        <p class="text-xs text-neutral-500 mb-6">
+          로그인하시면 상단 로고, 동영상, 전체/개별 글씨체, 지점 상세페이지(지도 포함)를 모두 수정하고 영구 저장하실 수 있습니다. (ID: <code class="text-orange-600 font-bold">admin</code> / PW: <code class="text-orange-600 font-bold">1234</code>)
+        </p>
+
+        <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+          <input id="loginIdInput" type="text" placeholder="아이디 (기본값: admin)" value="admin"
+                 class="w-full px-4 py-3.5 border border-neutral-200 text-sm focus:outline-none focus:border-orange-600" required />
+          <input id="loginPwInput" type="password" placeholder="비밀번호 (기본값: 1234)" value="1234"
+                 class="w-full px-4 py-3.5 border border-neutral-200 text-sm focus:outline-none focus:border-orange-600" required />
+
+          <div class="flex items-center justify-between text-xs text-neutral-500 py-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="accent-orange-600" /> 아이디 저장
+            </label>
+            <span class="text-neutral-400">TOP SECRET CMS</span>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-sm font-semibold transition">
+            로그인
+          </button>
+          <button type="button" onclick="navigateTo('consult')" class="w-full py-4 bg-[#0F1A2E] hover:bg-slate-800 text-white text-sm font-semibold transition">
+            1:1 입학 상담신청
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== [VIEW 8: CONSULT] ==================== -->
+    <div id="view-consult" class="view-section subpage-top-offset hidden min-h-screen flex flex-col justify-center py-20 px-8 md:px-24 relative overflow-hidden">
+      <div class="watermark-text absolute top-28 right-10 text-right">CONSULTATION<br/>&amp; ADMISSION</div>
+
+      <div class="max-w-5xl w-full mx-auto relative z-10">
+        <h1 data-editable="true" data-path="consult.pageTitle" class="text-5xl text-neutral-900 mb-3"></h1>
+        <p data-editable="true" data-path="consult.pageDesc" class="text-sm text-neutral-500 mb-10"></p>
+
+        <form onsubmit="handleConsultSubmit(event)" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5 space-y-5">
+            <div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">학생 이름</label>
+              <input type="text" required placeholder="학생 이름을 입력하세요" class="w-full px-4 py-3 border border-neutral-200 text-xs focus:outline-none focus:border-orange-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">학교 및 학년</label>
+              <input type="text" required placeholder="예: 불당중 2학년 / 아산고 1학년" class="w-full px-4 py-3 border border-neutral-200 text-xs focus:outline-none focus:border-orange-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">학부모님 연락처</label>
+              <input type="tel" required placeholder="010-0000-0000" class="w-full px-4 py-3 border border-neutral-200 text-xs focus:outline-none focus:border-orange-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">희망 지점 선택</label>
+              <select id="consultCampusSelect" class="w-full px-4 py-3 border border-neutral-200 text-xs focus:outline-none focus:border-orange-600 bg-white"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">상담 희망 과목 및 문의사항</label>
+              <textarea rows="3" placeholder="현재 성적 고민이나 희망하시는 상담 시간대를 남겨주세요." class="w-full px-4 py-3 border border-neutral-200 text-xs focus:outline-none focus:border-orange-600"></textarea>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-[#F8F8F8] p-8 flex flex-col justify-between">
+            <div class="space-y-6">
+              <div>
+                <h4 class="text-xs font-bold text-neutral-800 mb-2">개인정보 수집 및 이용 동의 안내</h4>
+                <div data-editable="true" data-path="consult.privacyText" class="bg-white border border-neutral-200 p-4 h-32 overflow-y-auto text-[11px] text-neutral-500 leading-relaxed whitespace-pre-line"></div>
+                <label class="flex items-center gap-2 text-xs text-neutral-600 mt-2 cursor-pointer">
+                  <input type="checkbox" required class="accent-orange-600" /> 개인정보 수집 및 이용에 동의합니다. (필수)
+                </label>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold text-neutral-800 mb-2">학사 일정 알림 수신 동의</h4>
+                <div data-editable="true" data-path="consult.marketingText" class="bg-white border border-neutral-200 p-4 h-24 overflow-y-auto text-[11px] text-neutral-500 leading-relaxed whitespace-pre-line"></div>
+                <label class="flex items-center gap-2 text-xs text-neutral-600 mt-2 cursor-pointer">
+                  <input type="checkbox" checked class="accent-orange-600" /> 학사 일정 및 교육 안내 수신에 동의합니다. (선택)
+                </label>
+              </div>
+            </div>
+
+            <div class="flex gap-3 mt-8">
+              <button type="submit" class="px-12 py-3.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-semibold transition">
+                상담 예약 신청하기
+              </button>
+              <button type="button" onclick="navigateTo('home')" class="px-12 py-3.5 bg-[#0F1A2E] hover:bg-slate-800 text-white text-xs font-semibold transition">
+                취소
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ====================================================
+       5. 자바스크립트: 통합 상태 관리 + 이벤트 위임 + Undo/Redo 엔진
+       ==================================================== -->
+  <script>
+    const STORAGE_KEY = "topSecretSiteData_v8";
+
+    const defaultSiteData = {
+      branding: {
+        sidebarLogo: "remove_background.png",
+        logoWidth: 240,
+        logoSubText: "행복하게 배우며 나만의 꿈을 키우는",
+        logoMainText: "탑씨크리트학원",
+        globalFont: "'Pretendard', sans-serif",
+        quick3: "상담신청",
+        quick4: "지점안내"
+      },
+      videoSection: {
+        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-students-studying-together-in-a-library-42544-large.mp4",
+        heightVh: 88,
+        mainTitle: "행복하게 배우며 나만의 꿈을 키우는 탑씨크리트",
+        subTitle: "캠퍼스 및 교육시스템 자세히 보기"
+      },
+      styles: {
+        "hero.title": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
+        "hero.slogan": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
+        "homeCampus.heading": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
+        "homeSystem.heading": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
+        "curriculum.title": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
+        "campusPage.title": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" }
+      },
+      menus: [
+        {
+          title: "TOP SECRET",
+          subs: [
+            { name: "인사말", view: "philosophy", tab: "greeting" },
+            { name: "학습목표", view: "philosophy", tab: "goal" },
+            { name: "연혁", view: "philosophy", tab: "history" },
+            { name: "명예의 전당", view: "philosophy", tab: "honors" }
+          ]
+        },
+        {
+          title: "CURRICULUM",
+          subs: [
+            { name: "초등 교육과정", view: "curriculum", cat: "초등 교육과정" },
+            { name: "중등 교육과정", view: "curriculum", cat: "중등 교육과정" },
+            { name: "고등 교육과정", view: "curriculum", cat: "고등 교육과정" },
+            { name: "수학커리큘럼", view: "curriculum", cat: "수학커리큘럼" },
+            { name: "영어커리큘럼", view: "curriculum", cat: "영어커리큘럼" },
+            { name: "영재반 커리큘럼", view: "curriculum", cat: "영재반 커리큘럼" },
+            { name: "SKY반 커리큘럼", view: "curriculum", cat: "SKY반 커리큘럼" },
+            { name: "수능반 커리큘럼", view: "curriculum", cat: "수능반 커리큘럼" }
+          ]
+        },
+        {
+          title: "CAMPUS",
+          subs: [
+            { name: "전체 지점 보기", view: "campus" },
+            { name: "천안 불당본원", view: "campus-detail", campusId: 0 },
+            { name: "천안 신불당원", view: "campus-detail", campusId: 1 },
+            { name: "탑씨크리트 아산원", view: "campus-detail", campusId: 2 }
+          ]
+        },
+        {
+          title: "RESERVATION",
+          subs: [
+            { name: "1:1 입학 상담 신청", view: "consult" },
+            { name: "로그인", view: "login" }
+          ]
+        }
+      ],
+      hero: {
+        subtitle: "행복하게 배우며 나만의 꿈을 키우는",
+        title: "TOP SECRET\nACADEMY",
+        slogan: "BEST · FIRST · ONLY",
+        slides: [
+          {
+            img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=85",
+            caption: "단 한 명의 학생을 위한 1:1 초밀착 맞춤 커리큘럼"
+          },
+          {
+            img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=85",
+            caption: "제대로, 스스로, 끝까지 해내는 메타인지 완전학습"
+          },
+          {
+            img: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1920&q=85",
+            caption: "결과로 증명하는 압도적 성적 향상 시스템"
+          }
+        ]
+      },
+      homeCampus: {
+        heading: "CAMPUS",
+        subHeading: "행복하게 배우며 나만의 꿈을 키우는 탑씨크리트학원 캠퍼스 안내"
+      },
+      homeSystem: {
+        heading: "CURRICULUM & SYSTEM",
+        subHeading: "탑씨크리트만의 독보적인 1:1 맞춤 커리큘럼과 교육철학 시스템을 만나보세요",
+        items: [
+          {
+            title: "학년별 · 과목별 맞춤 커리큘럼",
+            sub: "초·중·고 / 수학·영어 / 영재·SKY·수능반",
+            desc: "단 한 명의 학생을 위해 세밀하게 설계된 8대 핵심 커리큘럼으로 빈틈없는 실력을 완성합니다.",
+            btnText: "커리큘럼 상세보기",
+            targetView: "curriculum",
+            targetSub: "전체보기",
+            img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80"
+          },
+          {
+            title: "탑씨크리트 교육철학 · 학습목표",
+            sub: "제대로 · 스스로 · 끝까지 해내는 완전학습",
+            desc: "단순 암기가 아닌 학생 스스로 이해하고 설명할 수 있을 때까지 3단계 메타인지 학습을 실천합니다.",
+            btnText: "교육철학 · 학습목표 보기",
+            targetView: "philosophy",
+            targetSub: "goal",
+            img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80"
+          },
+          {
+            title: "명예의 전당 · 성적향상 사례",
+            sub: "결과로 증명하는 압도적 성적 상승",
+            desc: "중위권에서 전교권으로, 철저한 1:1 오답 관리와 데일리 테스트가 만들어낸 실제 성과를 확인하세요.",
+            btnText: "명예의 전당 들어가기",
+            targetView: "philosophy",
+            targetSub: "honors",
+            img: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1000&q=80"
+          }
+        ]
+      },
+      campuses: [
+        {
+          id: 0,
+          region: "천안 불당",
+          name: "천안 불당본원",
+          tel: "041-555-0001 (임시번호)",
+          addr: "충남 천안시 서북구 불당동",
+          mapQuery: "충남 천안시 서북구 불당동",
+          time: "14:00 ~ 22:00",
+          tags: "셔틀버스 운행   1:1 밀착관리실   자습전용관 완비",
+          notice1: "· 본 페이지는 천안 불당본원 상세 안내 및 전임 강사진 소개 페이지입니다.",
+          notice2: "· 좌측 큰 사진을 클릭하면 5초 자동 슬라이드가 멈추며 사진을 크게 확대해 보실 수 있습니다.",
+          mainImg: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80",
+          gallery: [
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80"
+          ],
+          teachers: [
+            { role: "대표원장", name: "홍길동 원장", badge: "총괄원장", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" },
+            { role: "고등부 수석", name: "김선생 팀장", badge: "수능1등급", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" },
+            { role: "중등부 전임", name: "이선생 강사", badge: "내신만점", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" },
+            { role: "상담총괄", name: "박실장", badge: "입시컨설팅", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" }
+          ]
+        },
+        {
+          id: 1,
+          region: "천안 신불당",
+          name: "천안 신불당원",
+          tel: "041-555-0002 (임시번호)",
+          addr: "충남 천안시 서북구 불당25로",
+          mapQuery: "충남 천안시 서북구 불당25로",
+          time: "14:00 ~ 22:00",
+          tags: "신규 확장 캠퍼스   프리미엄 강의실   맞춤 클리닉",
+          notice1: "· 본 페이지는 천안 신불당원 상세 안내 및 전임 강사진 소개 페이지입니다.",
+          notice2: "· 좌측 큰 사진을 클릭하면 5초 자동 슬라이드가 멈추며 사진을 크게 확대해 보실 수 있습니다.",
+          mainImg: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=80",
+          gallery: [
+            "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80"
+          ],
+          teachers: [
+            { role: "신불당 원장", name: "최원장", badge: "신불당총괄", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" },
+            { role: "고등 전임", name: "정선생", badge: "내신대비", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" }
+          ]
+        },
+        {
+          id: 2,
+          region: "아산",
+          name: "탑씨크리트 아산원",
+          tel: "041-555-0003 (임시번호)",
+          addr: "충남 아산시 배방읍",
+          mapQuery: "충남 아산시 배방읍",
+          time: "14:00 ~ 22:00",
+          tags: "전 노선 셔틀운행   1:1 메타인지 테스트   집중관리",
+          notice1: "· 본 페이지는 탑씨크리트 아산원 상세 안내 및 전임 강사진 소개 페이지입니다.",
+          notice2: "· 좌측 큰 사진을 클릭하면 5초 자동 슬라이드가 멈추며 사진을 크게 확대해 보실 수 있습니다.",
+          mainImg: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80",
+          gallery: [
+            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80"
+          ],
+          teachers: [
+            { role: "아산원 원장", name: "강원장", badge: "아산총괄", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" }
+          ]
+        }
+      ],
+      philosophy: {
+        bannerTitle: "TOP SECRET ACADEMY",
+        bannerQuote: "탑씨크리트학원이 지켜가는 믿음은,\n단 한 명의 학생도 포기하지 않고 스스로의 잠재력을 깨우치게 하는 것입니다.\n행복하게 배우며 나만의 꿈을 키우는 공간에서\n최고의 학습 시스템으로 흔들리지 않는 실력을 완성합니다.",
+        ceoSign: "탑씨크리트학원 대표원장 드림",
+        greetingTitle: "대표원장 인사말",
+        greetingBody: "안녕하십니까, 탑씨크리트학원입니다.\n\n우리는 학생 한 명 한 명이 가진 고유한 가능성을 믿습니다. 획일화된 주입식 교육에서 벗어나, 학생 스스로 원리를 깨닫고 문제를 해결해 나가는 '진짜 공부의 힘'을 길러주는 것이 탑씨크리트학원의 사명입니다.\n\n천안 불당·신불당과 아산 지역의 모든 학생들이 탑씨크리트의 체계적인 1:1 밀착 관리 시스템을 통해 원하는 목표를 이루고 당당하게 성장할 수 있도록 끝까지 함께하겠습니다.",
+        purposeLabel: "탑씨크리트의 학습목표",
+        purposeDesc: "단순한 암기가 아닌, 학생 스스로 이해하고 설명할 수 있을 때까지 3단계 완전학습을 실천합니다.",
+        circle1: "제대로\n이해했는가?",
+        circle2: "스스로\n풀 수 있는가?",
+        circle3: "끝까지\n해내는가?",
+        historyTitle: "탑씨크리트 걸어온 길 (연혁)",
+        historyList: [
+          { year: "2026", content: "탑씨크리트학원 신불당 확장 및 통합 학습관리 시스템 고도화 (임시 데이터 - 클릭해 수정)" },
+          { year: "2025", content: "탑씨크리트 아산원 셔틀 노선 개편 및 초·중·고 전 학년 1:1 밀착 클리닉 확대" },
+          { year: "2024", content: "천안·아산 주요 고교 내신 1등급 및 명문대 합격생 다수 배출" },
+          { year: "2022", content: "탑씨크리트학원 설립 — '행복하게 배우며 나만의 꿈을 키우는' 교육 이념 선포" }
+        ],
+        honorsTitle: "탑씨크리트 명예의 전당",
+        honorsSub: "철저한 1:1 맞춤 관리와 메타인지 학습으로 이뤄낸 자랑스러운 성적 향상 주역들입니다.",
+        honorsList: [
+          { badge: "전교 1등", school: "불당고 2학년 김OO", desc: "수학·영어 동시 1등급 달성! 오답 클리닉으로 취약 유형 완벽 극복", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" },
+          { badge: "3등급→1등급", school: "아산고 1학년 이OO", desc: "입학 3개월 만에 중간·기말 연속 만점 달성", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" },
+          { badge: "100점 만점", school: "불당중 3학년 박OO", desc: "서술형 감점 제로! 메타인지 백지 테스트로 완성한 만점", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" },
+          { badge: "SKY 합격", school: "천안고 3학년 최OO", desc: "수능반 집중 관리 커리큘럼으로 서울권 최상위 명문대 합격", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" }
+        ]
+      },
+      curriculum: {
+        title: "T.O.P Curriculum",
+        subtitle: "Best First Only",
+        categories: [
+          "전체보기",
+          "초등 교육과정",
+          "중등 교육과정",
+          "고등 교육과정",
+          "수학커리큘럼",
+          "영어커리큘럼",
+          "영재반 커리큘럼",
+          "SKY반 커리큘럼",
+          "수능반 커리큘럼"
+        ],
+        items: [
+          {
+            cat: "초등 교육과정",
+            badge: "초등",
+            title: "초등 자기주도 개념 완성반",
+            sub: "초4 · 초5 · 초6 올바른 학습 습관 형성",
+            desc: "행복하게 배우며 공부의 흥미를 깨닫고 스스로 계획·복습하는 초등 핵심 교육과정입니다.",
+            target: "대상: 초등부",
+            img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "중등 교육과정",
+            badge: "중등",
+            title: "중등 내신 만점 & 고등 선행반",
+            sub: "중1 · 중2 · 중3 학교별 내신 완벽 대비",
+            desc: "탄탄한 개념 이해와 서술형 대비, 메타인지 구술 테스트로 중등 최상위권을 달성합니다.",
+            target: "대상: 중등부",
+            img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "고등 교육과정",
+            badge: "고등",
+            title: "고등 내신 1등급 집중 돌파반",
+            sub: "고1 · 고2 · 고3 천안·아산 고교 기출 분석",
+            desc: "학교별 부교재와 기출 변형 문제를 완벽히 분석하여 흔들리지 않는 내신 1등급을 만듭니다.",
+            target: "대상: 고등부",
+            img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "수학커리큘럼",
+            badge: "MATH",
+            title: "탑씨크리트 1:1 수학 완전학습",
+            sub: "개념 원리부터 킬러 문항 오답 클리닉까지",
+            desc: "개인별 취약 단원을 정밀 진단하고 오답 유사 쌍둥이 문제로 끝까지 책임지는 수학 전용 커리큘럼입니다.",
+            target: "과목: 수학",
+            img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "영어커리큘럼",
+            badge: "ENG",
+            title: "탑씨크리트 1:1 영어 완전학습",
+            sub: "어휘 · 구문독해 · 문법 · 내신서술형 마스터",
+            desc: "정확한 구문 분석과 학교별 본문 변형 훈련을 통해 내신과 모의고사 1등급을 동시에 잡습니다.",
+            target: "과목: 영어",
+            img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "영재반 커리큘럼",
+            badge: "영재반",
+            title: "특목 · 자사고 · 영재반 심화과정",
+            sub: "창의 융합 사고력 및 고난도 심화 문제해결",
+            desc: "최상위권 도약을 목표로 심화 개념과 고난도 사고력 문항을 집중 탐구하는 영재 특화 과정입니다.",
+            target: "대상: 영재반 선발생",
+            img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "SKY반 커리큘럼",
+            badge: "SKY반",
+            title: "최상위 SKY반 1% 프리미엄 관리",
+            sub: "전교권 유지 및 고난도 킬러 문항 완벽 정복",
+            desc: "최상위권 학생들을 위한 전용 교안과 1:1 심층 멘토링으로 의치약학 및 SKY 진학을 실현합니다.",
+            target: "대상: 최상위 SKY반",
+            img: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80"
+          },
+          {
+            cat: "수능반 커리큘럼",
+            badge: "수능반",
+            title: "수능 1등급 실전 모의고사 & 파이널반",
+            sub: "평가원 기출 분석 및 실전 시간관리 훈련",
+            desc: "수능 출제 원리 분석과 매주 실전 모의고사 클리닉을 통해 수능 당일 최고의 성적을 이끌어냅니다.",
+            target: "대상: 수능 대비반",
+            img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+          }
+        ]
+      },
+      campusPage: {
+        title: "Campus"
+      },
+      consult: {
+        pageTitle: "Consultation",
+        pageDesc: "탑씨크리트학원의 1:1 맞춤 학습 진단 및 입학 상담을 신청하실 수 있습니다.",
+        privacyText: "[개인정보 수집 및 이용 안내]\n1. 수집 항목: 학생 이름, 학교/학년, 학부모 연락처, 희망 지점 및 상담 내용\n2. 수집 및 이용 목적: 탑씨크리트학원 입학 상담 및 레벨테스트 예약 안내\n3. 보유 및 이용 기간: 상담 완료 후 1년 또는 파기 요청 시 즉시 파기합니다.",
+        marketingText: "탑씨크리트학원의 주요 학사 일정, 내신 대비 특강, 셔틀버스 노선 안내 등의 교육 정보를 문자(SMS/알림톡)로 받아보실 수 있습니다."
+      },
+      footer: {
+        recruitTitle: "ADMISSION & CONSULTATION",
+        recruitPhone: "입학 상담 및 레벨테스트 문의 : 041-555-0001",
+        recruitBtnText: "상담신청 바로가기",
+        officeTitle: "ACADEMY INFO",
+        address: "주소 : 충청남도 천안시 서북구 불당동 / 아산시 (탑씨크리트학원)",
+        tel: "대표전화 : 041-555-0001",
+        company: "상호명 : 탑씨크리트학원 (TOP SECRET ACADEMY)",
+        bizNum: "슬로건 : 행복하게 배우며 나만의 꿈을 키우는 탑씨크리트학원",
+        ceo: "대표 : 탑씨크리트",
+        termsText: "서비스 이용약관",
+        privacyPolicyText: "개인정보 취급방침",
+        copyright: "Copyright © 2026 TOP SECRET ACADEMY. All rights reserved."
+      }
+    };
+
+    let siteData = loadSiteData();
+    let isAdminLoggedIn = false;
+    let isEditMode = false;
+    let currentSelectedEl = null;
+    let currentSelectedPath = null;
+    let currentVideoBlobUrl = null;
+
+    // 슬라이더 인스턴스
+    let heroSwiperInstance = null;
+    let campusSwiperInstance = null;
+    let systemSwiperInstance = null;
+    let campusDetailSwiperInstance = null;
+
+    // 현재 페이지 및 탭 상태
+    let currentViewId = "home";
+    let currentTopSecretTab = "greeting";
+    let currentCurriculumCat = "전체보기";
+    let currentCampusRegion = "전체보기";
+    let currentDetailCampusId = 0;
+
+    // 공통 유틸리티
+    const stripHtml = (str = "") => String(str).replace(/<[^>]*>?/gm, "").trim();
+
+    function getByPath(obj, path) {
+      return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+    }
+
+    function setByPath(obj, path, value) {
+      const parts = path.split(".");
+      const last = parts.pop();
+      const target = parts.reduce((acc, part) => (acc ? acc[part] : undefined), obj);
+      if (target && last !== undefined) target[last] = value;
+    }
+
+    function rgbToHex(rgbStr) {
+      if (!rgbStr) return "#FF6B00";
+      if (rgbStr.startsWith("#")) return rgbStr;
+      const m = rgbStr.match(/\d+/g);
+      if (!m || m.length < 3) return "#FF6B00";
+      return "#" + m.slice(0, 3).map(x => Number(x).toString(16).padStart(2, "0")).join("");
+    }
+
+    function persistToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+        return true;
+      } catch (e) {
+        alert("저장 용량을 초과했거나 오류가 발생했습니다.");
+        return false;
+      }
+    }
+
+    function refreshViewBindings() {
+      applyEditModeAttributes();
+      applySavedElementStyles();
+    }
+
+    // 공통 데이터 변경 헬퍼 (중복 제거)
+    function mutateSiteData(mutatorFn, renderFn, toastMsg) {
+      syncEditableElementsToData();
+      mutatorFn();
+      saveAllChanges(true);
+      if (renderFn) renderFn();
+      refreshViewBindings();
+      if (toastMsg) showToast(toastMsg);
+    }
+
+    // ==========================================================
+    // 9. 뒤로가기 / 앞으로가기 통합 히스토리 엔진 (작업 Undo/Redo + 화면 이동)
+    // ==========================================================
+    let undoStack = [JSON.stringify(siteData)];
+    let redoStack = [];
+    let isRestoringHistory = false;
+
+    function recordActionSnapshot() {
+      if (isRestoringHistory) return;
+      syncEditableElementsToData();
+      const snap = JSON.stringify(siteData);
+      if (undoStack.length === 0 || undoStack[undoStack.length - 1] !== snap) {
+        undoStack.push(snap);
+        if (undoStack.length > 40) undoStack.shift();
+        redoStack = [];
+      }
+    }
+
+    function restoreFromSnapshot(snap, msg) {
+      isRestoringHistory = true;
+      siteData = JSON.parse(snap);
+      localStorage.setItem(STORAGE_KEY, snap);
+      renderAll();
+      isRestoringHistory = false;
+      showToast(msg);
+    }
+
+    function undoAction() {
+      syncEditableElementsToData();
+      if (undoStack.length > 1) {
+        redoStack.push(undoStack.pop());
+        restoreFromSnapshot(undoStack[undoStack.length - 1], "이전 작업 상태로 되돌렸습니다 (Undo).");
+      } else {
+        showToast("더 이상 되돌릴 이전 작업이 없습니다.");
+      }
+    }
+
+    function redoAction() {
+      if (redoStack.length > 0) {
+        const nextSnap = redoStack.pop();
+        undoStack.push(nextSnap);
+        restoreFromSnapshot(nextSnap, "취소한 작업을 다시 복구했습니다 (Redo).");
+      } else {
+        showToast("더 이상 앞으로 갈 작업이 없습니다.");
+      }
+    }
+
+    function handleUnifiedBack() {
+      if (isEditMode && undoStack.length > 1) undoAction();
+      else window.history.back();
+    }
+
+    function handleUnifiedForward() {
+      if (isEditMode && redoStack.length > 0) redoAction();
+      else window.history.forward();
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (!isEditMode) return;
+      const key = e.key.toLowerCase();
+      if ((e.ctrlKey || e.metaKey) && key === "z" && !e.shiftKey) {
+        e.preventDefault();
+        undoAction();
+      } else if ((e.ctrlKey || e.metaKey) && (key === "y" || (e.shiftKey && key === "z"))) {
+        e.preventDefault();
+        redoAction();
+      }
+    });
+
+    window.addEventListener("popstate", (e) => {
+      if (e.state && e.state.viewId) {
+        if (e.state.topSecretTab) currentTopSecretTab = e.state.topSecretTab;
+        if (e.state.curriculumCat) currentCurriculumCat = e.state.curriculumCat;
+        if (e.state.campusId !== undefined) currentDetailCampusId = e.state.campusId;
+        renderTopSecretPage();
+        renderCurriculumCategories();
+        renderCurriculumGrid();
+        navigateTo(e.state.viewId, false);
+      }
+    });
+
+    // ==========================================================
+    // 대용량 동영상 파일 영구 저장용 IndexedDB
+    // ==========================================================
+    const VIDEO_DB_NAME = "TopSecretMediaDB";
+    const VIDEO_STORE_NAME = "videos";
+
+    function openVideoDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(VIDEO_DB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(VIDEO_STORE_NAME)) {
+            db.createObjectStore(VIDEO_STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveVideoBlobToDB(blob) {
+      const db = await openVideoDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(VIDEO_STORE_NAME, "readwrite");
+        tx.objectStore(VIDEO_STORE_NAME).put(blob, "mainPromoVideoBlob");
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function loadVideoBlobFromDB() {
+      try {
+        const db = await openVideoDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(VIDEO_STORE_NAME, "readonly");
+          const req = tx.objectStore(VIDEO_STORE_NAME).get("mainPromoVideoBlob");
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function clearVideoBlobFromDB() {
+      try {
+        const db = await openVideoDB();
+        const tx = db.transaction(VIDEO_STORE_NAME, "readwrite");
+        tx.objectStore(VIDEO_STORE_NAME).delete("mainPromoVideoBlob");
+      } catch (e) {}
+    }
+
+    async function renderMainPromoVideo() {
+      const videoSec = document.getElementById("promoVideoSection");
+      const videoEl = document.getElementById("mainPromoVideo");
+      const hLabel = document.getElementById("videoHeightLabel");
+
+      const heightVh = siteData.videoSection?.heightVh || 88;
+      if (videoSec) videoSec.style.height = `${heightVh}vh`;
+      if (hLabel) hLabel.textContent = `${heightVh}vh`;
+      if (!videoEl) return;
+
+      const savedBlob = await loadVideoBlobFromDB();
+      if (currentVideoBlobUrl) {
+        URL.revokeObjectURL(currentVideoBlobUrl);
+        currentVideoBlobUrl = null;
+      }
+
+      if (savedBlob && siteData.videoSection?.useUploadedBlob) {
+        currentVideoBlobUrl = URL.createObjectURL(savedBlob);
+        videoEl.src = currentVideoBlobUrl;
+      } else {
+        videoEl.src = siteData.videoSection?.videoUrl || defaultSiteData.videoSection.videoUrl;
+      }
+      videoEl.muted = true;
+      videoEl.play().catch(() => {});
+    }
+
+    function adjustVideoHeight(delta) {
+      mutateSiteData(() => {
+        if (!siteData.videoSection) siteData.videoSection = {};
+        const curr = siteData.videoSection.heightVh || 88;
+        siteData.videoSection.heightVh = Math.min(100, Math.max(65, curr + delta));
+      }, () => {
+        const next = siteData.videoSection.heightVh;
+        const videoSec = document.getElementById("promoVideoSection");
+        const hLabel = document.getElementById("videoHeightLabel");
+        if (videoSec) videoSec.style.height = `${next}vh`;
+        if (hLabel) hLabel.textContent = `${next}vh`;
+      });
+    }
+
+    function triggerVideoFileUpload() {
+      syncEditableElementsToData();
+      const input = document.getElementById("globalVideoInput");
+      input.value = "";
+      input.click();
+    }
+
+    document.getElementById("globalVideoInput").addEventListener("change", async function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        await saveVideoBlobToDB(file);
+        if (!siteData.videoSection) siteData.videoSection = {};
+        siteData.videoSection.useUploadedBlob = true;
+        saveAllChanges(true);
+        await renderMainPromoVideo();
+        showToast(`내 컴퓨터 동영상(${file.name})이 성공적으로 적용·저장되었습니다!`);
+      } catch (err) {
+        alert("동영상 저장 중 오류가 발생했습니다.");
+      }
+    });
+
+    function triggerVideoUrlChange() {
+      syncEditableElementsToData();
+      const current = siteData.videoSection?.videoUrl || "";
+      const nextUrl = prompt("적용할 동영상 파일명(예: promo.mp4) 또는 동영상 URL 주소를 입력하세요:", current);
+      if (nextUrl && nextUrl.trim() !== "") {
+        mutateSiteData(() => {
+          if (!siteData.videoSection) siteData.videoSection = {};
+          siteData.videoSection.videoUrl = nextUrl.trim();
+          siteData.videoSection.useUploadedBlob = false;
+        }, renderMainPromoVideo, "동영상 경로/URL이 변경되었습니다!");
+      }
+    }
+
+    // ==========================================================
+    // 데이터 로드 / 저장 / 초기화 / 백업
+    // ==========================================================
+    function loadSiteData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          return {
+            ...defaultSiteData,
+            ...parsed,
+            branding: { ...defaultSiteData.branding, ...(parsed.branding || {}) },
+            videoSection: { ...defaultSiteData.videoSection, ...(parsed.videoSection || {}) },
+            homeSystem: { ...defaultSiteData.homeSystem, ...(parsed.homeSystem || {}) },
+            philosophy: { ...defaultSiteData.philosophy, ...(parsed.philosophy || {}) },
+            styles: { ...defaultSiteData.styles, ...(parsed.styles || {}) }
+          };
+        }
+      } catch (e) {
+        console.warn("Storage load failed:", e);
+      }
+      return JSON.parse(JSON.stringify(defaultSiteData));
+    }
+
+    function saveAllChanges(silent = false) {
+      syncEditableElementsToData();
+      recordActionSnapshot();
+      if (persistToStorage() && !silent) {
+        showToast("모든 변경사항이 영구 저장되었습니다!");
+      }
+    }
+
+    async function resetToDefault() {
+      if (!confirm("직접 수정하신 모든 내용과 동영상, 글씨체 설정을 초기 기본 상태로 되돌리시겠습니까?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      await clearVideoBlobFromDB();
+      siteData = JSON.parse(JSON.stringify(defaultSiteData));
+      undoStack = [JSON.stringify(siteData)];
+      redoStack = [];
+      currentSelectedEl = null;
+      currentSelectedPath = null;
+      renderAll();
+      showToast("초기 기본 상태로 복원되었습니다.");
+    }
+
+    function exportDataJson() {
+      syncEditableElementsToData();
+      const blob = new Blob([JSON.stringify(siteData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "topsecret_homepage_backup.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ==========================================================
+    // 전체 렌더링 및 서식 관리
+    // ==========================================================
+    function renderAll() {
+      applyBrandingAndFont();
+      renderMainPromoVideo();
+      renderAdminCampusJumpSelect();
+      renderDrawerMenus();
+      renderStaticBindings();
+      renderHomeCampusSlider();
+      renderHeroSection();
+      renderHomeSystemSlider();
+      renderTopSecretPage();
+      renderCurriculumCategories();
+      renderCurriculumGrid();
+      renderCampusRegionFilter();
+      renderCampusPageList();
+      renderCampusDetail(currentDetailCampusId);
+      refreshViewBindings();
+    }
+
+    function applySavedElementStyles() {
+      if (!siteData.styles) siteData.styles = {};
+      const styleProps = [
+        ["fontFamily", "font-family"],
+        ["fontSize", "font-size"],
+        ["color", "color"],
+        ["fontWeight", "font-weight"]
+      ];
+
+      document.querySelectorAll("[data-path]").forEach(el => {
+        const path = el.getAttribute("data-path");
+        const st = siteData.styles[path];
+        styleProps.forEach(([jsKey, cssKey]) => {
+          if (st && st[jsKey]) el.style.setProperty(cssKey, st[jsKey], "important");
+          else el.style.removeProperty(cssKey);
+        });
+      });
+
+      // 재렌더링 이후에도 선택 문구 하이라이트 및 참조 유지
+      if (isEditMode && currentSelectedPath) {
+        const liveTarget = document.querySelector(`[data-path="${currentSelectedPath}"]`);
+        if (liveTarget) {
+          currentSelectedEl = liveTarget;
+          liveTarget.classList.add("active-selected-target");
+        }
+      }
+    }
+
+    function applyBrandingAndFont() {
+      const b = siteData.branding || defaultSiteData.branding;
+      const globalFont = b.globalFont || "'Pretendard', sans-serif";
+      document.documentElement.style.setProperty("--global-font", globalFont);
+      const fontSelect = document.getElementById("globalFontSelect");
+      if (fontSelect) fontSelect.value = globalFont;
+
+      const logoImg = document.getElementById("sidebarLogoImg");
+      const fallbackLogo = document.getElementById("fallbackSidebarLogo");
+      const sizeDisplay = document.getElementById("logoSizeDisplay");
+      const w = b.logoWidth || 240;
+      if (sizeDisplay) sizeDisplay.textContent = `${w}px`;
+
+      if (logoImg) {
+        logoImg.style.width = `${w}px`;
+        if (b.sidebarLogo) {
+          logoImg.style.display = "block";
+          fallbackLogo.style.display = "none";
+          logoImg.src = b.sidebarLogo;
+        }
+      }
+    }
+
+    function changeGlobalFont(fontFamily) {
+      mutateSiteData(() => {
+        siteData.branding.globalFont = fontFamily;
+        document.documentElement.style.setProperty("--global-font", fontFamily);
+      }, null, `전체 기본 글씨체가 [${fontFamily.split(",")[0].replace(/'/g, "")}] 폰트로 변경·저장되었습니다!`);
+    }
+
+    function resetAllIndividualFonts() {
+      mutateSiteData(() => {
+        if (!siteData.styles) siteData.styles = {};
+        Object.keys(siteData.styles).forEach(path => {
+          if (siteData.styles[path]) delete siteData.styles[path].fontFamily;
+        });
+      }, null, "모든 제목과 본문이 [전체 글씨체]로 통일되었습니다!");
+    }
+
+    // 개별 문구 스타일 업데이트 공통 헬퍼 (중복 제거)
+    function updateSelectedStyle(alertMsg, styleUpdaterFn, toastMsg) {
+      if (!currentSelectedPath || !currentSelectedEl) {
+        alert(alertMsg);
+        return false;
+      }
+      if (!siteData.styles) siteData.styles = {};
+      if (!siteData.styles[currentSelectedPath]) siteData.styles[currentSelectedPath] = {};
+      styleUpdaterFn(siteData.styles[currentSelectedPath]);
+      applySavedElementStyles();
+      saveAllChanges(true);
+      if (toastMsg) showToast(toastMsg);
+      return true;
+    }
+
+    function changeSelectedElementFont(fontFamily) {
+      if (!fontFamily) return;
+      const ok = updateSelectedStyle(
+        "먼저 홈페이지 화면에서 글씨체를 바꿀 문구를 마우스로 한 번 클릭해 주세요!",
+        (st) => { st.fontFamily = fontFamily; },
+        `선택한 문구의 글씨체가 [${fontFamily.split(",")[0].replace(/'/g, "")}] 폰트로 변경·저장되었습니다!`
+      );
+      if (!ok) document.getElementById("selectedFontSelect").value = "";
+    }
+
+    function toggleSelectedBold() {
+      updateSelectedStyle("먼저 굵기를 바꿀 문구를 클릭해 주세요!", (st) => {
+        const currentWeight = window.getComputedStyle(currentSelectedEl).fontWeight;
+        const isBold = Number(currentWeight) >= 700 || currentWeight === "bold";
+        st.fontWeight = isBold ? "400" : "800";
+      });
+    }
+
+    function changeSelectedFontSize(delta) {
+      updateSelectedStyle("먼저 크기를 조절할 문구를 클릭해 주세요!", (st) => {
+        const currentPx = parseFloat(window.getComputedStyle(currentSelectedEl).fontSize) || 16;
+        const nextPx = Math.max(10, Math.min(120, Math.round(currentPx + delta)));
+        st.fontSize = `${nextPx}px`;
+        document.getElementById("currentFontSizeDisplay").textContent = `${nextPx}px`;
+      });
+    }
+
+    function changeSelectedColor(color) {
+      updateSelectedStyle("먼저 색상을 바꿀 문구를 클릭해 주세요!", (st) => {
+        st.color = color;
+      });
+    }
+
+    function resetSelectedElementStyle() {
+      if (!currentSelectedPath) return alert("먼저 서식을 초기화할 문구를 클릭해 주세요!");
+      if (siteData.styles && siteData.styles[currentSelectedPath]) {
+        delete siteData.styles[currentSelectedPath];
+      }
+      document.getElementById("selectedFontSelect").value = "";
+      document.getElementById("currentFontSizeDisplay").textContent = "기본";
+      applySavedElementStyles();
+      saveAllChanges(true);
+      showToast("선택한 문구의 개별 서식이 초기화되었습니다.");
+    }
+
+    function selectEditableTarget(el) {
+      document.querySelectorAll(".active-selected-target").forEach(item => item.classList.remove("active-selected-target"));
+      currentSelectedEl = el;
+      currentSelectedPath = el.getAttribute("data-path");
+      el.classList.add("active-selected-target");
+
+      const cleanText = (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ");
+      const label = document.getElementById("currentSelectedLabel");
+      if (label) label.textContent = cleanText ? `"${cleanText.slice(0, 18)}"` : currentSelectedPath;
+
+      const computedStyle = window.getComputedStyle(el);
+      const computedSize = Math.round(parseFloat(computedStyle.fontSize) || 16);
+      const sizeDisplay = document.getElementById("currentFontSizeDisplay");
+      if (sizeDisplay) sizeDisplay.textContent = `${computedSize}px`;
+
+      const st = (siteData.styles && siteData.styles[currentSelectedPath]) || {};
+      const selFont = document.getElementById("selectedFontSelect");
+      if (selFont) selFont.value = st.fontFamily || "";
+
+      const colorPicker = document.getElementById("inlineColorPicker");
+      if (colorPicker) colorPicker.value = rgbToHex(st.color || computedStyle.color);
+    }
+
+    function triggerSidebarLogoChange() {
+      triggerImageChange("branding.sidebarLogo");
+    }
+
+    function resizeSidebarLogo(delta) {
+      mutateSiteData(() => {
+        const currentW = siteData.branding.logoWidth || 240;
+        siteData.branding.logoWidth = Math.min(450, Math.max(80, currentW + delta));
+      }, applyBrandingAndFont);
+    }
+
+    function renderAdminCampusJumpSelect() {
+      const jumpSelect = document.getElementById("adminCampusJumpSelect");
+      if (jumpSelect) {
+        jumpSelect.innerHTML = `<option value="">🚪 지점 상세페이지 바로가기</option>` +
+          siteData.campuses.map((c, idx) => `<option value="${idx}">${idx + 1}. ${stripHtml(c.name)} 편집</option>`).join("");
+      }
+
+      const consultSelect = document.getElementById("consultCampusSelect");
+      if (consultSelect) {
+        consultSelect.innerHTML = siteData.campuses.map(c => `<option>${stripHtml(c.name)}</option>`).join("");
+      }
+    }
+
+    function renderStaticBindings() {
+      document.querySelectorAll("[data-path]").forEach(el => {
+        const path = el.getAttribute("data-path");
+        const val = getByPath(siteData, path);
+        if (val !== undefined) el.innerHTML = val;
+      });
+    }
+
+    function syncEditableElementsToData() {
+      document.querySelectorAll("[data-path]").forEach(el => {
+        // Swiper 루프 복제 슬라이드가 원본 데이터를 덮어쓰지 않도록 보호
+        if (el.closest(".swiper-slide-duplicate")) return;
+        const path = el.getAttribute("data-path");
+        if (path) setByPath(siteData, path, el.innerHTML);
+      });
+    }
+
+    // ==========================================================
+    // 2단 슬라이드 드로어 메뉴 및 SPA 라우팅
+    // ==========================================================
+    let isDrawerOpen = false;
+
+    function renderDrawerMenus() {
+      const campusMenu = siteData.menus.find(m => m.title === "CAMPUS");
+      if (campusMenu) {
+        campusMenu.subs = [
+          { name: "전체 지점 보기", view: "campus" },
+          ...siteData.campuses.map((c, idx) => ({
+            name: stripHtml(c.name),
+            view: "campus-detail",
+            campusId: idx
+          }))
+        ];
+      }
+
+      const d1 = document.getElementById("depth1List");
+      d1.innerHTML = siteData.menus.map((m, idx) => `
+        <li class="depth1-item text-2xl tracking-wide"
+            onmouseenter="showDepth2Menu(${idx})"
+            onclick="showDepth2Menu(${idx})">
+          <span data-editable="true" data-path="menus.${idx}.title">${m.title}</span>
+        </li>
+      `).join("");
+    }
+
+    function showDepth2Menu(menuIdx) {
+      document.querySelectorAll(".depth1-item").forEach((el, i) => el.classList.toggle("active", i === menuIdx));
+      const menu = siteData.menus[menuIdx];
+      const d2 = document.getElementById("drawerDepth2");
+      const d2List = document.getElementById("depth2List");
+
+      d2List.innerHTML = menu.subs.map((sub, sIdx) => `
+        <li class="py-1.5 cursor-pointer hover:text-[#FF6B00] hover:font-semibold transition"
+            onclick="handleSubMenuClick(${menuIdx}, ${sIdx})">
+          ${sub.name}
+        </li>
+      `).join("");
+
+      d2.classList.add("open");
+      refreshViewBindings();
+    }
+
+    function handleSubMenuClick(menuIdx, subIdx) {
+      const sub = siteData.menus[menuIdx]?.subs?.[subIdx];
+      if (!sub) return;
+      closeDrawerMenu();
+
+      if (sub.view === "philosophy" && sub.tab) {
+        openTopSecretTab(sub.tab);
+      } else if (sub.view === "curriculum" && sub.cat) {
+        navigateTo("curriculum");
+        selectCurriculumCat(sub.cat);
+      } else if (sub.view === "campus-detail" && sub.campusId !== undefined) {
+        openCampusDetail(sub.campusId);
+      } else if (sub.view === "campus") {
+        currentCampusRegion = "전체보기";
+        renderCampusRegionFilter();
+        renderCampusPageList();
+        navigateTo("campus");
+      } else {
+        navigateTo(sub.view);
+      }
+    }
+
+    function toggleDrawerMenu() {
+      if (isDrawerOpen) closeDrawerMenu();
+      else openDrawerMenu();
+    }
+
+    function openDrawerMenu() {
+      renderDrawerMenus();
+      isDrawerOpen = true;
+      document.getElementById("topFixedBar").classList.add("menu-open");
+      document.getElementById("drawerDepth1").classList.add("open");
+      document.getElementById("drawerBackdrop").classList.add("open");
+
+      document.getElementById("hamLine1").style.transform = "translateY(7.5px) rotate(45deg)";
+      document.getElementById("hamLine2").style.opacity = "0";
+      document.getElementById("hamLine3").style.transform = "translateY(-7.5px) rotate(-45deg)";
+      refreshViewBindings();
+    }
+
+    function closeDrawerMenu() {
+      isDrawerOpen = false;
+      document.getElementById("topFixedBar").classList.remove("menu-open");
+      document.getElementById("drawerDepth1").classList.remove("open");
+      document.getElementById("drawerDepth2").classList.remove("open");
+      document.getElementById("drawerBackdrop").classList.remove("open");
+
+      document.getElementById("hamLine1").style.transform = "none";
+      document.getElementById("hamLine2").style.opacity = "1";
+      document.getElementById("hamLine3").style.transform = "none";
+    }
+
+    function navigateTo(viewId, pushHistory = true) {
+      syncEditableElementsToData();
+      currentViewId = viewId;
+      document.querySelectorAll(".view-section").forEach(sec => sec.classList.add("hidden"));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      if (pushHistory) {
+        window.history.pushState({
+          viewId,
+          topSecretTab: currentTopSecretTab,
+          curriculumCat: currentCurriculumCat,
+          campusId: currentDetailCampusId
+        }, "", `#${viewId}`);
+      }
+      if (viewId === "home") {
+        setTimeout(() => {
+          if (heroSwiperInstance) heroSwiperInstance.update();
+          if (campusSwiperInstance) campusSwiperInstance.update();
+          if (systemSwiperInstance) systemSwiperInstance.update();
+          renderMainPromoVideo();
+        }, 50);
+      } else if (viewId === "campus-detail") {
+        // 섹션이 화면에 표시된 직후 슬라이더를 초기화하여 너비 0px 버그 방지
+        renderCampusDetail(currentDetailCampusId);
+      }
+      refreshViewBindings();
+    }
+
+    // ==========================================================
+    // TOP SECRET (인사말 / 학습목표 / 연혁 / 명예의 전당)
+    // ==========================================================
+    function openTopSecretTab(tabKey) {
+      syncEditableElementsToData();
+      currentTopSecretTab = tabKey;
+      renderTopSecretPage();
+      navigateTo("philosophy");
+    }
+
+    function renderTopSecretPage() {
+      const tabs = [
+        { key: "greeting", label: "인사말" },
+        { key: "goal", label: "학습목표" },
+        { key: "history", label: "연혁" },
+        { key: "honors", label: "명예의 전당" }
+      ];
+
+      const activeTabObj = tabs.find(t => t.key === currentTopSecretTab) || tabs[0];
+      const bc = document.getElementById("topSecretBreadcrumb");
+      if (bc) bc.textContent = activeTabObj.label;
+
+      const sideEl = document.getElementById("topSecretSideTabs");
+      if (sideEl) {
+        sideEl.innerHTML = tabs.map(t => {
+          const isAct = t.key === currentTopSecretTab;
+          return `
+            <div onclick="openTopSecretTab('${t.key}')"
+                 class="flex items-center justify-between py-3.5 px-3 border-b border-neutral-300 cursor-pointer transition ${isAct ? 'font-bold text-[#FF6B00] bg-white shadow-sm' : 'text-neutral-600 hover:text-neutral-900'}">
+              <div class="flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full ${isAct ? 'bg-[#FF6B00]' : 'bg-[#0F1A2E]'} text-white flex items-center justify-center text-xs">${isAct ? '-' : '+'}</span>
+                <span>${t.label}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const contentEl = document.getElementById("topSecretTabContent");
+      if (!contentEl) return;
+
+      const p = siteData.philosophy;
+      if (currentTopSecretTab === "greeting") {
+        contentEl.innerHTML = `
+          <div class="max-w-3xl">
+            <span class="text-xs font-bold text-orange-400 tracking-widest uppercase block mb-2">GREETING</span>
+            <h2 data-editable="true" data-path="philosophy.greetingTitle" class="text-3xl md:text-4xl font-bold text-white mb-8">${p.greetingTitle}</h2>
+            <div data-editable="true" data-path="philosophy.greetingBody" class="text-sm md:text-base text-slate-200 leading-loose whitespace-pre-line bg-[#0F1A2E]/60 p-8 border border-[#233656]">${p.greetingBody}</div>
+          </div>
+        `;
+      } else if (currentTopSecretTab === "goal") {
+        contentEl.innerHTML = `
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-10 mb-16">
+              <h3 data-editable="true" data-path="philosophy.purposeLabel" class="text-lg font-bold text-orange-400 shrink-0">${p.purposeLabel}</h3>
+              <p data-editable="true" data-path="philosophy.purposeDesc" class="text-sm md:text-base text-slate-200">${p.purposeDesc}</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto w-full my-auto">
+              ${["circle1", "circle2", "circle3"].map((cKey, idx) => `
+                <div class="w-48 h-48 md:w-56 md:h-56 rounded-full border border-slate-400 flex items-center justify-center text-center p-6 hover:border-orange-500 transition">
+                  <p data-editable="true" data-path="philosophy.${cKey}" class="text-lg md:text-xl font-medium leading-snug whitespace-pre-line">${p[cKey]}</p>
+                </div>
+                ${idx < 2 ? `
+                  <div class="hidden md:block flex-1 h-[1px] bg-slate-500 relative">
+                    <span class="absolute right-0 -top-1 w-2 h-2 border-t border-r border-slate-400 rotate-45"></span>
+                  </div>
+                ` : ""}
+              `).join("")}
+            </div>
+          </div>
+        `;
+      } else if (currentTopSecretTab === "history") {
+        contentEl.innerHTML = `
+          <div class="max-w-3xl">
+            <div class="flex items-center justify-between mb-8">
+              <div>
+                <span class="text-xs font-bold text-orange-400 tracking-widest uppercase block mb-1">HISTORY</span>
+                <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-3xl font-bold text-white">${p.historyTitle}</h2>
+              </div>
+              <button onclick="addHistoryRow()" class="admin-only-control px-3.5 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded">
+                <i class="fa-solid fa-plus mr-1"></i> 연혁 추가
+              </button>
+            </div>
+            <div class="space-y-6 border-l-2 border-orange-500/60 pl-6">
+              ${(p.historyList || []).map((h, idx) => `
+                <div class="relative flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#0F1A2E]/70 p-5 border border-[#233656]">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <span data-editable="true" data-path="philosophy.historyList.${idx}.year" class="text-2xl font-extrabold text-orange-400 shrink-0">${h.year}</span>
+                    <p data-editable="true" data-path="philosophy.historyList.${idx}.content" class="text-sm text-slate-200">${h.content}</p>
+                  </div>
+                  <button onclick="deleteHistoryRow(${idx})" class="admin-only-control px-2.5 py-1 bg-red-600 text-white text-[10px] rounded shrink-0">삭제</button>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      } else if (currentTopSecretTab === "honors") {
+        contentEl.innerHTML = `
+          <div>
+            <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+              <div>
+                <span class="text-xs font-bold text-orange-400 tracking-widest uppercase block mb-1">HALL OF FAME</span>
+                <h2 data-editable="true" data-path="philosophy.honorsTitle" class="text-3xl font-bold text-white mb-2">${p.honorsTitle}</h2>
+                <p data-editable="true" data-path="philosophy.honorsSub" class="text-xs text-slate-300">${p.honorsSub}</p>
+              </div>
+              <button onclick="addHonorCard()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded">
+                <i class="fa-solid fa-plus mr-1"></i> 명예의 전당 학생 추가
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+              ${(p.honorsList || []).map((h, idx) => `
+                <div class="bg-[#0F1A2E] border border-[#233656] p-5 flex flex-col justify-between">
+                  <div>
+                    <div class="relative aspect-[4/3] overflow-hidden mb-4 bg-slate-800">
+                      <img src="${h.img}" class="w-full h-full object-cover" />
+                      <span data-editable="true" data-path="philosophy.honorsList.${idx}.badge" class="absolute top-2.5 left-2.5 px-3 py-1 bg-[#FF6B00] text-white text-xs font-bold">${h.badge}</span>
+                      <div class="admin-only-control absolute top-2 right-2 gap-1">
+                        <button onclick="triggerImageChange('philosophy.honorsList.${idx}.img')" class="px-2 py-1 bg-black/80 text-white text-[10px] rounded">사진</button>
+                        <button onclick="deleteHonorCard(${idx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded">삭제</button>
+                      </div>
+                    </div>
+                    <h4 data-editable="true" data-path="philosophy.honorsList.${idx}.school" class="text-base font-bold text-white mb-2">${h.school}</h4>
+                    <p data-editable="true" data-path="philosophy.honorsList.${idx}.desc" class="text-xs text-slate-300 leading-relaxed">${h.desc}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      refreshViewBindings();
+    }
+
+    function addHistoryRow() {
+      mutateSiteData(() => {
+        siteData.philosophy.historyList.unshift({ year: "2026", content: "새로운 학원 연혁 내용을 클릭하여 입력하세요." });
+      }, renderTopSecretPage);
+    }
+
+    function deleteHistoryRow(idx) {
+      mutateSiteData(() => {
+        siteData.philosophy.historyList.splice(idx, 1);
+      }, renderTopSecretPage);
+    }
+
+    function addHonorCard() {
+      mutateSiteData(() => {
+        siteData.philosophy.honorsList.unshift({
+          badge: "성적향상",
+          school: "학교/학년/이름 입력",
+          desc: "성적 향상 후기 및 성과를 클릭하여 입력하세요.",
+          img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+        });
+      }, renderTopSecretPage);
+    }
+
+    function deleteHonorCard(idx) {
+      mutateSiteData(() => {
+        siteData.philosophy.honorsList.splice(idx, 1);
+      }, renderTopSecretPage);
+    }
+
+    // ==========================================================
+    // 메인 슬라이더 (Hero / Campus / System)
+    // ==========================================================
+    function renderHeroSection() {
+      const wrapper = document.getElementById("heroSlidesWrapper");
+      wrapper.innerHTML = siteData.hero.slides.map((s, idx) => `
+        <div class="swiper-slide relative w-full h-full">
+          <img src="${s.img}" alt="배너 ${idx + 1}" class="w-full h-full object-cover brightness-[0.82]" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0F1A2E]/65 via-black/20 to-transparent"></div>
+
+          <div class="absolute bottom-20 right-10 md:right-24 z-20 text-right">
+            <p data-editable="true" data-path="hero.slides.${idx}.caption" class="text-white/90 text-xs md:text-sm font-light tracking-wider bg-black/35 px-4 py-2 backdrop-blur-sm rounded">
+              ${s.caption}
+            </p>
+          </div>
+
+          <div class="admin-only-control absolute top-10 right-10 z-30 gap-2">
+            <button onclick="triggerImageChange('hero.slides.${idx}.img')" class="px-3.5 py-2 bg-black/80 hover:bg-orange-600 text-white text-xs rounded shadow flex items-center gap-1.5">
+              <i class="fa-solid fa-camera"></i> 배너 사진 변경 (${idx + 1}번)
+            </button>
+            ${siteData.hero.slides.length > 1 ? `
+              <button onclick="deleteHeroSlide(${idx})" class="px-3 py-2 bg-red-600/90 hover:bg-red-600 text-white text-xs rounded shadow">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            ` : ""}
+          </div>
+        </div>
+      `).join("");
+
+      if (heroSwiperInstance) heroSwiperInstance.destroy(true, true);
+
+      heroSwiperInstance = new Swiper(".heroSwiper", {
+        loop: siteData.hero.slides.length > 1,
+        speed: 1000,
+        autoplay: {
+          delay: 6000,
+          disableOnInteraction: false
+        },
+        on: {
+          slideChange: function () {
+            const total = siteData.hero.slides.length;
+            const curr = (this.realIndex % total) + 1;
+            document.getElementById("heroSlideFraction").textContent = `${curr}/${total}`;
+            const pct = (curr / total) * 100;
+            document.getElementById("heroProgressFill").style.width = `${pct}%`;
+            document.getElementById("heroProgressKnob").style.left = `${pct}%`;
+          }
+        }
+      });
+    }
+
+    function seekHeroSlide(e) {
+      if (!heroSwiperInstance) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      const targetIdx = Math.min(siteData.hero.slides.length - 1, Math.max(0, Math.floor(ratio * siteData.hero.slides.length)));
+      heroSwiperInstance.slideToLoop(targetIdx);
+    }
+
+    function renderHomeCampusSlider() {
+      const wrapper = document.getElementById("homeCampusSliderWrapper");
+      wrapper.innerHTML = siteData.campuses.map((c, idx) => `
+        <div class="swiper-slide">
+          <div class="campus-card relative aspect-[4/3] bg-neutral-100 cursor-pointer group" onclick="if(!isEditMode) openCampusDetail(${idx})">
+            <img src="${c.mainImg}" alt="${stripHtml(c.name)}" class="w-full h-full object-cover" />
+
+            <div class="campus-overlay">
+              <div class="campus-overlay-content">
+                <div class="text-2xl font-light mb-2">+</div>
+                <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-xl font-bold mb-3">${c.name}</h3>
+                <p class="text-xs text-slate-200 mb-1">tel. <span data-editable="true" data-path="campuses.${idx}.tel">${c.tel}</span></p>
+                <p class="text-xs text-slate-200 mb-1">add. <span data-editable="true" data-path="campuses.${idx}.addr">${c.addr}</span></p>
+                <p class="text-xs text-slate-200 mb-4">time. <span data-editable="true" data-path="campuses.${idx}.time">${c.time}</span></p>
+
+                <button onclick="event.stopPropagation(); openCampusDetail(${idx})"
+                        class="px-4 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow inline-flex items-center gap-1.5 transition">
+                  <i class="fa-solid fa-door-open"></i> 지점 상세페이지 들어가기
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-only-control absolute top-3 right-3 z-30 gap-1.5" onclick="event.stopPropagation()">
+              <button onclick="openCampusDetail(${idx})" class="px-2.5 py-1.5 bg-orange-600 hover:bg-orange-500 text-white text-[11px] font-bold rounded shadow">
+                <i class="fa-solid fa-pen"></i> 상세편집
+              </button>
+              <button onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2.5 py-1.5 bg-black/80 hover:bg-neutral-700 text-white text-[11px] rounded">
+                <i class="fa-solid fa-camera"></i> 사진변경
+              </button>
+              <button onclick="deleteCampusItem(${idx})" class="px-2.5 py-1.5 bg-red-600 text-white text-[11px] rounded">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      if (campusSwiperInstance) campusSwiperInstance.destroy(true, true);
+
+      campusSwiperInstance = new Swiper(".campusSwiper", {
+        slidesPerView: 1.15,
+        spaceBetween: 24,
+        grabCursor: true,
+        scrollbar: {
+          el: ".campus-swiper-scrollbar",
+          draggable: true
+        },
+        breakpoints: {
+          768: { slidesPerView: 2.2, spaceBetween: 28 },
+          1280: { slidesPerView: 3.1, spaceBetween: 32 }
+        }
+      });
+    }
+
+    function renderHomeSystemSlider() {
+      const wrapper = document.getElementById("homeSystemSliderWrapper");
+      if (!wrapper) return;
+      const items = siteData.homeSystem?.items || [];
+
+      wrapper.innerHTML = items.map((item, idx) => `
+        <div class="swiper-slide">
+          <div class="campus-card relative aspect-[4/3] bg-neutral-100 cursor-pointer group" onclick="handleSystemCardNavigate(${idx})">
+            <img src="${item.img}" alt="${stripHtml(item.title)}" class="w-full h-full object-cover" />
+
+            <div class="campus-overlay">
+              <div class="campus-overlay-content">
+                <div class="text-2xl font-light mb-2">+</div>
+                <h3 data-editable="true" data-path="homeSystem.items.${idx}.title" class="text-xl font-bold mb-2">${item.title}</h3>
+                <p data-editable="true" data-path="homeSystem.items.${idx}.sub" class="text-xs text-orange-400 font-semibold mb-2">${item.sub}</p>
+                <p data-editable="true" data-path="homeSystem.items.${idx}.desc" class="text-xs text-slate-200 leading-relaxed mb-4">${item.desc}</p>
+
+                <button onclick="event.stopPropagation(); handleSystemCardNavigate(${idx})"
+                        class="px-4 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow inline-flex items-center gap-1.5 transition">
+                  <i class="fa-solid fa-arrow-right"></i> <span data-editable="true" data-path="homeSystem.items.${idx}.btnText">${item.btnText}</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-only-control absolute top-3 right-3 z-30 gap-1.5" onclick="event.stopPropagation()">
+              <button onclick="triggerImageChange('homeSystem.items.${idx}.img')" class="px-2.5 py-1.5 bg-black/80 hover:bg-neutral-700 text-white text-[11px] rounded">
+                <i class="fa-solid fa-camera"></i> 사진변경
+              </button>
+              <button onclick="deleteSystemShowcaseItem(${idx})" class="px-2.5 py-1.5 bg-red-600 text-white text-[11px] rounded">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      if (systemSwiperInstance) systemSwiperInstance.destroy(true, true);
+
+      systemSwiperInstance = new Swiper(".systemSwiper", {
+        slidesPerView: 1.15,
+        spaceBetween: 24,
+        grabCursor: true,
+        scrollbar: {
+          el: ".system-swiper-scrollbar",
+          draggable: true
+        },
+        breakpoints: {
+          768: { slidesPerView: 2.2, spaceBetween: 28 },
+          1280: { slidesPerView: 3, spaceBetween: 32 }
+        }
+      });
+    }
+
+    function handleSystemCardNavigate(idx) {
+      if (isEditMode) return;
+      const item = siteData.homeSystem?.items?.[idx];
+      if (!item) return;
+      if (item.targetView === "philosophy") {
+        openTopSecretTab(item.targetSub || "goal");
+      } else {
+        navigateTo("curriculum");
+      }
+    }
+
+    function addSystemShowcaseItem() {
+      mutateSiteData(() => {
+        siteData.homeSystem.items.push({
+          title: "신규 시스템/커리큘럼 타이틀",
+          sub: "핵심 요약 문구 입력",
+          desc: "상세 설명을 클릭하여 자유롭게 수정하세요.",
+          btnText: "자세히 보기",
+          targetView: "curriculum",
+          targetSub: "전체보기",
+          img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80"
+        });
+      }, renderHomeSystemSlider);
+    }
+
+    function deleteSystemShowcaseItem(idx) {
+      if (siteData.homeSystem.items.length <= 1) return alert("최소 1개의 카드는 유지되어야 합니다.");
+      if (!confirm("이 카드를 삭제하시겠습니까?")) return;
+      mutateSiteData(() => {
+        siteData.homeSystem.items.splice(idx, 1);
+      }, renderHomeSystemSlider);
+    }
+
+    // ==========================================================
+    // CURRICULUM (8대 교육과정 카테고리 및 그리드)
+    // ==========================================================
+    function renderCurriculumCategories() {
+      const container = document.getElementById("curriculumCategoryList");
+      if (!container) return;
+      container.innerHTML = siteData.curriculum.categories.map(cat => {
+        const active = cat === currentCurriculumCat;
+        return `
+          <div onclick="selectCurriculumCat('${cat}')"
+               class="cursor-pointer py-2 px-3 flex items-center justify-between transition ${active ? 'bg-[#FF6B00] text-white font-bold shadow-sm' : 'text-neutral-600 hover:text-black hover:bg-white'}">
+            <span>${cat}</span>
+            ${active ? '<i class="fa-solid fa-chevron-right text-[10px]"></i>' : ''}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function selectCurriculumCat(cat) {
+      currentCurriculumCat = cat;
+      const bc = document.getElementById("curriculumBreadcrumb");
+      if (bc) bc.textContent = cat;
+      renderCurriculumCategories();
+      renderCurriculumGrid();
+    }
+
+    function renderCurriculumGrid() {
+      const query = (document.getElementById("curriculumSearchInput")?.value || "").trim().toLowerCase();
+      const container = document.getElementById("curriculumGridContainer");
+
+      const filtered = siteData.curriculum.items
+        .map((item, originalIdx) => ({ ...item, originalIdx }))
+        .filter(item => {
+          const cleanItemCat = stripHtml(item.cat);
+          const matchCat = currentCurriculumCat === "전체보기" || cleanItemCat === currentCurriculumCat;
+          const matchQuery = !query || item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+          return matchCat && matchQuery;
+        });
+
+      container.innerHTML = filtered.map(item => {
+        const idx = item.originalIdx;
+        return `
+          <div class="group flex flex-col">
+            <div class="relative aspect-[4/5] bg-[#F9F9F9] border border-neutral-100 overflow-hidden flex flex-col justify-between">
+              <img src="${item.img}" alt="${stripHtml(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+
+              <div data-editable="true" data-path="curriculum.items.${idx}.badge"
+                   class="absolute top-4 right-4 px-3 h-9 rounded-full bg-[#FF6B00] text-white text-[11px] font-bold flex items-center justify-center shadow">
+                ${item.badge}
+              </div>
+
+              <div class="admin-only-control absolute top-3 left-3 z-20 gap-1">
+                <button onclick="triggerImageChange('curriculum.items.${idx}.img')" class="px-2 py-1 bg-black/80 text-white text-[10px] rounded">
+                  <i class="fa-solid fa-camera"></i> 사진
+                </button>
+                <button onclick="deleteCurriculumItem(${idx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+
+              <button onclick="if(!isEditMode) navigateTo('consult')"
+                      class="relative z-10 w-full py-3 bg-[#0F1A2E]/90 hover:bg-[#FF6B00] text-white text-xs font-medium transition">
+                과정 상담신청
+              </button>
+            </div>
+
+            <div class="pt-4">
+              <span data-editable="true" data-path="curriculum.items.${idx}.cat"
+                    class="inline-block text-[11px] text-neutral-500 border border-neutral-200 px-2 py-0.5 mb-2">
+                ${item.cat}
+              </span>
+              <h3 data-editable="true" data-path="curriculum.items.${idx}.title" class="text-base font-bold text-neutral-900 mb-1">
+                ${item.title}
+              </h3>
+              <p data-editable="true" data-path="curriculum.items.${idx}.sub" class="text-xs text-orange-600 font-medium mb-2">
+                ${item.sub}
+              </p>
+              <p data-editable="true" data-path="curriculum.items.${idx}.desc" class="text-xs text-neutral-500 leading-relaxed mb-2">
+                ${item.desc}
+              </p>
+              <p data-editable="true" data-path="curriculum.items.${idx}.target" class="text-[11px] font-semibold text-neutral-700">
+                ${item.target}
+              </p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      refreshViewBindings();
+    }
+
+    // ==========================================================
+    // CAMPUS 목록 & 상세페이지 (5초 자동슬라이드 + 확대 모달 + 지도)
+    // ==========================================================
+    function renderCampusRegionFilter() {
+      const regions = ["전체보기", ...new Set(siteData.campuses.map(c => stripHtml(c.region)))];
+      const container = document.getElementById("campusRegionFilterList");
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">지역별 보기</div>
+        ${regions.map(r => {
+          const active = r === currentCampusRegion;
+          return `
+            <div onclick="selectCampusRegion('${r}')"
+                 class="cursor-pointer py-2 px-3 flex items-center justify-between transition ${active ? 'bg-[#FF6B00] text-white font-bold shadow-sm' : 'text-neutral-700 hover:bg-white hover:text-[#FF6B00]'}">
+              <span>${r}</span>
+              ${active ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+            </div>
+          `;
+        }).join("")}
+        <div class="border-t border-neutral-200 my-4 pt-4">
+          <div class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">캠퍼스 바로가기</div>
+          ${siteData.campuses.map((c, idx) => `
+            <div onclick="openCampusDetail(${idx})"
+                 class="cursor-pointer py-2 px-3 flex items-center justify-between text-neutral-700 hover:bg-white hover:text-[#FF6B00] font-medium transition">
+              <span>· ${stripHtml(c.name)}</span>
+              <i class="fa-solid fa-arrow-right text-[10px] text-neutral-400"></i>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function selectCampusRegion(region) {
+      currentCampusRegion = region;
+      renderCampusRegionFilter();
+      renderCampusPageList();
+    }
+
+    function renderCampusPageList() {
+      const query = (document.getElementById("campusSearchInput")?.value || "").trim().toLowerCase();
+      const grid = document.getElementById("campusPageGrid");
+
+      const filtered = siteData.campuses
+        .map((c, realIdx) => ({ ...c, realIdx }))
+        .filter(c => {
+          const cleanRegion = stripHtml(c.region);
+          const matchRegion = currentCampusRegion === "전체보기" || cleanRegion === currentCampusRegion;
+          const matchQuery = !query || c.name.toLowerCase().includes(query) || c.addr.toLowerCase().includes(query);
+          return matchRegion && matchQuery;
+        });
+
+      grid.innerHTML = filtered.map(c => {
+        const idx = c.realIdx;
+        return `
+          <div class="grid grid-cols-1 sm:grid-cols-2 border border-neutral-200 hover:border-orange-500 hover:shadow-lg transition group">
+            <div class="relative aspect-[4/3] sm:aspect-auto overflow-hidden bg-neutral-100 cursor-pointer"
+                 onclick="if(!isEditMode) openCampusDetail(${idx})">
+              <img src="${c.mainImg}" alt="${stripHtml(c.name)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <button onclick="event.stopPropagation(); triggerImageChange('campuses.${idx}.mainImg')"
+                      class="admin-only-control absolute top-2 right-2 px-2 py-1 bg-black/80 text-white text-[10px] rounded">
+                <i class="fa-solid fa-camera"></i> 사진변경
+              </button>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between bg-white">
+              <div>
+                <span data-editable="true" data-path="campuses.${idx}.region"
+                      class="inline-block w-fit text-[11px] text-neutral-400 border border-neutral-200 px-2 py-0.5 mb-3">
+                  ${c.region}
+                </span>
+                <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-xl font-bold text-neutral-900 mb-3">
+                  ${c.name}
+                </h3>
+                <p class="text-xs text-neutral-500 mb-1">tel. <span data-editable="true" data-path="campuses.${idx}.tel">${c.tel}</span></p>
+                <p class="text-xs text-neutral-500 mb-1">add. <span data-editable="true" data-path="campuses.${idx}.addr">${c.addr}</span></p>
+                <p class="text-xs text-neutral-500 mb-4">time. <span data-editable="true" data-path="campuses.${idx}.time">${c.time}</span></p>
+              </div>
+
+              <div class="flex items-center gap-2 pt-3 border-t border-neutral-100">
+                <button onclick="openCampusDetail(${idx})"
+                        class="flex-1 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-semibold rounded transition flex items-center justify-center gap-1.5">
+                  <i class="fa-solid fa-door-open"></i> 지점 상세페이지 들어가기
+                </button>
+                <button onclick="deleteCampusItem(${idx})"
+                        class="admin-only-control px-3 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs rounded">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      refreshViewBindings();
+    }
+
+    function openCampusDetail(campusIdx) {
+      syncEditableElementsToData();
+      currentDetailCampusId = campusIdx;
+      navigateTo("campus-detail");
+    }
+
+    function renderCampusDetail(campusIdx) {
+      const c = siteData.campuses[campusIdx] || siteData.campuses[0];
+      if (!c) return;
+      const cIdx = siteData.campuses.indexOf(c);
+
+      if (!c.notice1) c.notice1 = "· 본 캠퍼스의 전임 강사진 및 성적 향상 우수 사례입니다.";
+      if (!c.notice2) c.notice2 = "· 좌측 큰 사진을 클릭하면 5초 자동 슬라이드가 멈추며 크게 확대해 보실 수 있습니다.";
+
+      document.getElementById("detailBreadcrumbName").innerHTML = c.name;
+
+      const switcher = document.getElementById("detailCampusSwitcher");
+      if (switcher) {
+        switcher.innerHTML = siteData.campuses.map((cam, idx) => `
+          <button onclick="openCampusDetail(${idx})"
+                  class="px-3 py-1.5 rounded text-xs font-semibold transition ${idx === cIdx ? 'bg-[#FF6B00] text-white' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'}">
+            ${stripHtml(cam.name)}
+          </button>
+        `).join("") + `
+          <button onclick="navigateTo('campus')" class="px-3 py-1.5 rounded text-xs font-semibold bg-[#0F1A2E] text-white hover:bg-slate-800 ml-2">
+            <i class="fa-solid fa-list mr-1"></i> 전체 지점 목록
+          </button>
+        `;
+      }
+
+      const slideImages = [c.mainImg, ...(c.gallery || [])];
+      const mapSearchAddress = stripHtml(c.mapQuery || c.addr || "천안시 서북구 불당동");
+
+      const container = document.getElementById("campusDetailContent");
+      container.innerHTML = `
+        <div class="lg:col-span-6">
+          <div class="flex flex-col xl:flex-row justify-between gap-6 mb-8">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span data-editable="true" data-path="campuses.${cIdx}.region" class="text-xs px-2.5 py-0.5 bg-orange-50 text-orange-700 border border-orange-200 rounded font-semibold">${c.region}</span>
+              </div>
+              <h1 data-editable="true" data-path="campuses.${cIdx}.name" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">${c.name}</h1>
+              <div class="space-y-2.5 text-xs md:text-sm text-neutral-600">
+                <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot w-5 text-neutral-400"></i> <span data-editable="true" data-path="campuses.${cIdx}.addr" class="flex-1">${c.addr}</span></p>
+                <p class="flex items-center gap-2"><i class="fa-solid fa-phone w-5 text-neutral-400"></i> <span data-editable="true" data-path="campuses.${cIdx}.tel" class="flex-1">${c.tel}</span></p>
+                <p class="flex items-center gap-2"><i class="fa-regular fa-clock w-5 text-neutral-400"></i> <span data-editable="true" data-path="campuses.${cIdx}.time" class="flex-1">${c.time}</span></p>
+                <p class="flex items-center gap-2"><i class="fa-solid fa-circle-info w-5 text-neutral-400"></i> <span data-editable="true" data-path="campuses.${cIdx}.tags" class="flex-1">${c.tags}</span></p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-end gap-2 shrink-0">
+              <div class="grid grid-cols-3 gap-1.5 w-48">
+                ${c.gallery.map((gImg, gIdx) => `
+                  <div class="relative aspect-square bg-neutral-100 cursor-pointer overflow-hidden border border-neutral-200 hover:border-orange-500"
+                       onclick="jumpToCampusDetailSlide(${gIdx + 1})">
+                    <img src="${gImg}" class="w-full h-full object-cover" />
+                    <div class="admin-only-control absolute inset-x-0 bottom-0 bg-black/75 flex justify-between px-1 py-0.5 text-[9px] text-white">
+                      <span onclick="event.stopPropagation(); triggerImageChange('campuses.${cIdx}.gallery.${gIdx}')" class="hover:text-orange-400">변경</span>
+                      <span onclick="event.stopPropagation(); deleteGalleryThumb(${cIdx}, ${gIdx})" class="text-red-400 hover:text-red-300">삭제</span>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+              <button onclick="addGalleryThumb(${cIdx})" class="admin-only-control px-2.5 py-1 bg-[#0F1A2E] hover:bg-orange-600 text-white text-[11px] rounded">
+                <i class="fa-solid fa-plus mr-1"></i> 시설 썸네일 사진 추가
+              </button>
+            </div>
+          </div>
+
+          <div class="relative aspect-[4/3] bg-neutral-100 overflow-hidden border border-neutral-200 mb-8 group">
+            <div class="swiper campusDetailSwiper w-full h-full">
+              <div class="swiper-wrapper">
+                ${slideImages.map((imgUrl, sIdx) => `
+                  <div class="swiper-slide w-full h-full cursor-zoom-in relative" onclick="handleCampusBigImageClick('${imgUrl}')">
+                    <img src="${imgUrl}" alt="${stripHtml(c.name)} 시설사진 ${sIdx + 1}" class="w-full h-full object-cover" />
+                    <div class="absolute bottom-3 right-3 bg-black/60 text-white text-[11px] px-3 py-1 rounded-full pointer-events-none flex items-center gap-1.5">
+                      <i class="fa-solid fa-magnifying-glass-plus text-orange-400"></i>
+                      <span id="campusAutoSlideStatus_${sIdx}">5초 자동슬라이드 중 · 클릭 시 정지 및 크게 확대</span>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+
+            <button onclick="triggerImageChange('campuses.${cIdx}.mainImg')"
+                    class="admin-only-control absolute top-4 right-4 z-20 px-3.5 py-2 bg-black/80 hover:bg-orange-600 text-white text-xs font-semibold rounded shadow">
+              <i class="fa-solid fa-camera mr-1.5"></i> 지점 대표 첫 사진 변경
+            </button>
+          </div>
+
+          <div class="border border-neutral-200 bg-[#F8F8F8] p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-map-location-dot text-[#FF6B00] text-lg"></i>
+                <h3 class="text-base font-bold text-neutral-900">찾아오시는 길 (캠퍼스 위치 지도)</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="changeCampusMapAddress(${cIdx})" class="admin-only-control px-3 py-1.5 bg-[#FF6B00] hover:bg-orange-500 text-white text-xs font-bold rounded shadow">
+                  <i class="fa-solid fa-location-crosshairs mr-1"></i> 지도 위치(주소) 변경
+                </button>
+                <a href="https://map.naver.com/p/search/${encodeURIComponent(mapSearchAddress)}" target="_blank"
+                   class="px-3 py-1.5 bg-[#03C75A] hover:opacity-90 text-white text-[11px] font-bold rounded">
+                  네이버 지도로 보기
+                </a>
+              </div>
+            </div>
+            <p class="text-xs text-neutral-500 mb-3">주소: <span class="font-semibold text-neutral-800">${mapSearchAddress}</span></p>
+            <div class="w-full h-72 bg-neutral-200 overflow-hidden border border-neutral-300">
+              <iframe
+                width="100%"
+                height="100%"
+                style="border:0;"
+                loading="lazy"
+                allowfullscreen
+                src="https://maps.google.com/maps?q=${encodeURIComponent(mapSearchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="flex flex-wrap items-center justify-between mb-6 gap-4">
+            <h2 class="text-4xl text-neutral-900">Teachers &amp; Honors</h2>
+            <div class="flex gap-2">
+              <button onclick="addTeacherProfile(${cIdx})" class="admin-only-control px-3.5 py-2 bg-[#FF6B00] hover:bg-orange-500 text-white text-xs font-bold rounded shadow">
+                <i class="fa-solid fa-plus mr-1"></i> 선생님/우수학생 프로필 추가
+              </button>
+              <button onclick="navigateTo('consult')" class="px-7 py-2.5 bg-[#FF6B00] hover:bg-orange-500 text-white text-xs font-semibold transition">
+                지점 상담 예약하기
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-[#F8F8F8] p-4 text-xs text-neutral-600 mb-8 space-y-1.5 border-l-2 border-[#FF6B00]">
+            <p data-editable="true" data-path="campuses.${cIdx}.notice1">${c.notice1}</p>
+            <p data-editable="true" data-path="campuses.${cIdx}.notice2">${c.notice2}</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            ${c.teachers.map((t, tIdx) => `
+              <div class="group relative">
+                <div class="relative aspect-[3/4] bg-neutral-100 overflow-hidden mb-2 border border-neutral-100">
+                  <img src="${t.img}" alt="${stripHtml(t.name)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                  <div data-editable="true" data-path="campuses.${cIdx}.teachers.${tIdx}.badge"
+                       class="absolute bottom-0 inset-x-0 bg-[#0F1A2E]/85 text-white text-[11px] text-center py-1">
+                    ${t.badge}
+                  </div>
+                  <div class="admin-only-control absolute top-1.5 right-1.5 gap-1">
+                    <button onclick="triggerImageChange('campuses.${cIdx}.teachers.${tIdx}.img')" class="px-2 py-1 bg-black/80 hover:bg-orange-600 text-white text-[10px] rounded">사진변경</button>
+                    <button onclick="deleteTeacherProfile(${cIdx}, ${tIdx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded">삭제</button>
+                  </div>
+                </div>
+                <p data-editable="true" data-path="campuses.${cIdx}.teachers.${tIdx}.role" class="text-[11px] text-neutral-400 mb-0.5">${t.role}</p>
+                <p data-editable="true" data-path="campuses.${cIdx}.teachers.${tIdx}.name" class="text-xs font-bold text-neutral-800">${t.name}</p>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        if (campusDetailSwiperInstance) campusDetailSwiperInstance.destroy(true, true);
+        campusDetailSwiperInstance = new Swiper(".campusDetailSwiper", {
+          loop: slideImages.length > 1,
+          speed: 850,
+          observer: true,
+          observeParents: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          }
+        });
+      }, 50);
+
+      refreshViewBindings();
+    }
+
+    function jumpToCampusDetailSlide(slideIndex) {
+      if (!campusDetailSwiperInstance) return;
+      campusDetailSwiperInstance.slideToLoop(slideIndex);
+    }
+
+    function handleCampusBigImageClick(imgUrl) {
+      if (campusDetailSwiperInstance && campusDetailSwiperInstance.autoplay) {
+        campusDetailSwiperInstance.autoplay.stop();
+      }
+      document.querySelectorAll("[id^='campusAutoSlideStatus_']").forEach(el => {
+        el.textContent = "자동슬라이드 정지됨 · 클릭하여 확대 보기";
+      });
+      const modal = document.getElementById("imageZoomModal");
+      const modalImg = document.getElementById("zoomedModalImg");
+      if (modal && modalImg) {
+        modalImg.src = imgUrl;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+    }
+
+    function closeZoomModal() {
+      const modal = document.getElementById("imageZoomModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    }
+
+    function changeCampusMapAddress(campusIdx) {
+      syncEditableElementsToData();
+      const curr = siteData.campuses[campusIdx].mapQuery || stripHtml(siteData.campuses[campusIdx].addr);
+      const nextAddr = prompt("지도에 표시할 정확한 도로명 주소나 건물명을 입력하세요 (예: 충남 천안시 서북구 불당25로 100):", curr);
+      if (nextAddr && nextAddr.trim() !== "") {
+        mutateSiteData(() => {
+          siteData.campuses[campusIdx].mapQuery = nextAddr.trim();
+          siteData.campuses[campusIdx].addr = nextAddr.trim();
+        }, () => renderCampusDetail(campusIdx), "지점 지도 위치와 주소가 즉시 업데이트되었습니다!");
+      }
+    }
+
+    // ==========================================================
+    // 관리자 로그인 및 인라인 편집 이벤트 위임
+    // ==========================================================
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const id = document.getElementById("loginIdInput").value.trim();
+      const pw = document.getElementById("loginPwInput").value.trim();
+
+      if (id === "admin" && pw === "1234") {
+        isAdminLoggedIn = true;
+        document.getElementById("adminToolbar").classList.remove("hidden");
+        document.getElementById("sidebarLoginText").textContent = "관리자ON";
+        enableEditMode(true);
+        navigateTo("home");
+        showToast("관리자 모드 ON! 작업 뒤로/앞으로가기 및 모든 요소 편집이 활성화되었습니다.");
+      } else {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다. (기본값: admin / 1234)");
+      }
+    }
+
+    function adminLogout() {
+      saveAllChanges(true);
+      isAdminLoggedIn = false;
+      enableEditMode(false);
+      document.getElementById("adminToolbar").classList.add("hidden");
+      document.getElementById("sidebarLoginText").textContent = "로그인";
+      showToast("관리자 모드가 종료되었습니다.");
+    }
+
+    function toggleEditMode() {
+      enableEditMode(!isEditMode);
+    }
+
+    function enableEditMode(state) {
+      isEditMode = state;
+      document.body.classList.toggle("admin-edit-mode", isEditMode);
+      const label = document.getElementById("editModeLabel");
+      const btn = document.getElementById("toggleEditModeBtn");
+
+      if (isEditMode) {
+        label.textContent = "편집모드 ON";
+        btn.className = "px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 font-bold transition flex items-center gap-1.5";
+      } else {
+        syncEditableElementsToData();
+        document.querySelectorAll(".active-selected-target").forEach(item => item.classList.remove("active-selected-target"));
+        label.textContent = "편집 일시정지 (미리보기)";
+        btn.className = "px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 font-bold transition flex items-center gap-1.5";
+      }
+      refreshViewBindings();
+    }
+
+    // 개별 요소의 inline onclick을 파괴하지 않도록 contenteditable 속성만 제어
+    function applyEditModeAttributes() {
+      document.querySelectorAll('[data-editable="true"]').forEach(el => {
+        if (isEditMode) {
+          el.setAttribute("contenteditable", "true");
+          el.setAttribute("spellcheck", "false");
+        } else {
+          el.removeAttribute("contenteditable");
+        }
+      });
+    }
+
+    // 전역 이벤트 위임으로 인라인 편집 동작 처리 (중복 바인딩 및 onclick 증발 방지)
+    document.addEventListener("click", (evt) => {
+      if (!isEditMode) return;
+      const editable = evt.target.closest('[data-editable="true"]');
+      if (editable) {
+        evt.stopPropagation();
+        selectEditableTarget(editable);
+      }
+    }, true);
+
+    document.addEventListener("focusin", (evt) => {
+      if (!isEditMode) return;
+      const editable = evt.target.closest('[data-editable="true"]');
+      if (editable) selectEditableTarget(editable);
+    });
+
+    document.addEventListener("input", (evt) => {
+      if (!isEditMode) return;
+      const editable = evt.target.closest('[data-editable="true"]');
+      if (!editable) return;
+      const path = editable.getAttribute("data-path");
+      if (path) {
+        setByPath(siteData, path, editable.innerHTML);
+        // Swiper 루프 복제 슬라이드가 있을 경우 화면 동기화
+        document.querySelectorAll(`[data-path="${path}"]`).forEach(node => {
+          if (node !== editable) node.innerHTML = editable.innerHTML;
+        });
+        persistToStorage();
+      }
+    });
+
+    document.addEventListener("focusout", (evt) => {
+      if (!isEditMode) return;
+      const editable = evt.target.closest('[data-editable="true"]');
+      if (!editable) return;
+      const path = editable.getAttribute("data-path");
+      if (path) {
+        setByPath(siteData, path, editable.innerHTML);
+        recordActionSnapshot();
+        persistToStorage();
+        renderAdminCampusJumpSelect();
+      }
+    });
+
+    // ==========================================================
+    // 이미지 업로드 (Canvas 자동 최적화로 localStorage 용량 초과 방지)
+    // ==========================================================
+    let pendingImagePath = null;
+
+    function triggerImageChange(dataPath) {
+      syncEditableElementsToData();
+      const choice = confirm("[이미지 변경]\n· 확인(OK) 클릭: 내 컴퓨터에서 사진/로고 파일 직접 선택\n· 취소(Cancel) 클릭: 웹 이미지 주소(URL) 직접 입력");
+      if (choice) {
+        pendingImagePath = dataPath;
+        const fileInput = document.getElementById("globalImageInput");
+        fileInput.value = "";
+        fileInput.click();
+      } else {
+        const currentUrl = getByPath(siteData, dataPath);
+        const newUrl = prompt("적용할 이미지 파일명 또는 URL 주소를 입력하세요:", currentUrl || "");
+        if (newUrl && newUrl.trim() !== "") {
+          mutateSiteData(() => {
+            setByPath(siteData, dataPath, newUrl.trim());
+          }, renderAll, "이미지가 변경되었습니다!");
+        }
+      }
+    }
+
+    function optimizeImageFile(file, isLogo = false) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const rawDataUrl = evt.target.result;
+          const img = new Image();
+          img.onload = () => {
+            const maxW = isLogo ? 800 : 1600;
+            const scale = img.width > maxW ? maxW / img.width : 1;
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.round(img.width * scale);
+            canvas.height = Math.round(img.height * scale);
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            const mime = file.type === "image/png" || isLogo ? "image/png" : "image/jpeg";
+            resolve(canvas.toDataURL(mime, 0.84));
+          };
+          img.onerror = () => resolve(rawDataUrl);
+          img.src = rawDataUrl;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.getElementById("globalImageInput").addEventListener("change", async function (e) {
+      const file = e.target.files[0];
+      if (!file || !pendingImagePath) return;
+      const targetPath = pendingImagePath;
+      pendingImagePath = null;
+
+      const optimizedDataUrl = await optimizeImageFile(file, targetPath.includes("Logo"));
+      mutateSiteData(() => {
+        setByPath(siteData, targetPath, optimizedDataUrl);
+      }, renderAll, "선택하신 사진/로고가 홈페이지에 즉시 반영되었습니다!");
+    });
+
+    // ==========================================================
+    // 항목 추가 / 삭제 액션 함수들
+    // ==========================================================
+    function addHeroSlide() {
+      mutateSiteData(() => {
+        siteData.hero.slides.push({
+          img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=85",
+          caption: "새로 추가된 배너 슬라이드입니다. 클릭해서 문구를 수정하세요."
+        });
+      }, renderHeroSection, "새 배너 슬라이드가 추가되었습니다.");
+    }
+
+    function deleteHeroSlide(idx) {
+      if (!confirm("이 배너 슬라이드를 삭제하시겠습니까?")) return;
+      mutateSiteData(() => {
+        siteData.hero.slides.splice(idx, 1);
+      }, renderHeroSection);
+    }
+
+    function addCampusItem() {
+      mutateSiteData(() => {
+        const newId = siteData.campuses.length;
+        siteData.campuses.push({
+          id: newId,
+          region: "신규지역",
+          name: "탑씨크리트 신규캠퍼스",
+          tel: "041-000-0000",
+          addr: "충남 천안시 서북구 불당동",
+          mapQuery: "충남 천안시 서북구 불당동",
+          time: "14:00 ~ 22:00",
+          tags: "1:1 맞춤학습   자습실 완비",
+          notice1: "· 본 캠퍼스의 상세 안내 및 전임 강사진 소개입니다.",
+          notice2: "· 좌측 큰 사진을 클릭하면 자동 슬라이드가 멈추며 사진을 확대해 볼 수 있습니다.",
+          mainImg: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=1000&q=80",
+          gallery: [
+            "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=900&q=80"
+          ],
+          teachers: [
+            { role: "원장", name: "신규 원장", badge: "총괄", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" }
+          ]
+        });
+      }, renderAll, "새 지점이 추가되었습니다!");
+    }
+
+    function deleteCampusItem(idx) {
+      if (siteData.campuses.length <= 1) return alert("최소 1개의 지점은 유지되어야 합니다.");
+      if (!confirm("이 지점을 삭제하시겠습니까?")) return;
+      mutateSiteData(() => {
+        siteData.campuses.splice(idx, 1);
+        siteData.campuses.forEach((c, i) => { c.id = i; });
+        if (currentDetailCampusId >= siteData.campuses.length) {
+          currentDetailCampusId = 0;
+        }
+      }, renderAll);
+    }
+
+    function addGalleryThumb(campusIdx) {
+      mutateSiteData(() => {
+        siteData.campuses[campusIdx].gallery.push("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80");
+      }, () => renderCampusDetail(campusIdx), "지점 시설 썸네일 사진이 추가되었습니다.");
+    }
+
+    function deleteGalleryThumb(campusIdx, thumbIdx) {
+      if (siteData.campuses[campusIdx].gallery.length <= 1) return alert("최소 1장의 썸네일은 유지되어야 합니다.");
+      mutateSiteData(() => {
+        siteData.campuses[campusIdx].gallery.splice(thumbIdx, 1);
+      }, () => renderCampusDetail(campusIdx));
+    }
+
+    function addCurriculumItem() {
+      mutateSiteData(() => {
+        siteData.curriculum.items.unshift({
+          cat: currentCurriculumCat === "전체보기" ? "고등 교육과정" : currentCurriculumCat,
+          badge: "NEW",
+          title: "신규 개설 교육과정 (클릭해 수정)",
+          sub: "대상 학년 및 핵심 특징 입력",
+          desc: "과정에 대한 상세 설명을 자유롭게 타이핑하여 수정하세요.",
+          target: "대상 학년",
+          img: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80"
+        });
+      }, renderCurriculumGrid, "새 커리큘럼 카드가 추가되었습니다.");
+    }
+
+    function deleteCurriculumItem(idx) {
+      if (!confirm("이 커리큘럼 카드를 삭제하시겠습니까?")) return;
+      mutateSiteData(() => {
+        siteData.curriculum.items.splice(idx, 1);
+      }, renderCurriculumGrid);
+    }
+
+    function addTeacherProfile(campusIdx) {
+      mutateSiteData(() => {
+        siteData.campuses[campusIdx].teachers.push({
+          role: "담당 과목/직책",
+          name: "선생님/학생 이름",
+          badge: "핵심배지",
+          img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+        });
+      }, () => renderCampusDetail(campusIdx), "새 프로필 카드가 추가되었습니다.");
+    }
+
+    function deleteTeacherProfile(campusIdx, teacherIdx) {
+      if (!confirm("이 프로필을 삭제하시겠습니까?")) return;
+      mutateSiteData(() => {
+        siteData.campuses[campusIdx].teachers.splice(teacherIdx, 1);
+      }, () => renderCampusDetail(campusIdx));
+    }
+
+    function handleConsultSubmit(e) {
+      e.preventDefault();
+      showToast("상담 예약 신청이 정상적으로 접수되었습니다!");
+      e.target.reset();
+    }
+
+    window.addEventListener("scroll", () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(20, (window.scrollY / docHeight) * 100)) : 33;
+      const bar = document.getElementById("sidebarProgressFill");
+      if (bar) bar.style.width = `${pct}%`;
+    });
+
+    function showToast(msg) {
+      let toast = document.getElementById("cmsToast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "cmsToast";
+        toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 z-[300] bg-[#0F1A2E] text-white px-6 py-3.5 rounded-full shadow-2xl border border-orange-500 text-xs font-medium transition-all duration-300 opacity-0 pointer-events-none";
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-orange-400 mr-2"></i>${msg}`;
+      toast.style.opacity = "1";
+      setTimeout(() => { toast.style.opacity = "0"; }, 3200);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      window.history.replaceState({
+        viewId: "home",
+        topSecretTab: currentTopSecretTab,
+        curriculumCat: currentCurriculumCat,
+        campusId: currentDetailCampusId
+      }, "", "#home");
+      renderAll();
+    });
+  </script>
+</body>
+</html>

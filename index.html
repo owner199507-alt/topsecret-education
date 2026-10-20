@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -902,26 +902,62 @@
 
   <!-- 자바스크립트: 클라우드 DB 최우선 동기화 + 사진/영상 파일 직접 업로드 + 초정밀 편집 엔진 -->
   <script>
-    const DEFAULT_SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
-    const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOlVzJWUE7WAA_64jh6-gN";
+    const SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOlVzJWUE7WAA_64jh6-gN";
 
-    function getActiveSupabaseKey() {
-      return EMBEDDED_SUPABASE_KEY;
+    // 1. SDK 및 캐시 문제를 원천 우회하여 REST API로 직접 데이터를 불러오는 함수
+    async function loadSiteData() {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/site_content?id=eq.topsecret_main_config&select=data`, {
+          method: 'GET',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (response.ok) {
+          const rows = await response.json();
+          if (rows && rows.length > 0 && rows[0].data) {
+            siteData = { ...siteData, ...rows[0].data };
+          }
+        }
+      } catch (e) {}
+      renderAll();
     }
 
-    let supabaseClient = null;
-    function initSupabaseClient() {
-      try {
-        if (window.supabase) {
-          supabaseClient = window.supabase.createClient(DEFAULT_SUPABASE_URL, getActiveSupabaseKey(), {
-            auth: { persistSession: false }
-          });
+    // 2. SDK 검증 오류 없이 표준 HTTP 규격으로 즉시 클라우드에 저장하는 함수
+    async function saveAllChanges(silent = false) {
+      document.querySelectorAll('[data-path]').forEach(el => {
+        const path = el.getAttribute('data-path');
+        const parts = path.split('.');
+        if (parts.length === 2 && siteData[parts[0]]) {
+          siteData[parts[0]][parts[1]] = el.innerHTML;
         }
-      } catch (err) {
-        console.warn("Supabase 초기화 오류:", err);
+      });
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/site_content`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({ id: "topsecret_main_config", data: siteData })
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          if (!silent) alert("저장 오류: " + errText);
+          return;
+        }
+
+        if (!silent) alert("🟢 클라우드 DB에 성공적으로 저장되었습니다! 모바일에도 즉시 반영됩니다.");
+      } catch (e) {
+        if (!silent) alert("저장 중 통신 오류가 발생했습니다.");
       }
     }
-    initSupabaseClient();
 
     const DB_ROW_ID = "topsecret_main_config";
     const LOCAL_STORAGE_KEY = "topsecret_site_data_cloud_v6";

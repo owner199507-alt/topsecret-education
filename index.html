@@ -907,7 +907,6 @@
 
 function getActiveSupabaseKey() {
   const savedKey = localStorage.getItem("topsecret_supabase_key");
-  // 이 부분이 브라우저에 저장된 옛날 키를 자꾸 가져오거나 꼬이게 만들던 원인입니다!
   if (savedKey && !savedKey.includes("...") && savedKey.length > 20) return savedKey.trim();
   return EMBEDDED_SUPABASE_KEY;
  

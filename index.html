@@ -906,8 +906,6 @@
     const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOlVzJWUE7WAA_64jh6-gN";
 
     function getActiveSupabaseKey() {
-      const savedKey = localStorage.getItem("topsecret_supabase_key");
-      if (savedKey && !savedKey.includes("...") && savedKey.length > 20) return savedKey.trim();
       return EMBEDDED_SUPABASE_KEY;
     }
 

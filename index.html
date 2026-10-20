@@ -901,51 +901,99 @@
   </main>
 
   <!-- 자바스크립트: 클라우드 DB 최우선 동기화 + 사진/영상 파일 직접 업로드 + 초정밀 편집 엔진 -->
+
   <script>
+
     const DEFAULT_SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
     const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOIvZjWUE7WAA_64jh6-gN";
 
+
+
     function getActiveSupabaseKey() {
+
+      const savedKey = localStorage.getItem("topsecret_supabase_key");
+
+      if (savedKey && !savedKey.includes("...") && savedKey.length > 20) return savedKey.trim();
+
       return EMBEDDED_SUPABASE_KEY;
+
     }
+
+
 
     let supabaseClient = null;
+
     function initSupabaseClient() {
+
       try {
+
         if (window.supabase) {
+
           supabaseClient = window.supabase.createClient(DEFAULT_SUPABASE_URL, getActiveSupabaseKey(), {
+
             auth: { persistSession: false }
+
           });
+
         }
+
       } catch (err) {
+
         console.warn("Supabase 초기화 오류:", err);
+
       }
+
     }
+
     initSupabaseClient();
 
+
+
     const DB_ROW_ID = "topsecret_main_config";
+
     const LOCAL_STORAGE_KEY = "topsecret_site_data_cloud_v6";
 
+
+
     const defaultSiteData = {
+
       branding: {
+
         sidebarLogo: "remove_background.png",
+
         useTextLogo: false,
+
         logoWidth: 240,
+
         logoSubText: "행복하게 배우며 나만의 꿈을 키우는",
+
         logoMainText: "탑씨크리트학원",
+
         globalFont: "'Pretendard', sans-serif",
+
         quick2: "로그인",
+
         quick3: "상담신청",
+
         quick4: "지점안내",
+
         topbarBgColor: "rgba(255, 255, 255, 0.78)"
+
       },
+
       videoSection: {
+
         mediaType: "video", // "video" 또는 "image"
+
         videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-students-studying-together-in-a-library-42544-large.mp4",
+
         imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=85",
+
         bgColor: "#141414",
+
         overlayOpacity: 0.65,
-        heightVh: 88,
+
+        heightVh: 88, 
         mainTitle: "행복하게 배우며 나만의 꿈을 키우는 탑씨크리트",
         subTitle: "캠퍼스 및 교육시스템 자세히 보기"
       },

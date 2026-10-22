@@ -262,6 +262,7 @@
       right: 0;
       bottom: 0;
       width: 76%;
+      z-index: 10;
       overflow: hidden;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 6%, rgba(0, 0, 0, 0.75) 14%, #000000 24%, #000000 100%);
       mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 6%, rgba(0, 0, 0, 0.75) 14%, #000000 24%, #000000 100%);
@@ -272,6 +273,43 @@
       pointer-events: none;
       z-index: 15;
       background: linear-gradient(to right, #ffffff 0%, #ffffff 23%, rgba(255, 255, 255, 0.92) 28%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0) 44%);
+    }
+
+    /* 배너 좌우 클릭 영역 및 화살표 버튼 (관리자 모드에서도 항상 작동하며 상단 관리자 버튼을 절대 가리지 않음) */
+    .hero-click-zone {
+      position: absolute;
+      top: 90px;
+      bottom: 90px;
+      width: 14%;
+      z-index: 22;
+      cursor: pointer;
+    }
+    .hero-click-zone-left { left: 0; }
+    .hero-click-zone-right { right: 0; }
+
+    .hero-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 35;
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #141414;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .hero-nav-arrow:hover {
+      background: #FF6B00;
+      color: #ffffff;
+      border-color: #FF6B00;
+      transform: translateY(-50%) scale(1.08);
     }
 
     @media (max-width: 768px) {
@@ -352,17 +390,6 @@
       content: ''; width: 6px; height: 6px; border-radius: 50%; background: #141414;
     }
 
-    .hero-click-zone {
-      position: absolute;
-      top: 0;
-      bottom: 80px;
-      width: 20%;
-      z-index: 22;
-      cursor: pointer;
-    }
-    .hero-click-zone-left { left: 0; }
-    .hero-click-zone-right { right: 0; }
-
     .campus-card { position: relative; overflow: hidden; }
     .campus-card img { transition: transform 0.75s var(--ease-smooth); }
     .campus-card:hover img { transform: scale(1.06); }
@@ -420,6 +447,7 @@
 
     /* CURRICULUM & SYSTEM 캡슐형 버튼 & 3개 원형 이미지 스타일 */
     .system-pill-btn {
+      position: relative;
       background: #F4F4F5;
       color: #18181B;
       border-radius: 9999px;
@@ -750,8 +778,7 @@
       <div class="max-w-[1060px] mx-auto px-8 md:px-16 py-9" id="megaDropdownContent"></div>
     </div>
   </header>
-
-  <!-- 메인 뷰포트 -->
+<!-- 메인 뷰포트 -->
   <main id="mainViewport" class="main-viewport">
     <!-- 1. 홈 화면 -->
     <div id="view-home" class="view-section">
@@ -766,21 +793,21 @@
         <div id="promoOverlayLayer" class="absolute inset-0 z-20 pointer-events-none"></div>
 
         <!-- 메인 비주얼 관리자 컨트롤 -->
-        <div class="admin-only-control absolute bottom-6 right-8 z-30 flex-wrap items-center gap-2 bg-neutral-900/90 p-2.5 rounded-xl border border-orange-500/60 shadow-2xl">
-          <button onclick="triggerMainVisualImageUpload()" class="px-3.5 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow">
+        <div class="admin-only-control absolute bottom-6 right-8 z-[45] flex-wrap items-center gap-2 bg-neutral-900/95 p-2.5 rounded-xl border border-orange-500/70 shadow-2xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+          <button type="button" onclick="triggerMainVisualImageUpload()" class="px-3.5 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow cursor-pointer">
             <i class="fa-solid fa-image"></i> 배경 사진파일 올리기
           </button>
-          <button onclick="triggerMainVisualVideoChange()" class="px-3.5 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-neutral-600">
+          <button type="button" onclick="triggerMainVisualVideoChange()" class="px-3.5 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 border border-neutral-600 cursor-pointer">
             <i class="fa-solid fa-video"></i> 동영상 파일/URL
           </button>
-          <button onclick="openSectionDesignModal('videoSection')" class="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-[#FFB800] text-xs font-bold rounded-lg border border-neutral-600">
+          <button type="button" onclick="openSectionDesignModal('videoSection')" class="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-[#FFB800] text-xs font-bold rounded-lg border border-neutral-600 cursor-pointer">
             <i class="fa-solid fa-sliders mr-1"></i>어둡기·배경디자인
           </button>
           <div class="flex items-center gap-1 bg-black/80 text-white px-2.5 py-1.5 rounded-lg border border-white/20 text-xs">
             <span>높이:</span>
-            <button onclick="adjustVideoHeight(-4)" class="px-2 py-0.5 bg-neutral-700 rounded font-bold">-</button>
+            <button type="button" onclick="adjustVideoHeight(-4)" class="px-2 py-0.5 bg-neutral-700 hover:bg-neutral-600 rounded font-bold cursor-pointer">-</button>
             <span id="videoHeightLabel" class="text-orange-400 font-bold px-1">94vh</span>
-            <button onclick="adjustVideoHeight(4)" class="px-2 py-0.5 bg-neutral-700 rounded font-bold">+</button>
+            <button type="button" onclick="adjustVideoHeight(4)" class="px-2 py-0.5 bg-neutral-700 hover:bg-neutral-600 rounded font-bold cursor-pointer">+</button>
           </div>
         </div>
       </section>
@@ -797,13 +824,13 @@
                 <h2 data-editable="true" data-path="homeCampus.heading" class="text-5xl md:text-6xl font-normal text-neutral-900 tracking-wide"></h2>
                 <p data-editable="true" data-path="homeCampus.subHeading" class="text-sm text-neutral-500 mt-2"></p>
               </div>
-              <div class="flex flex-wrap items-center gap-2.5">
-                <button onclick="openSectionDesignModal('homeCampus')" class="admin-only-control px-3 py-2 bg-neutral-900 text-[#FFB800] text-xs font-bold rounded">
+              <div class="flex flex-wrap items-center gap-2.5" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="openSectionDesignModal('homeCampus')" class="admin-only-control px-3 py-2 bg-neutral-900 text-[#FFB800] text-xs font-bold rounded cursor-pointer">
                   <i class="fa-solid fa-palette mr-1"></i>섹션 배경/디자인
                 </button>
-                <button onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] text-white text-xs font-bold rounded">+ 새 지점 추가</button>
-                <button onclick="if(!isEditMode) navigateTo('campus')" class="btn-learn-more">
-                  <span data-editable="true" data-path="homeCampus.learnMoreText">LEARN MORE</span>
+                <button type="button" onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow cursor-pointer">+ 새 지점 추가</button>
+                <button type="button" onclick="navigateTo('campus')" class="btn-learn-more cursor-pointer">
+                  <span data-editable="true" data-path="homeCampus.learnMoreText" onclick="if(isEditMode) event.stopPropagation();">LEARN MORE</span>
                 </button>
               </div>
             </div>
@@ -814,25 +841,58 @@
           </div>
         </section>
 
-        <!-- [3번째 섹션] 메인 배너 슬라이더 (좌측 1/4 절단 및 그라데이션 마스크 효과) -->
+        <!-- ✨ [3번째 섹션] 메인 배너 슬라이더 (좌측 1/4 그라데이션 마스크 + 최상위 배너 관리 컨트롤바 + 양옆 클릭/화살표 완벽 작동) -->
         <section id="heroBannerSection" class="relative w-full h-screen min-h-[640px] bg-white overflow-hidden select-none border-t border-neutral-100">
-          <div class="admin-only-control absolute top-10 left-10 z-30 gap-2">
-            <button onclick="addHeroSlideWithFile()" class="px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow-lg flex items-center gap-1.5">
-              <i class="fa-solid fa-folder-plus"></i> 사진파일로 배너 추가
-            </button>
-            <button onclick="addHeroSlide()" class="px-3.5 py-2 bg-neutral-800 text-white text-xs font-bold rounded shadow-lg border border-neutral-600">+ 기본 배너 추가</button>
+
+          <!-- 관리자 전용 최상위 배너 컨트롤 바 (마스크 및 클릭영역 밖에 위치하여 100% 언제나 즉시 작동) -->
+          <div class="admin-only-control absolute top-6 left-6 right-6 z-[45] flex-wrap items-center justify-between gap-2 bg-neutral-900/95 px-4 py-2.5 rounded-xl border-2 border-[#FF6B00] shadow-2xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[#FFB800] font-extrabold text-xs"><i class="fa-solid fa-images mr-1"></i>메인 배너 관리:</span>
+              <button type="button" onclick="heroSlidePrev()" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">◀ 이전 배너</button>
+              <span id="adminHeroSlideIndicator" class="px-2.5 py-1 bg-black text-emerald-400 font-extrabold text-xs rounded">1 / 3</span>
+              <button type="button" onclick="heroSlideNext()" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">다음 배너 ▶</button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="changeCurrentHeroSlideFile()" class="px-3.5 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow flex items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-folder-open"></i> 현재 배너 사진파일 변경
+              </button>
+              <button type="button" onclick="changeCurrentHeroSlideUrl()" class="px-3 py-1.5 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">
+                현재 배너 URL 변경
+              </button>
+              <button type="button" onclick="addHeroSlideWithFile()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded shadow flex items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-folder-plus"></i> + 사진파일로 새 배너 추가
+              </button>
+              <button type="button" onclick="addHeroSlide()" class="px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">
+                + 기본 배너 추가
+              </button>
+              <button type="button" onclick="deleteCurrentHeroSlide()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded shadow cursor-pointer">
+                <i class="fa-solid fa-trash-can mr-1"></i>현재 배너 삭제
+              </button>
+            </div>
           </div>
 
-          <div class="hero-click-zone hero-click-zone-left" onclick="if(!isEditMode) heroSwiperInstance?.slidePrev()" title="클릭하여 이전 배너로 이동"></div>
-          <div class="hero-click-zone hero-click-zone-right" onclick="if(!isEditMode) heroSwiperInstance?.slideNext()" title="클릭하여 다음 배너로 이동"></div>
+          <!-- 양옆 클릭 시 이전/다음 배너로 넘어가는 클릭 존 (관리자 편집모드에서도 항상 작동) -->
+          <div class="hero-click-zone hero-click-zone-left" onclick="heroSlidePrev()" title="클릭하여 이전 배너로 이동"></div>
+          <div class="hero-click-zone hero-click-zone-right" onclick="heroSlideNext()" title="클릭하여 다음 배너로 이동"></div>
 
+          <!-- 직관적인 좌우 화살표 버튼 -->
+          <button type="button" onclick="heroSlidePrev()" class="hero-nav-arrow left-5 md:left-8" title="이전 배너">
+            <i class="fa-solid fa-chevron-left text-base"></i>
+          </button>
+          <button type="button" onclick="heroSlideNext()" class="hero-nav-arrow right-5 md:right-8" title="다음 배너">
+            <i class="fa-solid fa-chevron-right text-base"></i>
+          </button>
+
+          <!-- 우측 3/4 영역 배너 이미지 슬라이더 (좌측 경계 그라데이션 마스크 적용) -->
           <div class="hero-right-three-quarters">
             <div class="swiper heroSwiper w-full h-full"><div class="swiper-wrapper" id="heroSlidesWrapper"></div></div>
           </div>
 
+          <!-- 좌측 1/4 화이트 여백 및 그라데이션 마스크 보호 레이어 -->
           <div class="hero-left-gradient-shield"></div>
 
-          <div class="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-10 md:px-20 lg:px-24">
+          <!-- 좌측 타이틀 텍스트 영역 -->
+          <div class="absolute inset-0 z-30 pointer-events-none flex flex-col justify-center px-16 md:px-24 lg:px-28">
             <div class="max-w-xl pointer-events-auto">
               <p id="heroSubtitle" data-editable="true" data-path="hero.subtitle" class="text-neutral-600 text-xs md:text-sm tracking-[0.22em] mb-3 font-semibold"></p>
               <h1 id="heroTitle" data-editable="true" data-path="hero.title" class="text-neutral-900 text-4xl md:text-6xl font-normal leading-[1.12] tracking-wide whitespace-pre-line"></h1>
@@ -840,6 +900,12 @@
             </div>
           </div>
 
+          <!-- 우측 하단 배너별 캡션 표시 및 직접 수정 영역 (마스크 밖에 배치하여 클릭/수정 100% 보장) -->
+          <div class="absolute bottom-20 right-10 md:right-20 z-30 pointer-events-auto text-right">
+            <p id="heroActiveCaptionBox" data-editable="true" data-path="hero.slides.0.caption" class="text-white/95 text-xs md:text-sm font-normal tracking-wider bg-black/65 px-5 py-2.5 backdrop-blur-sm rounded shadow-lg"></p>
+          </div>
+
+          <!-- 하단 프로그레스 바 -->
           <div class="absolute bottom-9 left-10 right-10 md:left-24 md:right-24 z-30">
             <div class="hero-progress-track" onclick="seekHeroSlide(event)">
               <div id="heroProgressFill" class="hero-progress-fill" style="width: 33.33%;"></div>
@@ -848,19 +914,19 @@
           </div>
         </section>
 
-        <!-- ✨ [4번째 섹션: CURRICULUM & SYSTEM] (요청사항 2번: 좌측 카테고리 침범 방지 + 3개 원형 사진 위치/크기 정밀 재배치) -->
+        <!-- [4번째 섹션: CURRICULUM & SYSTEM] -->
         <section id="homeSystemSection" class="relative w-full min-h-[96vh] flex flex-col justify-center py-36 px-8 md:px-16 lg:px-20 bg-white overflow-hidden border-t border-neutral-100 bg-cover bg-center">
           <div data-editable="true" data-path="homeSystem.watermark" class="watermark-text absolute bottom-4 right-8 text-right leading-none select-none">CURRICULUM & SYSTEM</div>
 
           <div class="max-w-[1680px] w-full mx-auto relative z-10">
-            <div class="admin-only-control mb-6 gap-2">
-              <button onclick="openSectionDesignModal('homeSystem')" class="px-3 py-2 bg-neutral-900 text-[#FFB800] text-xs font-bold rounded">
+            <div class="admin-only-control mb-6 gap-2" onpointerdown="event.stopPropagation()">
+              <button type="button" onclick="openSectionDesignModal('homeSystem')" class="px-3 py-2 bg-neutral-900 text-[#FFB800] text-xs font-bold rounded cursor-pointer">
                 <i class="fa-solid fa-palette mr-1"></i>섹션 배경/디자인 설정
               </button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center">
-              <!-- 좌측: 텍스트 & 캡슐 버튼 영역 (원형 사진이 절대 침범하지 않도록 z-20 및 충분한 우측 여백 확보) -->
+              <!-- 좌측: 텍스트 & 캡슐 버튼 영역 -->
               <div id="systemLeftAnimBox" class="scroll-glide-item lg:col-span-4 space-y-8 relative z-20 pr-2">
                 <div>
                   <span data-editable="true" data-path="homeSystem.accentLabel" class="inline-block text-sm md:text-base font-extrabold text-[#E11D48] tracking-wide mb-3">Curriculum & System</span>
@@ -871,20 +937,24 @@
                 <div class="grid grid-cols-2 gap-4 max-w-[380px] pt-2">
                   <div onclick="if(!isEditMode) openTopSecretTab('goal')" class="system-pill-btn">
                     <span data-editable="true" data-path="homeSystem.pill1">학습목표</span>
+                    <button type="button" onclick="event.stopPropagation(); openTopSecretTab('goal')" class="admin-only-control ml-2 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[10px] rounded">이동</button>
                   </div>
                   <div onclick="if(!isEditMode) navigateTo('curriculum')" class="system-pill-btn">
                     <span data-editable="true" data-path="homeSystem.pill2">커리큘럼</span>
+                    <button type="button" onclick="event.stopPropagation(); navigateTo('curriculum')" class="admin-only-control ml-2 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[10px] rounded">이동</button>
                   </div>
                   <div onclick="if(!isEditMode) navigateTo('admission')" class="system-pill-btn">
                     <span data-editable="true" data-path="homeSystem.pill3">입학절차</span>
+                    <button type="button" onclick="event.stopPropagation(); navigateTo('admission')" class="admin-only-control ml-2 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[10px] rounded">이동</button>
                   </div>
                   <div onclick="if(!isEditMode) navigateTo('consult')" class="system-pill-btn">
                     <span data-editable="true" data-path="homeSystem.pill4">상담신청</span>
+                    <button type="button" onclick="event.stopPropagation(); navigateTo('consult')" class="admin-only-control ml-2 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[10px] rounded">이동</button>
                   </div>
                 </div>
               </div>
 
-              <!-- 우측: 3개의 원형 이미지 쇼케이스 (우측으로 넉넉히 밀어 좌측 침범 완벽 차단) -->
+              <!-- 우측: 3개의 원형 이미지 쇼케이스 -->
               <div class="lg:col-span-8 lg:pl-12 xl:pl-20 relative z-10">
                 <div id="homeSystemCirclesContainer" class="w-full"></div>
               </div>
@@ -894,8 +964,8 @@
 
         <!-- [5번째 섹션] 푸터 -->
         <footer id="mainFooterSection" class="w-full bg-[#141414] text-white border-t border-neutral-800 relative bg-cover bg-center">
-          <div class="admin-only-control absolute top-4 right-6 z-20">
-            <button onclick="openSectionDesignModal('footer')" class="px-3 py-1.5 bg-neutral-800 text-[#FFB800] text-xs font-bold rounded border border-neutral-600">
+          <div class="admin-only-control absolute top-4 right-6 z-20" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="openSectionDesignModal('footer')" class="px-3 py-1.5 bg-neutral-800 text-[#FFB800] text-xs font-bold rounded border border-neutral-600 cursor-pointer">
               <i class="fa-solid fa-palette mr-1"></i>푸터 배경/색상 설정
             </button>
           </div>
@@ -904,10 +974,10 @@
               <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-white"></h3>
               <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-neutral-300 mb-6 leading-relaxed"></p>
               <div class="flex flex-wrap gap-3">
-                <button onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
+                <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
                   <span data-editable="true" data-path="footer.recruitBtnText"></span>
                 </button>
-                <button onclick="if(!isEditMode) navigateTo('login')" class="btn-outline-fill px-8 py-3.5 text-xs flex items-center justify-center gap-2">
+                <button type="button" onclick="if(!isEditMode) navigateTo('login')" class="btn-outline-fill px-8 py-3.5 text-xs flex items-center justify-center gap-2">
                   <span data-editable="true" data-path="footer.loginBtnText">로그인</span>
                 </button>
               </div>
@@ -935,7 +1005,7 @@
       </div>
     </div>
 
-    <!-- ✨ 2. 학원 소개 (TOP SECRET) 뷰: 명예의 전당 1줄 5명 배치 및 연혁 타임라인을 위해 본문 컨테이너 폭 확장 -->
+    <!-- 2. 학원 소개 (TOP SECRET) 뷰 -->
     <div id="view-philosophy" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen flex flex-col bg-white">
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3 bg-white">
         <span class="cursor-pointer hover:text-black font-semibold" onclick="navigateTo('home')">HOME</span>
@@ -946,8 +1016,8 @@
       </div>
 
       <div id="philosophyBannerSection" class="relative bg-gradient-to-r from-[#141414] via-[#1F1F1F] to-[#FF6B00] text-white py-14 px-10 md:px-24 overflow-hidden bg-cover bg-center">
-        <div class="admin-only-control absolute top-4 right-6 z-20 gap-2">
-          <button onclick="openSectionDesignModal('philosophyBanner')" class="px-3 py-1.5 bg-black/80 text-[#FFB800] text-xs font-bold rounded border border-orange-500/50">
+        <div class="admin-only-control absolute top-4 right-6 z-20 gap-2" onpointerdown="event.stopPropagation()">
+          <button type="button" onclick="openSectionDesignModal('philosophyBanner')" class="px-3 py-1.5 bg-black/80 text-[#FFB800] text-xs font-bold rounded border border-orange-500/50 cursor-pointer">
             <i class="fa-solid fa-image mr-1"></i>상단 배너 사진파일/색상 변경
           </button>
         </div>
@@ -963,12 +1033,10 @@
 
       <div class="flex-1 bg-white text-neutral-900 pt-16 px-6 md:px-16">
         <div class="max-w-[1520px] mx-auto flex flex-col lg:flex-row items-start justify-center gap-12 lg:gap-14">
-          <!-- 좌측 카테고리 박스 -->
           <div class="w-full lg:w-[220px] shrink-0 unified-category-sidebar">
-            <div class="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-3 px-2" data-editable="true" data-path="philosophy.sideMenuHeading">ABOUT TOP SECRET</div>
+            <div class="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-3 px-2" data-editable="true" data-path="philosophy.sideMenuHeading">학원 소개</div>
             <div class="space-y-1.5" id="topSecretSideTabs"></div>
           </div>
-          <!-- 정중앙 메인 컨텐츠 영역 (명예의 전당 5열 및 연혁 타임라인 완벽 수용) -->
           <div class="flex-1 max-w-6xl w-full mx-auto flex flex-col items-center justify-start bg-white" id="topSecretTabContent"></div>
         </div>
       </div>
@@ -992,12 +1060,12 @@
             </div>
             <p data-editable="true" data-path="curriculum.pageIntro" class="text-sm text-neutral-500 mt-3"></p>
           </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="addCurriculumCategory()" class="admin-only-control px-3.5 py-2 bg-[#141414] text-white text-xs font-bold rounded">+ 좌측 메뉴 추가</button>
-            <button onclick="addCurriculumItem()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded">+ 새 교육과정 섹션 추가</button>
+          <div class="flex flex-wrap items-center gap-3" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="addCurriculumCategory()" class="admin-only-control px-3.5 py-2 bg-[#141414] text-white text-xs font-bold rounded cursor-pointer">+ 좌측 메뉴 추가</button>
+            <button type="button" onclick="addCurriculumItem()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">+ 새 교육과정 섹션 추가</button>
             <div class="flex border border-neutral-300 rounded overflow-hidden">
               <input id="curriculumSearchInput" oninput="renderCurriculumGrid()" type="text" placeholder="교육과정 검색" class="px-4 py-2 text-xs focus:outline-none w-48" />
-              <button class="px-3 text-neutral-500 bg-neutral-50"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
+              <button type="button" class="px-3 text-neutral-500 bg-neutral-50"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
             </div>
           </div>
         </div>
@@ -1024,11 +1092,11 @@
             <h1 data-editable="true" data-path="campusPage.title" class="text-5xl font-normal text-neutral-900"></h1>
             <p data-editable="true" data-path="campusPage.subtitle" class="text-sm text-neutral-500 mt-2"></p>
           </div>
-          <div class="flex items-center gap-3">
-            <button onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] text-white text-xs font-bold rounded shadow">+ 새 지점 추가</button>
+          <div class="flex items-center gap-3" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] text-white text-xs font-bold rounded shadow cursor-pointer">+ 새 지점 추가</button>
             <div class="flex border border-neutral-300 rounded overflow-hidden">
               <input id="campusSearchInput" oninput="renderCampusPageList()" type="text" placeholder="지점명 또는 지역 검색" class="px-4 py-2.5 text-xs focus:outline-none w-56" />
-              <button class="px-3 text-neutral-500 bg-neutral-50"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
+              <button type="button" class="px-3 text-neutral-500 bg-neutral-50"><i class="fa-solid fa-magnifying-glass text-xs"></i></button>
             </div>
           </div>
         </div>
@@ -1053,7 +1121,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="campusDetailContent"></div>
       </div>
     </div>
-<!-- 6. 입학절차 (ADMISSION) 전용 뷰 -->
+
+    <!-- 6. 입학절차 (ADMISSION) 전용 뷰 -->
     <div id="view-admission" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen bg-white">
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3">
         <span class="cursor-pointer hover:text-black font-semibold" onclick="navigateTo('home')">HOME</span>
@@ -1069,9 +1138,9 @@
             <h1 data-editable="true" data-path="admissionPage.title" class="text-4xl md:text-5xl font-bold text-neutral-900">입학절차 안내</h1>
             <p data-editable="true" data-path="admissionPage.desc" class="text-sm text-neutral-500 mt-3">탑씨크리트학원은 체계적인 4단계 사전 진단과 1:1 심층 상담을 통해 학생에게 가장 완벽한 학습 로드맵을 설계합니다.</p>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="addAdmissionStep()" class="admin-only-control px-4 py-2.5 bg-neutral-900 text-white text-xs font-bold rounded">+ 절차 단계 추가</button>
-            <button onclick="if(!isEditMode) navigateTo('consult')" class="px-6 py-3 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded-lg transition shadow">
+          <div class="flex items-center gap-2" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="addAdmissionStep()" class="admin-only-control px-4 py-2.5 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 절차 단계 추가</button>
+            <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="px-6 py-3 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded-lg transition shadow cursor-pointer">
               <span data-editable="true" data-path="admissionPage.btnText">1:1 상담 신청 바로가기</span>
             </button>
           </div>
@@ -1100,11 +1169,11 @@
               </select>
               <input id="noticeSearchInput" type="text" onkeydown="if(event.key==='Enter') renderNoticePage()" placeholder="검색어를 입력하세요" class="px-4 w-56 sm:w-80 h-full text-xs focus:outline-none" />
             </div>
-            <button onclick="renderNoticePage()" class="ml-1.5 px-6 h-11 bg-[#0F172A] hover:bg-black text-white text-xs font-bold transition">검색</button>
+            <button type="button" onclick="renderNoticePage()" class="ml-1.5 px-6 h-11 bg-[#0F172A] hover:bg-black text-white text-xs font-bold transition cursor-pointer">검색</button>
           </div>
 
-          <div id="noticeAdminActionWrap" class="hidden items-center gap-2">
-            <button onclick="openNoticeEditorModal()" class="px-5 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow flex items-center gap-1.5 transition">
+          <div id="noticeAdminActionWrap" class="hidden items-center gap-2" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="openNoticeEditorModal()" class="px-5 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow flex items-center gap-1.5 transition cursor-pointer">
               <i class="fa-solid fa-pen-nib"></i> + 공지사항 글쓰기
             </button>
           </div>
@@ -1135,10 +1204,10 @@
           </div>
           <div id="detailNoticeContent" class="py-10 px-6 md:px-10 min-h-[260px] text-sm text-neutral-800 leading-relaxed border-b border-neutral-200 space-y-4"></div>
           <div class="py-5 px-6 flex flex-wrap items-center justify-between gap-3">
-            <button onclick="closeNoticeDetailView()" class="px-6 py-2.5 bg-neutral-800 hover:bg-black text-white text-xs font-bold rounded transition">목록으로 돌아가기</button>
+            <button type="button" onclick="closeNoticeDetailView()" class="px-6 py-2.5 bg-neutral-800 hover:bg-black text-white text-xs font-bold rounded transition cursor-pointer">목록으로 돌아가기</button>
             <div id="detailNoticeAdminBtns" class="hidden items-center gap-2">
-              <button id="detailNoticeEditBtn" class="px-5 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded transition">글 수정하기</button>
-              <button id="detailNoticeDeleteBtn" class="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded transition">삭제</button>
+              <button type="button" id="detailNoticeEditBtn" class="px-5 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded transition cursor-pointer">글 수정하기</button>
+              <button type="button" id="detailNoticeDeleteBtn" class="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded transition cursor-pointer">삭제</button>
             </div>
           </div>
         </div>
@@ -1153,8 +1222,8 @@
           <span class="text-xs text-neutral-400 hidden sm:inline">사진 파일을 본문으로 마우스로 끌어다 놓으시면(Drag & Drop) 즉시 삽입됩니다.</span>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="saveNoticeFromEditor()" class="px-5 py-1.5 bg-[#03C75A] hover:bg-[#02b350] text-white text-xs font-bold rounded shadow transition">발행 / 저장하기</button>
-          <button onclick="closeNoticeEditorModal()" class="px-4 py-1.5 bg-neutral-200 hover:bg-neutral-300 text-neutral-800 text-xs font-bold rounded transition">닫기</button>
+          <button type="button" onclick="saveNoticeFromEditor()" class="px-5 py-1.5 bg-[#03C75A] hover:bg-[#02b350] text-white text-xs font-bold rounded shadow transition cursor-pointer">발행 / 저장하기</button>
+          <button type="button" onclick="closeNoticeEditorModal()" class="px-4 py-1.5 bg-neutral-200 hover:bg-neutral-300 text-neutral-800 text-xs font-bold rounded transition cursor-pointer">닫기</button>
         </div>
       </div>
 
@@ -1277,7 +1346,7 @@
       </div>
     </div>
 
-    <!-- ✨ 8. 로그인 뷰 (요청사항 3번: 우측 배너 상자에 이미지·동영상이 여백 없이 100% 꽉 차게 표시 + 동영상 업로드 지원) -->
+    <!-- 8. 로그인 뷰 (우측 배너 상자 이미지·동영상 100% 꽉 차게 표시 + 동영상 업로드 지원) -->
     <div id="view-login" class="view-section subpage-top-offset hidden min-h-screen flex flex-col justify-between bg-white relative overflow-hidden">
       <div data-editable="true" data-path="loginPage.watermark" class="watermark-text w-full text-center mt-10 mb-2 select-none">WELCOME TO TOP SECRET</div>
 
@@ -1287,8 +1356,8 @@
             <form onsubmit="handleAdminLogin(event)" class="space-y-3.5">
               <input id="loginIdInput" type="text" placeholder="아이디" value="admin" class="w-full px-4 py-4 border border-neutral-300 text-sm focus:outline-none focus:border-[#FF6B00]" required />
               <input id="loginPwInput" type="password" placeholder="비밀번호" value="1234" class="w-full px-4 py-4 border border-neutral-300 text-sm focus:outline-none focus:border-[#FF6B00]" required />
-              <button type="submit" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-base font-bold transition">
-                <span data-editable="true" data-path="loginPage.loginBtnText">로그인</span>
+              <button type="submit" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-base font-bold transition cursor-pointer">
+                <span data-editable="true" data-path="loginPage.loginBtnText" onclick="if(isEditMode) event.stopPropagation();">로그인</span>
               </button>
               <div class="pt-1">
                 <label class="inline-flex items-center gap-2 text-xs text-neutral-600 cursor-pointer select-none">
@@ -1304,7 +1373,7 @@
                   <p data-editable="true" data-path="loginPage.signupQuestion" class="text-xs font-extrabold text-[#FF6B00] mb-0.5">아직 회원이 아니신가요?</p>
                   <p data-editable="true" data-path="loginPage.signupSub" class="text-xs text-neutral-600 font-medium">회원가입하고 공부 시작하세요!</p>
                 </div>
-                <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="px-6 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold transition shrink-0">
+                <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="px-6 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold transition shrink-0 cursor-pointer">
                   <span data-editable="true" data-path="loginPage.signupBtnText">회원가입</span>
                 </button>
               </div>
@@ -1314,17 +1383,17 @@
                   <p data-editable="true" data-path="loginPage.findQuestion" class="text-xs font-extrabold text-[#FF6B00] mb-0.5">혹시,</p>
                   <p data-editable="true" data-path="loginPage.findSub" class="text-xs text-neutral-600 font-medium">아이디, 비밀번호를 잊으셨나요?</p>
                 </div>
-                <button type="button" onclick="if(!isEditMode) alert('관리자 기본 계정은 ID: admin / PW: 1234 입니다.')" class="px-5 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold transition shrink-0">
+                <button type="button" onclick="if(!isEditMode) alert('관리자 기본 계정은 ID: admin / PW: 1234 입니다.')" class="px-5 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold transition shrink-0 cursor-pointer">
                   <span data-editable="true" data-path="loginPage.findBtnText">ID/PW찾기</span>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- 우측 배너 박스: 내부 패딩을 제거(p-0)하여 사진이나 동영상이 상자 안에 100% 꽉 차게 들어감 -->
+          <!-- 우측 배너 박스: 사진이나 동영상이 상자 안에 100% 빈틈없이 꽉 차게 표시 -->
           <div class="lg:col-span-6">
             <div class="w-full h-full min-h-[420px] border border-neutral-300 bg-neutral-900 relative overflow-hidden group">
-              <img id="loginRightBannerImg" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85" alt="로그인 우측 배너 이미지" class=" absolute inset-0 w-full h-full object-cover object-center transition duration-500" />
+              <img id="loginRightBannerImg" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85" alt="로그인 우측 배너 이미지" class="absolute inset-0 w-full h-full object-cover object-center transition duration-500" />
               <video id="loginRightBannerVideo" src="" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-center hidden"></video>
 
               <!-- 하단 슬로건 오버레이 -->
@@ -1333,14 +1402,14 @@
               </div>
 
               <!-- 관리자 전용: 우측 상자 사진파일 / 동영상 파일·URL 업로드 컨트롤 -->
-              <div class="admin-only-control absolute top-3 right-3 z-20 flex-wrap gap-1.5 bg-neutral-900/90 p-2 rounded-lg border border-orange-500/60 shadow-lg">
-                <button type="button" onclick="triggerLoginRightImageUpload()" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded flex items-center gap-1">
+              <div class="admin-only-control absolute top-3 right-3 z-30 flex-wrap gap-1.5 bg-neutral-900/95 p-2 rounded-lg border border-orange-500/70 shadow-lg" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                <button type="button" onclick="triggerLoginRightImageUpload()" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-image"></i> 사진파일
                 </button>
-                <button type="button" onclick="triggerLoginRightVideoChange()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded flex items-center gap-1">
+                <button type="button" onclick="triggerLoginRightVideoChange()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-video"></i> 동영상 업로드/URL
                 </button>
-                <button type="button" onclick="triggerLoginRightImageUrl()" class="px-2.5 py-1.5 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded">
+                <button type="button" onclick="triggerLoginRightImageUrl()" class="px-2.5 py-1.5 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">
                   사진 URL
                 </button>
               </div>
@@ -1356,7 +1425,7 @@
             <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-white"></h3>
             <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-neutral-300 mb-6 leading-relaxed"></p>
             <div class="flex flex-wrap gap-3">
-              <button onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
+              <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
                 <span data-editable="true" data-path="footer.recruitBtnText"></span>
               </button>
             </div>
@@ -1409,10 +1478,10 @@
               </div>
             </div>
             <div class="flex gap-3 mt-8">
-              <button type="submit" class="px-12 py-3.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded transition">
+              <button type="submit" class="px-12 py-3.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded transition cursor-pointer">
                 <span data-editable="true" data-path="consult.submitBtnText">상담 예약 신청하기</span>
               </button>
-              <button type="button" onclick="if(!isEditMode) navigateTo('home')" class="px-10 py-3.5 bg-[#141414] text-white text-xs font-semibold rounded transition">
+              <button type="button" onclick="if(!isEditMode) navigateTo('home')" class="px-10 py-3.5 bg-[#141414] text-white text-xs font-semibold rounded transition cursor-pointer">
                 <span data-editable="true" data-path="consult.cancelBtnText">취소</span>
               </button>
             </div>
@@ -1421,8 +1490,7 @@
       </div>
     </div>
   </main>
-
-  <!-- 자바스크립트: 클라우드 DB 최우선 동기화 + 스크롤 연동 모션 + 스마트 에디터 + 초정밀 편집 엔진 -->
+<!-- 자바스크립트: 클라우드 DB 최우선 동기화 + 스크롤 연동 모션 + 스마트 에디터 + 초정밀 편집 엔진 -->
   <script>
     const DEFAULT_SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
     const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOIvZjWUE7WAA_64jh6-gN";
@@ -1826,6 +1894,7 @@
     let heroSwiperInstance = null;
     let campusSwiperInstance = null;
     let campusDetailSwiperInstance = null;
+    let currentHeroSlideIndex = 0;
 
     let currentViewId = "home";
     let currentTopSecretTab = "greeting";
@@ -2005,7 +2074,6 @@
         }));
       }
 
-      // 명예의 전당 년도(year) 속성 보장
       if (merged.philosophy && Array.isArray(merged.philosophy.honorsList)) {
         merged.philosophy.honorsList = merged.philosophy.honorsList.map(h => {
           let detectedYear = h.year;
@@ -2241,7 +2309,7 @@
       }
     }
 
-    // ✨ 요청사항 3번: 로그인 우측 배너 사진 파일 / 사진 URL / 동영상 파일·URL 업로드 전용 함수
+    // 로그인 우측 배너 사진 파일 / 사진 URL / 동영상 파일·URL 업로드 전용 함수
     function triggerLoginRightImageUpload() {
       triggerImageFileUpload("loginPage.rightImg", false, () => {
         siteData.loginPage.rightMediaType = "image";
@@ -2305,7 +2373,8 @@
         vInput.click();
       }
     }
-function triggerMainVisualImageUpload() {
+
+    function triggerMainVisualImageUpload() {
       syncEditableElementsToData();
       const fileInput = document.getElementById("globalImageFileInput");
       fileInput.value = "";
@@ -2680,7 +2749,6 @@ function triggerMainVisualImageUpload() {
       }
     }
 
-    // ✨ 요청사항 3번: 로그인 우측 배너 사진/동영상 100% 꽉 차게 렌더링
     function renderLoginPage() {
       const rightImgEl = document.getElementById("loginRightBannerImg");
       const rightVideoEl = document.getElementById("loginRightBannerVideo");
@@ -3037,7 +3105,7 @@ function triggerMainVisualImageUpload() {
             <p class="text-[11px] font-bold tracking-[0.2em] text-neutral-400 uppercase mb-5">${stripHtml(menu.title)}</p>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-3.5 gap-x-10">
               ${(menu.subs || []).map((sub, sIdx) => `
-                <div onclick="handleSubMenuClick(${menuIdx},${sIdx}); hideMegaMenu();" class="group cursor-pointer py-1 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
+                <div onclick="handleSubMenuClick(${menuIdx}, ${sIdx}); hideMegaMenu();" class="group cursor-pointer py-1 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
                   <span class="text-sm text-neutral-700 group-hover:text-[#FF6B00] group-hover:font-semibold transition">${sub.name}</span>
                   <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-[#FF6B00] transition"></i>
                 </div>
@@ -3046,7 +3114,7 @@ function triggerMainVisualImageUpload() {
           </div>
           <div class="pt-7 mt-7 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-400">
             <span>탑씨크리트학원 공식 교육 네트워크</span>
-            <button onclick="handleSubMenuClick(${menuIdx}, 0); hideMegaMenu();" class="font-semibold text-neutral-800 hover:text-[#FF6B00] underline underline-offset-4">전체 바로가기</button>
+            <button type="button" onclick="handleSubMenuClick(${menuIdx}, 0); hideMegaMenu();" class="font-semibold text-neutral-800 hover:text-[#FF6B00] underline underline-offset-4 cursor-pointer">전체 바로가기</button>
           </div>
         </div>
       `;
@@ -3172,15 +3240,14 @@ function triggerMainVisualImageUpload() {
         }
       }
     });
-
-    function openTopSecretTab(tabKey) {
+function openTopSecretTab(tabKey) {
       syncEditableElementsToData();
       currentTopSecretTab = tabKey;
       renderTopSecretPage();
       navigateTo("philosophy", true);
     }
 
-    // ✨ 요청사항 1번 & 5번: 연혁(5번째 사진 타임라인 디자인) & 명예의 전당(년도별 대형 구분 + 1줄 5명 컴팩트 배치)
+    // 학원 소개(인사말 / 학습목표 / 연혁 타임라인 / 명예의 전당 년도별 5열 그리드) 렌더링
     function renderTopSecretPage() {
       if (!siteData.philosophy.tabNames) {
         siteData.philosophy.tabNames = { greeting: "인사말", goal: "학습목표", history: "연혁", honors: "명예의 전당" };
@@ -3200,7 +3267,7 @@ function triggerMainVisualImageUpload() {
         return `
           <div onclick="if(!isEditMode) openTopSecretTab('${t.key}')" class="unified-side-item ${isAct ? 'active' : 'inactive'}">
             <span data-editable="true" data-path="${t.path}">${t.label}</span>
-            <button onclick="event.stopPropagation(); openTopSecretTab('${t.key}')" class="admin-only-control px-1.5 py-0.5 bg-orange-600 text-white text-[9px] rounded">이동</button>
+            <button type="button" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation(); openTopSecretTab('${t.key}')" class="admin-only-control px-1.5 py-0.5 bg-orange-600 text-white text-[9px] rounded cursor-pointer">이동</button>
           </div>
         `;
       }).join("");
@@ -3241,7 +3308,6 @@ function triggerMainVisualImageUpload() {
           </div>
         `;
       } else if (currentTopSecretTab === "history") {
-        // ✨ 요청사항 5번: 다섯 번째 사진과 동일한 좌측 수직 타임라인 & 가로형 라운드 박스 디자인
         contentEl.innerHTML = `
           <div class="philosophy-slide-up max-w-4xl w-full mx-auto text-left">
             <div class="flex flex-wrap items-end justify-between mb-10 gap-4">
@@ -3249,16 +3315,15 @@ function triggerMainVisualImageUpload() {
                 <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-2 tracking-tight">${p.historyTitle}</h2>
                 <p data-editable="true" data-path="philosophy.historySub" class="text-xs md:text-sm text-neutral-500">${p.historySub}</p>
               </div>
-              <div class="admin-only-control gap-2">
-                <button onclick="addHistoryRow('top')" class="px-4 py-2 bg-neutral-900 text-white text-xs font-bold rounded">+ 상단에 연혁 추가</button>
-                <button onclick="addHistoryRow('bottom')" class="px-4 py-2 bg-neutral-700 text-white text-xs font-bold rounded">+ 하단에 연혁 추가</button>
+              <div class="admin-only-control gap-2" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="addHistoryRow('top')" class="px-4 py-2 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 상단에 연혁 추가</button>
+                <button type="button" onclick="addHistoryRow('bottom')" class="px-4 py-2 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">+ 하단에 연혁 추가</button>
               </div>
             </div>
 
             <div class="relative border-l border-neutral-300 ml-3 pl-8 md:pl-10 space-y-5">
               ${(p.historyList || []).map((h, idx) => `
                 <div class="relative bg-white p-6 md:p-7 rounded-2xl border border-neutral-200 hover:border-neutral-400 transition shadow-sm">
-                  <!-- 좌측 수직선 위의 검은색 원형 포인트 -->
                   <div class="w-3.5 h-3.5 rounded-full bg-[#141414] absolute -left-[39px] md:-left-[47px] top-8"></div>
                   
                   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -3273,10 +3338,10 @@ function triggerMainVisualImageUpload() {
                       </div>
                     </div>
 
-                    <div class="admin-only-control items-center gap-1 shrink-0">
-                      <button onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200">위로</button>
-                      <button onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200">아래로</button>
-                      <button onclick="deleteHistoryRow(${idx})" class="px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded">삭제</button>
+                    <div class="admin-only-control items-center gap-1 shrink-0" onpointerdown="event.stopPropagation()">
+                      <button type="button" onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">위로</button>
+                      <button type="button" onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">아래로</button>
+                      <button type="button" onclick="deleteHistoryRow(${idx})" class="px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button>
                     </div>
                   </div>
                 </div>
@@ -3285,7 +3350,6 @@ function triggerMainVisualImageUpload() {
           </div>
         `;
       } else if (currentTopSecretTab === "honors") {
-        // ✨ 요청사항 1번: 명예의 전당 년도별 대형 구분 + 1줄당 5명(xl:grid-cols-5) 들어가도록 상자 축소
         const rawList = (p.honorsList || []).map((item, originalIdx) => {
           let yr = stripHtml(item.year || "");
           if (!yr) {
@@ -3308,31 +3372,28 @@ function triggerMainVisualImageUpload() {
             <div class="text-center mb-12">
               <h2 data-editable="true" data-path="philosophy.honorsTitle" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-2">${p.honorsTitle}</h2>
               <p data-editable="true" data-path="philosophy.honorsSub" class="text-xs md:text-sm text-neutral-500">${p.honorsSub}</p>
-              <div class="mt-5 flex flex-wrap justify-center gap-2">
-                <button onclick="addHonorCard()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow">+ 새 합격생 카드 추가 (년도 입력)</button>
+              <div class="mt-5 flex flex-wrap justify-center gap-2" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="addHonorCard()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow cursor-pointer">+ 새 합격생 카드 추가 (년도 입력)</button>
               </div>
             </div>
 
             <div class="space-y-14">
               ${sortedYears.map(yr => `
                 <div class="space-y-5">
-                  <!-- 크게 구분된 년도별 헤더 -->
                   <div class="flex items-center justify-between border-b-2 border-neutral-900 pb-3">
                     <div class="flex items-baseline gap-3">
                       <span class="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">${yr}</span>
                       <span class="text-xs md:text-sm font-bold text-[#FF6B00] uppercase tracking-wider">HONORS & ACHIEVEMENTS</span>
                     </div>
-                    <button onclick="addHonorCard('${yr}')" class="admin-only-control px-3 py-1.5 bg-neutral-900 text-white text-[11px] font-bold rounded">+ ${yr}년 카드 추가</button>
+                    <button type="button" onpointerdown="event.stopPropagation()" onclick="addHonorCard('${yr}')" class="admin-only-control px-3 py-1.5 bg-neutral-900 text-white text-[11px] font-bold rounded cursor-pointer">+ ${yr}년 카드 추가</button>
                   </div>
 
-                  <!-- 1줄당 5명(xl:grid-cols-5)이 들어가는 컴팩트한 합격 상자 그리드 -->
                   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3.5 text-center">
                     ${yearGroups[yr].map(h => {
                       const idx = h.originalIdx;
                       return `
                         <div class="bg-white p-4 border border-neutral-200 hover:border-neutral-400 transition flex flex-col justify-between items-center shadow-sm">
                           <div class="w-full">
-                            <!-- 관리자 모드에서 년도 수정 가능 -->
                             <div class="admin-only-control justify-center items-center gap-1 mb-2 bg-neutral-100 py-0.5 px-2 rounded text-[10px] text-neutral-600">
                               <span>년도:</span>
                               <span data-editable="true" data-path="philosophy.honorsList.${idx}.year" class="font-extrabold text-[#FF6B00]">${h.year || yr}</span>
@@ -3352,10 +3413,10 @@ function triggerMainVisualImageUpload() {
                             <p data-editable="true" data-path="philosophy.honorsList.${idx}.note" class="text-[11px] text-neutral-500 leading-snug">${h.note}</p>
                           </div>
 
-                          <div class="admin-only-control pt-2.5 mt-2.5 border-t border-neutral-100 justify-center gap-1 w-full">
-                            <button onclick="moveHonorCard(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px]">◀</button>
-                            <button onclick="moveHonorCard(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px]">▶</button>
-                            <button onclick="deleteHonorCard(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded">삭제</button>
+                          <div class="admin-only-control pt-2.5 mt-2.5 border-t border-neutral-100 justify-center gap-1 w-full" onpointerdown="event.stopPropagation()">
+                            <button type="button" onclick="moveHonorCard(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px] cursor-pointer">◀</button>
+                            <button type="button" onclick="moveHonorCard(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px] cursor-pointer">▶</button>
+                            <button type="button" onclick="deleteHonorCard(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
                           </div>
                         </div>
                       `;
@@ -3439,7 +3500,7 @@ function triggerMainVisualImageUpload() {
           <div>
             <div class="flex items-center justify-between mb-5">
               <span data-editable="true" data-path="admissionPage.steps.${idx}.stepNum" class="px-3 py-1 bg-[#141414] text-[#FFB800] text-xs font-extrabold rounded-full">${st.stepNum}</span>
-              <button onclick="deleteAdmissionStep(${idx})" class="admin-only-control px-2 py-0.5 bg-red-600 text-white text-[10px] rounded">삭제</button>
+              <button type="button" onpointerdown="event.stopPropagation()" onclick="deleteAdmissionStep(${idx})" class="admin-only-control px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
             </div>
             <h3 data-editable="true" data-path="admissionPage.steps.${idx}.title" class="text-xl font-bold text-neutral-900 mb-3">${st.title}</h3>
             <p data-editable="true" data-path="admissionPage.steps.${idx}.desc" class="text-xs md:text-sm text-neutral-600 leading-relaxed">${st.desc}</p>
@@ -3845,42 +3906,90 @@ function triggerMainVisualImageUpload() {
       showToast(next ? "브라우저 맞춤법 밑줄 검사가 켜졌습니다." : "맞춤법 밑줄 검사가 꺼졌습니다.");
     }
 
-    // 메인 배너 슬라이더
+    // ✨ 메인 배너 슬라이더 & 전용 컨트롤 바 완벽 연동 (양옆 클릭 이동, 사진 변경, 삭제, 추가 100% 작동 보장)
+    function updateHeroActiveUI(idx) {
+      const total = siteData.hero.slides.length || 1;
+      currentHeroSlideIndex = ((idx % total) + total) % total;
+
+      const curr = currentHeroSlideIndex + 1;
+      const pct = (curr / total) * 100;
+      const fillEl = document.getElementById("heroProgressFill");
+      const knobEl = document.getElementById("heroProgressKnob");
+      if (fillEl) fillEl.style.width = `${pct}%`;
+      if (knobEl) knobEl.style.left = `${pct}%`;
+
+      const indicatorEl = document.getElementById("adminHeroSlideIndicator");
+      if (indicatorEl) indicatorEl.textContent = `${curr} / ${total}`;
+
+      const capBox = document.getElementById("heroActiveCaptionBox");
+      if (capBox && siteData.hero.slides[currentHeroSlideIndex]) {
+        const capPath = `hero.slides.${currentHeroSlideIndex}.caption`;
+        capBox.setAttribute("data-path", capPath);
+        capBox.innerHTML = siteData.hero.slides[currentHeroSlideIndex].caption || "";
+        applySavedElementStyles();
+      }
+    }
+
     function renderHeroSection() {
       const wrapper = document.getElementById("heroSlidesWrapper");
-      wrapper.innerHTML = siteData.hero.slides.map((s, idx) => `
+      if (!wrapper) return;
+      if (!Array.isArray(siteData.hero.slides) || siteData.hero.slides.length === 0) {
+        siteData.hero.slides = JSON.parse(JSON.stringify(defaultSiteData.hero.slides));
+      }
+      if (currentHeroSlideIndex >= siteData.hero.slides.length) {
+        currentHeroSlideIndex = 0;
+      }
+
+      wrapper.innerHTML = siteData.hero.slides.map((s) => `
         <div class="swiper-slide relative w-full h-full">
           <img src="${s.img}" class="w-full h-full object-cover object-center" />
-          <div class="absolute bottom-20 right-10 md:right-20 z-30 text-right">
-            <p data-editable="true" data-path="hero.slides.${idx}.caption" class="text-white/95 text-xs md:text-sm font-normal tracking-wider bg-black/55 px-5 py-2.5 backdrop-blur-sm rounded">${s.caption}</p>
-          </div>
-          <div class="admin-only-control absolute top-10 right-10 z-30 gap-2">
-            <button onclick="triggerImageFileUpload('hero.slides.${idx}.img')" class="px-3.5 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow flex items-center gap-1">
-              <i class="fa-solid fa-folder-open"></i> 배너 사진파일 변경
-            </button>
-            <button onclick="triggerImageChange('hero.slides.${idx}.img')" class="px-3 py-2 bg-black/85 text-white text-xs font-bold rounded">URL</button>
-            ${siteData.hero.slides.length > 1 ? `<button onclick="deleteHeroSlide(${idx})" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded">배너 삭제</button>` : ""}
-          </div>
         </div>
       `).join("");
 
       if (heroSwiperInstance) heroSwiperInstance.destroy(true, true);
       heroSwiperInstance = new Swiper(".heroSwiper", {
         loop: siteData.hero.slides.length > 1,
-        speed: 900,
-        autoplay: { delay: 6000, disableOnInteraction: false },
+        initialSlide: currentHeroSlideIndex,
+        speed: 850,
+        preventClicks: false,
+        preventClicksPropagation: false,
+        touchStartPreventDefault: false,
+        autoplay: isEditMode ? false : { delay: 6000, disableOnInteraction: false },
         on: {
+          init: function () {
+            updateHeroActiveUI(this.realIndex || 0);
+          },
           slideChange: function () {
-            const total = siteData.hero.slides.length;
-            const curr = (this.realIndex % total) + 1;
-            const pct = (curr / total) * 100;
-            const fillEl = document.getElementById("heroProgressFill");
-            const knobEl = document.getElementById("heroProgressKnob");
-            if (fillEl) fillEl.style.width = `${pct}%`;
-            if (knobEl) knobEl.style.left = `${pct}%`;
+            updateHeroActiveUI(this.realIndex || 0);
           }
         }
       });
+
+      updateHeroActiveUI(currentHeroSlideIndex);
+    }
+
+    function heroSlidePrev() {
+      if (!heroSwiperInstance) return;
+      heroSwiperInstance.slidePrev();
+    }
+
+    function heroSlideNext() {
+      if (!heroSwiperInstance) return;
+      heroSwiperInstance.slideNext();
+    }
+
+    function changeCurrentHeroSlideFile() {
+      const targetIdx = currentHeroSlideIndex || 0;
+      triggerImageFileUpload(`hero.slides.${targetIdx}.img`);
+    }
+
+    function changeCurrentHeroSlideUrl() {
+      const targetIdx = currentHeroSlideIndex || 0;
+      triggerImageChange(`hero.slides.${targetIdx}.img`);
+    }
+
+    function deleteCurrentHeroSlide() {
+      deleteHeroSlide(currentHeroSlideIndex || 0);
     }
 
     function addHeroSlideWithFile() {
@@ -3890,8 +3999,10 @@ function triggerMainVisualImageUpload() {
       fileInput.onchange = async (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
+        showToast("새 배너 사진을 최적화하여 추가 중입니다...");
         const dataUrl = await compressAndReadImageFile(file, false, 1920);
         siteData.hero.slides.push({ img: dataUrl, caption: "새 배너 문구를 입력하세요" });
+        currentHeroSlideIndex = siteData.hero.slides.length - 1;
         renderHeroSection();
         refreshViewBindings();
         await saveAllChanges(false);
@@ -3899,16 +4010,41 @@ function triggerMainVisualImageUpload() {
       fileInput.click();
     }
 
+    function addHeroSlide() {
+      syncEditableElementsToData();
+      siteData.hero.slides.push({ img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=85", caption: "새 배너 문구를 입력하세요" });
+      currentHeroSlideIndex = siteData.hero.slides.length - 1;
+      renderHeroSection();
+      refreshViewBindings();
+      saveAllChanges(true);
+      showToast("새 배너 슬라이드가 추가되었습니다.");
+    }
+
+    function deleteHeroSlide(idx) {
+      if (siteData.hero.slides.length <= 1) return alert("최소 1개의 배너는 유지해야 합니다.");
+      if (!confirm(`${idx + 1}번 배너 슬라이드를 삭제하시겠습니까?`)) return;
+      syncEditableElementsToData();
+      siteData.hero.slides.splice(idx, 1);
+      currentHeroSlideIndex = Math.max(0, idx - 1);
+      renderHeroSection();
+      refreshViewBindings();
+      saveAllChanges(false);
+      showToast("배너 슬라이드가 삭제되었습니다.");
+    }
+
     function seekHeroSlide(e) {
       if (!heroSwiperInstance) return;
       const rect = e.currentTarget.getBoundingClientRect();
       const ratio = (e.clientX - rect.left) / rect.width;
-      heroSwiperInstance.slideToLoop(Math.min(siteData.hero.slides.length - 1, Math.max(0, Math.floor(ratio * siteData.hero.slides.length))));
+      const targetIdx = Math.min(siteData.hero.slides.length - 1, Math.max(0, Math.floor(ratio * siteData.hero.slides.length)));
+      if (siteData.hero.slides.length > 1) heroSwiperInstance.slideToLoop(targetIdx);
+      else heroSwiperInstance.slideTo(targetIdx);
     }
 
-    // 메인 캠퍼스 슬라이더
+    // ✨ 메인 캠퍼스 슬라이더 (드래그 간섭 차단 옵션 적용으로 사진파일/URL/상세편집/삭제 버튼 100% 즉시 클릭 가능)
     function renderHomeCampusSlider() {
       const wrapper = document.getElementById("homeCampusSliderWrapper");
+      if (!wrapper) return;
       wrapper.innerHTML = siteData.campuses.map((c, idx) => `
         <div class="swiper-slide">
           <div class="campus-glide-card scroll-glide-item campus-card relative aspect-[4/3] bg-neutral-100 cursor-pointer group rounded-2xl overflow-hidden shadow-md" onclick="if(!isEditMode) openCampusDetail(${idx})">
@@ -3918,17 +4054,18 @@ function triggerMainVisualImageUpload() {
                 <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-2xl font-bold mb-2">${c.name}</h3>
                 <p class="text-xs text-neutral-200 mb-1"><span data-editable="true" data-path="campuses.${idx}.telLabel">${c.telLabel || 'tel.'}</span> <span data-editable="true" data-path="campuses.${idx}.tel">${c.tel}</span></p>
                 <p class="text-xs text-neutral-200 mb-4"><span data-editable="true" data-path="campuses.${idx}.addrLabel">${c.addrLabel || 'add.'}</span> <span data-editable="true" data-path="campuses.${idx}.addr">${c.addr}</span></p>
-                <button onclick="event.stopPropagation(); if(!isEditMode) openCampusDetail(${idx})" class="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-xs font-semibold rounded transition">
-                  <span data-editable="true" data-path="homeCampus.cardBtnText">${siteData.homeCampus.cardBtnText || '상세보기'}</span>
+                <button type="button" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation(); openCampusDetail(${idx})" class="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-xs font-semibold rounded transition cursor-pointer">
+                  <span data-editable="true" data-path="homeCampus.cardBtnText" onclick="if(isEditMode) event.stopPropagation();">${siteData.homeCampus.cardBtnText || '상세보기'}</span>
                 </button>
               </div>
             </div>
-            <div class="admin-only-control absolute top-3 right-3 z-30 flex-wrap gap-1" onclick="event.stopPropagation()">
-              <button onclick="moveCampusItem(${idx}, -1)" class="px-2 py-1 bg-black/80 text-white text-[10px] rounded" title="앞으로 이동">◀</button>
-              <button onclick="moveCampusItem(${idx}, 1)" class="px-2 py-1 bg-black/80 text-white text-[10px] rounded" title="뒤로 이동">▶</button>
-              <button onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded">사진파일</button>
-              <button onclick="openCampusDetail(${idx})" class="px-2.5 py-1 bg-neutral-800 text-white text-[10px] font-bold rounded">상세편집</button>
-              <button onclick="deleteCampusItem(${idx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded">삭제</button>
+            <div class="admin-only-control absolute top-3 right-3 z-40 flex-wrap gap-1 bg-black/75 p-1.5 rounded-lg border border-orange-500/60" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+              <button type="button" onclick="moveCampusItem(${idx}, -1)" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-[10px] rounded cursor-pointer" title="앞으로 이동">◀</button>
+              <button type="button" onclick="moveCampusItem(${idx}, 1)" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-[10px] rounded cursor-pointer" title="뒤로 이동">▶</button>
+              <button type="button" onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[10px] font-bold rounded cursor-pointer">사진파일</button>
+              <button type="button" onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] font-bold rounded cursor-pointer">URL</button>
+              <button type="button" onclick="openCampusDetail(${idx})" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold rounded cursor-pointer">상세편집</button>
+              <button type="button" onclick="deleteCampusItem(${idx})" class="px-2 py-1 bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
             </div>
           </div>
         </div>
@@ -3938,7 +4075,10 @@ function triggerMainVisualImageUpload() {
       campusSwiperInstance = new Swiper(".campusSwiper", {
         slidesPerView: 1.15,
         spaceBetween: 24,
-        grabCursor: true,
+        grabCursor: !isEditMode,
+        preventClicks: false,
+        preventClicksPropagation: false,
+        touchStartPreventDefault: false,
         mousewheel: { releaseOnEdges: true, sensitivity: 1.2 },
         scrollbar: { el: ".campus-swiper-scrollbar", draggable: true },
         breakpoints: {
@@ -3974,10 +4114,7 @@ function triggerMainVisualImageUpload() {
       saveAllChanges(true);
     }
 
-    // ✨ 요청사항 2번: CURRICULUM & SYSTEM 3개의 원형 사진 정밀 배치 및 크기 조절
-    // - 좌측 원(idx 0): 크기는 그대로 유지(xl:w-[355px]), 가운데 원이 위로 올라가며 비워진 오른쪽 아래 자리로 이동(md:mt-28 lg:translate-x-8)하여 왼쪽 카테고리 침범 완벽 방지
-    // - 중앙 원(idx 1): 위로 높게 올려 좌측 공간 확보(md:-mt-28 lg:translate-x-4), 크기는 지금보다 조금 더 크게(xl:w-[445px])
-    // - 우측 원(idx 2): 지금보다 조금 더 오른쪽으로 이동(lg:translate-x-10), 크기는 지금보다 아주 조금 작게(xl:w-[315px])
+    // CURRICULUM & SYSTEM 3개의 원형 사진 정밀 배치 및 사진/글씨 동시 편집
     function renderHomeSystemSlider() {
       const container = document.getElementById("homeSystemCirclesContainer");
       if (!container) return;
@@ -3999,18 +4136,18 @@ function triggerMainVisualImageUpload() {
               <div class="system-circle-card ${circleLayoutConfig[idx]} group">
                 <img src="${circle.img}" alt="시스템 원형 이미지 ${idx + 1}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
                 
-                <!-- 하단 텍스트 영역: 관리자 모드에서도 버튼에 가려지지 않고 언제든 바로 클릭하여 글씨 수정 가능 -->
+                <!-- 하단 텍스트 영역 -->
                 <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/30 to-transparent flex flex-col justify-end items-center text-center pb-9 px-5 pointer-events-none">
                   <span data-editable="true" data-path="homeSystem.circles.${idx}.role" class="pointer-events-auto text-white/90 text-xs md:text-sm font-semibold tracking-wider mb-1 drop-shadow">${circle.role || ''}</span>
                   <h4 data-editable="true" data-path="homeSystem.circles.${idx}.title" class="pointer-events-auto text-white text-base md:text-2xl font-extrabold drop-shadow">${circle.title || ''}</h4>
                 </div>
 
                 <!-- 상단 미니 관리자 버튼 -->
-                <div class="admin-only-control absolute top-6 left-1/2 -translate-x-1/2 bg-neutral-900/90 px-3 py-1.5 rounded-full border border-orange-500/70 shadow-xl items-center gap-1.5 z-30" onclick="event.stopPropagation()">
-                  <button onclick="triggerImageFileUpload('homeSystem.circles.${idx}.img')" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-bold rounded-full flex items-center gap-1">
+                <div class="admin-only-control absolute top-6 left-1/2 -translate-x-1/2 bg-neutral-900/95 px-3 py-1.5 rounded-full border border-orange-500/70 shadow-xl items-center gap-1.5 z-30" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                  <button type="button" onclick="triggerImageFileUpload('homeSystem.circles.${idx}.img')" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-bold rounded-full flex items-center gap-1 cursor-pointer">
                     <i class="fa-solid fa-folder-open"></i> 사진파일
                   </button>
-                  <button onclick="triggerImageChange('homeSystem.circles.${idx}.img')" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[11px] font-bold rounded-full">
+                  <button type="button" onclick="triggerImageChange('homeSystem.circles.${idx}.img')" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[11px] font-bold rounded-full cursor-pointer">
                     URL
                   </button>
                 </div>
@@ -4034,9 +4171,9 @@ function triggerMainVisualImageUpload() {
           return `
             <div data-cat-name="${cleanCat}" onclick="if(!isEditMode) selectCurriculumCat('${cleanCat}')" class="unified-side-item ${active ? 'active' : 'inactive'}">
               <span data-editable="true" data-path="curriculum.categories.${cIdx}">${cat}</span>
-              <div class="admin-only-control items-center gap-1">
-                <button onclick="event.stopPropagation(); selectCurriculumCat('${cleanCat}')" class="px-1.5 py-0.5 bg-black/75 text-white text-[10px] rounded">이동</button>
-                ${cIdx > 0 ? `<button onclick="event.stopPropagation(); deleteCurriculumCategory(${cIdx})" class="px-1.5 py-0.5 bg-red-600 text-white text-[10px] rounded">×</button>` : ''}
+              <div class="admin-only-control items-center gap-1" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="event.stopPropagation(); selectCurriculumCat('${cleanCat}')" class="px-1.5 py-0.5 bg-black/75 text-white text-[10px] rounded cursor-pointer">이동</button>
+                ${cIdx > 0 ? `<button type="button" onclick="event.stopPropagation(); deleteCurriculumCategory(${cIdx})" class="px-1.5 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">×</button>` : ''}
               </div>
             </div>
           `;
@@ -4113,7 +4250,7 @@ function triggerMainVisualImageUpload() {
       saveAllChanges(true);
     }
 
-    // ✨ 요청사항 4번: 교육과정 사진 3배 이상 확대(풀와이드 대형 쇼케이스 배너) + "Course 01, 초등 표준" 직각 네모 상자(rounded-none) + "커리큘럼 상세 소개보기" 완전 제거
+    // 커리큘럼 풀와이드 대형 사진 쇼케이스 + 직각 네모 배지 + 순서 이동/추가/삭제 완벽 작동
     function renderCurriculumGrid() {
       const query = (document.getElementById("curriculumSearchInput")?.value || "").trim().toLowerCase();
       const container = document.getElementById("curriculumGridContainer");
@@ -4128,7 +4265,7 @@ function triggerMainVisualImageUpload() {
         container.innerHTML = `
           <div class="py-16 text-center bg-[#FAFAFA] rounded-2xl border border-dashed border-neutral-300">
             <p class="text-sm text-neutral-500 mb-4">검색 조건에 맞는 교육과정이 없습니다.</p>
-            <button onclick="addCurriculumItem()" class="px-5 py-2.5 bg-neutral-800 text-white text-xs font-bold rounded">+ 새 교육과정 추가하기</button>
+            <button type="button" onclick="addCurriculumItem()" class="px-5 py-2.5 bg-neutral-800 text-white text-xs font-bold rounded cursor-pointer">+ 새 교육과정 추가하기</button>
           </div>
         `;
         return;
@@ -4169,9 +4306,15 @@ function triggerMainVisualImageUpload() {
             <div class="${theme.bg} rounded-3xl border ${theme.border} p-7 md:p-12 shadow-sm transition space-y-9">
               <!-- 1단: 과정 소개 텍스트 및 직각 네모 배지 (Course 01, 초등 표준) -->
               <div class="space-y-4">
-                <div class="flex flex-wrap items-center gap-2">
-                  <span class="px-3.5 py-1.5 rounded-none text-xs font-extrabold ${theme.accent} shadow-sm">Course 0${seqIdx + 1}</span>
-                  <span data-editable="true" data-path="curriculum.items.${idx}.badge" class="px-3.5 py-1.5 rounded-none bg-white border border-neutral-300 text-neutral-800 text-xs font-bold">${item.badge}</span>
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-3.5 py-1.5 rounded-none text-xs font-extrabold ${theme.accent} shadow-sm">Course 0${seqIdx + 1}</span>
+                    <span data-editable="true" data-path="curriculum.items.${idx}.badge" class="px-3.5 py-1.5 rounded-none bg-white border border-neutral-300 text-neutral-800 text-xs font-bold">${item.badge}</span>
+                  </div>
+                  <div class="admin-only-control items-center gap-1" onpointerdown="event.stopPropagation()">
+                    <button type="button" onclick="moveCurriculumItem(${idx}, -1)" class="px-2.5 py-1 bg-neutral-800 text-white text-xs font-bold rounded cursor-pointer">▲ 위로 이동</button>
+                    <button type="button" onclick="moveCurriculumItem(${idx}, 1)" class="px-2.5 py-1 bg-neutral-800 text-white text-xs font-bold rounded cursor-pointer">▼ 아래로 이동</button>
+                  </div>
                 </div>
 
                 <h3 data-editable="true" data-path="curriculum.items.${idx}.title" class="text-2xl md:text-4xl font-extrabold text-neutral-900 leading-snug">${item.title}</h3>
@@ -4188,23 +4331,23 @@ function triggerMainVisualImageUpload() {
                 </div>
               </div>
 
-              <!-- 2단: 기존보다 3배 이상 크게 확대한 풀와이드 초대형 교육과정 대표 사진 쇼케이스 -->
+              <!-- 2단: 풀와이드 초대형 교육과정 대표 사진 쇼케이스 -->
               <div class="w-full">
                 <div class="relative w-full h-[360px] sm:h-[480px] xl:h-[580px] bg-white rounded-2xl overflow-hidden shadow-md border border-neutral-200 group cursor-zoom-in" onclick="if(!isEditMode) handleCampusBigImageClick('${item.img}')">
                   <img src="${item.img}" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700" />
-                  <div class="admin-only-control absolute top-4 right-4 z-20 gap-1.5" onclick="event.stopPropagation()">
-                    <button onclick="triggerImageFileUpload('curriculum.items.${idx}.img')" class="px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow-lg">사진파일 변경</button>
-                    <button onclick="triggerImageChange('curriculum.items.${idx}.img')" class="px-3 py-2 bg-black/85 text-white text-xs font-bold rounded">URL</button>
-                    <button onclick="deleteCurriculumItem(${idx})" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded">과정 삭제</button>
+                  <div class="admin-only-control absolute top-4 right-4 z-30 gap-1.5 bg-black/80 p-2 rounded-xl border border-orange-500/60" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                    <button type="button" onclick="triggerImageFileUpload('curriculum.items.${idx}.img')" class="px-4 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow-lg cursor-pointer">사진파일 변경</button>
+                    <button type="button" onclick="triggerImageChange('curriculum.items.${idx}.img')" class="px-3 py-2 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">URL</button>
+                    <button type="button" onclick="deleteCurriculumItem(${idx})" class="px-3 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded cursor-pointer">과정 삭제</button>
                   </div>
                 </div>
               </div>
 
-              <!-- 3단: 가로 카드로 나란히 펼쳐지는 STEP 로드맵 ("커리큘럼 상세 소개 보기" 버튼 완전 제거) -->
+              <!-- 3단: STEP 로드맵 -->
               <div class="pt-6 border-t border-neutral-200/70 space-y-4">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <span data-editable="true" data-path="curriculum.roadmapLabel" class="text-xs font-extrabold text-neutral-700 uppercase tracking-wider">${siteData.curriculum.roadmapLabel || '단계별 커리큘럼 로드맵'}</span>
-                  <button onclick="addCurriculumStep(${idx})" class="admin-only-control px-3 py-1 bg-neutral-900 text-white text-xs font-bold rounded">+ STEP 단계 추가</button>
+                  <button type="button" onpointerdown="event.stopPropagation()" onclick="addCurriculumStep(${idx})" class="admin-only-control px-3 py-1 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ STEP 단계 추가</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -4213,7 +4356,7 @@ function triggerMainVisualImageUpload() {
                       <div>
                         <div class="flex items-center justify-between mb-3">
                           <span class="inline-block px-3 py-1 rounded-none bg-neutral-900 text-white text-[11px] font-extrabold">STEP 0${sIdx + 1}</span>
-                          <button onclick="deleteCurriculumStep(${idx}, ${sIdx})" class="admin-only-control px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">삭제</button>
+                          <button type="button" onpointerdown="event.stopPropagation()" onclick="deleteCurriculumStep(${idx}, ${sIdx})" class="admin-only-control px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
                         </div>
                         <p data-editable="true" data-path="curriculum.items.${idx}.steps.${sIdx}" class="text-xs md:text-sm font-bold text-neutral-800 leading-relaxed">${st}</p>
                       </div>
@@ -4227,6 +4370,16 @@ function triggerMainVisualImageUpload() {
       }).join("");
 
       refreshViewBindings();
+    }
+
+    function moveCurriculumItem(idx, dir) {
+      syncEditableElementsToData();
+      const list = siteData.curriculum.items;
+      const targetIdx = idx + dir;
+      if (targetIdx < 0 || targetIdx >= list.length) return;
+      [list[idx], list[targetIdx]] = [list[targetIdx], list[idx]];
+      renderCurriculumGrid();
+      saveAllChanges(true);
     }
 
     function addCurriculumStep(itemIdx) {
@@ -4283,13 +4436,13 @@ function triggerMainVisualImageUpload() {
         <div>
           <div class="flex items-center justify-between mb-3 px-2">
             <span data-editable="true" data-path="campusPage.sidebarHeading" class="text-xs font-bold text-neutral-500 uppercase tracking-wider">${siteData.campusPage?.sidebarHeading || '캠퍼스 보기'}</span>
-            <button onclick="addCampusItem()" class="admin-only-control px-2 py-0.5 bg-neutral-800 text-white text-[10px] font-bold rounded">+ 추가</button>
+            <button type="button" onpointerdown="event.stopPropagation()" onclick="addCampusItem()" class="admin-only-control px-2 py-0.5 bg-neutral-800 text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button>
           </div>
           <div class="space-y-1.5">
             ${siteData.campuses.map((c, idx) => `
               <div onclick="if(!isEditMode) openCampusDetail(${idx})" class="unified-side-item ${idx === 0 ? 'active' : 'inactive'}">
                 <span data-editable="true" data-path="campuses.${idx}.name">${c.name}</span>
-                <button onclick="event.stopPropagation(); openCampusDetail(${idx})" class="admin-only-control px-1.5 py-0.5 bg-black/75 text-white text-[10px] rounded">이동</button>
+                <button type="button" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation(); openCampusDetail(${idx})" class="admin-only-control px-1.5 py-0.5 bg-black/75 text-white text-[10px] rounded cursor-pointer">이동</button>
               </div>
             `).join("")}
           </div>
@@ -4301,6 +4454,7 @@ function triggerMainVisualImageUpload() {
     function renderCampusPageList() {
       const query = (document.getElementById("campusSearchInput")?.value || "").trim().toLowerCase();
       const grid = document.getElementById("campusPageGrid");
+      if (!grid) return;
       const filtered = siteData.campuses.map((c, realIdx) => ({ ...c, realIdx })).filter(c => {
         const matchQuery = !query || c.name.toLowerCase().includes(query) || c.addr.toLowerCase().includes(query) || c.region.toLowerCase().includes(query);
         return matchQuery;
@@ -4312,20 +4466,20 @@ function triggerMainVisualImageUpload() {
           <div onclick="if(!isEditMode) openCampusDetail(${idx})" class="grid grid-cols-1 sm:grid-cols-2 rounded-xl overflow-hidden border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition group bg-white cursor-pointer">
             <div class="relative aspect-[4/3] sm:aspect-auto overflow-hidden bg-neutral-100">
               <img src="${c.mainImg}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-              <div class="admin-only-control absolute top-2 right-2 gap-1" onclick="event.stopPropagation()">
-                <button onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded">사진파일</button>
-                <button onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2 py-1 bg-black/80 text-white text-[10px] rounded">URL</button>
+              <div class="admin-only-control absolute top-2 right-2 z-30 gap-1 bg-black/75 p-1 rounded" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                <button type="button" onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">사진파일</button>
+                <button type="button" onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">URL</button>
               </div>
             </div>
             <div class="p-6 flex flex-col justify-center bg-white">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-3">
                   <span data-editable="true" data-path="campuses.${idx}.region" class="inline-block text-[11px] font-medium text-neutral-600 bg-neutral-100 border border-neutral-300 px-2.5 py-0.5 rounded-none">${c.region}</span>
-                  <div class="admin-only-control gap-1" onclick="event.stopPropagation()">
-                    <button onclick="moveCampusItem(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded">◀</button>
-                    <button onclick="moveCampusItem(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded">▶</button>
-                    <button onclick="openCampusDetail(${idx})" class="px-2 py-0.5 bg-neutral-800 text-white text-[10px] rounded">상세편집</button>
-                    <button onclick="deleteCampusItem(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded">삭제</button>
+                  <div class="admin-only-control gap-1" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                    <button type="button" onclick="moveCampusItem(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded cursor-pointer">◀</button>
+                    <button type="button" onclick="moveCampusItem(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded cursor-pointer">▶</button>
+                    <button type="button" onclick="openCampusDetail(${idx})" class="px-2 py-0.5 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">상세편집</button>
+                    <button type="button" onclick="deleteCampusItem(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
                   </div>
                 </div>
                 <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-xl font-bold text-neutral-900 mb-3">${c.name}</h3>
@@ -4348,6 +4502,7 @@ function triggerMainVisualImageUpload() {
       navigateTo("campus-detail", true);
     }
 
+    // ✨ 캠퍼스 상세 페이지 (대표 이미지 사진파일/URL 직접 변경 컨트롤 + 갤러리 썸네일 사진파일/URL/삭제 + 강사진 사진파일/URL/삭제 완벽 지원)
     function renderCampusDetail(campusIdx) {
       const c = siteData.campuses[campusIdx] || siteData.campuses[0];
       if (!c) return;
@@ -4355,8 +4510,8 @@ function triggerMainVisualImageUpload() {
       document.getElementById("detailBreadcrumbName").innerHTML = stripHtml(c.name);
 
       document.getElementById("detailCampusSwitcher").innerHTML = siteData.campuses.map((cam, idx) => `
-        <button onclick="openCampusDetail(${idx})" class="px-3 py-1.5 rounded text-xs font-bold transition ${idx === cIdx ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}">${stripHtml(cam.name)}</button>
-      `).join("") + `<button onclick="if(!isEditMode) navigateTo('campus')" class="px-3 py-1.5 rounded text-xs font-bold bg-neutral-200 text-neutral-800 ml-2"><span data-editable="true" data-path="campusPage.allListBtnText">${siteData.campusPage.allListBtnText || '전체 지점 목록'}</span></button>`;
+        <button type="button" onclick="openCampusDetail(${idx})" class="px-3 py-1.5 rounded text-xs font-bold transition cursor-pointer ${idx === cIdx ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}">${stripHtml(cam.name)}</button>
+      `).join("") + `<button type="button" onclick="navigateTo('campus')" class="px-3 py-1.5 rounded text-xs font-bold bg-neutral-200 text-neutral-800 ml-2 cursor-pointer"><span data-editable="true" data-path="campusPage.allListBtnText" onclick="if(isEditMode) event.stopPropagation();">${siteData.campusPage.allListBtnText || '전체 지점 목록'}</span></button>`;
 
       const slideImages = [c.mainImg, ...(c.gallery || [])];
       const mapSearchAddress = stripHtml(c.mapQuery || c.addr || "천안시");
@@ -4375,25 +4530,36 @@ function triggerMainVisualImageUpload() {
               </div>
             </div>
             <div class="flex flex-col items-end gap-2 shrink-0">
-              <div class="grid grid-cols-3 gap-1.5 w-48">
+              <div class="grid grid-cols-3 gap-1.5 w-52">
                 ${(c.gallery || []).map((gImg, gIdx) => `
                   <div class="relative aspect-square bg-neutral-100 cursor-pointer overflow-hidden rounded border border-neutral-200" onclick="jumpToCampusDetailSlide(${gIdx + 1})">
                     <img src="${gImg}" class="w-full h-full object-cover" />
-                    <div class="admin-only-control absolute inset-x-0 bottom-0 bg-black/80 flex justify-between px-1 py-0.5 text-[9px] text-white">
-                      <span onclick="event.stopPropagation(); triggerImageFileUpload('campuses.${cIdx}.gallery.${gIdx}')">파일</span>
-                      <span onclick="event.stopPropagation(); deleteGalleryThumb(${cIdx}, ${gIdx})" class="text-red-400">삭제</span>
+                    <div class="admin-only-control absolute inset-x-0 bottom-0 bg-black/85 flex justify-between px-1 py-0.5 text-[9px] text-white z-20" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                      <button type="button" onclick="triggerImageFileUpload('campuses.${cIdx}.gallery.${gIdx}')" class="hover:text-orange-400 font-bold cursor-pointer">파일</button>
+                      <button type="button" onclick="triggerImageChange('campuses.${cIdx}.gallery.${gIdx}')" class="hover:text-orange-400 cursor-pointer">URL</button>
+                      <button type="button" onclick="deleteGalleryThumb(${cIdx}, ${gIdx})" class="text-red-400 font-bold cursor-pointer">삭제</button>
                     </div>
                   </div>
                 `).join("")}
               </div>
-              <div class="admin-only-control gap-1">
-                <button onclick="addGalleryThumbWithFile(${cIdx})" class="px-3 py-1.5 bg-[#FF6B00] text-white text-[11px] font-bold rounded">+ 사진파일 추가</button>
-                <button onclick="addGalleryThumb(${cIdx})" class="px-2.5 py-1.5 bg-neutral-900 text-white text-[11px] font-bold rounded">+ 기본추가</button>
+              <div class="admin-only-control gap-1" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="addGalleryThumbWithFile(${cIdx})" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-bold rounded cursor-pointer">+ 서브 사진파일 추가</button>
+                <button type="button" onclick="addGalleryThumb(${cIdx})" class="px-2.5 py-1.5 bg-neutral-900 text-white text-[11px] font-bold rounded cursor-pointer">+ 기본추가</button>
               </div>
             </div>
           </div>
 
           <div class="relative aspect-[4/3] bg-neutral-100 overflow-hidden rounded-xl border border-neutral-200 mb-8">
+            <!-- 캠퍼스 대표 사진 직접 변경 컨트롤 바 -->
+            <div class="admin-only-control absolute top-3 left-3 z-30 gap-1.5 bg-neutral-900/95 p-2 rounded-lg border border-orange-500/70 shadow-lg" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+              <button type="button" onclick="triggerImageFileUpload('campuses.${cIdx}.mainImg')" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-folder-open"></i> 대표 사진파일 변경
+              </button>
+              <button type="button" onclick="triggerImageChange('campuses.${cIdx}.mainImg')" class="px-2.5 py-1.5 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">
+                대표 사진 URL
+              </button>
+            </div>
+
             <div class="swiper campusDetailSwiper w-full h-full">
               <div class="swiper-wrapper">
                 ${slideImages.map((imgUrl) => `
@@ -4409,7 +4575,7 @@ function triggerMainVisualImageUpload() {
           <div class="border border-neutral-200 bg-[#FAFAFA] p-5 rounded-xl">
             <div class="flex justify-between items-center mb-3">
               <h3 data-editable="true" data-path="campusPage.mapHeading" class="text-base font-bold text-neutral-900">${siteData.campusPage.mapHeading || '찾아오시는 길'}</h3>
-              <button onclick="changeCampusMapAddress(${cIdx})" class="admin-only-control px-3 py-1 bg-neutral-800 text-white text-xs font-bold rounded">지도 주소 변경</button>
+              <button type="button" onpointerdown="event.stopPropagation()" onclick="changeCampusMapAddress(${cIdx})" class="admin-only-control px-3 py-1 bg-neutral-800 text-white text-xs font-bold rounded cursor-pointer">지도 주소 변경</button>
             </div>
             <div class="w-full h-72 bg-neutral-200 overflow-hidden rounded-lg border border-neutral-300">
               <iframe width="100%" height="100%" style="border:0;" loading="lazy" src="https://maps.google.com/maps?q=${encodeURIComponent(mapSearchAddress)}&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
@@ -4420,7 +4586,7 @@ function triggerMainVisualImageUpload() {
         <div class="lg:col-span-6">
           <div class="flex justify-between items-center mb-6">
             <h2 data-editable="true" data-path="campusPage.teachersHeading" class="text-4xl font-normal text-neutral-900" style="font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;">${siteData.campusPage.teachersHeading || 'Teachers & Staff'}</h2>
-            <button onclick="addTeacherProfile(${cIdx})" class="admin-only-control px-3.5 py-2 bg-neutral-900 text-white text-xs font-bold rounded">+ 강사/원장 프로필 추가</button>
+            <button type="button" onpointerdown="event.stopPropagation()" onclick="addTeacherProfile(${cIdx})" class="admin-only-control px-3.5 py-2 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 강사/원장 프로필 추가</button>
           </div>
           <div class="bg-[#FAFAFA] p-4 rounded-lg text-xs text-neutral-700 mb-8 border-l-2 border-neutral-800 space-y-1">
             <p data-editable="true" data-path="campuses.${cIdx}.notice1">${c.notice1}</p>
@@ -4432,9 +4598,10 @@ function triggerMainVisualImageUpload() {
                 <div class="relative aspect-[3/4] bg-neutral-100 overflow-hidden rounded mb-2.5 border">
                   <img src="${t.img}" class="w-full h-full object-cover" />
                   <div data-editable="true" data-path="campuses.${cIdx}.teachers.${tIdx}.badge" class="absolute bottom-0 inset-x-0 bg-neutral-800/80 text-white font-medium text-[11px] text-center py-1">${t.badge}</div>
-                  <div class="admin-only-control absolute top-1.5 right-1.5 gap-1">
-                    <button onclick="triggerImageFileUpload('campuses.${cIdx}.teachers.${tIdx}.img')" class="px-2 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded">사진파일</button>
-                    <button onclick="deleteTeacherProfile(${cIdx}, ${tIdx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded">삭제</button>
+                  <div class="admin-only-control absolute top-1.5 right-1.5 z-20 gap-1 bg-black/80 p-1 rounded" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                    <button type="button" onclick="triggerImageFileUpload('campuses.${cIdx}.teachers.${tIdx}.img')" class="px-2 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">파일</button>
+                    <button type="button" onclick="triggerImageChange('campuses.${cIdx}.teachers.${tIdx}.img')" class="px-1.5 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">URL</button>
+                    <button type="button" onclick="deleteTeacherProfile(${cIdx}, ${tIdx})" class="px-2 py-1 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
                   </div>
                 </div>
                 <p data-editable="true" data-path="campuses.${cIdx}.teachers.${tIdx}.role" class="text-[11px] text-neutral-500 font-medium">${t.role}</p>
@@ -4448,7 +4615,11 @@ function triggerMainVisualImageUpload() {
       setTimeout(() => {
         if (campusDetailSwiperInstance) campusDetailSwiperInstance.destroy(true, true);
         campusDetailSwiperInstance = new Swiper(".campusDetailSwiper", {
-          loop: slideImages.length > 1, speed: 850, autoplay: { delay: 5000, disableOnInteraction: false }
+          loop: slideImages.length > 1,
+          speed: 850,
+          preventClicks: false,
+          preventClicksPropagation: false,
+          autoplay: isEditMode ? false : { delay: 5000, disableOnInteraction: false }
         });
       }, 50);
       refreshViewBindings();
@@ -4529,11 +4700,15 @@ function triggerMainVisualImageUpload() {
       });
     }
 
+    // 전역 클릭 이벤트: 관리자 버튼 클릭은 절대 방해하지 않고, 편집 가능한 문구 클릭 시에만 서식 타겟으로 지정
     document.addEventListener("click", evt => {
       if (!isEditMode) return;
+      if (evt.target.closest("button") || evt.target.closest(".admin-only-control")) return;
       const editable = evt.target.closest('[data-editable="true"]');
-      if (editable) { evt.stopPropagation(); selectEditableTarget(editable); }
-    }, true);
+      if (editable) {
+        selectEditableTarget(editable);
+      }
+    });
 
     document.addEventListener("focusin", evt => {
       if (!isEditMode) return;
@@ -4574,23 +4749,6 @@ function triggerMainVisualImageUpload() {
         scheduleAutoCloudSave();
       }
     }, true);
-
-    function addHeroSlide() {
-      syncEditableElementsToData();
-      siteData.hero.slides.push({ img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=85", caption: "새 배너 문구를 입력하세요" });
-      renderHeroSection();
-      refreshViewBindings();
-      saveAllChanges(true);
-      showToast("배너 슬라이드가 추가되었습니다.");
-    }
-    function deleteHeroSlide(idx) {
-      if (siteData.hero.slides.length <= 1) return alert("최소 1개의 배너는 유지해야 합니다.");
-      syncEditableElementsToData();
-      siteData.hero.slides.splice(idx, 1);
-      renderHeroSection();
-      refreshViewBindings();
-      saveAllChanges(true);
-    }
 
     function addCampusItem() {
       syncEditableElementsToData();

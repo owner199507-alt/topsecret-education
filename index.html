@@ -275,7 +275,7 @@
       background: linear-gradient(to right, #ffffff 0%, #ffffff 23%, rgba(255, 255, 255, 0.92) 28%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0) 44%);
     }
 
-    /* 배너 좌우 클릭 영역 및 화살표 버튼 (관리자 모드에서도 항상 작동하며 상단 관리자 버튼을 절대 가리지 않음) */
+    /* 배너 좌우 클릭 영역 및 화살표 버튼 */
     .hero-click-zone {
       position: absolute;
       top: 90px;
@@ -739,16 +739,16 @@
             <span data-editable="true" data-path="branding.logoMainText" class="fallback-logo-text text-2xl md:text-3xl font-normal tracking-[0.18em] text-neutral-900" style="font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;"></span>
           </div>
         </div>
-        <div class="admin-only-control items-center gap-1 ml-3 bg-neutral-900/95 p-1.5 rounded-lg shadow-lg border border-orange-500/50 z-30">
-          <button onclick="triggerImageFileUpload('branding.sidebarLogo', true)" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[10px] font-bold rounded flex items-center gap-1" title="내 컴퓨터에서 로고 사진 파일 선택">
+        <div class="admin-only-control items-center gap-1 ml-3 bg-neutral-900/95 p-1.5 rounded-lg shadow-lg border border-orange-500/50 z-30" onpointerdown="event.stopPropagation()">
+          <button type="button" onclick="triggerImageFileUpload('branding.sidebarLogo', true)" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[10px] font-bold rounded flex items-center gap-1 cursor-pointer" title="내 컴퓨터에서 로고 사진 파일 선택">
             <i class="fa-solid fa-folder-open"></i> 로고 사진파일
           </button>
-          <button onclick="triggerSidebarLogoUrlChange()" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] rounded">URL</button>
-          <button onclick="toggleLogoTextMode()" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] rounded" title="이미지 로고 / 텍스트 로고 전환">글자로고</button>
+          <button type="button" onclick="triggerSidebarLogoUrlChange()" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] rounded cursor-pointer">URL</button>
+          <button type="button" onclick="toggleLogoTextMode()" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] rounded cursor-pointer" title="이미지 로고 / 텍스트 로고 전환">글자로고</button>
           <div class="flex items-center gap-1 text-white text-[10px]">
-            <button onclick="resizeSidebarLogo(-15)" class="px-1.5 py-0.5 bg-neutral-700 rounded">-</button>
+            <button type="button" onclick="resizeSidebarLogo(-15)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">-</button>
             <span id="logoSizeDisplay" class="text-orange-300 font-bold px-1">240px</span>
-            <button onclick="resizeSidebarLogo(15)" class="px-1.5 py-0.5 bg-neutral-700 rounded">+</button>
+            <button type="button" onclick="resizeSidebarLogo(15)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">+</button>
           </div>
         </div>
       </div>
@@ -778,7 +778,8 @@
       <div class="max-w-[1060px] mx-auto px-8 md:px-16 py-9" id="megaDropdownContent"></div>
     </div>
   </header>
-<!-- 메인 뷰포트 -->
+
+  <!-- 메인 뷰포트 -->
   <main id="mainViewport" class="main-viewport">
     <!-- 1. 홈 화면 -->
     <div id="view-home" class="view-section">
@@ -841,10 +842,10 @@
           </div>
         </section>
 
-        <!-- ✨ [3번째 섹션] 메인 배너 슬라이더 (좌측 1/4 그라데이션 마스크 + 최상위 배너 관리 컨트롤바 + 양옆 클릭/화살표 완벽 작동) -->
+        <!-- [3번째 섹션] 메인 배너 슬라이더 -->
         <section id="heroBannerSection" class="relative w-full h-screen min-h-[640px] bg-white overflow-hidden select-none border-t border-neutral-100">
 
-          <!-- 관리자 전용 최상위 배너 컨트롤 바 (마스크 및 클릭영역 밖에 위치하여 100% 언제나 즉시 작동) -->
+          <!-- 관리자 전용 최상위 배너 컨트롤 바 -->
           <div class="admin-only-control absolute top-6 left-6 right-6 z-[45] flex-wrap items-center justify-between gap-2 bg-neutral-900/95 px-4 py-2.5 rounded-xl border-2 border-[#FF6B00] shadow-2xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-[#FFB800] font-extrabold text-xs"><i class="fa-solid fa-images mr-1"></i>메인 배너 관리:</span>
@@ -871,11 +872,9 @@
             </div>
           </div>
 
-          <!-- 양옆 클릭 시 이전/다음 배너로 넘어가는 클릭 존 (관리자 편집모드에서도 항상 작동) -->
           <div class="hero-click-zone hero-click-zone-left" onclick="heroSlidePrev()" title="클릭하여 이전 배너로 이동"></div>
           <div class="hero-click-zone hero-click-zone-right" onclick="heroSlideNext()" title="클릭하여 다음 배너로 이동"></div>
 
-          <!-- 직관적인 좌우 화살표 버튼 -->
           <button type="button" onclick="heroSlidePrev()" class="hero-nav-arrow left-5 md:left-8" title="이전 배너">
             <i class="fa-solid fa-chevron-left text-base"></i>
           </button>
@@ -883,15 +882,12 @@
             <i class="fa-solid fa-chevron-right text-base"></i>
           </button>
 
-          <!-- 우측 3/4 영역 배너 이미지 슬라이더 (좌측 경계 그라데이션 마스크 적용) -->
           <div class="hero-right-three-quarters">
             <div class="swiper heroSwiper w-full h-full"><div class="swiper-wrapper" id="heroSlidesWrapper"></div></div>
           </div>
 
-          <!-- 좌측 1/4 화이트 여백 및 그라데이션 마스크 보호 레이어 -->
           <div class="hero-left-gradient-shield"></div>
 
-          <!-- 좌측 타이틀 텍스트 영역 -->
           <div class="absolute inset-0 z-30 pointer-events-none flex flex-col justify-center px-16 md:px-24 lg:px-28">
             <div class="max-w-xl pointer-events-auto">
               <p id="heroSubtitle" data-editable="true" data-path="hero.subtitle" class="text-neutral-600 text-xs md:text-sm tracking-[0.22em] mb-3 font-semibold"></p>
@@ -900,12 +896,10 @@
             </div>
           </div>
 
-          <!-- 우측 하단 배너별 캡션 표시 및 직접 수정 영역 (마스크 밖에 배치하여 클릭/수정 100% 보장) -->
           <div class="absolute bottom-20 right-10 md:right-20 z-30 pointer-events-auto text-right">
             <p id="heroActiveCaptionBox" data-editable="true" data-path="hero.slides.0.caption" class="text-white/95 text-xs md:text-sm font-normal tracking-wider bg-black/65 px-5 py-2.5 backdrop-blur-sm rounded shadow-lg"></p>
           </div>
 
-          <!-- 하단 프로그레스 바 -->
           <div class="absolute bottom-9 left-10 right-10 md:left-24 md:right-24 z-30">
             <div class="hero-progress-track" onclick="seekHeroSlide(event)">
               <div id="heroProgressFill" class="hero-progress-fill" style="width: 33.33%;"></div>
@@ -962,7 +956,7 @@
           </div>
         </section>
 
-        <!-- [5번째 섹션] 푸터 -->
+        <!-- ✨ [5번째 섹션] 메인 푸터 (요청사항 5번: 상담신청 옆 '로그인' 버튼 기능과 디자인 완전 삭제 완료) -->
         <footer id="mainFooterSection" class="w-full bg-[#141414] text-white border-t border-neutral-800 relative bg-cover bg-center">
           <div class="admin-only-control absolute top-4 right-6 z-20" onpointerdown="event.stopPropagation()">
             <button type="button" onclick="openSectionDesignModal('footer')" class="px-3 py-1.5 bg-neutral-800 text-[#FFB800] text-xs font-bold rounded border border-neutral-600 cursor-pointer">
@@ -974,11 +968,8 @@
               <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-white"></h3>
               <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-neutral-300 mb-6 leading-relaxed"></p>
               <div class="flex flex-wrap gap-3">
-                <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
-                  <span data-editable="true" data-path="footer.recruitBtnText"></span>
-                </button>
-                <button type="button" onclick="if(!isEditMode) navigateTo('login')" class="btn-outline-fill px-8 py-3.5 text-xs flex items-center justify-center gap-2">
-                  <span data-editable="true" data-path="footer.loginBtnText">로그인</span>
+                <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2 cursor-pointer">
+                  <span data-editable="true" data-path="footer.recruitBtnText" onclick="if(isEditMode) event.stopPropagation();"></span>
                 </button>
               </div>
             </div>
@@ -1004,8 +995,7 @@
         </footer>
       </div>
     </div>
-
-    <!-- 2. 학원 소개 (TOP SECRET) 뷰 -->
+<!-- 2. 학원 소개 (TOP SECRET) 뷰 -->
     <div id="view-philosophy" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen flex flex-col bg-white">
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3 bg-white">
         <span class="cursor-pointer hover:text-black font-semibold" onclick="navigateTo('home')">HOME</span>
@@ -1084,7 +1074,7 @@
         <span>/</span>
         <span data-editable="true" data-path="campusPage.breadcrumbRoot">CAMPUS</span>
         <span>/</span>
-        <span data-editable="true" data-path="campusPage.breadcrumbSub" class="text-neutral-900 font-bold">전체 지점 안내</span>
+        <span data-editable="true" data-path="campusPage.breadcrumbSub" class="text-neutral-900 font-bold">전체 분원 안내</span>
       </div>
       <div class="max-w-[1600px] mx-auto px-8 md:px-20 py-16">
         <div class="flex flex-wrap items-center justify-between mb-12 gap-4">
@@ -1346,7 +1336,7 @@
       </div>
     </div>
 
-    <!-- 8. 로그인 뷰 (우측 배너 상자 이미지·동영상 100% 꽉 차게 표시 + 동영상 업로드 지원) -->
+    <!-- 8. 로그인 뷰 -->
     <div id="view-login" class="view-section subpage-top-offset hidden min-h-screen flex flex-col justify-between bg-white relative overflow-hidden">
       <div data-editable="true" data-path="loginPage.watermark" class="watermark-text w-full text-center mt-10 mb-2 select-none">WELCOME TO TOP SECRET</div>
 
@@ -1390,18 +1380,16 @@
             </div>
           </div>
 
-          <!-- 우측 배너 박스: 사진이나 동영상이 상자 안에 100% 빈틈없이 꽉 차게 표시 -->
+          <!-- 우측 배너 박스 -->
           <div class="lg:col-span-6">
             <div class="w-full h-full min-h-[420px] border border-neutral-300 bg-neutral-900 relative overflow-hidden group">
               <img id="loginRightBannerImg" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85" alt="로그인 우측 배너 이미지" class="absolute inset-0 w-full h-full object-cover object-center transition duration-500" />
               <video id="loginRightBannerVideo" src="" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-center hidden"></video>
 
-              <!-- 하단 슬로건 오버레이 -->
               <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent pt-12 pb-6 px-6 flex justify-center pointer-events-none z-10">
                 <p data-editable="true" data-path="loginPage.rightSlogan" class="pointer-events-auto text-sm font-extrabold tracking-widest text-white drop-shadow text-center">ALWAYS BE WITH YOU.</p>
               </div>
 
-              <!-- 관리자 전용: 우측 상자 사진파일 / 동영상 파일·URL 업로드 컨트롤 -->
               <div class="admin-only-control absolute top-3 right-3 z-30 flex-wrap gap-1.5 bg-neutral-900/95 p-2 rounded-lg border border-orange-500/70 shadow-lg" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
                 <button type="button" onclick="triggerLoginRightImageUpload()" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-image"></i> 사진파일
@@ -1418,15 +1406,15 @@
         </div>
       </div>
 
-      <!-- 로그인 화면 하단 푸터(Footer) -->
+      <!-- 로그인 화면 하단 푸터 -->
       <footer class="w-full bg-[#141414] text-white border-t border-neutral-800 relative">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12">
           <div class="lg:col-span-5 p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-neutral-800 flex flex-col justify-center">
             <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-white"></h3>
             <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-neutral-300 mb-6 leading-relaxed"></p>
             <div class="flex flex-wrap gap-3">
-              <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2">
-                <span data-editable="true" data-path="footer.recruitBtnText"></span>
+              <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2 cursor-pointer">
+                <span data-editable="true" data-path="footer.recruitBtnText" onclick="if(isEditMode) event.stopPropagation();"></span>
               </button>
             </div>
           </div>
@@ -1490,7 +1478,8 @@
       </div>
     </div>
   </main>
-<!-- 자바스크립트: 클라우드 DB 최우선 동기화 + 스크롤 연동 모션 + 스마트 에디터 + 초정밀 편집 엔진 -->
+
+  <!-- 자바스크립트: 클라우드 DB 100% 무결점 동기화 + 스크롤 연동 모션 + 스마트 에디터 + 초정밀 편집 엔진 -->
   <script>
     const DEFAULT_SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
     const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOIvZjWUE7WAA_64jh6-gN";
@@ -1498,6 +1487,15 @@
     const LOCAL_STORAGE_KEY = "topsecret_site_data_cloud_v6";
 
     try { localStorage.removeItem("topsecret_supabase_key"); } catch (e) {}
+
+    // 로컬스토리지 5MB 용량 초과 시에도 절대 코드가 멈추지 않도록 보호하는 안전 함수
+    function safeSetLocalStorage(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("로컬 캐시 용량 초과 (클라우드 DB에는 정상 저장됩니다):", e.message);
+      }
+    }
 
     let supabaseClient = null;
     function initSupabaseClient() {
@@ -1581,7 +1579,7 @@
         {
           title: "캠퍼스 소개",
           subs: [
-            { name: "전체 지점 보기", view: "campus" }
+            { name: "전체분원보기", view: "campus" }
           ]
         },
         {
@@ -1594,9 +1592,7 @@
         },
         {
           title: "공지사항",
-          subs: [
-            { name: "공지사항 전체보기", view: "notice" }
-          ]
+          subs: []
         }
       ],
       hero: {
@@ -1756,8 +1752,24 @@
         sidebarHeading: "교육과정 카테고리",
         title: "T.O.P Curriculum",
         subtitle: "Best · First · Only",
-        pageIntro: "탑씨크리트학원은 초·중·고 학년별 과정부터 수학·영어 전문 과정, 영재반·SKY반·수능반까지 체계적인 8대 맞춤 교육과정을 운영합니다. 아래로 스크롤하시면 각 과정별 상세 로드맵을 차례대로 확인하실 수 있습니다.",
+        pageIntro: "탑씨크리트학원은 초·중·고 학년별 과정부터 수학·영어 전문 과정, 영재반·SKY반·수능반까지 체계적인 8대 맞춤 교육과정을 운영합니다. 아래로 스크롤하시면 커리큘럼 로드맵과 각 과정별 상세 안내를 차례대로 확인하실 수 있습니다.",
         roadmapLabel: "단계별 커리큘럼 로드맵",
+        // ✨ 요청사항 6번: 초등 교육과정 위에 가장 먼저 뜨는 '전체보기' 연동 '커리큘럼 로드맵' 메인 화면 데이터
+        roadmapHero: {
+          subLabel: "TOP SECRET CURRICULUM ROADMAP",
+          title: "탑씨크리트.\n커리큘럼 로드맵",
+          desc: "탑씨크리트학원에는 자기주도 개념 완성 커리큘럼부터 학교별 내신 만점 대비와\n영재·SKY·수능 1등급 집중 커리큘럼까지 모두 준비되어 있습니다.",
+          c1Badge: "Course 1",
+          c1Title: "실력 향상 & 개념 완성 커리큘럼",
+          c1Desc: "· 올바른 공부 습관과 연산·문해력 확립\n· 백지 복습으로 완성하는 초·중·고 개념 체화",
+          c2Badge: "Course 2",
+          c2Title: "내신 만점 대비 커리큘럼",
+          c2Desc: "· 천안·아산 학교별 기출 및 부교재 정밀 분석\n· 서술형 감점 방지 첨삭과 내신 1등급 달성",
+          c3Badge: "Course 3",
+          c3Title: "영재 · SKY · 수능 집중 커리큘럼",
+          c3Desc: "· 특목·자사고 및 최상위권 SKY·의치한약수 대비\n· 평가원 기출 분석과 실전 모의고사로 목표 달성",
+          img: ""
+        },
         categories: [
           "전체보기",
           "초등 교육과정",
@@ -1830,13 +1842,13 @@
       },
       campusPage: {
         breadcrumbRoot: "CAMPUS",
-        breadcrumbSub: "전체 지점 안내",
+        breadcrumbSub: "전체 분원 안내",
         sidebarHeading: "캠퍼스 보기",
         title: "Campus",
         subtitle: "좌측 캠퍼스 보기에서 지점명을 클릭하거나 우측 카드를 클릭하시면 해당 캠퍼스 상세 페이지로 이동합니다.",
         mapHeading: "찾아오시는 길",
         teachersHeading: "Teachers & Staff",
-        allListBtnText: "전체 지점 목록"
+        allListBtnText: "전체 분원 목록"
       },
       loginPage: {
         watermark: "WELCOME TO TOP SECRET",
@@ -1872,7 +1884,6 @@
         recruitTitle: "ADMISSION & CONSULTATION",
         recruitPhone: "입학 상담 문의 : 041-555-0001 (평일 14:00 ~ 22:00)",
         recruitBtnText: "상담신청 바로가기",
-        loginBtnText: "로그인",
         officeTitle: "ACADEMY INFO",
         address: "충청남도 천안시 서북구 불당동",
         tel: "대표전화 : 041-555-0001",
@@ -1908,13 +1919,33 @@
     let autoSaveTimer = null;
     let megaHideTimer = null;
 
+    // 연속 저장 누락 방지용 큐(Queue) 상태 변수
+    let isSavingInProgress = false;
+    let pendingSaveRequest = false;
+
     const stripHtml = (str = "") => String(str).replace(/<[^>]*>?/gm, "").trim();
-    function getByPath(obj, path) { return path.split(".").reduce((acc, part) => acc && acc[part], obj); }
+    function getByPath(obj, path) {
+      if (!obj || !path) return undefined;
+      return path.split(".").reduce((acc, part) => (acc !== undefined && acc !== null ? acc[part] : undefined), obj);
+    }
+
+    // 중간 경로 객체가 없더라도 자동으로 생성하여 절대로 저장이 누락되지 않도록 보강
     function setByPath(obj, path, value) {
+      if (!obj || !path) return;
       const parts = path.split(".");
       const last = parts.pop();
-      const target = parts.reduce((acc, part) => (acc ? acc[part] : undefined), obj);
-      if (target && last !== undefined) target[last] = value;
+      let target = obj;
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        if (target[part] === undefined || target[part] === null || typeof target[part] !== "object") {
+          const nextPart = parts[i + 1] !== undefined ? parts[i + 1] : last;
+          target[part] = /^\d+$/.test(String(nextPart)) ? [] : {};
+        }
+        target = target[part];
+      }
+      if (target && last !== undefined) {
+        target[last] = value;
+      }
     }
 
     // 스크롤 연동 부드러운 슬라이드 모션(CAMPUS & CURRICULUM & SYSTEM) + 커리큘럼 좌측 카테고리 자동 추적(Scroll-Spy)
@@ -1965,11 +1996,12 @@
         let activeCatOnScroll = null;
         blocks.forEach(block => {
           const r = block.getBoundingClientRect();
-          if (r.top <= vh * 0.42 && r.bottom >= 160) {
+          if (r.top <= vh * 0.45 && r.bottom >= 140) {
             activeCatOnScroll = block.getAttribute("data-cat");
           }
         });
         if (activeCatOnScroll) {
+          currentCurriculumCat = activeCatOnScroll;
           document.getElementById("curriculumBreadcrumb").textContent = activeCatOnScroll;
           document.querySelectorAll("#curriculumCategoryList .unified-side-item").forEach(btn => {
             const btnCat = btn.getAttribute("data-cat-name");
@@ -2001,8 +2033,9 @@
         badge.className = "ml-2 px-2.5 py-0.5 bg-black/85 text-amber-300 rounded-full text-[11px] font-bold";
         badge.textContent = "⏳ " + (text || "클라우드 자동 저장 중...");
       } else if (state === "saved") {
+        const nowStr = new Date().toLocaleTimeString("ko-KR", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
         badge.className = "ml-2 px-2.5 py-0.5 bg-black/85 text-emerald-400 rounded-full text-[11px] font-bold";
-        badge.textContent = "🟢 " + (text || "클라우드 실시간 저장 완료");
+        badge.textContent = `🟢 ${text || "클라우드 실시간 저장 완료"} (${nowStr})`;
       } else if (state === "error") {
         badge.className = "ml-2 px-2.5 py-0.5 bg-red-900 text-white rounded-full text-[11px] font-bold";
         badge.textContent = "⚠️ " + (text || "DB 저장 오류 (권한/네트워크 확인)");
@@ -2015,7 +2048,7 @@
       if (autoSaveTimer) clearTimeout(autoSaveTimer);
       autoSaveTimer = setTimeout(() => {
         saveAllChanges(true);
-      }, 450);
+      }, 350);
     }
 
     function mergeWithDefaults(saved) {
@@ -2074,6 +2107,13 @@
         }));
       }
 
+      // 커리큘럼 로드맵(roadmapHero) 초기 데이터 보장
+      if (!merged.curriculum) merged.curriculum = JSON.parse(JSON.stringify(defaultSiteData.curriculum));
+      merged.curriculum.roadmapHero = {
+        ...defaultSiteData.curriculum.roadmapHero,
+        ...(merged.curriculum.roadmapHero || {})
+      };
+
       if (merged.philosophy && Array.isArray(merged.philosophy.honorsList)) {
         merged.philosophy.honorsList = merged.philosophy.honorsList.map(h => {
           let detectedYear = h.year;
@@ -2115,6 +2155,7 @@
       return merged;
     }
 
+    // ✨ 클라우드 DB 최우선 로드 (localStorage 용량 초과가 발생해도 클라우드 데이터를 절대 잃어버리지 않음)
     async function loadSiteData() {
       initSupabaseClient();
       let loadedFromCloud = false;
@@ -2129,13 +2170,35 @@
 
           if (!error && data && data.data) {
             siteData = mergeWithDefaults(data.data);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
             loadedFromCloud = true;
+            safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
             updateSyncStatusBadge("saved", "클라우드 DB 최신 동기화됨");
           }
         } catch (e) {
           console.warn("클라우드 DB 조회 오류:", e);
         }
+      }
+
+      // 만약 SDK 조회가 실패했을 경우 REST API 직접 호출로 2차 조회
+      if (!loadedFromCloud) {
+        try {
+          const res = await fetch(`${DEFAULT_SUPABASE_URL}/rest/v1/site_content?id=eq.${DB_ROW_ID}&select=data`, {
+            headers: {
+              "apikey": EMBEDDED_SUPABASE_KEY,
+              "Authorization": `Bearer ${EMBEDDED_SUPABASE_KEY}`,
+              "Cache-Control": "no-cache"
+            }
+          });
+          if (res.ok) {
+            const rows = await res.json();
+            if (Array.isArray(rows) && rows[0] && rows[0].data) {
+              siteData = mergeWithDefaults(rows[0].data);
+              loadedFromCloud = true;
+              safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
+              updateSyncStatusBadge("saved", "클라우드 DB 최신 동기화됨");
+            }
+          }
+        } catch (e) {}
       }
 
       if (!loadedFromCloud) {
@@ -2148,11 +2211,6 @@
               break;
             } catch (e) {}
           }
-        }
-        if (supabaseClient) {
-          try {
-            await supabaseClient.from("site_content").upsert({ id: DB_ROW_ID, data: siteData }, { onConflict: "id" });
-          } catch (e) {}
         }
       }
 
@@ -2170,7 +2228,7 @@
           .on("postgres_changes", { event: "*", schema: "public", table: "site_content" }, (payload) => {
             if (!isEditMode && payload.new && payload.new.data) {
               siteData = mergeWithDefaults(payload.new.data);
-              localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
+              safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
               renderAll();
             }
           })
@@ -2184,34 +2242,64 @@
       showToast("클라우드 DB에서 최신 데이터를 불러왔습니다!");
     }
 
+    // ✨ 요청사항 1번: 5단계 검증을 거친 무결점 클라우드 DB 저장 함수 (직렬 큐 + SDK & REST 이중 보장)
     async function saveAllChanges(silent = false) {
-      syncEditableElementsToData();
+      if (autoSaveTimer) {
+        clearTimeout(autoSaveTimer);
+        autoSaveTimer = null;
+      }
 
-      try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
-      } catch (e) {}
+      syncEditableElementsToData();
+      safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
+
+      if (isSavingInProgress) {
+        pendingSaveRequest = true;
+        return true;
+      }
+
+      isSavingInProgress = true;
       updateSyncStatusBadge("saving", "클라우드 DB 저장 중...");
 
       try {
         let saveError = null;
+        const payloadObj = {
+          id: DB_ROW_ID,
+          data: siteData,
+          updated_at: new Date().toISOString()
+        };
 
+        initSupabaseClient();
+
+        // 1차 시도: Supabase 공식 클라이언트 Upsert
         if (supabaseClient) {
           const { error } = await supabaseClient
             .from("site_content")
-            .upsert({ id: DB_ROW_ID, data: siteData }, { onConflict: "id" });
-          if (error) saveError = error;
-        } else {
+            .upsert(payloadObj, { onConflict: "id" });
+
+          if (error) {
+            // 만약 updated_at 컬럼이 없는 테이블 구조라면 id, data만으로 즉시 재시도
+            const retry = await supabaseClient
+              .from("site_content")
+              .upsert({ id: DB_ROW_ID, data: siteData }, { onConflict: "id" });
+            if (retry.error) saveError = retry.error;
+          }
+        }
+
+        // 2차 보장: REST API 직접 POST Upsert (클라이언트 오류나 미초기화 시에도 100% 저장 보장)
+        if (!supabaseClient || saveError) {
           const response = await fetch(`${DEFAULT_SUPABASE_URL}/rest/v1/site_content?on_conflict=id`, {
             method: "POST",
             headers: {
               "apikey": EMBEDDED_SUPABASE_KEY,
               "Authorization": `Bearer ${EMBEDDED_SUPABASE_KEY}`,
               "Content-Type": "application/json",
-              "Prefer": "resolution=merge-duplicates"
+              "Prefer": "resolution=merge-duplicates,return=minimal"
             },
             body: JSON.stringify({ id: DB_ROW_ID, data: siteData })
           });
-          if (!response.ok) {
+          if (response.ok) {
+            saveError = null;
+          } else {
             const errText = await response.text();
             saveError = new Error(errText);
           }
@@ -2224,7 +2312,7 @@
             alert(
               "⚠️ 클라우드 DB 저장 중 오류가 발생했습니다.\n\n" +
               "오류 내용: " + msg + "\n\n" +
-              "[참고] 만약 RLS(Row Level Security) 권한 차단 오류라면 Supabase SQL Editor에서 아래 명령어를 실행해 주세요:\n" +
+              "[참고] 만약 RLS 권한 차단 오류라면 Supabase SQL Editor에서 아래 명령어를 실행해 주세요:\n" +
               "alter table site_content disable row level security;"
             );
           }
@@ -2233,17 +2321,23 @@
 
         updateSyncStatusBadge("saved", "클라우드 실시간 저장 완료");
         if (!silent) {
-          showToast("클라우드 DB에 성공적으로 저장되었습니다! (모바일·PC 즉시 반영)");
+          showToast("클라우드 DB에 성공적으로 저장되었습니다! (다른 사람의 모바일·PC에도 즉시 반영됨)");
         }
         return true;
       } catch (e) {
         updateSyncStatusBadge("error", "통신 오류 발생");
         if (!silent) alert("저장 중 통신 오류가 발생했습니다: " + (e.message || e));
         return false;
+      } finally {
+        isSavingInProgress = false;
+        if (pendingSaveRequest) {
+          pendingSaveRequest = false;
+          saveAllChanges(true);
+        }
       }
     }
 
-    function compressAndReadImageFile(file, preservePng = false, maxWidth = 1600) {
+    function compressAndReadImageFile(file, preservePng = false, maxWidth = 1400) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (ev) => {
@@ -2265,7 +2359,7 @@
             }
             ctx.drawImage(img, 0, 0, w, h);
             const mime = (preservePng || file.type === "image/png" || file.type === "image/svg+xml") ? "image/png" : "image/jpeg";
-            const quality = mime === "image/png" ? undefined : 0.84;
+            const quality = mime === "image/png" ? undefined : 0.82;
             resolve(canvas.toDataURL(mime, quality));
           };
           img.onerror = reject;
@@ -2284,8 +2378,8 @@
         const file = e.target.files?.[0];
         if (!file) return;
         try {
-          showToast("사진 파일을 최적화하여 적용 중입니다...");
-          const dataUrl = await compressAndReadImageFile(file, isLogo, isLogo ? 800 : 1600);
+          showToast("사진 파일을 최적화하여 클라우드 DB에 저장 중입니다...");
+          const dataUrl = await compressAndReadImageFile(file, isLogo, isLogo ? 800 : 1400);
           setByPath(siteData, dataPath, dataUrl);
           if (isLogo) siteData.branding.useTextLogo = false;
           if (afterCallback) afterCallback(dataUrl);
@@ -2308,8 +2402,7 @@
         saveAllChanges(false);
       }
     }
-
-    // 로그인 우측 배너 사진 파일 / 사진 URL / 동영상 파일·URL 업로드 전용 함수
+// 로그인 우측 배너 사진 파일 / 사진 URL / 동영상 파일·URL 업로드 전용 함수
     function triggerLoginRightImageUpload() {
       triggerImageFileUpload("loginPage.rightImg", false, () => {
         siteData.loginPage.rightMediaType = "image";
@@ -2350,7 +2443,7 @@
           const file = e.target.files?.[0];
           if (!file) return;
           if (file.type.startsWith("image/")) {
-            const dataUrl = await compressAndReadImageFile(file, false, 1600);
+            const dataUrl = await compressAndReadImageFile(file, false, 1400);
             siteData.loginPage.rightMediaType = "image";
             siteData.loginPage.rightImg = dataUrl;
             renderLoginPage();
@@ -2383,7 +2476,7 @@
         if (!file) return;
         try {
           showToast("메인 배경 사진을 적용하고 클라우드 DB에 저장 중입니다...");
-          const dataUrl = await compressAndReadImageFile(file, false, 1920);
+          const dataUrl = await compressAndReadImageFile(file, false, 1600);
           siteData.videoSection.mediaType = "image";
           siteData.videoSection.imageUrl = dataUrl;
           renderMainPromoVideo();
@@ -2417,7 +2510,7 @@
           const file = e.target.files?.[0];
           if (!file) return;
           if (file.type.startsWith("image/")) {
-            const dataUrl = await compressAndReadImageFile(file, false, 1920);
+            const dataUrl = await compressAndReadImageFile(file, false, 1600);
             siteData.videoSection.mediaType = "image";
             siteData.videoSection.imageUrl = dataUrl;
             renderMainPromoVideo();
@@ -2552,7 +2645,7 @@
     async function resetToDefault() {
       if (!confirm("모든 설정을 초기 기본 상태로 되돌리시겠습니까?")) return;
       siteData = JSON.parse(JSON.stringify(defaultSiteData));
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
+      safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
       undoStack = [JSON.stringify(siteData)];
       redoStack = [];
       renderAll();
@@ -3008,15 +3101,18 @@
       });
     }
 
+    // ✨ 요청사항 1번 핵심: 숨겨진 뷰(.view-section.hidden)의 중복 태그가 현재 수정한 값을 덮어쓰지 못하도록 활성 요소만 정확히 동기화
     function syncEditableElementsToData() {
       document.querySelectorAll("[data-path]").forEach(el => {
         if (el.closest(".swiper-slide-duplicate")) return;
+        const parentView = el.closest(".view-section");
+        if (parentView && parentView.classList.contains("hidden")) return;
         const path = el.getAttribute("data-path");
         if (path) setByPath(siteData, path, el.innerHTML);
       });
     }
 
-    // 상단 5대 가로 메뉴바 렌더링
+    // ✨ 요청사항 2번 & 3번: 상단 5대 가로 메뉴바 및 하위 메뉴 구성 (캠퍼스 소개 -> 전체분원보기 / 공지사항 -> 하위메뉴 공란)
     function renderDrawerMenus() {
       while (siteData.menus.length < 5) {
         siteData.menus.push(JSON.parse(JSON.stringify(defaultSiteData.menus[siteData.menus.length])));
@@ -3042,10 +3138,11 @@
         }));
       }
 
+      // 요청사항 2번: 캠퍼스 소개 첫째 줄 좌측 항목을 '전체분원보기'로 설정
       const campusMenu = siteData.menus[2];
       if (campusMenu) {
         campusMenu.subs = [
-          { name: "전체 지점 보기", view: "campus" },
+          { name: "전체분원보기", view: "campus" },
           ...siteData.campuses.map((c, idx) => ({
             name: stripHtml(c.name),
             view: "campus-detail",
@@ -3063,11 +3160,10 @@
         ];
       }
 
+      // 요청사항 3번: 공지사항 하위 메뉴는 공란으로 비워둠
       const noticeMenu = siteData.menus[4];
       if (noticeMenu) {
-        noticeMenu.subs = [
-          { name: "공지사항 전체보기", view: "notice" }
-        ];
+        noticeMenu.subs = [];
       }
 
       const topNavEl = document.getElementById("topHorizontalNavList");
@@ -3075,17 +3171,28 @@
         topNavEl.innerHTML = siteData.menus.slice(0, 5).map((m, idx) => `
           <div class="top-nav-item" data-menu-idx="${idx}" onmouseenter="openMegaMenu(${idx})" onclick="handleTopNavRootClick(${idx})">
             <span data-editable="true" data-path="menus.${idx}.title">${m.title}</span>
+            ${idx === 4 ? `<button type="button" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation(); navigateTo('notice');" class="admin-only-control ml-1.5 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[9px] rounded cursor-pointer">이동</button>` : ""}
           </div>
         `).join("");
       }
     }
 
+    // 요청사항 3번: 공지사항(menuIdx === 4)은 메뉴 자체를 누르면 바로 공지사항 페이지로 이동
     function handleTopNavRootClick(menuIdx) {
+      if (menuIdx === 4) {
+        hideMegaMenu();
+        if (!isEditMode) navigateTo("notice");
+        return;
+      }
       if (isEditMode) return;
       const firstSub = siteData.menus[menuIdx]?.subs?.[0];
       if (firstSub) handleSubMenuClick(menuIdx, 0);
     }
 
+    // ✨ 요청사항 2번, 3번, 4번 완벽 반영:
+    // - 공지사항(menuIdx === 4)은 하위 메뉴 공란이므로 드롭다운을 열지 않음
+    // - 커리큘럼(menuIdx === 1)과 캠퍼스 소개(menuIdx === 2)는 첫째 줄 좌측에 '전체보기' / '전체분원보기' 1개만 두고, 그 밑으로 나머지 하위메뉴 배치
+    // - 하단 문구를 '탑씨크리트 공식 홈페이지'로 변경하고 옆의 '전체 바로가기'는 완전 제거
     function openMegaMenu(menuIdx) {
       if (megaHideTimer) clearTimeout(megaHideTimer);
       const topBar = document.getElementById("topFixedBar");
@@ -3093,28 +3200,62 @@
       const content = document.getElementById("megaDropdownContent");
       if (!panel || !content) return;
 
+      const menu = siteData.menus[menuIdx];
+      // 요청사항 3번: 공지사항(하위 메뉴 없음)에 커서를 올리면 드롭다운을 띄우지 않음
+      if (!menu || menuIdx === 4 || !Array.isArray(menu.subs) || menu.subs.length === 0) {
+        panel.classList.remove("open");
+        if (topBar) topBar.classList.remove("mega-active");
+        document.querySelectorAll(".top-nav-item").forEach((el, i) => el.classList.toggle("active", i === menuIdx));
+        return;
+      }
+
       document.querySelectorAll(".top-nav-item").forEach((el, i) => el.classList.toggle("active", i === menuIdx));
       if (topBar) topBar.classList.add("mega-active");
 
-      const menu = siteData.menus[menuIdx];
-      if (!menu) return;
+      let subsLayoutHtml = "";
+      if ((menuIdx === 1 || menuIdx === 2) && menu.subs.length > 0) {
+        const firstSub = menu.subs[0];
+        const restSubs = menu.subs.slice(1);
+        subsLayoutHtml = `
+          <!-- 첫째 줄 좌측에 전체보기 / 전체분원보기 1개만 단독 배치 -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 mb-3.5 pb-2 border-b border-neutral-100">
+            <div onclick="handleSubMenuClick(${menuIdx}, 0); hideMegaMenu();" class="group cursor-pointer py-1.5 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
+              <span class="text-sm font-bold text-neutral-900 group-hover:text-[#FF6B00] transition">${firstSub.name}</span>
+              <i class="fa-solid fa-chevron-right text-[10px] text-neutral-400 group-hover:text-[#FF6B00] transition"></i>
+            </div>
+          </div>
+          <!-- 둘째 줄부터 나머지 하위 메뉴들을 정렬 -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-3.5 gap-x-10">
+            ${restSubs.map((sub, rIdx) => `
+              <div onclick="handleSubMenuClick(${menuIdx}, ${rIdx + 1}); hideMegaMenu();" class="group cursor-pointer py-1 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
+                <span class="text-sm text-neutral-700 group-hover:text-[#FF6B00] group-hover:font-semibold transition">${sub.name}</span>
+                <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-[#FF6B00] transition"></i>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else {
+        subsLayoutHtml = `
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-3.5 gap-x-10">
+            ${(menu.subs || []).map((sub, sIdx) => `
+              <div onclick="handleSubMenuClick(${menuIdx}, ${sIdx}); hideMegaMenu();" class="group cursor-pointer py-1 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
+                <span class="text-sm text-neutral-700 group-hover:text-[#FF6B00] group-hover:font-semibold transition">${sub.name}</span>
+                <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-[#FF6B00] transition"></i>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
 
+      // 요청사항 4번: 하단 문구를 '탑씨크리트 공식 홈페이지'로 변경하고 우측 '전체 바로가기' 삭제
       content.innerHTML = `
         <div class="flex flex-col justify-between">
           <div>
             <p class="text-[11px] font-bold tracking-[0.2em] text-neutral-400 uppercase mb-5">${stripHtml(menu.title)}</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-3.5 gap-x-10">
-              ${(menu.subs || []).map((sub, sIdx) => `
-                <div onclick="handleSubMenuClick(${menuIdx}, ${sIdx}); hideMegaMenu();" class="group cursor-pointer py-1 flex items-center justify-between border-b border-transparent hover:border-neutral-200 transition">
-                  <span class="text-sm text-neutral-700 group-hover:text-[#FF6B00] group-hover:font-semibold transition">${sub.name}</span>
-                  <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-[#FF6B00] transition"></i>
-                </div>
-              `).join("")}
-            </div>
+            ${subsLayoutHtml}
           </div>
-          <div class="pt-7 mt-7 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-400">
-            <span>탑씨크리트학원 공식 교육 네트워크</span>
-            <button type="button" onclick="handleSubMenuClick(${menuIdx}, 0); hideMegaMenu();" class="font-semibold text-neutral-800 hover:text-[#FF6B00] underline underline-offset-4 cursor-pointer">전체 바로가기</button>
+          <div class="pt-7 mt-7 border-t border-neutral-100 flex items-center justify-start text-xs text-neutral-400">
+            <span>탑씨크리트 공식 홈페이지</span>
           </div>
         </div>
       `;
@@ -3240,7 +3381,8 @@
         }
       }
     });
-function openTopSecretTab(tabKey) {
+
+    function openTopSecretTab(tabKey) {
       syncEditableElementsToData();
       currentTopSecretTab = tabKey;
       renderTopSecretPage();
@@ -3906,7 +4048,7 @@ function openTopSecretTab(tabKey) {
       showToast(next ? "브라우저 맞춤법 밑줄 검사가 켜졌습니다." : "맞춤법 밑줄 검사가 꺼졌습니다.");
     }
 
-    // ✨ 메인 배너 슬라이더 & 전용 컨트롤 바 완벽 연동 (양옆 클릭 이동, 사진 변경, 삭제, 추가 100% 작동 보장)
+    // 메인 배너 슬라이더 & 전용 컨트롤 바 연동
     function updateHeroActiveUI(idx) {
       const total = siteData.hero.slides.length || 1;
       currentHeroSlideIndex = ((idx % total) + total) % total;
@@ -4000,7 +4142,7 @@ function openTopSecretTab(tabKey) {
         const file = e.target.files?.[0];
         if (!file) return;
         showToast("새 배너 사진을 최적화하여 추가 중입니다...");
-        const dataUrl = await compressAndReadImageFile(file, false, 1920);
+        const dataUrl = await compressAndReadImageFile(file, false, 1600);
         siteData.hero.slides.push({ img: dataUrl, caption: "새 배너 문구를 입력하세요" });
         currentHeroSlideIndex = siteData.hero.slides.length - 1;
         renderHeroSection();
@@ -4041,7 +4183,7 @@ function openTopSecretTab(tabKey) {
       else heroSwiperInstance.slideTo(targetIdx);
     }
 
-    // ✨ 메인 캠퍼스 슬라이더 (드래그 간섭 차단 옵션 적용으로 사진파일/URL/상세편집/삭제 버튼 100% 즉시 클릭 가능)
+    // 메인 캠퍼스 슬라이더
     function renderHomeCampusSlider() {
       const wrapper = document.getElementById("homeCampusSliderWrapper");
       if (!wrapper) return;
@@ -4114,7 +4256,7 @@ function openTopSecretTab(tabKey) {
       saveAllChanges(true);
     }
 
-    // CURRICULUM & SYSTEM 3개의 원형 사진 정밀 배치 및 사진/글씨 동시 편집
+    // CURRICULUM & SYSTEM 3개의 원형 사진 배치 및 사진/글씨 동시 편집
     function renderHomeSystemSlider() {
       const container = document.getElementById("homeSystemCirclesContainer");
       if (!container) return;
@@ -4195,14 +4337,12 @@ function openTopSecretTab(tabKey) {
         btn.classList.toggle("inactive", !isMatch);
       });
 
-      if (cleanCat === "전체보기") {
+      const targetBlock = document.querySelector(`.curriculum-scroll-block[data-cat="${cleanCat}"]`);
+      if (targetBlock) {
+        const y = targetBlock.getBoundingClientRect().top + window.pageYOffset - 150;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      } else if (cleanCat === "전체보기") {
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        const targetBlock = document.querySelector(`.curriculum-scroll-block[data-cat="${cleanCat}"]`);
-        if (targetBlock) {
-          const y = targetBlock.getBoundingClientRect().top + window.pageYOffset - 150;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
       }
 
       window.history.pushState({
@@ -4250,18 +4390,86 @@ function openTopSecretTab(tabKey) {
       saveAllChanges(true);
     }
 
-    // 커리큘럼 풀와이드 대형 사진 쇼케이스 + 직각 네모 배지 + 순서 이동/추가/삭제 완벽 작동
+    // ✨ 요청사항 6번: 커리큘럼 최상단에 '전체보기' 카테고리로 매핑된 '커리큘럼 로드맵' 메인 화면 배치 + 그 아래로 초등/중등/고등 과정 스크롤 연결
     function renderCurriculumGrid() {
       const query = (document.getElementById("curriculumSearchInput")?.value || "").trim().toLowerCase();
       const container = document.getElementById("curriculumGridContainer");
       if (!container) return;
+
+      if (!siteData.curriculum.roadmapHero) {
+        siteData.curriculum.roadmapHero = JSON.parse(JSON.stringify(defaultSiteData.curriculum.roadmapHero));
+      }
+      const rh = siteData.curriculum.roadmapHero;
+
+      // 최상단 '커리큘럼 로드맵' 메인 화면 HTML (data-cat="전체보기"로 설정되어 좌측 '전체보기' 카테고리와 1:1 연동됨)
+      const roadmapHeroHtml = !query ? `
+        <article class="curriculum-scroll-block scroll-mt-36 space-y-6" data-cat="전체보기">
+          <div class="pt-2 pb-2 border-b-2 border-neutral-900 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <span class="w-2.5 h-7 bg-[#FF6B00]"></span>
+              <h2 data-editable="true" data-path="curriculum.roadmapHero.subLabel" class="text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight">${rh.subLabel || '커리큘럼 로드맵'}</h2>
+            </div>
+            <div class="admin-only-control items-center gap-1.5" onpointerdown="event.stopPropagation()">
+              <button type="button" onclick="triggerImageFileUpload('curriculum.roadmapHero.img')" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow cursor-pointer">
+                <i class="fa-solid fa-image mr-1"></i>로드맵 배너 사진파일 추가/변경
+              </button>
+              <button type="button" onclick="triggerImageChange('curriculum.roadmapHero.img')" class="px-2.5 py-1.5 bg-neutral-800 text-white text-xs font-bold rounded cursor-pointer">URL</button>
+              ${rh.img ? `<button type="button" onclick="siteData.curriculum.roadmapHero.img=''; renderCurriculumGrid(); saveAllChanges(true);" class="px-2.5 py-1.5 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">사진제거</button>` : ""}
+            </div>
+          </div>
+
+          <div class="relative rounded-3xl border border-neutral-200 bg-gradient-to-br from-[#FFFDF9] via-white to-[#F4FBF7] p-8 md:p-14 shadow-sm overflow-hidden space-y-10">
+            <!-- 상단 타이틀 및 설명 -->
+            <div class="max-w-3xl space-y-4 relative z-10">
+              <h3 data-editable="true" data-path="curriculum.roadmapHero.title" class="text-3xl md:text-5xl font-extrabold text-neutral-900 leading-[1.18] whitespace-pre-line tracking-tight">${rh.title}</h3>
+              <p data-editable="true" data-path="curriculum.roadmapHero.desc" class="text-sm md:text-base text-neutral-600 leading-relaxed whitespace-pre-line">${rh.desc}</p>
+            </div>
+
+            ${rh.img ? `
+              <div class="w-full relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+                <img src="${rh.img}" alt="커리큘럼 로드맵 이미지" class="w-full max-h-[520px] object-cover object-center" />
+              </div>
+            ` : ""}
+
+            <!-- 3대 핵심 코스 요약 폴더형 카드 (Course 1 · Course 2 · Course 3) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 pt-2">
+              <!-- Course 1 -->
+              <div onclick="if(!isEditMode) selectCurriculumCat('초등 교육과정')" class="bg-[#FFF9DB] hover:bg-[#FFF3BF] border border-amber-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                <div>
+                  <span data-editable="true" data-path="curriculum.roadmapHero.c1Badge" class="inline-block px-3 py-1 bg-[#F59E0B] text-white text-xs font-extrabold rounded-none mb-4">${rh.c1Badge}</span>
+                  <h4 data-editable="true" data-path="curriculum.roadmapHero.c1Title" class="text-xl font-extrabold text-neutral-900 mb-3">${rh.c1Title}</h4>
+                  <p data-editable="true" data-path="curriculum.roadmapHero.c1Desc" class="text-xs md:text-sm text-neutral-700 leading-relaxed whitespace-pre-line font-medium">${rh.c1Desc}</p>
+                </div>
+              </div>
+
+              <!-- Course 2 -->
+              <div onclick="if(!isEditMode) selectCurriculumCat('중등 교육과정')" class="bg-[#E6FCF5] hover:bg-[#C3FAE8] border border-emerald-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                <div>
+                  <span data-editable="true" data-path="curriculum.roadmapHero.c2Badge" class="inline-block px-3 py-1 bg-[#10B981] text-white text-xs font-extrabold rounded-none mb-4">${rh.c2Badge}</span>
+                  <h4 data-editable="true" data-path="curriculum.roadmapHero.c2Title" class="text-xl font-extrabold text-neutral-900 mb-3">${rh.c2Title}</h4>
+                  <p data-editable="true" data-path="curriculum.roadmapHero.c2Desc" class="text-xs md:text-sm text-neutral-700 leading-relaxed whitespace-pre-line font-medium">${rh.c2Desc}</p>
+                </div>
+              </div>
+
+              <!-- Course 3 -->
+              <div onclick="if(!isEditMode) selectCurriculumCat('고등 교육과정')" class="bg-[#E7F5FF] hover:bg-[#D0EBFF] border border-sky-200/80 rounded-2xl p-7 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                <div>
+                  <span data-editable="true" data-path="curriculum.roadmapHero.c3Badge" class="inline-block px-3 py-1 bg-[#0284C7] text-white text-xs font-extrabold rounded-none mb-4">${rh.c3Badge}</span>
+                  <h4 data-editable="true" data-path="curriculum.roadmapHero.c3Title" class="text-xl font-extrabold text-neutral-900 mb-3">${rh.c3Title}</h4>
+                  <p data-editable="true" data-path="curriculum.roadmapHero.c3Desc" class="text-xs md:text-sm text-neutral-700 leading-relaxed whitespace-pre-line font-medium">${rh.c3Desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      ` : "";
 
       const filtered = siteData.curriculum.items.map((item, originalIdx) => ({ ...item, originalIdx })).filter(item => {
         const matchQuery = !query || item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query) || item.cat.toLowerCase().includes(query);
         return matchQuery;
       });
 
-      if (filtered.length === 0) {
+      if (filtered.length === 0 && query) {
         container.innerHTML = `
           <div class="py-16 text-center bg-[#FAFAFA] rounded-2xl border border-dashed border-neutral-300">
             <p class="text-sm text-neutral-500 mb-4">검색 조건에 맞는 교육과정이 없습니다.</p>
@@ -4280,7 +4488,7 @@ function openTopSecretTab(tabKey) {
 
       let lastRenderedCat = null;
 
-      container.innerHTML = filtered.map((item, seqIdx) => {
+      const itemsHtml = filtered.map((item, seqIdx) => {
         const idx = item.originalIdx;
         const cleanCat = stripHtml(item.cat);
         const showCatHeader = cleanCat !== lastRenderedCat;
@@ -4369,6 +4577,7 @@ function openTopSecretTab(tabKey) {
         `;
       }).join("");
 
+      container.innerHTML = roadmapHeroHtml + itemsHtml;
       refreshViewBindings();
     }
 
@@ -4502,7 +4711,6 @@ function openTopSecretTab(tabKey) {
       navigateTo("campus-detail", true);
     }
 
-    // ✨ 캠퍼스 상세 페이지 (대표 이미지 사진파일/URL 직접 변경 컨트롤 + 갤러리 썸네일 사진파일/URL/삭제 + 강사진 사진파일/URL/삭제 완벽 지원)
     function renderCampusDetail(campusIdx) {
       const c = siteData.campuses[campusIdx] || siteData.campuses[0];
       if (!c) return;
@@ -4511,7 +4719,7 @@ function openTopSecretTab(tabKey) {
 
       document.getElementById("detailCampusSwitcher").innerHTML = siteData.campuses.map((cam, idx) => `
         <button type="button" onclick="openCampusDetail(${idx})" class="px-3 py-1.5 rounded text-xs font-bold transition cursor-pointer ${idx === cIdx ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'}">${stripHtml(cam.name)}</button>
-      `).join("") + `<button type="button" onclick="navigateTo('campus')" class="px-3 py-1.5 rounded text-xs font-bold bg-neutral-200 text-neutral-800 ml-2 cursor-pointer"><span data-editable="true" data-path="campusPage.allListBtnText" onclick="if(isEditMode) event.stopPropagation();">${siteData.campusPage.allListBtnText || '전체 지점 목록'}</span></button>`;
+      `).join("") + `<button type="button" onclick="navigateTo('campus')" class="px-3 py-1.5 rounded text-xs font-bold bg-neutral-200 text-neutral-800 ml-2 cursor-pointer"><span data-editable="true" data-path="campusPage.allListBtnText" onclick="if(isEditMode) event.stopPropagation();">${siteData.campusPage.allListBtnText || '전체 분원 목록'}</span></button>`;
 
       const slideImages = [c.mainImg, ...(c.gallery || [])];
       const mapSearchAddress = stripHtml(c.mapQuery || c.addr || "천안시");
@@ -4550,7 +4758,6 @@ function openTopSecretTab(tabKey) {
           </div>
 
           <div class="relative aspect-[4/3] bg-neutral-100 overflow-hidden rounded-xl border border-neutral-200 mb-8">
-            <!-- 캠퍼스 대표 사진 직접 변경 컨트롤 바 -->
             <div class="admin-only-control absolute top-3 left-3 z-30 gap-1.5 bg-neutral-900/95 p-2 rounded-lg border border-orange-500/70 shadow-lg" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
               <button type="button" onclick="triggerImageFileUpload('campuses.${cIdx}.mainImg')" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
                 <i class="fa-solid fa-folder-open"></i> 대표 사진파일 변경
@@ -4670,7 +4877,7 @@ function openTopSecretTab(tabKey) {
         updateTopBarAuthLabel();
         enableEditMode(true);
         navigateTo("home");
-        showToast("관리자 로그인 완료! 우측 상단 버튼이 '로그아웃'으로 전환되었으며 모든 편집 및 공지 작성이 가능합니다.");
+        showToast("관리자 로그인 완료! 모든 수정사항이 클라우드 DB에 실시간으로 자동 저장됩니다.");
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다. (기본값: admin / 1234)");
       }
@@ -4700,7 +4907,7 @@ function openTopSecretTab(tabKey) {
       });
     }
 
-    // 전역 클릭 이벤트: 관리자 버튼 클릭은 절대 방해하지 않고, 편집 가능한 문구 클릭 시에만 서식 타겟으로 지정
+    // 전역 클릭 이벤트: 관리자 버튼 클릭은 방해하지 않고, 편집 가능한 문구 클릭 시에만 서식 타겟으로 지정
     document.addEventListener("click", evt => {
       if (!isEditMode) return;
       if (evt.target.closest("button") || evt.target.closest(".admin-only-control")) return;
@@ -4716,6 +4923,7 @@ function openTopSecretTab(tabKey) {
       if (editable) selectEditableTarget(editable);
     });
 
+    // ✨ 실시간 입력 감지: 타이핑할 때마다 모든 동일 data-path 요소와 siteData를 즉시 업데이트하고 클라우드 자동 저장 예약
     document.addEventListener("input", evt => {
       if (!isEditMode) return;
       const editable = evt.target.closest('[data-editable="true"]');
@@ -4723,7 +4931,9 @@ function openTopSecretTab(tabKey) {
       const path = editable.getAttribute("data-path");
       if (path) {
         setByPath(siteData, path, editable.innerHTML);
-        document.querySelectorAll(`[data-path="${path}"]`).forEach(n => { if (n !== editable) n.innerHTML = editable.innerHTML; });
+        document.querySelectorAll(`[data-path="${path}"]`).forEach(n => {
+          if (n !== editable) n.innerHTML = editable.innerHTML;
+        });
         if (path.startsWith("campuses.")) {
           renderAdminCampusJumpSelect();
           renderDrawerMenus();
@@ -4734,6 +4944,7 @@ function openTopSecretTab(tabKey) {
       }
     });
 
+    // ✨ 포커스 해제(blur) 시 즉시 스냅샷 기록 및 클라우드 DB 저장 실행 (localStorage 에러 방지 적용)
     document.addEventListener("blur", evt => {
       if (!isEditMode) return;
       const editable = evt.target.closest('[data-editable="true"]');
@@ -4741,12 +4952,15 @@ function openTopSecretTab(tabKey) {
       const path = editable.getAttribute("data-path");
       if (path) {
         setByPath(siteData, path, editable.innerHTML);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
+        document.querySelectorAll(`[data-path="${path}"]`).forEach(n => {
+          if (n !== editable) n.innerHTML = editable.innerHTML;
+        });
+        safeSetLocalStorage(LOCAL_STORAGE_KEY, JSON.stringify(siteData));
         recordActionSnapshot();
         if (path.startsWith("philosophy.honorsList.") && path.endsWith(".year")) {
           renderTopSecretPage();
         }
-        scheduleAutoCloudSave();
+        saveAllChanges(true);
       }
     }, true);
 

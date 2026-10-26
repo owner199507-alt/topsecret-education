@@ -2337,39 +2337,57 @@
       }
     }
 
-    function compressAndReadImageFile(file, preservePng = false, maxWidth = 1400) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const img = new Image();
-          img.onload = () => {
-            let w = img.width;
-            let h = img.height;
-            if (w > maxWidth) {
-              h = Math.round((h * maxWidth) / w);
-              w = maxWidth;
-            }
-            const canvas = document.createElement("canvas");
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext("2d");
-            if (!preservePng) {
-              ctx.fillStyle = "#ffffff";
-              ctx.fillRect(0, 0, w, h);
-            }
-            ctx.drawImage(img, 0, 0, w, h);
-            const mime = (preservePng || file.type === "image/png" || file.type === "image/svg+xml") ? "image/png" : "image/jpeg";
-            const quality = mime === "image/png" ? undefined : 0.82;
-            resolve(canvas.toDataURL(mime, quality));
-          };
-          img.onerror = reject;
-          img.src = ev.target.result;
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
+function triggerImageFileUpload(dataPath, isLogo = false, afterCallback = null) {
+      syncEditableElementsToData();
+      const fileInput = document.getElementById("globalImageFileInput");
+      fileInput.value = "";
+      fileInput.onchange = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        try {
+          showToast("사진 파일을 클라우드 저장소(Storage)로 업로드 중입니다...");
+          initSupabaseClient();
+          if (!supabaseClient) throw new Error("Supabase 연결 실패");
 
+          // 1. 브라우저에서 가볍게 압축
+          const compressedBlob = await compressAndReadImageFile(file, isLogo, isLogo ? 800 : 1400);
+
+          // 2. 고유 파일명 생성 및 images 버킷으로 실물 파일 업로드
+          const ext = isLogo ? "png" : "jpg";
+          const fileName = `upload_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${ext}`;
+          const filePath = `site_assets/${fileName}`;
+
+          const { error: uploadError } = await supabaseClient.storage
+            .from("images")
+            .upload(filePath, compressedBlob, {
+              contentType: isLogo ? "image/png" : "image/jpeg",
+              upsert: true
+            });
+
+          if (uploadError) throw uploadError;
+
+          // 3. 업로드된 사진의 공개 웹 주소(URL) 획득
+          const { data: urlData } = supabaseClient.storage
+            .from("images")
+            .getPublicUrl(filePath);
+
+          const publicUrl = urlData.publicUrl;
+
+          // 4. DB에는 거대한 사진 데이터 대신 짧은 주소(URL)만 저장
+          setByPath(siteData, dataPath, publicUrl);
+          if (isLogo) siteData.branding.useTextLogo = false;
+          if (afterCallback) afterCallback(publicUrl);
+
+          renderAll();
+          await saveAllChanges(false);
+          showToast("사진이 클라우드 저장소에 완벽히 저장되었습니다!");
+        } catch (err) {
+          console.error("사진 업로드 상세 에러:", err);
+          alert("사진 업로드 중 오류가 발생했습니다: " + (err.message || err));
+        }
+      };
+      fileInput.click();
+    }
     function triggerImageFileUpload(dataPath, isLogo = false, afterCallback = null) {
       syncEditableElementsToData();
       const fileInput = document.getElementById("globalImageFileInput");

@@ -88,11 +88,11 @@
       z-index: 105;
     }
 
-    /* 4대 메뉴 완벽 대칭 정렬 */
+    /* [수정 1] 5대 메뉴(IBEX HYPER 포함) 완벽 대칭 정렬 */
     .header-lower-nav {
       height: 48px;
       display: grid;
-      grid-template-columns: repeat(4, 150px);
+      grid-template-columns: repeat(5, 145px);
       align-items: center;
       justify-content: center;
       justify-items: center;
@@ -206,7 +206,7 @@
 
     .scroll-glide-item {
       will-change: transform, opacity;
-      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .philosophy-slide-up { animation: philosophySlideUp 0.65s var(--ease-smooth) forwards; }
@@ -215,7 +215,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 히어로 배너 마스크 및 컨트롤 */
+    /* [수정 2] 히어로 배너 마스크 및 좌우 버튼 즉시 반응 레이어 보강 */
     .hero-right-three-quarters {
       position: absolute;
       top: 0; right: 0; bottom: 0;
@@ -232,7 +232,15 @@
       z-index: 15;
       background: linear-gradient(to right, #ffffff 0%, #ffffff 23%, rgba(255, 255, 255, 0.92) 28%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0) 44%);
     }
-    .hero-click-zone { position: absolute; top: 90px; bottom: 90px; width: 14%; z-index: 22; cursor: pointer; }
+    .hero-click-zone {
+      position: absolute;
+      top: 90px;
+      bottom: 90px;
+      width: 9%;
+      z-index: 38;
+      cursor: pointer;
+      pointer-events: auto;
+    }
     .hero-click-zone-left { left: 0; }
     .hero-click-zone-right { right: 0; }
 
@@ -240,25 +248,177 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 35;
-      width: 48px; height: 48px;
+      z-index: 44;
+      pointer-events: auto !important;
+      width: 50px; height: 50px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       color: #141414;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.25s ease;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
     .hero-nav-arrow:hover {
       background: #FF6B00; color: #ffffff; border-color: #FF6B00;
       transform: translateY(-50%) scale(1.08);
     }
+    .hero-nav-arrow:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    /* [수정 3] CURRICULUM & SYSTEM 창 크기/스크롤 비례 스케일링 */
+    .system-proportional-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(16px, 2.8vw, 48px);
+      width: 100%;
+      transform-origin: center center;
+    }
+    .system-left-col {
+      flex: 0 0 32%;
+      max-width: 460px;
+      min-width: 260px;
+    }
+    .system-right-col {
+      flex: 1 1 65%;
+      min-width: 0;
+    }
+    .system-pill-btn {
+      position: relative;
+      background: #F4F4F5;
+      color: #18181B;
+      border-radius: 9999px;
+      padding: clamp(12px, 1.3vw, 20px) clamp(14px, 1.8vw, 28px);
+      font-size: clamp(12px, 1.05vw, 16px);
+      font-weight: 700;
+      text-align: center;
+      transition: all 0.3s var(--ease-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .system-pill-btn:hover {
+      background: #141414;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .system-circle-card {
+      position: relative;
+      border-radius: 9999px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      background: #f3f4f6;
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.15);
+      transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
+    }
+    .system-circle-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 35px 75px rgba(0, 0, 0, 0.22);
+    }
+
+    /* [수정 4] 캠퍼스 목록 카드 전 분원 동일 높이 고정 */
+    .campus-uniform-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    @media (min-width: 640px) {
+      .campus-uniform-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        height: 228px;
+      }
+    }
+    .campus-uniform-img-box {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      background: #f3f4f6;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .campus-uniform-img-box {
+        height: 228px;
+      }
+    }
+
+    /* [수정 7] 세련된 연혁(History) 타임라인 레퍼런스 스타일 */
+    .history-timeline-wrap {
+      position: relative;
+      padding-left: 36px;
+    }
+    .history-timeline-wrap::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      border-left: 1.5px dashed #CBD5E1;
+    }
+    .history-year-block {
+      position: relative;
+      padding-bottom: 48px;
+      opacity: 0;
+      transform: translateY(26px);
+      animation: historySmoothFlow 0.7s var(--ease-smooth) forwards;
+    }
+    .history-year-block:last-child {
+      padding-bottom: 8px;
+    }
+    .history-node-dot {
+      position: absolute;
+      left: -35px;
+      top: 10px;
+      width: 11px;
+      height: 11px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 2.5px solid #0F3E66;
+      box-shadow: 0 0 0 4px rgba(15, 62, 102, 0.08);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .history-year-block:hover .history-node-dot {
+      border-color: var(--brand-orange);
+      transform: scale(1.25);
+    }
+    @keyframes historySmoothFlow {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .system-proportional-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .system-left-col, .system-right-col {
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
 
     @media (max-width: 768px) {
       :root { --topbar-h: 112px; }
       .header-upper-row { padding: 0 14px; height: 68px; }
-      .header-lower-nav { display: flex; gap: 22px; height: 42px; overflow-x: auto; justify-content: center; padding: 0 12px; }
+      .header-lower-nav { display: flex; gap: 18px; height: 42px; overflow-x: auto; justify-content: center; padding: 0 12px; }
       .top-nav-item { font-size: 11px; white-space: nowrap; }
       .quick-item span { display: none; }
       .quick-item { padding: 0 8px !important; }
@@ -268,13 +428,13 @@
     }
 
     .hero-progress-track { position: relative; width: 100%; height: 2px; background: rgba(120, 120, 120, 0.35); cursor: pointer; }
-    .hero-progress-fill { position: absolute; left: 0; top: 0; height: 100%; background: #141414; transition: width 0.6s var(--ease-smooth); }
+    .hero-progress-fill { position: absolute; left: 0; top: 0; height: 100%; background: #141414; transition: width 0.45s var(--ease-smooth); }
     .hero-progress-knob {
       position: absolute; top: 50%; transform: translate(-50%, -50%);
       width: 20px; height: 20px; border-radius: 50%;
       border: 1.5px solid #141414; background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
-      transition: left 0.6s var(--ease-smooth), transform 0.2s ease;
+      transition: left 0.45s var(--ease-smooth), transform 0.2s ease;
     }
     .hero-progress-knob::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #141414; }
 
@@ -320,20 +480,6 @@
     }
     .btn-outline-fill:hover { border-color: var(--brand-orange); }
     .btn-outline-fill:hover::before { transform: scaleX(1); }
-
-    .system-pill-btn {
-      position: relative; background: #F4F4F5; color: #18181B; border-radius: 9999px;
-      padding: 20px 28px; font-size: 16px; font-weight: 700; text-align: center;
-      transition: all 0.3s var(--ease-smooth); display: flex; align-items: center; justify-content: center; cursor: pointer;
-    }
-    .system-pill-btn:hover { background: #141414; color: #ffffff; transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); }
-
-    .system-circle-card {
-      position: relative; border-radius: 9999px; overflow: hidden; aspect-ratio: 1 / 1;
-      background: #f3f4f6; box-shadow: 0 28px 65px rgba(0, 0, 0, 0.16);
-      transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
-    }
-    .system-circle-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 35px 75px rgba(0, 0, 0, 0.22); }
 
     .view-section { animation: fadeSlideIn 0.45s var(--ease-smooth); }
     @keyframes fadeSlideIn {
@@ -534,7 +680,7 @@
     </div>
   </div>
 
-  <!-- 2단 고정 헤더 (우측 상단 로그인 제거 + 4대 메뉴 대칭 정렬) -->
+  <!-- 2단 고정 헤더 (5대 메뉴: 학원 소개 / 커리큘럼 / 캠퍼스 소개 / 학원 상담 / IBEX HYPER) -->
   <header id="topFixedBar" class="top-fixed-bar" onmouseleave="hideMegaMenu()">
     <div class="header-upper-row">
       <div class="flex items-center gap-2 relative z-10">
@@ -565,7 +711,7 @@
         </div>
       </div>
 
-      <!-- 우측 유틸리티 메뉴 (요청사항 3번: 로그인 버튼 완전 삭제) -->
+      <!-- 우측 유틸리티 메뉴 -->
       <div class="flex items-center gap-5 relative z-10">
         <button onclick="if(!isEditMode) navigateTo('consult')" class="quick-item flex items-center gap-1.5 text-xs text-neutral-800 font-medium hover:text-[#FF6B00] transition">
           <i class="fa-regular fa-bell text-xs"></i>
@@ -578,7 +724,7 @@
       </div>
     </div>
 
-    <!-- 2단: 상단 중앙 4대 대칭 가로 메뉴 바 (공지사항 삭제됨) -->
+    <!-- 2단: 상단 중앙 5대 대칭 가로 메뉴 바 (IBEX HYPER 포함) -->
     <nav class="header-lower-nav" id="topHorizontalNavList"></nav>
 
     <!-- 3단: 메가 드롭다운 -->
@@ -647,14 +793,14 @@
           </div>
         </section>
 
-        <!-- [3번째 섹션] 메인 배너 슬라이더 -->
+        <!-- [3번째 섹션] 메인 배너 슬라이더 (수정 2: 좌우 화살표 즉시 반응하도록 z-index 및 이벤트 개선) -->
         <section id="heroBannerSection" class="relative w-full h-screen min-h-[640px] bg-white overflow-hidden select-none border-t border-neutral-100">
           <div class="admin-only-control absolute top-6 left-6 right-6 z-[45] flex-wrap items-center justify-between gap-2 bg-neutral-900/95 px-4 py-2.5 rounded-xl border-2 border-[#FF6B00] shadow-2xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-[#FFB800] font-extrabold text-xs"><i class="fa-solid fa-images mr-1"></i>메인 배너 관리:</span>
-              <button type="button" onclick="heroSlidePrev()" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">◀ 이전 배너</button>
+              <button type="button" onclick="heroSlidePrev(event)" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">◀ 이전 배너</button>
               <span id="adminHeroSlideIndicator" class="px-2.5 py-1 bg-black text-emerald-400 font-extrabold text-xs rounded">1 / 3</span>
-              <button type="button" onclick="heroSlideNext()" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">다음 배너 ▶</button>
+              <button type="button" onclick="heroSlideNext(event)" class="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded border border-neutral-600 cursor-pointer">다음 배너 ▶</button>
             </div>
             <div class="flex flex-wrap items-center gap-2">
               <button type="button" onclick="changeCurrentHeroSlideFile()" class="px-3.5 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow flex items-center gap-1 cursor-pointer">
@@ -671,19 +817,19 @@
             </div>
           </div>
 
-          <div class="hero-click-zone hero-click-zone-left" onclick="heroSlidePrev()" title="이전 배너"></div>
-          <div class="hero-click-zone hero-click-zone-right" onclick="heroSlideNext()" title="다음 배너"></div>
+          <div class="hero-click-zone hero-click-zone-left" onclick="heroSlidePrev(event)" title="이전 배너"></div>
+          <div class="hero-click-zone hero-click-zone-right" onclick="heroSlideNext(event)" title="다음 배너"></div>
 
-          <button type="button" onclick="heroSlidePrev()" class="hero-nav-arrow left-5 md:left-8"><i class="fa-solid fa-chevron-left text-base"></i></button>
-          <button type="button" onclick="heroSlideNext()" class="hero-nav-arrow right-5 md:right-8"><i class="fa-solid fa-chevron-right text-base"></i></button>
+          <button type="button" onclick="heroSlidePrev(event)" class="hero-nav-arrow left-5 md:left-8" aria-label="이전 배너"><i class="fa-solid fa-chevron-left text-base pointer-events-none"></i></button>
+          <button type="button" onclick="heroSlideNext(event)" class="hero-nav-arrow right-5 md:right-8" aria-label="다음 배너"><i class="fa-solid fa-chevron-right text-base pointer-events-none"></i></button>
 
           <div class="hero-right-three-quarters">
             <div class="swiper heroSwiper w-full h-full"><div class="swiper-wrapper" id="heroSlidesWrapper"></div></div>
           </div>
           <div class="hero-left-gradient-shield"></div>
 
-          <div class="absolute inset-0 z-30 pointer-events-none flex flex-col justify-center px-16 md:px-24 lg:px-28">
-            <div class="max-w-xl pointer-events-auto">
+          <div class="absolute inset-0 z-30 pointer-events-none flex flex-col justify-center px-20 md:px-28 lg:px-32">
+            <div class="max-w-lg pointer-events-auto">
               <p id="heroSubtitle" data-editable="true" data-path="hero.subtitle" class="text-neutral-600 text-xs md:text-sm tracking-[0.22em] mb-3 font-semibold"></p>
               <h1 id="heroTitle" data-editable="true" data-path="hero.title" class="text-neutral-900 text-4xl md:text-6xl font-normal leading-[1.12] tracking-wide whitespace-pre-line"></h1>
               <p id="heroSlogan" data-editable="true" data-path="hero.slogan" class="text-neutral-800 text-base md:text-xl mt-6 tracking-[0.18em] font-medium underline underline-offset-8 decoration-neutral-400"></p>
@@ -702,8 +848,8 @@
           </div>
         </section>
 
-        <!-- [4번째 섹션: CURRICULUM & SYSTEM] -->
-        <section id="homeSystemSection" class="relative w-full min-h-[96vh] flex flex-col justify-center py-36 px-8 md:px-16 lg:px-20 bg-white overflow-hidden border-t border-neutral-100 bg-cover bg-center">
+        <!-- [4번째 섹션: CURRICULUM & SYSTEM] (수정 3: 좌측 메뉴와 우측 원형 사진이 창 크기 및 스크롤에 맞춰 함께 비례 확대/축소) -->
+        <section id="homeSystemSection" class="relative w-full min-h-[92vh] flex flex-col justify-center py-28 px-6 md:px-14 lg:px-20 bg-white overflow-hidden border-t border-neutral-100 bg-cover bg-center">
           <div data-editable="true" data-path="homeSystem.watermark" class="watermark-text absolute bottom-4 right-8 text-right leading-none select-none">CURRICULUM & SYSTEM</div>
           <div class="max-w-[1680px] w-full mx-auto relative z-10">
             <div class="admin-only-control mb-6 gap-2" onpointerdown="event.stopPropagation()">
@@ -712,15 +858,15 @@
               </button>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center">
-              <div id="systemLeftAnimBox" class="scroll-glide-item lg:col-span-4 space-y-8 relative z-20 pr-2">
+            <div id="systemProportionalGroup" class="system-proportional-wrap scroll-glide-item">
+              <div id="systemLeftAnimBox" class="system-left-col space-y-6 relative z-20">
                 <div>
-                  <span data-editable="true" data-path="homeSystem.accentLabel" class="inline-block text-sm md:text-base font-extrabold text-[#E11D48] tracking-wide mb-3">Curriculum & System</span>
-                  <h2 data-editable="true" data-path="homeSystem.heading" class="text-4xl md:text-6xl font-extrabold text-neutral-900 tracking-tight leading-[1.12] whitespace-pre-line"></h2>
-                  <p data-editable="true" data-path="homeSystem.subHeading" class="text-sm md:text-base text-neutral-600 mt-5 leading-relaxed"></p>
+                  <span data-editable="true" data-path="homeSystem.accentLabel" class="inline-block font-extrabold text-[#E11D48] tracking-wide mb-2" style="font-size: clamp(12px, 1vw, 16px);">Curriculum & System</span>
+                  <h2 data-editable="true" data-path="homeSystem.heading" class="font-extrabold text-neutral-900 tracking-tight leading-[1.12] whitespace-pre-line" style="font-size: clamp(28px, 3.4vw, 58px);"></h2>
+                  <p data-editable="true" data-path="homeSystem.subHeading" class="text-neutral-600 mt-4 leading-relaxed" style="font-size: clamp(12px, 1vw, 16px);"></p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 max-w-[380px] pt-2">
+                <div class="grid grid-cols-2 gap-3.5 w-full max-w-[390px] pt-2">
                   <div onclick="if(!isEditMode) openTopSecretTab('goal')" class="system-pill-btn">
                     <span data-editable="true" data-path="homeSystem.pill1">학습목표</span>
                     <button type="button" onclick="event.stopPropagation(); openTopSecretTab('goal')" class="admin-only-control ml-2 px-1.5 py-0.5 bg-[#FF6B00] text-white text-[10px] rounded">이동</button>
@@ -740,7 +886,7 @@
                 </div>
               </div>
 
-              <div class="lg:col-span-8 lg:pl-12 xl:pl-20 relative z-10">
+              <div class="system-right-col relative z-10">
                 <div id="homeSystemCirclesContainer" class="w-full"></div>
               </div>
             </div>
@@ -821,7 +967,7 @@
       </div>
     </div>
 
-    <!-- 4. CAMPUS 전체 안내 뷰 -->
+    <!-- 4. CAMPUS 전체 안내 뷰 (수정 4: 모든 분원 카드 높이 동일 정렬) -->
     <div id="view-campus" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen bg-white">
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3">
         <span class="cursor-pointer hover:text-black font-semibold" onclick="navigateTo('home')">HOME</span>
@@ -846,12 +992,12 @@
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div class="lg:col-span-2 unified-category-sidebar space-y-2 text-sm" id="campusRegionFilterList"></div>
-          <div class="lg:col-span-10 grid grid-cols-1 xl:grid-cols-2 gap-8" id="campusPageGrid"></div>
+          <div class="lg:col-span-10 grid grid-cols-1 xl:grid-cols-2 gap-8 items-stretch" id="campusPageGrid"></div>
         </div>
       </div>
     </div>
 
-    <!-- 5. CAMPUS 상세 페이지 뷰 (요청사항 4번: 우측 강사진 제거 -> 지도 이동 + 분원 상세확인 링크) -->
+    <!-- 5. CAMPUS 상세 페이지 뷰 -->
     <div id="view-campus-detail" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen bg-white">
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-3">
@@ -893,7 +1039,7 @@
       </div>
     </div>
 
-    <!-- 7. 로그인 뷰 (보안을 위해 기본 아이디/비번 자동입력 제거) -->
+    <!-- 7. 로그인 뷰 -->
     <div id="view-login" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen flex flex-col justify-start bg-white relative overflow-hidden">
       <div data-editable="true" data-path="loginPage.watermark" class="watermark-text w-full text-center mt-10 mb-2 select-none">WELCOME TO TOP SECRET</div>
 
@@ -962,7 +1108,7 @@
       </div>
     </div>
 
-    <!-- 8. 상담신청 뷰 (요청사항 2번: 상단 경로바 추가 + 분원별 전화번호 & 커스텀 링크 메인 개편) -->
+    <!-- 8. 상담신청 뷰 (수정 6: 우측 상단 잘린 워터마크 완전 제거) -->
     <div id="view-consult" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen bg-white relative overflow-hidden">
       <!-- 상단 경로바 (HOME / 학원 상담 / 상담신청) -->
       <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3 bg-white relative z-20">
@@ -973,8 +1119,6 @@
         <span data-editable="true" data-path="consult.breadcrumbSub" class="text-neutral-900 font-bold">상담신청</span>
       </div>
 
-      <div data-editable="true" data-path="consult.watermark" class="watermark-text absolute top-24 right-10 text-right">CONSULTATION</div>
-
       <div class="max-w-[1600px] w-full mx-auto px-8 md:px-20 py-16 relative z-10">
         <div class="flex flex-wrap items-end justify-between mb-12 gap-4">
           <div>
@@ -983,6 +1127,9 @@
             <p data-editable="true" data-path="consult.pageDesc" class="text-sm text-neutral-500"></p>
           </div>
           <div class="flex items-center gap-2" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="setUnifiedCampusLink('consult')" class="admin-only-control px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded shadow cursor-pointer">
+              🔗 전 분원 공통 상담링크 일괄설정
+            </button>
             <button type="button" onclick="addCampusItem()" class="admin-only-control px-4 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow cursor-pointer">
               + 새 분원 상담카드 추가
             </button>
@@ -995,7 +1142,7 @@
     </div>
   </main>
 
-  <!-- 공통 최하단 푸터 (요청사항 3번: Copyright 문구 클릭 시 로그인 화면 이동) -->
+  <!-- 공통 최하단 푸터 (Copyright 문구 클릭 시 로그인 화면 이동) -->
   <footer id="mainFooterSection" class="w-full bg-[#141414] text-white border-t border-neutral-800 relative z-20 bg-cover bg-center">
     <div class="admin-only-control absolute top-4 right-6 z-20" onpointerdown="event.stopPropagation()">
       <button type="button" onclick="openSectionDesignModal('footer')" class="px-3 py-1.5 bg-neutral-800 text-[#FFB800] text-xs font-bold rounded border border-neutral-600 cursor-pointer">
@@ -1066,7 +1213,7 @@
     }
     initSupabaseClient();
 
-    // [복구 및 최적화 완료] 이미지 리사이즈 & 압축 함수 (DataURL 및 Blob 동시 지원)
+    // 이미지 리사이즈 & 압축 함수 (DataURL 및 Blob 동시 지원)
     function compressAndReadImageFile(file, isLogo = false, maxWidth = 1280, returnBlob = false) {
       return new Promise((resolve, reject) => {
         if (!file) return reject(new Error("파일이 없습니다."));
@@ -1141,7 +1288,9 @@
         globalFont: "'Pretendard', sans-serif",
         quick3: "상담신청",
         quick4: "분원안내",
-        topbarBgColor: ""
+        topbarBgColor: "",
+        defaultDetailLink: "https://blog.naver.com/topsecret_edu",
+        defaultConsultLink: ""
       },
       videoSection: {
         mediaType: "video",
@@ -1167,7 +1316,7 @@
         "campusPage.title": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
         "consult.pageTitle": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" }
       },
-      // 요청사항 1 & 3번: 공지사항 삭제 및 학원 상담 내 로그인 삭제 -> 4대 메뉴 대칭 구조
+      // [수정 1] 학원 상담 옆에 5번째 메뉴로 IBEX HYPER (https://www.ibexhyper.kr/) 추가
       menus: [
         {
           title: "학원 소개",
@@ -1204,6 +1353,11 @@
             { name: "입학절차", view: "admission" },
             { name: "1:1 입학 상담 신청", view: "consult" }
           ]
+        },
+        {
+          title: "IBEX HYPER",
+          externalUrl: "https://www.ibexhyper.kr/",
+          subs: []
         }
       ],
       hero: {
@@ -1251,7 +1405,6 @@
           { stepNum: "STEP 04", title: "반 배정 및 완전학습 시작", desc: "학생에게 최적화된 클래스 배정 후 1:1 밀착 코칭과 오답 제로화 완전학습 수업을 시작합니다." }
         ]
       },
-      // 캡처 화면의 8개 분원 및 상세확인 링크(detailLink) + 상담신청 링크(consultLink) 구조 포함
       campuses: [
         {
           id: 0, region: "불당 본원", name: "탑씨크리트 불당본원", telLabel: "tel.", tel: "041-555-0001", addrLabel: "add.", addr: "충남 천안시 서북구 불당동", timeLabel: "time.", mapQuery: "충남 천안시 서북구 불당동", time: "평일 14:00 ~ 22:00 / 주말 10:00 ~ 20:00", tags: "1:1밀착관리 자기주도학습관 입시컨설팅",
@@ -1326,13 +1479,15 @@
         circle1Title: "01. 제대로 이해", circle1: "원리 중심의\n개념 완전 체화", circle1Desc: "단순 암기가 아닌 백지 복습과 역질문을 통해 개념의 뿌리까지 완벽히 이해합니다.",
         circle2Title: "02. 스스로 풀기", circle2: "자기주도적\n문제해결력 완성", circle2Desc: "강사의 풀이를 구경하는 수업이 아니라 학생 스스로 손으로 풀어내는 힘을 키웁니다.",
         circle3Title: "03. 끝까지 해내기", circle3: "오답 제로화\n밀착 책임 관리", circle3Desc: "틀린 문제는 유사 변형 문제까지 완벽히 정복할 때까지 1:1로 끝까지 책임집니다.",
-        historyTitle: "탑씨크리트 걸어온 길 (연혁)",
+        historyTitle: "학원연혁",
         historySub: "지역 교육의 기준을 세우며 끊임없이 성장해 온 탑씨크리트학원의 발자취입니다.",
+        historySideImg: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+        historySideCaption: "행복하게 배우며 나만의 꿈을 키우는 탑씨크리트",
         historyList: [
-          { year: "2026", month: "현재", title: "신불당 캠퍼스 확장 및 스마트 학습시스템 구축", content: "전 지점 통합 인트라넷 및 1:1 맞춤 오답 관리 플랫폼 고도화" },
-          { year: "2025", month: "03월 ~ 12월", title: "천안·아산 직영 캠퍼스 체제 확립", content: "불당본원, 두정원, 아산원, 모종원, 음봉원, 둔포원 교육 네트워크 완성" },
-          { year: "2024", month: "01월 ~ 11월", title: "고교학점제 및 대입 수시·정시 전문 컨설팅 센터 출범", content: "매 학기 기출분석 설명회 개최 및 지역 명문고 내신 1등급 다수 배출" },
-          { year: "2022", month: "설립", title: "탑씨크리트학원 개원 및 1:1 초밀착 코칭 시스템 도입", content: "학생 중심의 메타인지 완전학습 커리큘럼 런칭" }
+          { year: "2026", month: "03", title: "신불당 캠퍼스 확장 및 스마트 학습시스템 구축", content: "전 지점 통합 인트라넷 및 1:1 맞춤 오답 관리 플랫폼 고도화" },
+          { year: "2025", month: "03", title: "천안·아산 직영 캠퍼스 체제 확립", content: "불당본원, 두정원, 아산원, 모종원, 음봉원, 둔포원 교육 네트워크 완성" },
+          { year: "2024", month: "01", title: "고교학점제 및 대입 수시·정시 전문 컨설팅 센터 출범", content: "매 학기 기출분석 설명회 개최 및 지역 명문고 내신 1등급 다수 배출" },
+          { year: "2022", month: "03", title: "탑씨크리트학원 개원 및 1:1 초밀착 코칭 시스템 도입", content: "학생 중심의 메타인지 완전학습 커리큘럼 런칭" }
         ],
         honorsTitle: "명예의 전당",
         honorsSub: "탑씨크리트학원과 함께 꿈을 이룬 자랑스러운 학생들의 합격을 진심으로 축하합니다.",
@@ -1401,7 +1556,7 @@
         breadcrumbRoot: "학원 상담",
         breadcrumbSub: "상담신청",
         subLabel: "BRANCH CONSULTATION & RESERVATION",
-        watermark: "CONSULTATION",
+        watermark: "",
         pageTitle: "Consultation",
         pageDesc: "희망하시는 탑씨크리트학원 분원의 직통 전화번호 및 온라인 상담 예약 링크 안내입니다. 모든 번호와 문구·링크를 자유롭게 수정하실 수 있습니다."
       },
@@ -1468,6 +1623,7 @@
       if (target && last !== undefined) target[last] = value;
     }
 
+    // [수정 3 반영] 스크롤 및 창 크기 변화에 맞춰 CURRICULUM & SYSTEM의 메뉴와 사진이 함께 비례 확대/축소
     function updateScrollGlideAnimations() {
       const vh = window.innerHeight || 800;
       if (currentViewId === "home") {
@@ -1496,18 +1652,16 @@
         if (sysSec) {
           const rect = sysSec.getBoundingClientRect();
           const progress = Math.max(-1, Math.min(1, (vh * 0.68 - rect.top) / (vh * 0.78)));
-          const leftShift = (1 - Math.min(1, Math.max(0, progress + 0.25))) * 72;
-          const leftBox = document.getElementById("systemLeftAnimBox");
-          if (leftBox) {
-            leftBox.style.transform = `translate3d(0, ${leftShift}px, 0)`;
-            leftBox.style.opacity = `${Math.min(1, Math.max(0.1, progress + 0.5))}`;
+          const clampedProgress = Math.min(1, Math.max(0, progress + 0.35));
+          const groupShiftY = (1 - clampedProgress) * 52;
+          const groupScale = 0.92 + clampedProgress * 0.08;
+          const groupOpacity = Math.min(1, Math.max(0.2, progress + 0.55));
+
+          const groupBox = document.getElementById("systemProportionalGroup");
+          if (groupBox) {
+            groupBox.style.transform = `translate3d(0, ${groupShiftY}px, 0) scale(${groupScale.toFixed(3)})`;
+            groupBox.style.opacity = `${groupOpacity}`;
           }
-          document.querySelectorAll("#homeSystemCirclesContainer .system-circle-glide").forEach((circleEl, idx) => {
-            const speeds = [55, 95, 75];
-            const cShift = (1 - Math.min(1, Math.max(0, progress + 0.2))) * (speeds[idx] || 65);
-            circleEl.style.transform = `translate3d(0, ${cShift}px, 0)`;
-            circleEl.style.opacity = `${Math.min(1, Math.max(0.15, progress + 0.45))}`;
-          });
         }
       } else if (currentViewId === "curriculum") {
         const blocks = document.querySelectorAll(".curriculum-scroll-block");
@@ -1538,6 +1692,10 @@
       requestAnimationFrame(updateScrollGlideAnimations);
     }, { passive: true });
 
+    window.addEventListener("resize", () => {
+      requestAnimationFrame(updateScrollGlideAnimations);
+    });
+
     function updateSyncStatusBadge(state, text) {
       const badge = document.getElementById("cloudSyncBadge");
       if (!badge) return;
@@ -1561,12 +1719,12 @@
       autoSaveTimer = setTimeout(() => { saveAllChanges(true); }, 350);
     }
 
-    // 클라우드 DB 데이터 병합 시 공지사항 및 로그인 메뉴 자동 제거 + 분원별 링크 필드 보장
+    // [수정 1 & 수정 5 반영] 클라우드 DB 병합 시 5대 메뉴(IBEX HYPER 포함) 보장 + 미입력 분원 링크 일괄 자동 연동
     function mergeWithDefaults(saved) {
       const merged = JSON.parse(JSON.stringify(defaultSiteData));
       if (!saved || typeof saved !== "object") return merged;
       Object.keys(saved).forEach(k => {
-        if (k === "noticePage") return; // 공지사항 데이터 제외
+        if (k === "noticePage") return;
         if (Array.isArray(saved[k])) merged[k] = saved[k];
         else if (saved[k] && typeof saved[k] === "object") merged[k] = { ...(merged[k] || {}), ...saved[k] };
         else if (saved[k] !== undefined) merged[k] = saved[k];
@@ -1575,37 +1733,65 @@
       merged.styles = { ...defaultSiteData.styles, ...(saved.styles || {}) };
       merged.sectionDesigns = { ...defaultSiteData.sectionDesigns, ...(saved.sectionDesigns || {}) };
 
-      // 상단 메뉴 4개 고정 (공지사항 필터링)
-      const defaultKorTitles = ["학원 소개", "커리큘럼", "캠퍼스 소개", "학원 상담"];
+      // 상단 메뉴 5개 고정 (학원 소개 / 커리큘럼 / 캠퍼스 소개 / 학원 상담 / IBEX HYPER)
+      const defaultKorTitles = ["학원 소개", "커리큘럼", "캠퍼스 소개", "학원 상담", "IBEX HYPER"];
       if (!Array.isArray(merged.menus) || merged.menus.length === 0) {
         merged.menus = JSON.parse(JSON.stringify(defaultSiteData.menus));
       } else {
-        merged.menus = merged.menus.filter(m => stripHtml(m.title) !== "공지사항").slice(0, 4);
-        while (merged.menus.length < 4) {
+        merged.menus = merged.menus.filter(m => stripHtml(m.title) !== "공지사항").slice(0, 5);
+        while (merged.menus.length < 5) {
           merged.menus.push(JSON.parse(JSON.stringify(defaultSiteData.menus[merged.menus.length])));
         }
         merged.menus.forEach((m, i) => {
           if (!m.title || ["TOP SECRET", "CURRICULUM", "CAMPUS", "RESERVATION"].includes(stripHtml(m.title))) {
             m.title = defaultKorTitles[i];
           }
+          if (i === 4) {
+            m.title = m.title || "IBEX HYPER";
+            m.externalUrl = m.externalUrl || "https://www.ibexhyper.kr/";
+            m.subs = [];
+          }
         });
       }
 
-      // 각 분원에 상세확인 링크 및 상담신청 링크 기본값 보장
+      // [수정 5] 불당·두정·아산·모종·탕정원에 설정된 링크가 있을 경우 음봉·둔포·배방원 등 미설정 분원에도 일괄 공유 보장
       if (Array.isArray(merged.campuses)) {
+        const primaryDetailLink = (
+          merged.campuses.map(c => (c && c.detailLink ? String(c.detailLink).trim() : "")).find(Boolean) ||
+          merged.branding?.defaultDetailLink ||
+          ""
+        );
+        const primaryConsultLink = (
+          merged.campuses.map(c => (c && c.consultLink ? String(c.consultLink).trim() : "")).find(Boolean) ||
+          merged.branding?.defaultConsultLink ||
+          ""
+        );
+
+        if (primaryDetailLink) merged.branding.defaultDetailLink = primaryDetailLink;
+        if (primaryConsultLink) merged.branding.defaultConsultLink = primaryConsultLink;
+
         merged.campuses = merged.campuses.map((c) => {
           const cleanName = stripHtml(c.name || "분원");
+          const resolvedDetailLink = (c.detailLink && String(c.detailLink).trim()) ? String(c.detailLink).trim() : primaryDetailLink;
+          const resolvedConsultLink = (c.consultLink && String(c.consultLink).trim()) ? String(c.consultLink).trim() : primaryConsultLink;
           return {
             detailTitle: `${cleanName} 상세 안내 및 소식 확인`,
             detailDesc: `아래 버튼을 클릭하시면 ${cleanName}의 상세 소식 및 안내 페이지로 이동합니다.`,
             detailBtnText: "분원 상세확인 바로가기",
-            detailLink: "",
             consultDesc: `전화 문의 또는 아래 상담 링크를 클릭하시면 ${cleanName} 1:1 입학 상담으로 연결됩니다.`,
             consultBtnText: "온라인 상담 / 예약 바로가기",
-            consultLink: "",
-            ...c
+            ...c,
+            detailLink: resolvedDetailLink,
+            consultLink: resolvedConsultLink
           };
         });
+      }
+
+      if (!merged.philosophy.historySideImg) {
+        merged.philosophy.historySideImg = defaultSiteData.philosophy.historySideImg;
+      }
+      if (!merged.philosophy.historySideCaption) {
+        merged.philosophy.historySideCaption = defaultSiteData.philosophy.historySideCaption;
       }
 
       if (!merged.curriculum) merged.curriculum = JSON.parse(JSON.stringify(defaultSiteData.curriculum));
@@ -1746,7 +1932,7 @@
       }
     }
 
-    // [단일화 완료] 모든 사진 파일 업로드를 처리하는 통합 함수
+    // 모든 사진 파일 업로드를 처리하는 통합 함수
     function triggerImageFileUpload(dataPath, isLogo = false, afterCallback = null) {
       syncEditableElementsToData();
       const fileInput = document.getElementById("globalImageFileInput");
@@ -2282,10 +2468,10 @@
         }
       });
     }
-// 요청사항 1 & 3번: 공지사항 제거(4대 대칭 메뉴) + 학원 상담 내 '로그인' 제거
+// [수정 1] 5대 대칭 메뉴 (학원 소개 / 커리큘럼 / 캠퍼스 소개 / 학원 상담 / IBEX HYPER) 렌더링
     function renderDrawerMenus() {
-      siteData.menus = (siteData.menus || []).filter(m => stripHtml(m.title) !== "공지사항").slice(0, 4);
-      while (siteData.menus.length < 4) {
+      siteData.menus = (siteData.menus || []).filter(m => stripHtml(m.title) !== "공지사항").slice(0, 5);
+      while (siteData.menus.length < 5) {
         siteData.menus.push(JSON.parse(JSON.stringify(defaultSiteData.menus[siteData.menus.length])));
       }
 
@@ -2321,7 +2507,6 @@
         ];
       }
 
-      // 학원 상담 메뉴에서 '로그인' 제거
       const consultMenu = siteData.menus[3];
       if (consultMenu) {
         consultMenu.subs = [
@@ -2330,9 +2515,17 @@
         ];
       }
 
+      // 5번째 메뉴: IBEX HYPER 외부 링크 보장
+      const ibexMenu = siteData.menus[4];
+      if (ibexMenu) {
+        if (!ibexMenu.title) ibexMenu.title = "IBEX HYPER";
+        ibexMenu.externalUrl = "https://www.ibexhyper.kr/";
+        ibexMenu.subs = [];
+      }
+
       const topNavEl = document.getElementById("topHorizontalNavList");
       if (topNavEl) {
-        topNavEl.innerHTML = siteData.menus.slice(0, 4).map((m, idx) => `
+        topNavEl.innerHTML = siteData.menus.slice(0, 5).map((m, idx) => `
           <div class="top-nav-item" data-menu-idx="${idx}" onmouseenter="openMegaMenu(${idx})" onclick="handleTopNavRootClick(${idx})">
             <span data-editable="true" data-path="menus.${idx}.title">${m.title}</span>
           </div>
@@ -2342,7 +2535,14 @@
 
     function handleTopNavRootClick(menuIdx) {
       if (isEditMode) return;
-      const firstSub = siteData.menus[menuIdx]?.subs?.[0];
+      const menu = siteData.menus[menuIdx];
+      if (!menu) return;
+      if (menu.externalUrl || menuIdx === 4) {
+        hideMegaMenu();
+        window.open(menu.externalUrl || "https://www.ibexhyper.kr/", "_blank", "noopener,noreferrer");
+        return;
+      }
+      const firstSub = menu.subs?.[0];
       if (firstSub) handleSubMenuClick(menuIdx, 0);
     }
 
@@ -2354,13 +2554,15 @@
       if (!panel || !content) return;
 
       const menu = siteData.menus[menuIdx];
-      if (!menu || !Array.isArray(menu.subs) || menu.subs.length === 0) {
+      document.querySelectorAll(".top-nav-item").forEach((el, i) => el.classList.toggle("active", i === menuIdx));
+
+      // IBEX HYPER 등 서브메뉴가 없는 외부링크 메뉴는 드롭다운 패널을 닫음
+      if (!menu || menu.externalUrl || !Array.isArray(menu.subs) || menu.subs.length === 0) {
         panel.classList.remove("open");
         if (topBar) topBar.classList.remove("mega-active");
         return;
       }
 
-      document.querySelectorAll(".top-nav-item").forEach((el, i) => el.classList.toggle("active", i === menuIdx));
       if (topBar) topBar.classList.add("mega-active");
 
       let subsLayoutHtml = "";
@@ -2521,6 +2723,7 @@
       navigateTo("philosophy", true);
     }
 
+    // [수정 7] 학원 소개 내 연혁(History) 탭을 레퍼런스 이미지 스타일(좌측 사진 + 중앙 점선 타임라인 + 우측 연도·월 리스트)로 세련되게 개편
     function renderTopSecretPage() {
       if (!siteData.philosophy.tabNames) {
         siteData.philosophy.tabNames = { greeting: "인사말", goal: "학습목표", history: "연혁", honors: "명예의 전당" };
@@ -2574,40 +2777,66 @@
             </div>
           </div>`;
       } else if (currentTopSecretTab === "history") {
+        const sideImgUrl = p.historySideImg || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85";
         contentEl.innerHTML = `
-          <div class="philosophy-slide-up max-w-4xl w-full mx-auto text-left">
-            <div class="flex flex-wrap items-end justify-between mb-10 gap-4">
-              <div>
-                <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-2 tracking-tight">${p.historyTitle}</h2>
-                <p data-editable="true" data-path="philosophy.historySub" class="text-xs md:text-sm text-neutral-500">${p.historySub}</p>
+          <div class="philosophy-slide-up w-full max-w-5xl mx-auto">
+            <!-- 상단 중앙 타이틀 영역 (레퍼런스 스타일) -->
+            <div class="text-center mb-14 pb-8 border-b border-neutral-200 relative">
+              <div class="inline-flex items-center gap-2 text-xs text-neutral-400 font-semibold mb-3">
+                <i class="fa-solid fa-house text-[#0F3E66]"></i>
+                <span>&gt;</span>
+                <span>학원소개</span>
+                <span>&gt;</span>
+                <span class="text-[#0F3E66] font-bold">학원연혁</span>
               </div>
-              <div class="admin-only-control gap-2" onpointerdown="event.stopPropagation()">
-                <button type="button" onclick="addHistoryRow('top')" class="px-4 py-2 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 상단에 연혁 추가</button>
-                <button type="button" onclick="addHistoryRow('bottom')" class="px-4 py-2 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">+ 하단에 연혁 추가</button>
+              <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-3xl md:text-5xl font-extrabold text-neutral-900 tracking-tight mb-3">${p.historyTitle}</h2>
+              <p data-editable="true" data-path="philosophy.historySub" class="text-xs md:text-sm text-neutral-500 max-w-xl mx-auto">${p.historySub}</p>
+              <div class="admin-only-control justify-center gap-2 mt-5" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="addHistoryRow('top')" class="px-4 py-2 bg-[#0F3E66] hover:bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 상단에 연혁 추가</button>
+                <button type="button" onclick="addHistoryRow('bottom')" class="px-4 py-2 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">+ 하단에 연혁 추가</button>
               </div>
             </div>
-            <div class="relative border-l border-neutral-300 ml-3 pl-8 md:pl-10 space-y-5">
-              ${(p.historyList || []).map((h, idx) => `
-                <div class="relative bg-white p-6 md:p-7 rounded-2xl border border-neutral-200 hover:border-neutral-400 transition shadow-sm">
-                  <div class="w-3.5 h-3.5 rounded-full bg-[#141414] absolute -left-[39px] md:-left-[47px] top-8"></div>
-                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-7 flex-1">
-                      <div class="shrink-0 flex items-center gap-3 min-w-[155px]">
-                        <span data-editable="true" data-path="philosophy.historyList.${idx}.year" class="text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight">${h.year}</span>
-                        <span data-editable="true" data-path="philosophy.historyList.${idx}.month" class="px-2.5 py-0.5 bg-neutral-100 text-neutral-600 border border-neutral-300 text-xs font-medium rounded-none">${h.month}</span>
-                      </div>
-                      <div class="flex-1">
-                        <h4 data-editable="true" data-path="philosophy.historyList.${idx}.title" class="text-base md:text-lg font-bold text-neutral-900 mb-1">${h.title}</h4>
-                        <p data-editable="true" data-path="philosophy.historyList.${idx}.content" class="text-xs md:text-sm text-neutral-500 leading-relaxed">${h.content}</p>
-                      </div>
-                    </div>
-                    <div class="admin-only-control items-center gap-1 shrink-0" onpointerdown="event.stopPropagation()">
-                      <button type="button" onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">위로</button>
-                      <button type="button" onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">아래로</button>
-                      <button type="button" onclick="deleteHistoryRow(${idx})" class="px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button>
-                    </div>
+
+            <!-- 본문: 좌측 대표 이미지 + 우측 점선 타임라인 연혁 리스트 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+              <!-- 좌측: 고정형 비주얼 이미지 카드 -->
+              <div class="lg:col-span-5 lg:sticky lg:top-40">
+                <div class="relative overflow-hidden bg-neutral-100 shadow-lg border border-neutral-200 group">
+                  <img src="${sideImgUrl}" alt="탑씨크리트 연혁 대표 이미지" class="w-full aspect-[4/3] object-cover object-center group-hover:scale-105 transition duration-700" />
+                  <div class="admin-only-control absolute top-3 right-3 z-20 gap-1.5 bg-black/80 p-2 rounded-lg border border-orange-500/60" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                    <button type="button" onclick="triggerImageFileUpload('philosophy.historySideImg')" class="px-3 py-1.5 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">사진파일 변경</button>
+                    <button type="button" onclick="triggerImageChange('philosophy.historySideImg')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">URL</button>
                   </div>
-                </div>`).join("")}
+                </div>
+                <p data-editable="true" data-path="philosophy.historySideCaption" class="text-xs text-neutral-400 mt-3 font-medium tracking-wide">${p.historySideCaption || '행복하게 배우며 나만의 꿈을 키우는 탑씨크리트'}</p>
+              </div>
+
+              <!-- 우측: 세로 점선 타임라인 & 부드럽게 흐르는 연혁 항목 -->
+              <div class="lg:col-span-7 history-timeline-wrap">
+                ${(p.historyList || []).map((h, idx) => `
+                  <div class="history-year-block group" style="animation-delay: ${idx * 0.08}s;">
+                    <span class="history-node-dot"></span>
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex-1">
+                        <!-- 연도 표시 -->
+                        <div data-editable="true" data-path="philosophy.historyList.${idx}.year" class="text-3xl md:text-4xl font-extrabold text-[#0F3E66] group-hover:text-[#FF6B00] transition-colors tracking-tight leading-none mb-4">${h.year}</div>
+                        <!-- 월 + 상세 내용 행 -->
+                        <div class="flex items-baseline gap-4 md:gap-6">
+                          <span data-editable="true" data-path="philosophy.historyList.${idx}.month" class="text-sm md:text-base font-extrabold text-neutral-900 shrink-0 min-w-[44px]">${h.month}</span>
+                          <div class="flex-1 space-y-1.5 pb-4 border-b border-neutral-100">
+                            <h4 data-editable="true" data-path="philosophy.historyList.${idx}.title" class="text-sm md:text-base font-bold text-neutral-800 leading-snug">${h.title}</h4>
+                            <p data-editable="true" data-path="philosophy.historyList.${idx}.content" class="text-xs md:text-sm text-neutral-500 leading-relaxed">${h.content}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="admin-only-control items-center gap-1 shrink-0 pt-1" onpointerdown="event.stopPropagation()">
+                        <button type="button" onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">▲</button>
+                        <button type="button" onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">▼</button>
+                        <button type="button" onclick="deleteHistoryRow(${idx})" class="px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button>
+                      </div>
+                    </div>
+                  </div>`).join("")}
+              </div>
             </div>
           </div>`;
       } else if (currentTopSecretTab === "honors") {
@@ -2683,7 +2912,6 @@
       refreshViewBindings();
     }
 
-    // 배열 이동 및 삭제 공통 헬퍼
     function moveItemInArray(arr, idx, dir, afterRenderFn) {
       syncEditableElementsToData();
       const target = idx + dir;
@@ -2695,7 +2923,7 @@
 
     function addHistoryRow(pos = "top") {
       syncEditableElementsToData();
-      const item = { year: "2026", month: "신규", title: "새로운 연혁 제목을 입력하세요", content: "세부 연혁 내용을 입력하세요" };
+      const item = { year: "2026", month: "03", title: "새로운 연혁 제목을 입력하세요", content: "세부 연혁 내용을 입력하세요" };
       if (pos === "bottom") siteData.philosophy.historyList.push(item);
       else siteData.philosophy.historyList.unshift(item);
       renderTopSecretPage();
@@ -2761,7 +2989,7 @@
       saveAllChanges(true);
     }
 
-    // 히어로 배너 슬라이더
+    // [수정 2] 히어로 배너 슬라이더 좌·우 버튼 즉시 활성화 및 연속 클릭 반응 개선
     function updateHeroActiveUI(idx) {
       const total = siteData.hero.slides.length || 1;
       currentHeroSlideIndex = ((idx % total) + total) % total;
@@ -2801,7 +3029,8 @@
       heroSwiperInstance = new Swiper(".heroSwiper", {
         loop: siteData.hero.slides.length > 1,
         initialSlide: currentHeroSlideIndex,
-        speed: 850,
+        speed: 520,
+        watchSlidesProgress: true,
         preventClicks: false,
         preventClicksPropagation: false,
         touchStartPreventDefault: false,
@@ -2814,8 +3043,16 @@
       updateHeroActiveUI(currentHeroSlideIndex);
     }
 
-    function heroSlidePrev() { heroSwiperInstance?.slidePrev(); }
-    function heroSlideNext() { heroSwiperInstance?.slideNext(); }
+    function heroSlidePrev(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      if (!heroSwiperInstance) return;
+      heroSwiperInstance.slidePrev(450);
+    }
+    function heroSlideNext(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      if (!heroSwiperInstance) return;
+      heroSwiperInstance.slideNext(450);
+    }
     function changeCurrentHeroSlideFile() { triggerImageFileUpload(`hero.slides.${currentHeroSlideIndex || 0}.img`); }
     function changeCurrentHeroSlideUrl() { triggerImageChange(`hero.slides.${currentHeroSlideIndex || 0}.img`); }
     function deleteCurrentHeroSlide() { deleteHeroSlide(currentHeroSlideIndex || 0); }
@@ -2863,8 +3100,8 @@
       const rect = e.currentTarget.getBoundingClientRect();
       const ratio = (e.clientX - rect.left) / rect.width;
       const targetIdx = Math.min(siteData.hero.slides.length - 1, Math.max(0, Math.floor(ratio * siteData.hero.slides.length)));
-      if (siteData.hero.slides.length > 1) heroSwiperInstance.slideToLoop(targetIdx);
-      else heroSwiperInstance.slideTo(targetIdx);
+      if (siteData.hero.slides.length > 1) heroSwiperInstance.slideToLoop(targetIdx, 450);
+      else heroSwiperInstance.slideTo(targetIdx, 450);
     }
 
     // 메인 캠퍼스 슬라이더
@@ -2915,6 +3152,7 @@
 
     function moveCampusItem(idx, dir) { moveItemInArray(siteData.campuses, idx, dir, renderAll); }
 
+    // [수정 3] CURRICULUM & SYSTEM 3원형 사진을 고정 px 대신 유동 비율(%)로 배치해 창 축소/확대 시 메뉴와 함께 비례 반응
     function renderHomeSystemSlider() {
       const container = document.getElementById("homeSystemCirclesContainer");
       if (!container) return;
@@ -2922,23 +3160,23 @@
         siteData.homeSystem.circles = JSON.parse(JSON.stringify(defaultSiteData.homeSystem.circles));
       }
       const circleLayoutConfig = [
-        "w-[250px] sm:w-[310px] xl:w-[355px] md:mt-28 lg:translate-x-8 z-20",
-        "w-[290px] sm:w-[370px] xl:w-[445px] md:-mt-28 lg:translate-x-4 z-10",
-        "w-[225px] sm:w-[275px] xl:w-[315px] md:mt-16 lg:translate-x-10 z-20"
+        "w-full md:mt-20 z-20",
+        "w-full md:-mt-16 scale-[1.06] z-10",
+        "w-[92%] mx-auto md:mt-12 z-20"
       ];
       container.innerHTML = `
-        <div class="flex flex-col md:flex-row items-center justify-end gap-6 xl:gap-8 py-10 pr-2">
+        <div class="grid grid-cols-3 items-center gap-3 sm:gap-5 lg:gap-7 py-8 w-full">
           ${siteData.homeSystem.circles.slice(0, 3).map((circle, idx) => `
-            <div class="system-circle-glide scroll-glide-item flex flex-col items-center shrink-0">
+            <div class="system-circle-glide flex flex-col items-center w-full">
               <div class="system-circle-card ${circleLayoutConfig[idx]} group">
                 <img src="${circle.img}" alt="시스템 원형 이미지 ${idx + 1}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-                <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/30 to-transparent flex flex-col justify-end items-center text-center pb-9 px-5 pointer-events-none">
-                  <span data-editable="true" data-path="homeSystem.circles.${idx}.role" class="pointer-events-auto text-white/90 text-xs md:text-sm font-semibold tracking-wider mb-1 drop-shadow">${circle.role || ''}</span>
-                  <h4 data-editable="true" data-path="homeSystem.circles.${idx}.title" class="pointer-events-auto text-white text-base md:text-2xl font-extrabold drop-shadow">${circle.title || ''}</h4>
+                <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/35 to-transparent flex flex-col justify-end items-center text-center pb-[12%] px-3 pointer-events-none">
+                  <span data-editable="true" data-path="homeSystem.circles.${idx}.role" class="pointer-events-auto text-white/90 font-semibold tracking-wider mb-1 drop-shadow" style="font-size: clamp(10px, 0.9vw, 14px);">${circle.role || ''}</span>
+                  <h4 data-editable="true" data-path="homeSystem.circles.${idx}.title" class="pointer-events-auto text-white font-extrabold drop-shadow leading-tight" style="font-size: clamp(12px, 1.35vw, 22px);">${circle.title || ''}</h4>
                 </div>
-                <div class="admin-only-control absolute top-6 left-1/2 -translate-x-1/2 bg-neutral-900/95 px-3 py-1.5 rounded-full border border-orange-500/70 shadow-xl items-center gap-1.5 z-30" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
-                  <button type="button" onclick="triggerImageFileUpload('homeSystem.circles.${idx}.img')" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-bold rounded-full flex items-center gap-1 cursor-pointer">사진파일</button>
-                  <button type="button" onclick="triggerImageChange('homeSystem.circles.${idx}.img')" class="px-2 py-1 bg-neutral-700 hover:bg-neutral-600 text-white text-[11px] font-bold rounded-full cursor-pointer">URL</button>
+                <div class="admin-only-control absolute top-4 left-1/2 -translate-x-1/2 bg-neutral-900/95 px-2.5 py-1 rounded-full border border-orange-500/70 shadow-xl items-center gap-1 z-30" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                  <button type="button" onclick="triggerImageFileUpload('homeSystem.circles.${idx}.img')" class="px-2 py-0.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[10px] font-bold rounded-full cursor-pointer">사진파일</button>
+                  <button type="button" onclick="triggerImageChange('homeSystem.circles.${idx}.img')" class="px-1.5 py-0.5 bg-neutral-700 hover:bg-neutral-600 text-white text-[10px] font-bold rounded-full cursor-pointer">URL</button>
                 </div>
               </div>
             </div>`).join("")}
@@ -3209,6 +3447,7 @@
       refreshViewBindings();
     }
 
+    // [수정 4] 캠퍼스 목록 첫 줄(불당본원·두정원)이 길어지지 않도록 모든 분원 카드를 동일 높이(.campus-uniform-card)로 정렬
     function renderCampusPageList() {
       const query = (document.getElementById("campusSearchInput")?.value || "").trim().toLowerCase();
       const grid = document.getElementById("campusPageGrid");
@@ -3220,30 +3459,30 @@
       grid.innerHTML = filtered.map(c => {
         const idx = c.realIdx;
         return `
-          <div onclick="if(!isEditMode) openCampusDetail(${idx})" class="grid grid-cols-1 sm:grid-cols-2 rounded-xl overflow-hidden border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition group bg-white cursor-pointer">
-            <div class="relative aspect-[4/3] sm:aspect-auto overflow-hidden bg-neutral-100">
+          <div onclick="if(!isEditMode) openCampusDetail(${idx})" class="campus-uniform-card hover:border-neutral-400 hover:shadow-md group cursor-pointer">
+            <div class="campus-uniform-img-box">
               <img src="${c.mainImg}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               <div class="admin-only-control absolute top-2 right-2 z-30 gap-1 bg-black/75 p-1 rounded" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
                 <button type="button" onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">사진파일</button>
                 <button type="button" onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">URL</button>
               </div>
             </div>
-            <div class="p-6 flex flex-col justify-center bg-white">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <span data-editable="true" data-path="campuses.${idx}.region" class="inline-block text-[11px] font-medium text-neutral-600 bg-neutral-100 border border-neutral-300 px-2.5 py-0.5 rounded-none">${c.region}</span>
-                  <div class="admin-only-control gap-1" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+            <div class="p-5 sm:p-6 flex flex-col justify-center bg-white min-w-0 overflow-hidden">
+              <div class="min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-2.5">
+                  <span data-editable="true" data-path="campuses.${idx}.region" class="inline-block text-[11px] font-medium text-neutral-600 bg-neutral-100 border border-neutral-300 px-2.5 py-0.5 rounded-none truncate">${c.region}</span>
+                  <div class="admin-only-control gap-1 shrink-0" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
                     <button type="button" onclick="moveCampusItem(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded cursor-pointer">◀</button>
                     <button type="button" onclick="moveCampusItem(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-200 text-black text-[10px] rounded cursor-pointer">▶</button>
                     <button type="button" onclick="openCampusDetail(${idx})" class="px-2 py-0.5 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">상세편집</button>
                     <button type="button" onclick="deleteCampusItem(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
                   </div>
                 </div>
-                <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-xl font-bold text-neutral-900 mb-3">${c.name}</h3>
+                <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-lg sm:text-xl font-bold text-neutral-900 mb-2.5 truncate">${c.name}</h3>
                 <div class="space-y-1.5 text-xs text-neutral-600">
-                  <p><span data-editable="true" data-path="campuses.${idx}.telLabel">${c.telLabel || 'tel.'}</span> <span data-editable="true" data-path="campuses.${idx}.tel">${c.tel}</span></p>
-                  <p><span data-editable="true" data-path="campuses.${idx}.addrLabel">${c.addrLabel || 'add.'}</span> <span data-editable="true" data-path="campuses.${idx}.addr">${c.addr}</span></p>
-                  <p><span data-editable="true" data-path="campuses.${idx}.timeLabel">${c.timeLabel || 'time.'}</span> <span data-editable="true" data-path="campuses.${idx}.time">${c.time || '평일 14:00 ~ 22:00'}</span></p>
+                  <p class="truncate"><span data-editable="true" data-path="campuses.${idx}.telLabel">${c.telLabel || 'tel.'}</span> <span data-editable="true" data-path="campuses.${idx}.tel">${c.tel}</span></p>
+                  <p class="truncate"><span data-editable="true" data-path="campuses.${idx}.addrLabel">${c.addrLabel || 'add.'}</span> <span data-editable="true" data-path="campuses.${idx}.addr">${c.addr}</span></p>
+                  <p class="truncate"><span data-editable="true" data-path="campuses.${idx}.timeLabel">${c.timeLabel || 'time.'}</span> <span data-editable="true" data-path="campuses.${idx}.time">${c.time || '평일 14:00 ~ 22:00'}</span></p>
                 </div>
               </div>
             </div>
@@ -3258,7 +3497,22 @@
       navigateTo("campus-detail", true);
     }
 
-    // 요청사항 4번: 캠퍼스 상세 화면 (우측 선생님 영역 삭제 -> 지도 우측 상단 이동 + 하단 '분원 상세확인' 링크 버튼 배치)
+    // [수정 5] 캠퍼스 상세 화면 (음봉·둔포·배방원 포함 전 분원 상세확인 링크 일괄 작동 보장)
+    function getResolvedCampusLink(cIdx, type = "detail") {
+      const c = siteData.campuses[cIdx];
+      if (type === "consult") {
+        const directConsult = (c?.consultLink || "").trim();
+        if (directConsult) return directConsult;
+        const anyConsult = siteData.campuses.map(item => (item?.consultLink || "").trim()).find(Boolean);
+        return anyConsult || (siteData.branding?.defaultConsultLink || "").trim();
+      } else {
+        const directDetail = (c?.detailLink || "").trim();
+        if (directDetail) return directDetail;
+        const anyDetail = siteData.campuses.map(item => (item?.detailLink || "").trim()).find(Boolean);
+        return anyDetail || (siteData.branding?.defaultDetailLink || "https://blog.naver.com/topsecret_edu").trim();
+      }
+    }
+
     function renderCampusDetail(campusIdx) {
       const c = siteData.campuses[campusIdx] || siteData.campuses[0];
       if (!c) return;
@@ -3271,6 +3525,7 @@
 
       const slideImages = [c.mainImg, ...(c.gallery || [])];
       const mapSearchAddress = stripHtml(c.mapQuery || c.addr || "천안시");
+      const effectiveDetailLink = getResolvedCampusLink(cIdx, "detail");
 
       document.getElementById("campusDetailContent").innerHTML = `
         <!-- 좌측: 지점 기본 정보 + 서브 썸네일 + 메인 대형 사진 슬라이더 -->
@@ -3344,18 +3599,23 @@
             <div>
               <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <span class="text-[11px] font-extrabold tracking-widest text-[#FFB800] uppercase">BRANCH DETAIL & OFFICIAL LINK</span>
-                <button type="button" onpointerdown="event.stopPropagation()" onclick="setCampusDetailLink(${cIdx})" class="admin-only-control px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded shadow cursor-pointer flex items-center gap-1">
-                  <i class="fa-solid fa-link"></i> 분원 상세확인 링크 설정
-                </button>
+                <div class="admin-only-control items-center gap-1.5" onpointerdown="event.stopPropagation()">
+                  <button type="button" onclick="setCampusDetailLink(${cIdx})" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded shadow cursor-pointer flex items-center gap-1">
+                    <i class="fa-solid fa-link"></i> 현재 분원 링크 설정
+                  </button>
+                  <button type="button" onclick="setUnifiedCampusLink('detail')" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded shadow cursor-pointer">
+                    전 분원 일괄 링크 설정
+                  </button>
+                </div>
               </div>
               <h3 data-editable="true" data-path="campuses.${cIdx}.detailTitle" class="text-2xl font-bold text-white mb-2">${c.detailTitle || `${stripHtml(c.name)} 상세 안내 및 소식 확인`}</h3>
               <p data-editable="true" data-path="campuses.${cIdx}.detailDesc" class="text-xs md:text-sm text-neutral-300 leading-relaxed">${c.detailDesc || '아래 분원 상세확인 버튼을 클릭하시면 해당 분원의 블로그, 상세 시간표 및 소식 페이지로 이동합니다.'}</p>
-              ${c.detailLink ? `<p class="admin-only-control mt-2 text-[11px] text-emerald-400 truncate">현재 연결된 링크: ${c.detailLink}</p>` : `<p class="admin-only-control mt-2 text-[11px] text-amber-400">현재 연결된 링크가 없습니다. [분원 상세확인 링크 설정] 버튼을 눌러 주소를 입력하세요.</p>`}
+              <p class="admin-only-control mt-2 text-[11px] text-emerald-400 truncate">현재 이동 링크: ${effectiveDetailLink}</p>
             </div>
 
             <div class="pt-2">
-              <button type="button" onclick="if(!isEditMode) openCustomUrl('${c.detailLink || ''}', ${cIdx}, 'detail')" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-sm md:text-base font-extrabold rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
-                <span data-editable="true" data-path="campuses.${cIdx}.detailBtnText" onclick="if(isEditMode) event.stopPropagation();">${c.detailBtnText || '분원 상세확인'}</span>
+              <button type="button" onclick="if(!isEditMode) openCustomUrl('', ${cIdx}, 'detail')" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-sm md:text-base font-extrabold rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                <span data-editable="true" data-path="campuses.${cIdx}.detailBtnText" onclick="if(isEditMode) event.stopPropagation();">${c.detailBtnText || '분원 상세확인 바로가기'}</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
               </button>
             </div>
@@ -3375,32 +3635,67 @@
       refreshViewBindings();
     }
 
-    // 분원 상세확인 링크 설정 및 이동 함수
+    // [수정 5] 개별 분원 또는 전 분원 일괄 링크 설정 함수
     function setCampusDetailLink(cIdx) {
       syncEditableElementsToData();
-      const curr = siteData.campuses[cIdx].detailLink || "";
-      const nextUrl = prompt(`[${stripHtml(siteData.campuses[cIdx].name)}] '분원 상세확인' 버튼을 눌렀을 때 이동할 링크(URL)를 입력하세요:\n(예: https://blog.naver.com/... 또는 카카오톡/예약 링크)`, curr);
-      if (nextUrl !== null) {
-        siteData.campuses[cIdx].detailLink = nextUrl.trim();
+      const curr = getResolvedCampusLink(cIdx, "detail");
+      const nextUrl = prompt(`[${stripHtml(siteData.campuses[cIdx].name)}] '분원 상세확인' 버튼을 눌렀을 때 이동할 링크(URL)를 입력하세요:`, curr);
+      if (nextUrl !== null && nextUrl.trim() !== "") {
+        const clean = nextUrl.trim();
+        const applyAll = confirm("입력하신 링크를 음봉원·둔포원·배방원을 포함한 [전 분원]에 모두 일괄 적용하시겠습니까?\n\n· [확인] 클릭 시: 8개 전 분원 일괄 적용\n· [취소] 클릭 시: 현재 분원에만 적용");
+        if (applyAll) {
+          siteData.branding.defaultDetailLink = clean;
+          siteData.campuses.forEach(cam => { cam.detailLink = clean; });
+        } else {
+          siteData.campuses[cIdx].detailLink = clean;
+        }
         renderCampusDetail(cIdx);
+        saveAllChanges(false);
+      }
+    }
+
+    function setUnifiedCampusLink(type = "detail") {
+      syncEditableElementsToData();
+      const isConsult = type === "consult";
+      const curr = getResolvedCampusLink(0, type);
+      const label = isConsult ? "온라인 상담 신청" : "분원 상세확인";
+      const nextUrl = prompt(`전 분원에 일괄 적용할 [${label}] 이동 링크(URL)를 입력하세요:`, curr);
+      if (nextUrl !== null && nextUrl.trim() !== "") {
+        const clean = nextUrl.trim();
+        if (isConsult) {
+          siteData.branding.defaultConsultLink = clean;
+          siteData.campuses.forEach(cam => { cam.consultLink = clean; });
+          renderConsultPage();
+        } else {
+          siteData.branding.defaultDetailLink = clean;
+          siteData.campuses.forEach(cam => { cam.detailLink = clean; });
+          renderCampusDetail(currentDetailCampusId);
+        }
         saveAllChanges(false);
       }
     }
 
     function setCampusConsultLink(cIdx) {
       syncEditableElementsToData();
-      const curr = siteData.campuses[cIdx].consultLink || "";
-      const nextUrl = prompt(`[${stripHtml(siteData.campuses[cIdx].name)}] 상담신청 카드에서 버튼을 눌렀을 때 이동할 링크(URL)를 입력하세요:\n(예: https://booking.naver.com/... 또는 카카오톡 상담 링크)`, curr);
-      if (nextUrl !== null) {
-        siteData.campuses[cIdx].consultLink = nextUrl.trim();
+      const curr = getResolvedCampusLink(cIdx, "consult");
+      const nextUrl = prompt(`[${stripHtml(siteData.campuses[cIdx].name)}] 상담신청 카드에서 버튼을 눌렀을 때 이동할 링크(URL)를 입력하세요:`, curr);
+      if (nextUrl !== null && nextUrl.trim() !== "") {
+        const clean = nextUrl.trim();
+        const applyAll = confirm("입력하신 상담 링크를 [전 분원]에 일괄 적용하시겠습니까?\n([확인] = 전 분원 일괄 적용 / [취소] = 현재 분원만 적용)");
+        if (applyAll) {
+          siteData.branding.defaultConsultLink = clean;
+          siteData.campuses.forEach(cam => { cam.consultLink = clean; });
+        } else {
+          siteData.campuses[cIdx].consultLink = clean;
+        }
         renderConsultPage();
         saveAllChanges(false);
       }
     }
 
     function openCustomUrl(url, cIdx, type = "detail") {
-      const cleanUrl = (url || "").trim();
-      if (!cleanUrl) {
+      const resolved = (url && url.trim()) ? url.trim() : getResolvedCampusLink(cIdx, type);
+      if (!resolved) {
         if (isAdminLoggedIn) {
           if (type === "consult") setCampusConsultLink(cIdx);
           else setCampusDetailLink(cIdx);
@@ -3410,21 +3705,20 @@
         }
         return;
       }
-      const finalUrl = /^https?:\/\//i.test(cleanUrl) || cleanUrl.startsWith("tel:") ? cleanUrl : `https://${cleanUrl}`;
+      const finalUrl = /^https?:\/\//i.test(resolved) || resolved.startsWith("tel:") ? resolved : `https://${resolved}`;
       window.open(finalUrl, "_blank", "noopener,noreferrer");
     }
 
-    // 요청사항 2번: 상담신청 메인 화면 (각 분원별 직통 전화번호 + 전 항목 수정 가능 + 분원별 상담 링크 이동)
     function renderConsultPage() {
       const grid = document.getElementById("consultBranchesGrid");
       if (!grid) return;
 
       grid.innerHTML = siteData.campuses.map((c, idx) => {
         const cleanTel = stripHtml(c.tel || "");
+        const effectiveConsultLink = getResolvedCampusLink(idx, "consult");
         return `
           <div class="bg-[#FAFAFA] hover:bg-white rounded-2xl border border-neutral-200 hover:border-[#FF6B00] p-7 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
             <div>
-              <!-- 상단 지역 배지 및 관리자 컨트롤 -->
               <div class="flex items-center justify-between gap-2 mb-4">
                 <span data-editable="true" data-path="campuses.${idx}.region" class="inline-block px-3 py-1 bg-neutral-900 text-[#FFB800] text-xs font-extrabold">${c.region}</span>
                 <div class="admin-only-control items-center gap-1" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
@@ -3434,10 +3728,8 @@
                 </div>
               </div>
 
-              <!-- 분원 이름 -->
               <h3 data-editable="true" data-path="campuses.${idx}.name" class="text-2xl font-extrabold text-neutral-900 mb-4">${c.name}</h3>
 
-              <!-- 분원별 직통 전화번호 강조 박스 -->
               <div class="bg-white border border-orange-200 rounded-xl p-4 mb-5 flex items-center gap-3.5 shadow-inner">
                 <a href="tel:${cleanTel}" onclick="if(isEditMode) event.preventDefault();" class="w-11 h-11 rounded-full bg-[#FF6B00] text-white flex items-center justify-center shrink-0 hover:scale-105 transition">
                   <i class="fa-solid fa-phone-volume text-base"></i>
@@ -3448,18 +3740,16 @@
                 </div>
               </div>
 
-              <!-- 주소 / 시간 / 안내 문구 -->
               <div class="space-y-2 text-xs text-neutral-600 mb-6">
                 <p class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-neutral-400 mt-0.5"></i> <span data-editable="true" data-path="campuses.${idx}.addr" class="flex-1">${c.addr}</span></p>
                 <p class="flex items-start gap-2"><i class="fa-regular fa-clock text-neutral-400 mt-0.5"></i> <span data-editable="true" data-path="campuses.${idx}.time" class="flex-1">${c.time || '평일 14:00 ~ 22:00'}</span></p>
                 <p data-editable="true" data-path="campuses.${idx}.consultDesc" class="pt-2 border-t border-neutral-200/80 text-neutral-500 leading-relaxed">${c.consultDesc || '전화 문의 또는 아래 상담 링크를 클릭하시면 1:1 입학 상담으로 연결됩니다.'}</p>
-                ${c.consultLink ? `<p class="admin-only-control text-[11px] text-emerald-600 font-bold truncate">연결링크: ${c.consultLink}</p>` : `<p class="admin-only-control text-[11px] text-amber-600 font-bold">연결링크 미설정 ([🔗 링크설정] 클릭)</p>`}
+                ${effectiveConsultLink ? `<p class="admin-only-control text-[11px] text-emerald-600 font-bold truncate">연결링크: ${effectiveConsultLink}</p>` : `<p class="admin-only-control text-[11px] text-amber-600 font-bold">연결링크 미설정 ([🔗 링크설정] 클릭)</p>`}
               </div>
             </div>
 
-            <!-- 하단 상담 링크 이동 버튼 -->
             <div class="space-y-2">
-              <button type="button" onclick="if(!isEditMode) openCustomUrl('${c.consultLink || ''}', ${idx}, 'consult')" class="w-full py-3.5 bg-[#141414] hover:bg-[#FF6B00] text-white text-xs md:text-sm font-bold rounded-xl transition flex items-center justify-center gap-2 shadow cursor-pointer">
+              <button type="button" onclick="if(!isEditMode) openCustomUrl('', ${idx}, 'consult')" class="w-full py-3.5 bg-[#141414] hover:bg-[#FF6B00] text-white text-xs md:text-sm font-bold rounded-xl transition flex items-center justify-center gap-2 shadow cursor-pointer">
                 <span data-editable="true" data-path="campuses.${idx}.consultBtnText" onclick="if(isEditMode) event.stopPropagation();">${c.consultBtnText || '온라인 상담 / 예약 바로가기'}</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
               </button>
@@ -3556,7 +3846,6 @@
       if (editable) selectEditableTarget(editable);
     });
 
-    // 타이핑 시 전체 리렌더링 충돌 없이 데이터만 동기화하고 자동 저장 예약
     document.addEventListener("input", evt => {
       if (!isEditMode) return;
       const editable = evt.target.closest('[data-editable="true"]');
@@ -3604,6 +3893,8 @@
 
       const regionName = regionInput.trim() || "신규지역";
       const branchName = nameInput.trim() || "신규 캠퍼스";
+      const defaultDetail = getResolvedCampusLink(0, "detail");
+      const defaultConsult = getResolvedCampusLink(0, "consult");
 
       siteData.campuses.push({
         id: Date.now(),
@@ -3620,10 +3911,10 @@
         detailTitle: `${branchName} 상세 안내 및 소식 확인`,
         detailDesc: `아래 버튼을 클릭하시면 ${branchName}의 상세 소식 및 안내 페이지로 이동합니다.`,
         detailBtnText: "분원 상세확인 바로가기",
-        detailLink: "",
+        detailLink: defaultDetail,
         consultDesc: `전화 문의 또는 아래 상담 링크를 클릭하시면 ${branchName} 1:1 입학 상담으로 연결됩니다.`,
         consultBtnText: "온라인 상담 / 예약 바로가기",
-        consultLink: "",
+        consultLink: defaultConsult,
         mainImg: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=1000&q=80",
         gallery: ["https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=900&q=80"]
       });

@@ -3,7 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>탑씨크리트학원 | 행복하게 배우며 나만의 꿈을 키우는</title>
+
+  <!-- 공식 홈페이지 검색엔진 최적화 (SEO) -->
+  <title>탑씨크리트학원 | 천안·아산 초중고 영어·수학 전문학원</title>
+  <meta name="description" content="탑씨크리트학원 공식 홈페이지입니다. 불당본원, 두정원, 아산원, 모종원, 음봉원, 둔포원, 배방원, 탕정원 초·중·고 영어·수학 1:1 맞춤 커리큘럼 및 입학 안내." />
+  <meta name="keywords" content="탑씨크리트학원, 탑씨크리트, 탑씨크리트 교육, 천안 수학학원, 천안 영어학원, 아산 수학학원, 아산 영어학원, 불당동 학원, 신불당 학원, 두정동 학원, 탕정 학원, 배방 학원" />
+  <meta name="author" content="탑씨크리트 교육(주) · ㈜탑씨크리트에듀케이션" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- 오픈그래프 (네이버·카카오톡·SNS 공식 미리보기) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="탑씨크리트학원" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="탑씨크리트학원 | 천안·아산 초중고 영어·수학 전문학원" />
+  <meta property="og:description" content="천안·아산 초중고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다. 1:1 맞춤 커리큘럼과 전 분원 안내를 확인하세요." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="탑씨크리트학원 | 천안·아산 초중고 영어·수학 전문학원" />
+  <meta name="twitter:description" content="천안·아산 초중고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다." />
+
+  <!-- 네이버 서치어드바이저 소유확인 메타태그 위치 (발급받은 코드를 아래 주석 해제 후 입력) -->
+  <!-- <meta name="naver-site-verification" content="여기에_발급받은_소유확인_코드_입력" /> -->
+
+  <!-- 공식 홈페이지 구조화 데이터 (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "탑씨크리트학원",
+    "alternateName": ["탑씨크리트", "탑씨크리트 교육(주)", "㈜탑씨크리트에듀케이션", "TOP SECRET ACADEMY"],
+    "description": "천안·아산 초·중·고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다.",
+    "areaServed": ["충청남도 천안시", "충청남도 아산시"],
+    "telephone": "041-555-0001",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "KR",
+      "addressRegion": "충청남도",
+      "addressLocality": "천안시 서북구 불당동"
+    }
+  }
+  </script>
 
   <!-- Google Fonts 공식 서버 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +81,7 @@
       scroll-behavior: smooth;
     }
 
-    /* ================= 1단 상단 헤더: 좌측 2배 로고 / 중앙 5대 메뉴 / 평상시 완전 투명 ================= */
+    /* ================= 1단 상단 헤더: 좌측 로고(어두운 배경 자동 흰색 전환) / 중앙 5대 메뉴 / 우측 상담신청 ================= */
     .top-fixed-bar {
       position: fixed;
       top: 0;
@@ -86,6 +124,12 @@
       max-width: 26vw;
       max-height: 86px;
       object-fit: contain;
+      transition: filter 0.35s var(--ease-smooth), width 0.25s ease;
+    }
+
+    /* 배경이 어두워지면 로고의 어두운 글자("탑씨크리트 교육(주)")는 흰색으로 자동 반전되고 주황 심볼은 유지 */
+    .top-fixed-bar:not(:hover):not(.header-solid):not(.mega-active):not(.header-scrolled):not(.header-light-bg) #sidebarLogoImg {
+      filter: invert(1) hue-rotate(180deg) brightness(1.14) contrast(1.06);
     }
 
     .header-center-nav {
@@ -138,7 +182,8 @@
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
       transition: color 0.3s ease, text-shadow 0.3s ease;
     }
-    .fallback-logo-text {
+    .fallback-logo-text,
+    .fallback-logo-sub {
       color: #ffffff;
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
       transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -175,10 +220,15 @@
       color: var(--brand-orange);
     }
     .top-fixed-bar.header-light-bg .fallback-logo-text,
+    .top-fixed-bar.header-light-bg .fallback-logo-sub,
     .top-fixed-bar:hover .fallback-logo-text,
+    .top-fixed-bar:hover .fallback-logo-sub,
     .top-fixed-bar.header-solid .fallback-logo-text,
+    .top-fixed-bar.header-solid .fallback-logo-sub,
     .top-fixed-bar.mega-active .fallback-logo-text,
-    .top-fixed-bar.header-scrolled .fallback-logo-text {
+    .top-fixed-bar.mega-active .fallback-logo-sub,
+    .top-fixed-bar.header-scrolled .fallback-logo-text,
+    .top-fixed-bar.header-scrolled .fallback-logo-sub {
       color: #141414;
       text-shadow: none;
     }
@@ -340,7 +390,10 @@
     .spread-revealed .reveal-item.reveal-r3 { opacity: 1; transform: translate3d(0, 0, 0); transition-delay: 0.20s; }
 
     body.admin-edit-mode .reveal-item,
-    body.admin-edit-mode .s3-soft-card {
+    body.admin-edit-mode .s3-soft-card,
+    body.admin-edit-mode .phil-ceo-anim,
+    body.admin-edit-mode .phil-history-year-block,
+    body.admin-edit-mode .hof-col-block {
       opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important;
     }
 
@@ -350,8 +403,19 @@
       mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.18) 8%, rgba(0,0,0,0.75) 18%, #000000 30%, #000000 100%);
     }
 
-    .book-step-list { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; gap: 14px; }
-    .book-step-line { position: absolute; left: 16px; top: 32px; bottom: 32px; width: 1.5px; background: #E4E4E7; z-index: 1; pointer-events: none; }
+    /* 2장 우측 주황바 높이 약 1/7 축소 및 줄인 공간을 상하 여백으로 전환 */
+    .book-step-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 76%;
+      max-height: 455px;
+      width: 100%;
+      margin: auto 0;
+      gap: 12px;
+    }
+    .book-step-line { position: absolute; left: 16px; top: 28px; bottom: 28px; width: 1.5px; background: #E4E4E7; z-index: 1; pointer-events: none; }
     .book-step-orb {
       position: absolute; left: 16px; top: 0; width: 22px; height: 22px; border-radius: 9999px;
       background: rgba(255, 122, 0, 0.25); transform: translate(-50%, -50%);
@@ -360,7 +424,7 @@
     }
     .book-step-orb::after { content: ''; width: 11px; height: 11px; border-radius: 9999px; background: #FF7A00; box-shadow: 0 0 12px rgba(255, 107, 0, 0.5); }
     .book-step-bar {
-      position: absolute; left: 52px; right: 0; top: 0; height: 96px; border-radius: 10px;
+      position: absolute; left: 52px; right: 0; top: 0; height: 82px; border-radius: 10px;
       background: linear-gradient(95deg, #FF7D00 0%, #FF6B00 100%);
       box-shadow: 0 16px 34px rgba(255, 107, 0, 0.25); z-index: 2; pointer-events: none;
       will-change: transform, height; transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), height 0.85s cubic-bezier(0.22, 1, 0.36, 1);
@@ -369,12 +433,11 @@
     .book-step-dot-slot { width: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .book-step-muted-dot { width: 10px; height: 10px; border-radius: 9999px; background: #D4D4D8; transition: opacity 0.4s ease; }
     .book-step-row.is-active .book-step-muted-dot { opacity: 0; }
-    .book-step-card { flex: 1; margin-left: 18px; padding: clamp(14px, 1.8vh, 24px) clamp(18px, 2.2vw, 32px); border-radius: 10px; }
+    .book-step-card { flex: 1; margin-left: 18px; padding: clamp(10px, 1.35vh, 18px) clamp(18px, 2.2vw, 30px); border-radius: 10px; }
     .book-step-num { color: #B4B4B8; font-weight: 800; transition: color 0.45s ease; }
     .book-step-desc { color: #A1A1AA; font-weight: 600; transition: color 0.45s ease; }
     .book-step-row.is-active .book-step-num, .book-step-row.is-active .book-step-desc { color: #ffffff; }
-
-    .sys-pill-btn {
+.sys-pill-btn {
       background: #F4F4F5; color: #18181B; border-radius: 9999px;
       padding: clamp(12px, 1.4vh, 18px) clamp(14px, 1.6vw, 24px);
       font-size: clamp(12px, 1vw, 15px); font-weight: 700; text-align: center; cursor: pointer;
@@ -422,7 +485,7 @@
       color: rgba(255, 255, 255, 0.45); font-size: clamp(12px, 1.05vw, 15px); font-weight: 500;
       transition: color 0.35s ease, transform 0.35s var(--ease-smooth);
     }
-    .adm-step-tab:hover { color: rgba(255, 255, 255, 0.85); transform: translateX(4px); }
+    .adm-step-tab:hover { color: rgba(255, 255, 255, 0.9); transform: translateX(4px); }
     .adm-step-tab.active { color: #ffffff; font-weight: 700; }
     .adm-step-dot {
       position: relative; width: 24px; height: 24px; border-radius: 9999px; border: 1px solid transparent;
@@ -439,7 +502,7 @@
     .adm-detail-stage { perspective: 960px; transform-style: preserve-3d; }
     .adm-detail-rotator {
       transform-origin: center center;
-      transition: opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
     .adm-detail-rotator.flip-out-up { opacity: 0; transform: translate3d(0, -34px, -28px) rotateX(34deg); }
@@ -458,6 +521,524 @@
     }
     .campus-preview-fade { transition: opacity 0.28s var(--ease-smooth), transform 0.34s var(--ease-smooth); }
     .campus-preview-fade.switching { opacity: 0.2; transform: scale(1.02); }
+
+    /* ================= [신규 개편] 학원소개 1회 스크롤 = 1단계 풀스테이지 쇼룸 ================= */
+    #view-philosophy {
+      background-color: #ffffff;
+      color: #141414;
+      position: relative;
+    }
+
+    /* 상단 풀스크린 스테이지: 대표인사말(0) → MISSION(1) → 학습목표 1~4스텝(2~5) 한 화면씩 딱 전환 */
+    .phil-top-stage {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .phil-ceo-layer {
+      position: absolute;
+      inset: 0;
+      padding-top: var(--topbar-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: opacity, transform;
+      z-index: 25;
+      background: #ffffff;
+    }
+
+    /* 대표 인사말 0.3초 진입 모션 */
+    .phil-ceo-anim {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition:
+        opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .phil-ceo-layer.is-entered .phil-ceo-anim {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    .phil-ceo-layer.is-entered .phil-ceo-anim.d1 { transition-delay: 0s; }
+    .phil-ceo-layer.is-entered .phil-ceo-anim.d2 { transition-delay: 0.04s; }
+    .phil-ceo-layer.is-entered .phil-ceo-anim.d3 { transition-delay: 0.08s; }
+    .phil-ceo-layer.is-entered .phil-ceo-anim.d4 { transition-delay: 0.12s; }
+
+    .phil-ceo-grid {
+      width: 100%;
+      max-width: 1280px;
+      height: 100%;
+      margin: 0 auto;
+      padding: clamp(20px, 3vh, 42px) clamp(24px, 5vw, 64px) 0;
+      display: grid;
+      grid-template-columns: minmax(320px, 1.18fr) minmax(260px, 0.82fr);
+      gap: clamp(28px, 4.5vw, 68px);
+      align-items: center;
+    }
+    .phil-ceo-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: clamp(24px, 4vh, 48px);
+    }
+    .phil-ceo-portrait-col {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .phil-ceo-portrait-img {
+      width: 100%;
+      max-width: 460px;
+      height: min(78vh, 660px);
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 18px 18px 0 0;
+    }
+
+    /* MISSION 중앙 멘트 레이어 */
+    .phil-mission-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--topbar-h) clamp(24px, 6vw, 80px) 48px;
+      background: #ffffff;
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+      pointer-events: none;
+      will-change: opacity, transform;
+      z-index: 20;
+    }
+    .phil-mission-layer.is-active {
+      pointer-events: auto;
+    }
+
+    /* 학습목표 1~4스텝 반대방향(카운터) 풀스크린 오버레이 */
+    .phil-goal-stage-layer {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      will-change: opacity, transform;
+      z-index: 30;
+    }
+    .phil-goal-stage-layer.is-active {
+      pointer-events: auto;
+    }
+    .phil-goal-col {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    /* height: 100% 고정 → % 단위 translate3d로 숨김 상태에서도 1스텝(0%)부터 정확히 정렬 */
+    .phil-goal-rail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+    }
+    .phil-goal-pane {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .phil-goal-media-pane {
+      background: #F4F5F7;
+    }
+    .phil-goal-media-pane img,
+    .phil-goal-media-pane video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .phil-goal-text-pane {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--topbar-h) * 0.55 + 24px) clamp(32px, 6.2vw, 114px) 48px;
+    }
+
+    /* 학습목표 스텝 표시기 (1~4 STEP 하단 미니 인디케이터) */
+    .phil-goal-step-dots {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      background: rgba(15, 18, 26, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .phil-goal-step-dots.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .phil-goal-dot-btn {
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.65);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .phil-goal-dot-btn:hover { color: #ffffff; }
+    .phil-goal-dot-btn.active { background: #FF6B00; color: #ffffff; }
+
+    /* 모바일 및 편집모드에서는 세로 스택으로 전환하여 모든 텍스트·사진 바로 클릭 수정 */
+    .phil-goal-mobile-stack { display: none; }
+
+    body.admin-edit-mode .phil-top-stage {
+      height: auto !important;
+      overflow: visible !important;
+      display: flex;
+      flex-direction: column;
+    }
+    body.admin-edit-mode .phil-ceo-layer,
+    body.admin-edit-mode .phil-mission-layer {
+      position: relative !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      min-height: 68vh;
+    }
+    body.admin-edit-mode .phil-mission-layer {
+      min-height: 44vh;
+      border-top: 2px dashed rgba(255, 107, 0, 0.45);
+      border-bottom: 2px dashed rgba(255, 107, 0, 0.45);
+      background: #FFFDF9;
+    }
+    body.admin-edit-mode .phil-goal-stage-layer,
+    body.admin-edit-mode .phil-goal-step-dots {
+      display: none !important;
+    }
+    body.admin-edit-mode .phil-goal-mobile-stack {
+      display: block !important;
+    }
+
+    /* 3) 연혁: 입학절차 스타일 다크 커튼 + 투명 상자바 제거 + 얼음 미끄러짐(Ice-Glide) 연속 타임라인 */
+    .phil-curtain-section {
+      position: relative;
+      width: 100%;
+      background-color: #09090D;
+      color: #ffffff;
+      overflow-x: clip;
+    }
+    .phil-curtain-bg-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .phil-curtain-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      will-change: transform;
+    }
+    .phil-curtain-dim {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .phil-curtain-top-blend {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 130px;
+      background: linear-gradient(180deg, rgba(9, 9, 13, 0.88) 0%, rgba(9, 9, 13, 0) 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+    .phil-curtain-foreground {
+      position: relative;
+      z-index: 15;
+      margin-top: -100vh;
+      min-height: 100vh;
+      padding: calc(var(--topbar-h) + 56px) clamp(24px, 5.5vw, 96px) 128px;
+    }
+
+    /* 연혁: 투명 상자바 없이 어두운 배경 위로 얼음 미끄러지듯 흐르는 타임라인 (간격 1/4 축소) */
+    .phil-history-glide-col {
+      will-change: transform;
+    }
+    .phil-history-timeline-wrap {
+      position: relative;
+      padding-left: 36px;
+    }
+    .phil-history-timeline-wrap::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      border-left: 1.5px dashed rgba(255, 255, 255, 0.36);
+    }
+    .phil-history-year-block {
+      position: relative;
+      padding-bottom: 34px;
+      opacity: 0;
+      transform: translate3d(0, 44px, 0);
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+      will-change: opacity, transform;
+    }
+    .phil-history-year-block.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    .phil-history-year-block:last-child {
+      padding-bottom: 6px;
+    }
+    .phil-history-node-dot {
+      position: absolute;
+      left: -35px;
+      top: 9px;
+      width: 11px;
+      height: 11px;
+      border-radius: 9999px;
+      background: #09090D;
+      border: 2.5px solid #FFB800;
+      box-shadow: 0 0 0 4px rgba(255, 184, 0, 0.22);
+      transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    }
+    .phil-history-year-block:hover .phil-history-node-dot {
+      border-color: #FF6B00;
+      background: #FF6B00;
+      transform: scale(1.25);
+    }
+
+    /* 4) 명예의 전당: 클래식 신전 기둥 + 1줄 통일 명단 + 관리자 가변 열 수(--hof-cols) */
+    .hof-temple-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 70% at 50% 42%, #EBECEF 0%, #D7D9DD 58%, #C4C7CC 100%);
+      color: #111111;
+      padding: calc(var(--topbar-h) + 48px) clamp(20px, 4.5vw, 68px) 120px;
+    }
+    .hof-temple-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.14;
+      filter: grayscale(100%) contrast(1.05);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hof-temple-watermark {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Montserrat', 'Pretendard', sans-serif !important;
+      font-weight: 900 !important;
+      font-size: clamp(78px, 14vw, 220px);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.42);
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hof-pillars-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+    .hof-pillar-side {
+      height: 100%;
+      width: min(32vw, 420px);
+      opacity: 0.72;
+      flex-shrink: 0;
+    }
+    .hof-pillar-side svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hof-temple-inner {
+      position: relative;
+      z-index: 10;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .hof-header-block {
+      text-align: center;
+      margin-bottom: clamp(36px, 5vh, 62px);
+    }
+    .hof-title-sub {
+      font-size: clamp(17px, 2vw, 28px);
+      font-weight: 800;
+      color: #4B4F55;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .hof-title-main {
+      font-size: clamp(36px, 4.6vw, 64px);
+      font-weight: 900;
+      color: #0D0E10;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 6px 0 8px;
+    }
+    .hof-title-region {
+      font-size: clamp(22px, 2.7vw, 38px);
+      font-weight: 900;
+      color: #3E4248;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    /* 관리자에서 실시간 열 수 조절 가능 (--hof-cols: 2~6) */
+    .hof-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--hof-cols, 3), minmax(0, 1fr));
+      gap: clamp(26px, 3.2vw, 44px) clamp(18px, 2.4vw, 34px);
+    }
+    .hof-col-block {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: opacity 0.7s var(--ease-smooth), transform 0.78s var(--ease-smooth);
+      min-width: 0;
+    }
+    .hof-col-block.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    .hof-cat-heading {
+      font-size: clamp(15px, 1.35vw, 20px);
+      font-weight: 800;
+      color: #3A3D42;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid rgba(17, 17, 17, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .hof-student-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    /* 학생 1명당 작은 글자 1줄 통일 */
+    .hof-student-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: background-color 0.22s ease, transform 0.22s ease;
+    }
+    .hof-student-row:hover {
+      background: rgba(255, 255, 255, 0.62);
+      transform: translateX(3px);
+    }
+    .hof-student-one-line {
+      font-size: clamp(11.5px, 0.92vw, 13.5px);
+      font-weight: 800;
+      color: #111316;
+      letter-spacing: -0.025em;
+      line-height: 1.45;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      width: 100%;
+    }
+    .hof-student-one-line .hof-s-school {
+      font-weight: 600;
+      color: #555961;
+      font-size: 0.92em;
+    }
+    body.admin-edit-mode .hof-student-one-line {
+      white-space: normal;
+      overflow: visible;
+    }
+
+    /* 학원소개 우측 플로팅 퀵 앵커 독 */
+    .phil-floating-nav {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 142;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(15, 18, 26, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+      padding: 8px 6px;
+      transition: opacity 0.3s ease;
+    }
+    .phil-floating-nav.nav-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .phil-nav-pill {
+      padding: 7px 11px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+      white-space: nowrap;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .phil-nav-pill:hover { color: #ffffff; background: rgba(255, 255, 255, 0.12); }
+    .phil-nav-pill.active { background: #FF6B00; color: #ffffff; }
 
     /* ================= 커리큘럼 디지털 쇼룸 ================= */
     #currShowroomStage {
@@ -656,7 +1237,7 @@
     }
     .curr-rail-dot.active { height: 26px; background: #FF6B00; }
 
-    /* ================= 입학절차 수직 커튼 스크롤 쇼룸 ================= */
+    /* ================= 입학절차 수직 커튼 스크롤 쇼룸 (우측 투명 상자바 제거 + 5분할 계단식 위치) ================= */
     #admCurtainStage {
       position: relative;
       width: 100%;
@@ -679,9 +1260,10 @@
     .adm-curtain-media { width: 100%; height: 100%; object-fit: cover; object-position: center; will-change: transform; }
     .adm-curtain-dim { position: absolute; inset: 0; pointer-events: none; }
 
+    /* 좌측 상단 타이틀 (1/5 지점 기준) */
     .adm-fixed-left-block {
       position: absolute;
-      top: clamp(118px, 16vh, 175px);
+      top: 16vh;
       left: clamp(28px, 5.5vw, 96px);
       z-index: 30;
       max-width: 380px;
@@ -705,45 +1287,28 @@
     }
     .adm-center-step-slide.is-current { pointer-events: auto; }
 
-    .adm-right-glass-dock {
+    /* 우측 설명 영역: 투명 상자바 제거 + 좌측 제목 데칼코마니 높이에서 왼쪽으로 글자 5마디 안쪽 + 1/5~5/5 계단 이동 */
+    .adm-right-step-dock {
       position: absolute;
-      right: clamp(24px, 5.5vw, 96px);
-      top: 50%;
-      transform: translateY(-50%);
-      width: min(390px, calc(100vw - 48px));
+      right: calc(clamp(28px, 5.5vw, 96px) + 5.2em);
+      top: 16vh;
+      width: min(370px, calc(100vw - 48px));
       z-index: 35;
+      will-change: top, transform;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
     }
-    .adm-glass-card {
+    .adm-open-desc-box {
       position: relative;
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 14px;
-      padding: clamp(26px, 3vw, 38px);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      background: transparent;
+      border: none;
+      padding: 0;
       color: #ffffff;
-      overflow: hidden;
     }
     .adm-glass-slide-body {
-      min-height: 150px;
+      min-height: 120px;
       transition: opacity 0.32s var(--ease-smooth), transform 0.32s var(--ease-smooth);
     }
-    .adm-glass-slide-body.switching { opacity: 0; transform: translateY(12px); }
-    .adm-glass-nav-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .adm-glass-nav-btn:hover { background: #FF6B00; border-color: #FF6B00; transform: scale(1.06); }
+    .adm-glass-slide-body.switching { opacity: 0; transform: translateY(10px); }
 
     /* 좌우 빠른 넘김 화살표 */
     .stage-arrow {
@@ -771,22 +1336,6 @@
     .main-viewport { width: 100%; min-height: 100vh; transition: opacity 0.35s var(--ease-smooth); }
     .subpage-top-offset { padding-top: var(--topbar-h); }
     .subpage-generous-bottom { padding-bottom: 240px !important; }
-
-    .unified-category-sidebar {
-      position: sticky; top: 118px; background: #F8F8F8; padding: 20px; border-radius: 10px;
-      border: 1px solid #E5E7EB; height: fit-content; transition: top 0.35s var(--ease-smooth);
-    }
-    .unified-side-item {
-      cursor: pointer; padding: 10px 12px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;
-      font-size: 13px; transition: transform 0.3s var(--ease-smooth), background-color 0.25s ease, color 0.25s ease;
-    }
-    .unified-side-item:hover { transform: translateX(6px); }
-    .unified-side-item.active { background-color: #262626; color: #ffffff; font-weight: 700; }
-    .unified-side-item.inactive { color: #404040; }
-    .unified-side-item.inactive:hover { background-color: #ffffff; color: #000000; }
-
-    .philosophy-slide-up { animation: philosophySlideUp 0.65s var(--ease-smooth) forwards; }
-    @keyframes philosophySlideUp { from { opacity: 0; transform: translateY(42px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ================= 캠퍼스 메인: 가로 확장형 아코디언 쇼룸 ================= */
     #view-campus {
@@ -965,40 +1514,6 @@
 
     .campus-acc-bottom-inner { min-width: 260px; }
 
-    @media (max-width: 960px) {
-      .campus-acc-stage {
-        flex-direction: column;
-        height: auto;
-        gap: 10px;
-      }
-      .campus-acc-card {
-        flex: none !important;
-        height: 86px;
-        transition: height 0.58s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
-      }
-      .campus-acc-card.is-expanded { height: 380px; }
-      .campus-acc-head {
-        padding: 18px 20px 0;
-        align-items: flex-start;
-        text-align: left;
-        transform-origin: top left;
-      }
-      .campus-acc-bottom { padding: 18px 20px; }
-      .campus-acc-bottom-inner { min-width: 0; }
-    }
-
-    .history-timeline-wrap { position: relative; padding-left: 36px; }
-    .history-timeline-wrap::before { content: ''; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 1px; border-left: 1.5px dashed #CBD5E1; }
-    .history-year-block { position: relative; padding-bottom: 48px; opacity: 0; transform: translateY(26px); animation: historySmoothFlow 0.7s var(--ease-smooth) forwards; }
-    .history-year-block:last-child { padding-bottom: 8px; }
-    .history-node-dot {
-      position: absolute; left: -35px; top: 10px; width: 11px; height: 11px; border-radius: 9999px;
-      background: #ffffff; border: 2.5px solid #0F3E66; box-shadow: 0 0 0 4px rgba(15, 62, 102, 0.08);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .history-year-block:hover .history-node-dot { border-color: var(--brand-orange); transform: scale(1.25); }
-    @keyframes historySmoothFlow { to { opacity: 1; transform: translateY(0); } }
-
     .btn-outline-fill {
       position: relative; border: 1px solid rgba(255,255,255,0.45); color: #fff;
       overflow: hidden; z-index: 1; transition: border-color 0.35s ease, color 0.35s ease;
@@ -1044,7 +1559,7 @@
       font-weight: 800; font-size: 12px;
     }
 
-    /* 관리자 전용 스튜디오 패널 공통 (3D 책장 / 커리큘럼 쇼룸 / 입학절차 커튼) */
+    /* 관리자 전용 스튜디오 패널 공통 */
     .admin-studio-panel {
       position: fixed;
       top: 204px;
@@ -1067,19 +1582,32 @@
       .top-nav-item { font-size: 12px; white-space: nowrap; }
     }
 
+    @media (max-width: 960px) {
+      .phil-top-stage { height: auto; overflow: visible; display: flex; flex-direction: column; }
+      .phil-ceo-layer, .phil-mission-layer { position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto !important; min-height: auto; padding-bottom: 48px; }
+      .phil-goal-stage-layer, .phil-goal-step-dots { display: none !important; }
+      .phil-goal-mobile-stack { display: block; }
+      .phil-ceo-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 16px; }
+      .phil-ceo-portrait-col { height: auto; }
+      .phil-ceo-portrait-img { height: 260px; max-width: 280px; border-radius: 16px; }
+      .phil-floating-nav { display: none; }
+      .hof-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hof-pillar-side { opacity: 0.4; width: 28vw; }
+
+      .campus-acc-stage { flex-direction: column; height: auto; gap: 10px; }
+      .campus-acc-card { flex: none !important; height: 86px; transition: height 0.58s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease; }
+      .campus-acc-card.is-expanded { height: 380px; }
+      .campus-acc-head { padding: 18px 20px 0; align-items: flex-start; text-align: left; transform-origin: top left; }
+      .campus-acc-bottom { padding: 18px 20px; }
+      .campus-acc-bottom-inner { min-width: 0; }
+    }
+
     @media (max-width: 900px) {
-      .curr-course-inner {
-        grid-template-columns: 1fr;
-        padding: calc(var(--topbar-h) + 12px) 22px 96px;
-        gap: 18px;
-        align-content: center;
-      }
+      .curr-course-inner { grid-template-columns: 1fr; padding: calc(var(--topbar-h) + 12px) 22px 96px; gap: 18px; align-content: center; }
       .curr-course-visual-wrap { height: clamp(220px, 34vh, 320px); }
       .adm-fixed-left-block { top: 94px; left: 20px; max-width: calc(100vw - 40px); }
-      .adm-right-glass-dock {
-        top: auto; bottom: 26px; left: 20px; right: 20px; width: auto; transform: none;
-      }
-      .adm-glass-slide-body { min-height: 96px; }
+      .adm-right-step-dock { top: auto !important; bottom: 28px; left: 20px; right: 20px; width: auto; transform: none !important; }
+      .adm-glass-slide-body { min-height: 90px; }
     }
 
     @media (max-width: 768px) {
@@ -1089,11 +1617,11 @@
       .top-nav-item { font-size: 11px; }
       .quick-item span { display: none; }
       .quick-item { padding: 0 6px !important; }
-      .unified-category-sidebar { position: relative; top: 0; }
       .book-viewport { width: 96vw; height: calc(100vh - 104px); }
       .book-hardcover-frame { padding: 6px 8px 8px 8px; }
       .stage-arrow, .curr-progress-rail { display: none; }
       .admin-studio-panel { width: calc(100vw - 24px); right: 12px; top: 120px; }
+      .hof-cat-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1163,6 +1691,10 @@
 
           <button onclick="toggleBookStudioPanel()" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold transition flex items-center gap-1.5 shadow cursor-pointer">
             <i class="fa-solid fa-book-open"></i> 3D 책장 설정
+          </button>
+
+          <button onclick="togglePhilStudioPanel()" class="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-black font-extrabold transition flex items-center gap-1.5 shadow cursor-pointer">
+            <i class="fa-solid fa-building-columns"></i> 학원소개 설정
           </button>
 
           <button onclick="toggleCurrStudioPanel()" class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-black font-extrabold transition flex items-center gap-1.5 shadow cursor-pointer">
@@ -1357,7 +1889,21 @@
     </div>
   </aside>
 
-  <!-- [스튜디오 2] 커리큘럼 쇼룸 초정밀 관리자 스튜디오 -->
+  <!-- [스튜디오 2] 학원소개 통합 쇼룸 관리자 스튜디오 -->
+  <aside id="philStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs" style="border-color: #34D399;">
+    <div class="flex items-center justify-between border-b border-white/15 pb-3">
+      <div>
+        <h3 class="text-sm font-extrabold text-emerald-400"><i class="fa-solid fa-building-columns mr-1.5"></i>학원소개 쇼룸 초정밀 설정</h3>
+        <p class="text-[11px] text-neutral-400 mt-0.5">CEO 사진·MISSION·학습목표 1~4·연혁·명예전당 열 설정</p>
+      </div>
+      <button onclick="togglePhilStudioPanel()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="philStudioTabs" class="grid grid-cols-4 gap-1"></div>
+    <div id="philStudioControlsBody" class="space-y-3"></div>
+  </aside>
+
+  <!-- [스튜디오 3] 커리큘럼 쇼룸 초정밀 관리자 스튜디오 -->
   <aside id="currStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs" style="border-color: #38BDF8;">
     <div class="flex items-center justify-between border-b border-white/15 pb-3">
       <div>
@@ -1378,12 +1924,12 @@
     <div id="currStudioControlsBody" class="space-y-3"></div>
   </aside>
 
-  <!-- [스튜디오 3] 입학절차 수직 커튼 슬라이드 초정밀 관리자 스튜디오 -->
+  <!-- [스튜디오 4] 입학절차 수직 커튼 슬라이드 초정밀 관리자 스튜디오 -->
   <aside id="admStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs" style="border-color: #A78BFA;">
     <div class="flex items-center justify-between border-b border-white/15 pb-3">
       <div>
         <h3 class="text-sm font-extrabold text-violet-300"><i class="fa-solid fa-sliders mr-1.5"></i>입학절차 커튼 쇼룸 설정</h3>
-        <p class="text-[11px] text-neutral-400 mt-0.5">단계별 배경 사진/동영상·어두움·글래스 카드·순서 실시간 제어</p>
+        <p class="text-[11px] text-neutral-400 mt-0.5">단계별 배경 사진/동영상·어두움·포인트색·순서 실시간 제어</p>
       </div>
       <button onclick="toggleAdmStudioPanel()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -1399,14 +1945,15 @@
     <div id="admStudioControlsBody" class="space-y-3"></div>
   </aside>
 
-  <!-- 1단 상단 헤더: 좌측 2배 확대 로고 / 중앙 5대 메뉴 / 우측 퀵메뉴 / 평상시 완전 투명 -->
+  <!-- 1단 상단 헤더: 좌측 로고(어두운 배경 자동 흰색 전환) / 중앙 5대 메뉴 / 우측 상담신청 -->
   <header id="topFixedBar" class="top-fixed-bar" onmouseleave="hideMegaMenu()">
     <div class="header-main-row">
       <div class="top-left-logo-wrap">
         <div class="cursor-pointer flex items-center" onclick="if(!isEditMode) navigateTo('home')">
-          <img id="sidebarLogoImg" src="remove_background.png" alt="탑씨크리트학원 로고" class="object-contain transition-all duration-300" style="width: 360px; max-height: 86px;" onerror="this.style.display='none'; document.getElementById('fallbackSidebarLogo').style.display='flex';" />
-          <div id="fallbackSidebarLogo" style="display:none;" class="items-center gap-2 select-none">
-            <span data-editable="true" data-path="branding.logoMainText" class="fallback-logo-text text-2xl md:text-3xl font-normal tracking-[0.16em]" style="font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;"></span>
+          <img id="sidebarLogoImg" src="remove_background.png" alt="탑씨크리트학원 공식 로고" class="object-contain transition-all duration-300" style="width: 360px; max-height: 86px;" onerror="this.style.display='none'; document.getElementById('fallbackSidebarLogo').style.display='flex';" />
+          <div id="fallbackSidebarLogo" style="display:none;" class="flex-col leading-tight select-none">
+            <span data-editable="true" data-path="branding.logoMainText" class="fallback-logo-text text-xl md:text-2xl font-bold tracking-[0.14em]" style="font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;"></span>
+            <span class="fallback-logo-sub text-[10px] font-bold tracking-wider opacity-90">탑씨크리트 교육(주)</span>
           </div>
         </div>
         <div class="admin-only-control items-center gap-1 ml-1 bg-neutral-900/95 p-1 rounded-lg shadow-lg border border-orange-500/50 z-30" onpointerdown="event.stopPropagation()">
@@ -1424,9 +1971,9 @@
       </div>
 
       <!-- 중앙 5대 대칭 가로 메뉴 바 -->
-      <nav class="header-center-nav" id="topHorizontalNavList"></nav>
+      <nav class="header-center-nav" id="topHorizontalNavList" aria-label="주요 메뉴"></nav>
 
-      <!-- 우측 유틸리티 메뉴 -->
+      <!-- 우측 유틸리티 메뉴 (상담신청) -->
       <div class="flex items-center gap-4 relative z-10">
         <button onclick="openSectionDesignModal('topbar')" class="admin-only-control px-2.5 py-1 bg-neutral-900 text-[#FFB800] text-[10px] font-bold rounded border border-orange-500/40 cursor-pointer">
           <i class="fa-solid fa-palette mr-1"></i>상단바
@@ -1434,10 +1981,6 @@
         <button onclick="if(!isEditMode) navigateTo('consult')" class="quick-item flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
           <i class="fa-regular fa-bell text-xs"></i>
           <span data-editable="true" data-path="branding.quick3">상담신청</span>
-        </button>
-        <button onclick="if(!isEditMode) navigateTo('campus')" class="quick-item flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
-          <i class="fa-solid fa-location-dot text-xs"></i>
-          <span data-editable="true" data-path="branding.quick4">분원안내</span>
         </button>
       </div>
     </div>
@@ -1477,41 +2020,50 @@
       </section>
     </div>
 
-    <!-- 2. 학원 소개 (TOP SECRET) 뷰 -->
-    <div id="view-philosophy" class="view-section subpage-top-offset subpage-generous-bottom hidden min-h-screen flex flex-col bg-white">
-      <div class="px-10 md:px-20 py-4 border-b border-neutral-200 text-xs text-neutral-500 flex items-center gap-3 bg-white">
-        <span class="cursor-pointer hover:text-black font-semibold" onclick="navigateTo('home')">HOME</span>
-        <span>/</span>
-        <span data-editable="true" data-path="philosophy.breadcrumbRoot">TOP SECRET</span>
-        <span>/</span>
-        <span id="topSecretBreadcrumb" class="text-neutral-900 font-bold">인사말</span>
+    <!-- 2. [신규 개편] 학원 소개 1회 휠 = 1단계 풀스테이지 + 얼음 미끄러짐 연혁 + 1줄 통일 신전 명예의 전당 -->
+    <div id="view-philosophy" class="view-section hidden">
+      <!-- 우측 플로팅 퀵 앵커 -->
+      <nav id="philFloatingNav" class="phil-floating-nav nav-hidden" aria-label="학원소개 빠른 이동"></nav>
+
+      <!-- 관리자 빠른 학원소개 쇼룸 설정 버튼 -->
+      <div class="admin-only-control fixed top-[106px] right-6 z-[146] gap-2" onpointerdown="event.stopPropagation()">
+        <button type="button" onclick="togglePhilStudioPanel()" class="px-3.5 py-2 bg-emerald-400 hover:bg-emerald-300 text-black text-xs font-extrabold rounded-xl shadow-lg cursor-pointer flex items-center gap-1.5">
+          <i class="fa-solid fa-building-columns"></i> 학원소개 쇼룸 설정
+        </button>
       </div>
 
-      <div id="philosophyBannerSection" class="relative bg-gradient-to-r from-[#141414] via-[#1F1F1F] to-[#FF6B00] text-white py-14 px-10 md:px-24 overflow-hidden bg-cover bg-center">
-        <div class="admin-only-control absolute top-4 right-6 z-20 gap-2" onpointerdown="event.stopPropagation()">
-          <button type="button" onclick="openSectionDesignModal('philosophyBanner')" class="px-3 py-1.5 bg-black/80 text-[#FFB800] text-xs font-bold rounded border border-orange-500/50 cursor-pointer">
-            <i class="fa-solid fa-image mr-1"></i>상단 배너 사진파일/색상 변경
-          </button>
-        </div>
-        <div data-editable="true" data-path="philosophy.watermark" class="watermark-text absolute -bottom-4 right-6 opacity-10 text-white"></div>
-        <div class="max-w-5xl mx-auto relative z-10">
-          <h1 data-editable="true" data-path="philosophy.bannerTitle" class="text-4xl md:text-5xl font-bold mb-4 text-white tracking-wide"></h1>
-          <p data-editable="true" data-path="philosophy.bannerQuote" class="text-sm md:text-base text-neutral-200 leading-loose whitespace-pre-line mb-4"></p>
-          <div class="flex items-center gap-3 text-xs md:text-sm text-neutral-300 font-medium">
-            <span data-editable="true" data-path="philosophy.ceoSign"></span>
-          </div>
-        </div>
-      </div>
+      <!-- [구간 1·2] 상단 풀스크린 스테이지: 대표 인사말(0) → MISSION(1) → 학습목표 1~4스텝(2~5) 한 번 스크롤에 한 화면씩 전환 -->
+      <section id="philTopStage" class="phil-top-stage">
+        <div id="philCeoLayer" class="phil-ceo-layer"></div>
+        <div id="philMissionLayer" class="phil-mission-layer"></div>
 
-      <div class="flex-1 bg-white text-neutral-900 pt-16 px-6 md:px-16">
-        <div class="max-w-[1520px] mx-auto flex flex-col lg:flex-row items-start justify-center gap-12 lg:gap-14">
-          <div class="w-full lg:w-[220px] shrink-0 unified-category-sidebar">
-            <div class="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-3 px-2" data-editable="true" data-path="philosophy.sideMenuHeading">학원 소개</div>
-            <div class="space-y-1.5" id="topSecretSideTabs"></div>
+        <!-- 학습목표 1~4스텝 좌·우 반대방향 카운터 슬라이드 풀스크린 레이어 -->
+        <div id="philGoalStageLayer" class="phil-goal-stage-layer">
+          <div class="phil-goal-col">
+            <div id="philGoalLeftRail" class="phil-goal-rail"></div>
           </div>
-          <div class="flex-1 max-w-6xl w-full mx-auto flex flex-col items-center justify-start bg-white" id="topSecretTabContent"></div>
+          <div class="phil-goal-col">
+            <div id="philGoalRightRail" class="phil-goal-rail"></div>
+          </div>
         </div>
-      </div>
+
+        <!-- 학습목표 1~4 STEP 미니 인디케이터 -->
+        <div id="philGoalStepDots" class="phil-goal-step-dots"></div>
+
+        <!-- 모바일 열람 및 관리자 편집모드 전용 50:50 세로 스택 -->
+        <div id="philGoalMobileStack" class="phil-goal-mobile-stack"></div>
+      </section>
+
+      <!-- [구간 3] 연혁 (투명 상자바 제거 + 다크 커튼 + 얼음 미끄러짐 관성 스크롤 타임라인) -->
+      <section id="phil-sec-history" class="phil-curtain-section">
+        <div id="philHistoryBgSticky" class="phil-curtain-bg-sticky"></div>
+        <div class="phil-curtain-foreground">
+          <div id="philHistoryForeground" class="max-w-[1440px] mx-auto"></div>
+        </div>
+      </section>
+
+      <!-- [구간 4] 명예의 전당 (클래식 이오니아식 신전 기둥 + 1줄 통일 명단 + 관리자 가변 열 수) -->
+      <section id="phil-sec-honors" class="hof-temple-section"></section>
     </div>
 
     <!-- 3. CURRICULUM 풀스크린 디지털 쇼룸 뷰 -->
@@ -1519,7 +2071,6 @@
       <section id="currShowroomStage">
         <div id="currGridPattern" class="curr-showroom-grid-bg"></div>
 
-        <!-- 좌측 상단 관리자 빠른 쇼룸 스튜디오 열기 -->
         <div class="admin-only-control fixed top-[106px] right-6 z-[146] gap-2" onpointerdown="event.stopPropagation()">
           <button type="button" onclick="toggleCurrStudioPanel()" class="px-3.5 py-2 bg-sky-500 hover:bg-sky-400 text-black text-xs font-extrabold rounded-xl shadow-lg cursor-pointer flex items-center gap-1.5">
             <i class="fa-solid fa-layer-group"></i> 커리큘럼 쇼룸 편집 패널
@@ -1529,18 +2080,13 @@
           </button>
         </div>
 
-        <!-- 전체보기(0번) + 각 교육과정(1~N번) 슬라이드 스택 -->
         <div id="currSlidesContainer" class="relative w-full h-full"></div>
-
-        <!-- 우측 세로 스크롤 인디케이터 -->
         <div id="currProgressRail" class="curr-progress-rail"></div>
-
-        <!-- 하단 플로팅 메뉴 독 -->
         <nav id="currBottomDock" class="curr-bottom-dock"></nav>
       </section>
     </div>
 
-    <!-- 4. CAMPUS 전체 안내 뷰 (가로 확장형 아코디언 쇼룸) -->
+    <!-- 4. CAMPUS 전체 안내 뷰 (가로 확장형 아코디언 쇼룸, 상단바 평소 투명) -->
     <div id="view-campus" class="view-section subpage-top-offset hidden min-h-screen flex flex-col justify-between pb-14">
       <div class="w-full max-w-[1720px] mx-auto px-5 md:px-10 pt-6 pb-4 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-baseline gap-3.5">
@@ -1583,13 +2129,11 @@
       </div>
     </div>
 
-    <!-- 6. 입학절차 (ADMISSION) 수직 커튼 스크롤 쇼룸 뷰 -->
+    <!-- 6. 입학절차 (ADMISSION) 수직 커튼 쇼룸 뷰 (투명 상자바 제거 + 우측 5분할 계단식 위치) -->
     <div id="view-admission" class="view-section hidden">
       <section id="admCurtainStage">
-        <!-- 단계별 풀스크린 배경 사진/동영상 수직 커튼 스택 -->
         <div id="admCurtainBgStack" class="adm-curtain-bg-stack"></div>
 
-        <!-- 관리자 빠른 입학절차 스튜디오 열기 -->
         <div class="admin-only-control fixed top-[106px] right-6 z-[146] gap-2" onpointerdown="event.stopPropagation()">
           <button type="button" onclick="toggleAdmStudioPanel()" class="px-3.5 py-2 bg-violet-400 hover:bg-violet-300 text-black text-xs font-extrabold rounded-xl shadow-lg cursor-pointer flex items-center gap-1.5">
             <i class="fa-solid fa-sliders"></i> 입학절차 슬라이드 설정
@@ -1599,20 +2143,19 @@
           </button>
         </div>
 
-        <!-- 좌측 상단 고정 브랜드 타이틀 -->
+        <!-- 좌측 상단 타이틀 (1/5 기준 높이) -->
         <div class="adm-fixed-left-block">
           <span data-editable="true" data-path="admissionPage.subLabel" class="inline-block text-[11px] font-extrabold tracking-[0.22em] text-[#FFB800] uppercase mb-2.5">ADMISSION PROCESS</span>
           <h1 data-editable="true" data-path="admissionPage.title" class="text-3xl md:text-5xl font-extrabold text-white leading-[1.2] tracking-tight whitespace-pre-line drop-shadow-lg">입학부터 완성까지</h1>
           <p data-editable="true" data-path="admissionPage.desc" class="text-xs md:text-sm text-white/80 mt-3 leading-relaxed whitespace-pre-line"></p>
         </div>
 
-        <!-- 중앙 대형 STEP + 영문 타이틀 -->
         <div id="admCenterTitleWrap" class="adm-center-title-wrap"></div>
 
-        <!-- 우측 반투명 글래스 상세 카드 -->
-        <div class="adm-right-glass-dock">
-          <div id="admGlassCard" class="adm-glass-card space-y-6">
-            <div id="admGlassSlideBody" class="adm-glass-slide-body space-y-3.5">
+        <!-- 우측 설명 영역: 투명 상자바 제거 + 1/5~5/5 스텝별 계단식 수직 배치 -->
+        <div id="admRightStepDock" class="adm-right-step-dock">
+          <div id="admOpenDescBox" class="adm-open-desc-box">
+            <div id="admGlassSlideBody" class="adm-glass-slide-body space-y-3">
               <div class="flex items-center justify-between gap-2">
                 <span id="admGlassStepTag" class="text-xs font-extrabold tracking-widest text-[#FFB800]">STEP 01</span>
                 <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-[#FF6B00] text-[11px] font-bold text-white transition cursor-pointer">
@@ -1620,18 +2163,7 @@
                 </button>
               </div>
               <h3 id="admGlassTitle" data-editable="true" data-path="admissionPage.steps.0.title" class="text-xl md:text-2xl font-extrabold text-white leading-snug"></h3>
-              <p id="admGlassDesc" data-editable="true" data-path="admissionPage.steps.0.desc" class="text-xs md:text-sm text-white/85 leading-[1.85] whitespace-pre-line"></p>
-            </div>
-
-            <div class="pt-4 border-t border-white/20 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <button type="button" onclick="stepAdmCurtain(-1)" class="adm-glass-nav-btn" title="이전 단계"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                <button type="button" onclick="stepAdmCurtain(1)" class="adm-glass-nav-btn" title="다음 단계"><i class="fa-solid fa-chevron-right text-xs"></i></button>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="hidden sm:inline text-[11px] text-white/60"><i class="fa-solid fa-computer-mouse mr-1"></i>스크롤 이동</span>
-                <span id="admGlassCounter" class="text-xs font-bold tracking-widest text-white/95">1 / 5</span>
-              </div>
+              <p id="admGlassDesc" data-editable="true" data-path="admissionPage.steps.0.desc" class="text-xs md:text-sm text-white/90 leading-[1.82] whitespace-pre-line"></p>
             </div>
           </div>
         </div>
@@ -1738,49 +2270,39 @@
     </div>
   </main>
 
-  <!-- 공통 최하단 푸터 -->
+  <!-- 공통 최하단 푸터 (상담신청 영역 제외, 공식 학원 정보 중심 구성) -->
   <footer id="mainFooterSection" class="w-full bg-[#141414] text-white border-t border-neutral-800 relative z-20 bg-cover bg-center">
     <div class="admin-only-control absolute top-4 right-6 z-20" onpointerdown="event.stopPropagation()">
       <button type="button" onclick="openSectionDesignModal('footer')" class="px-3 py-1.5 bg-neutral-800 text-[#FFB800] text-xs font-bold rounded border border-neutral-600 cursor-pointer">
         <i class="fa-solid fa-palette mr-1"></i>푸터 배경/색상 설정
       </button>
     </div>
-    <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12">
-      <div class="lg:col-span-5 p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-neutral-800 flex flex-col justify-center">
-        <h3 data-editable="true" data-path="footer.recruitTitle" class="text-xl font-bold tracking-wider mb-3 text-white"></h3>
-        <p data-editable="true" data-path="footer.recruitPhone" class="text-sm text-neutral-300 mb-6 leading-relaxed"></p>
-        <div class="flex flex-wrap gap-3">
-          <button type="button" onclick="if(!isEditMode) navigateTo('consult')" class="btn-outline-fill px-10 py-3.5 text-xs font-medium inline-flex items-center gap-2 cursor-pointer">
-            <span data-editable="true" data-path="footer.recruitBtnText" onclick="if(isEditMode) event.stopPropagation();"></span>
-          </button>
-        </div>
+    <div class="max-w-[1600px] mx-auto px-10 md:px-20 py-12 md:py-14 flex flex-col justify-center">
+      <h3 data-editable="true" data-path="footer.officeTitle" class="text-lg font-bold tracking-wider mb-4 text-white"></h3>
+      <div class="space-y-1.5 text-xs md:text-sm text-neutral-300 leading-relaxed mb-7">
+        <p data-editable="true" data-path="footer.address"></p>
+        <p data-editable="true" data-path="footer.tel"></p>
+        <p data-editable="true" data-path="footer.company"></p>
+        <p data-editable="true" data-path="footer.bizNum"></p>
+        <p data-editable="true" data-path="footer.ceo"></p>
       </div>
-      <div class="lg:col-span-7 p-10 md:p-16 flex flex-col justify-center">
-        <h3 data-editable="true" data-path="footer.officeTitle" class="text-lg font-bold tracking-wider mb-4 text-white"></h3>
-        <div class="space-y-1.5 text-xs md:text-sm text-neutral-300 leading-relaxed mb-6">
-          <p data-editable="true" data-path="footer.address"></p>
-          <p data-editable="true" data-path="footer.tel"></p>
-          <p data-editable="true" data-path="footer.company"></p>
-          <p data-editable="true" data-path="footer.bizNum"></p>
-          <p data-editable="true" data-path="footer.ceo"></p>
+      <div class="pt-5 border-t border-neutral-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex gap-4 text-xs text-neutral-400">
+          <span data-editable="true" data-path="footer.termsText" class="cursor-pointer hover:text-white"></span>
+          <span>|</span>
+          <span data-editable="true" data-path="footer.privacyPolicyText" class="cursor-pointer hover:text-white font-semibold text-white"></span>
         </div>
-        <div class="pt-5 border-t border-neutral-800 flex flex-wrap items-center justify-between gap-4">
-          <div class="flex gap-4 text-xs text-neutral-400">
-            <span data-editable="true" data-path="footer.termsText" class="cursor-pointer hover:text-white"></span>
-            <span>|</span>
-            <span data-editable="true" data-path="footer.privacyPolicyText" class="cursor-pointer hover:text-white font-semibold text-white"></span>
-          </div>
-          <p data-editable="true" data-path="footer.copyright" onclick="if(!isEditMode) handleTopBarAuthClick()" title="관리자 로그인" class="text-xs text-neutral-500 hover:text-neutral-300 cursor-pointer transition select-none"></p>
-        </div>
+        <!-- Copyright 클릭 시 관리자 로그인 화면 이동 -->
+        <p data-editable="true" data-path="footer.copyright" onclick="if(!isEditMode) handleTopBarAuthClick()" title="관리자 로그인" class="text-xs text-neutral-500 hover:text-neutral-300 cursor-pointer transition select-none"></p>
       </div>
     </div>
   </footer>
-<!-- 자바스크립트: 클라우드 DB 동기화 + 3D 책장 + 커리큘럼 쇼룸 + 입학절차 커튼 + 캠퍼스 아코디언 통합 CMS -->
+<!-- 자바스크립트: 클라우드 DB 동기화 + 1단계 전환 학원소개 쇼룸 + 얼음 미끄러짐 연혁 + 3D 책장 + 커리큘럼 + 입학절차 5분할 커튼 + 캠퍼스 아코디언 통합 CMS -->
   <script>
     const DEFAULT_SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
     const EMBEDDED_SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOIvZjWUE7WAA_64jh6-gN";
     const DB_ROW_ID = "topsecret_main_config";
-    const LOCAL_STORAGE_KEY = "topsecret_site_data_cloud_v13_campus_acc";
+    const LOCAL_STORAGE_KEY = "topsecret_site_data_cloud_v17_phil_steps4";
 
     try { localStorage.removeItem("topsecret_supabase_key"); } catch (e) {}
 
@@ -1882,7 +2404,6 @@
         logoMainText: "TOP SECRET",
         globalFont: "'Pretendard', sans-serif",
         quick3: "상담신청",
-        quick4: "분원안내",
         topbarBgColor: "",
         defaultDetailLink: "https://blog.naver.com/topsecret_edu",
         defaultConsultLink: ""
@@ -2019,7 +2540,6 @@
       },
       sectionDesigns: {
         footer: { bgColor: "#141414", bgImage: "" },
-        philosophyBanner: { bgColor: "#141414", bgImage: "" },
         campusMain: { bgColor: "#052058" }
       },
       styles: {
@@ -2073,14 +2593,13 @@
           subs: []
         }
       ],
-      // 입학절차 수직 커튼 쇼룸 데이터
+      // 입학절차 수직 커튼 쇼룸 데이터 (우측 투명 상자바 제거 + 1/5~5/5 계단식 배치)
       admissionPage: {
         breadcrumb: "입학절차",
         subLabel: "ADMISSION PROCESS",
         title: "입학부터 완성까지",
         desc: "체계적인 5단계 사전 진단과 1:1 심층 상담으로\n우리 아이만의 완벽한 학습 로드맵을 설계합니다.",
         btnText: "상담신청",
-        glassOpacity: 0.16,
         steps: [
           {
             stepNum: "STEP 01",
@@ -2187,40 +2706,94 @@
           gallery: ["https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"]
         }
       ],
+      // [신규 개편] 학원소개 1회 휠 = 1단계 통합 쇼룸 데이터 (학습목표 1~4스텝 + 명예전당 열 수 조절)
       philosophy: {
         breadcrumbRoot: "TOP SECRET",
-        sideMenuHeading: "학원 소개",
-        watermark: "TOP SECRET",
-        bannerTitle: "TOP SECRET EDUCATION",
-        bannerQuote: "단 한 명의 학생도 포기하지 않고 스스로의 잠재력을 깨우치게 하는 것,\n그것이 탑씨크리트학원이 지키는 교육의 본질입니다.",
-        ceoSign: "탑씨크리트학원 대표원장 드림",
         tabNames: { greeting: "인사말", goal: "학습목표", history: "연혁", honors: "명예의 전당" },
+        _v17Goal4Upgraded: true,
+
+        // Stage 0: CEO 메시지 (0.3초 스르륵 진입)
+        ceoEyebrow: "CEO MESSAGE",
         greetingTitle: "대표 인사말",
         greetingHighlight: "제대로 알고, 스스로 풀며, 끝까지 해내는 힘을 길러줍니다.",
         greetingBody: "안녕하십니까, 탑씨크리트학원을 찾아주신 학부모님과 학생 여러분 환영합니다.\n\n탑씨크리트학원은 획일화된 주입식 교육에서 벗어나 학생 개개인의 학습 속도와 이해도를 정밀하게 진단하는 1:1 맞춤 교육을 실천하고 있습니다.\n\n단순히 문제를 많이 푸는 것이 아니라, 개념의 원리를 스스로 설명할 수 있는 완전학습을 통해 흔들리지 않는 실력과 자기주도적 학습 습관을 완성합니다.",
-        purposeLabel: "탑씨크리트 3대 핵심 학습목표",
-        purposeDesc: "학생 스스로 개념을 설명할 수 있을 때까지 빈틈없는 메타인지 완전학습을 구현합니다.",
-        circle1Title: "01. 제대로 이해", circle1: "원리 중심의\n개념 완전 체화", circle1Desc: "단순 암기가 아닌 백지 복습과 역질문을 통해 개념의 뿌리까지 완벽히 이해합니다.",
-        circle2Title: "02. 스스로 풀기", circle2: "자기주도적\n문제해결력 완성", circle2Desc: "강사의 풀이를 구경하는 수업이 아니라 학생 스스로 손으로 풀어내는 힘을 키웁니다.",
-        circle3Title: "03. 끝까지 해내기", circle3: "오답 제로화\n밀착 책임 관리", circle3Desc: "틀린 문제는 유사 변형 문제까지 완벽히 정복할 때까지 1:1로 끝까지 책임집니다.",
+        ceoSign: "탑씨크리트 교육(주) 대표원장 드림",
+        ceoImg: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85",
+
+        // Stage 1: OUR MISSION 중앙 멘트 (관리자 직접 수정 가능)
+        missionEyebrow: "OUR MISSION",
+        missionTitle: "배움은 펼치고, 생각은 더하고,\n학생의 내일을 풍요롭게.",
+        missionSub: "단 한 명의 학생도 포기하지 않고 스스로의 잠재력을 깨우는 것이 탑씨크리트 교육의 본질입니다.",
+
+        // Stage 2~5: 학습목표 1스텝 ~ 4스텝 (반대방향 카운터 모션)
+        goalItems: [
+          {
+            engLabel: "STEP 01 · LOGICAL THINKING",
+            title: "왜? 라고 묻고\n스스로 증명하는 논리적 사고력.",
+            sub: "영재적 사고의 첫걸음, 원리를 파고드는 탐구 습관",
+            desc: "정답을 외우는 공부가 아닌 문제의 본질과 조건을 스스로 해석하고 논리적으로 설명하는 메타인지 사고 훈련을 실천합니다.",
+            media: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=85",
+            accentColor: "#FF6B00"
+          },
+          {
+            engLabel: "STEP 02 · CONCEPT STRUCTURING",
+            title: "스마트하고 새로운\n개념 구조화 완전학습.",
+            sub: "단원 간 연결고리를 꿰뚫는 백지 복습과 개념 체화",
+            desc: "파편화된 공식 암기에서 벗어나 초·중·고 교육과정의 핵심 개념을 한눈에 구조화하고, 백지 테스트로 개념의 빈틈을 완전히 메웁니다.",
+            media: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1400&q=85",
+            accentColor: "#FF6B00"
+          },
+          {
+            engLabel: "STEP 03 · PRACTICAL MASTERY",
+            title: "오답 제로화,\n실전 만점을 완성하는 응용력.",
+            sub: "취약 유형 정밀 진단과 유사·변형 무한 클리닉 시스템",
+            desc: "틀린 문항의 사고 오류를 정확히 짚어내고 쌍둥이 변형 문항과 고난도 심화 문제까지 완벽히 정복해 어떤 시험에서도 흔들리지 않는 실력을 만듭니다.",
+            media: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1400&q=85",
+            accentColor: "#FF6B00"
+          },
+          {
+            engLabel: "STEP 04 · SELF-DIRECTED ACHIEVEMENT",
+            title: "스스로 목표를 세우고\n끝까지 해내는 자기주도 성취.",
+            sub: "입시 성공을 넘어 평생을 이끄는 공부의 힘 완성",
+            desc: "1:1 전담 코칭과 주간 성취도 피드백을 통해 스스로 계획하고 끝까지 완수하는 자기주도 학습 습관과 최상위권 도약의 자신감을 길러줍니다.",
+            media: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85",
+            accentColor: "#FF6B00"
+          }
+        ],
+
+        // 연혁 (투명 상자바 제거 + 얼음 미끄러짐 연속 타임라인)
+        historyEyebrow: "OUR HISTORY",
         historyTitle: "학원연혁",
-        historySub: "지역 교육의 기준을 세우며 끊임없이 성장해 온 탑씨크리트학원의 발자취입니다.",
-        historySideImg: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
-        historySideCaption: "행복하게 배우며 나만의 꿈을 키우는 탑씨크리트",
+        historySub: "지역 교육의 기준을 세우며 끊임없이 성장해 온\n탑씨크리트학원의 발자취입니다.",
+        historyBgMedia: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85",
+        historyDimOpacity: 0.62,
         historyList: [
           { year: "2026", month: "03", title: "신불당 캠퍼스 확장 및 스마트 학습시스템 구축", content: "전 지점 통합 인트라넷 및 1:1 맞춤 오답 관리 플랫폼 고도화" },
-          { year: "2025", month: "03", title: "천안·아산 직영 캠퍼스 체제 확립", content: "불당본원, 두정원, 아산원, 모종원, 음봉원, 둔포원 교육 네트워크 완성" },
+          { year: "2025", month: "03", title: "천안·아산 직영 캠퍼스 체제 확립", content: "불당본원, 두정원, 아산원, 모종원, 음봉원, 둔포원, 배방원, 탕정원 교육 네트워크 완성" },
           { year: "2024", month: "01", title: "고교학점제 및 대입 수시·정시 전문 컨설팅 센터 출범", content: "매 학기 기출분석 설명회 개최 및 지역 명문고 내신 1등급 다수 배출" },
           { year: "2022", month: "03", title: "탑씨크리트학원 개원 및 1:1 초밀착 코칭 시스템 도입", content: "학생 중심의 메타인지 완전학습 커리큘럼 런칭" }
         ],
+
+        // 명예의 전당 (클래식 신전 기둥 + 1줄 통일 명단 + 관리자 가변 열 수)
+        honorsSubTitle: "2026학년도 입시·정기평가 우수",
         honorsTitle: "명예의 전당",
-        honorsSub: "탑씨크리트학원과 함께 꿈을 이룬 자랑스러운 학생들의 합격을 진심으로 축하합니다.",
+        honorsRegionTitle: "천안 · 아산 탑씨크리트",
+        honorsWatermark: "TOP SECRET",
+        honorsBgImg: "",
+        honorsColumns: 3,
+        honorsSub: "탑씨크리트학원과 함께 꿈을 이룬 자랑스러운 학생들을 소개합니다.",
         honorsList: [
-          { year: "2026", category: "2026 대입 수시", targetUniv: "서울대학교", targetDept: "컴퓨터공학부 합격", studentSchool: "천안 불당고", studentGrade: "고3 김O현", note: "3년 연속 전교권 유지 · 일반전형 합격" },
-          { year: "2026", category: "2026 의치한약수", targetUniv: "연세대학교", targetDept: "의예과 합격", studentSchool: "천안 북일고", studentGrade: "고3 이O준", note: "수능 수학·영어 만점 및 최상위권 이수" },
-          { year: "2026", category: "2026 대입 정시", targetUniv: "고려대학교", targetDept: "경영대학 합격", studentSchool: "천안 두정고", studentGrade: "고3 박O서", note: "수학 3등급에서 1등급 만점 수직 상승" },
-          { year: "2026", category: "특목·자사고 합격", targetUniv: "충남과학고", targetDept: "영재·특목전형 합격", studentSchool: "불당중학교", studentGrade: "중3 최O우", note: "영재반 심화 수학·과학 커리큘럼 수료" },
-          { year: "2026", category: "2026 대입 수시", targetUniv: "성균관대학교", targetDept: "반도체시스템공학과", studentSchool: "아산고등학교", studentGrade: "고3 한O민", note: "내신 전 과목 1등급대 도약 및 SKY반 수료" }
+          { year: "2026", category: "SKY · 의치한", targetUniv: "서울대", targetDept: "컴퓨터공학부", studentSchool: "불당고", studentGrade: "김O현", note: "일반전형 합격" },
+          { year: "2026", category: "SKY · 의치한", targetUniv: "연세대", targetDept: "의예과", studentSchool: "북일고", studentGrade: "이O준", note: "정시 합격" },
+          { year: "2026", category: "SKY · 의치한", targetUniv: "고려대", targetDept: "경영대학", studentSchool: "두정고", studentGrade: "박O서", note: "수시 합격" },
+          { year: "2026", category: "주요 명문대", targetUniv: "성균관대", targetDept: "반도체시스템", studentSchool: "아산고", studentGrade: "한O민", note: "최초 합격" },
+          { year: "2026", category: "주요 명문대", targetUniv: "한양대", targetDept: "미래자동차", studentSchool: "월봉고", studentGrade: "정O윤", note: "학종 합격" },
+          { year: "2026", category: "특목 · 자사고", targetUniv: "충남과학고", targetDept: "영재·특목", studentSchool: "불당중", studentGrade: "최O우", note: "최종 합격" },
+          { year: "2026", category: "특목 · 자사고", targetUniv: "충남삼성고", targetDept: "자사고전형", studentSchool: "탕정중", studentGrade: "윤O아", note: "최종 합격" },
+          { year: "2026", category: "고등 내신 1등급", targetUniv: "전교 1등", targetDept: "수학·영어", studentSchool: "불당고2", studentGrade: "강O훈", note: "100점" },
+          { year: "2026", category: "고등 내신 1등급", targetUniv: "수학 1등급", targetDept: "서술형만점", studentSchool: "북일여1", studentGrade: "서O연", note: "만점" },
+          { year: "2026", category: "중등 내신 만점", targetUniv: "영·수 100점", targetDept: "전과목 올A", studentSchool: "불당중3", studentGrade: "조O빈", note: "기말만점" },
+          { year: "2026", category: "초등 영재반", targetUniv: "경시 금상", targetDept: "심화 우수", studentSchool: "불무초6", studentGrade: "임O호", note: "영재수료" }
         ]
       },
       // 커리큘럼 디지털 쇼룸 데이터
@@ -2344,9 +2917,6 @@
         pageDesc: "희망하시는 탑씨크리트학원 분원의 직통 전화번호 및 온라인 상담 예약 링크 안내입니다. 모든 번호와 문구·링크를 자유롭게 수정하실 수 있습니다."
       },
       footer: {
-        recruitTitle: "ADMISSION & CONSULTATION",
-        recruitPhone: "입학 상담 문의 : 041-555-0001 (평일 14:00 ~ 22:00)",
-        recruitBtnText: "상담신청 바로가기",
         officeTitle: "ACADEMY INFO",
         address: "충청남도 천안시 서북구 불당동",
         tel: "대표전화 : 041-555-0001",
@@ -2381,21 +2951,36 @@
     let bookAdmAnimTimer = null;
     let bookCampusPreviewIdx = 0;
 
-    // 2) 커리큘럼 디지털 쇼룸 상태 변수
+    // 2) 학원소개 1회 휠 = 1단계 전환 & 연혁 얼음 미끄러짐(Ice-Glide) 상태 변수
+    // Stage Index: 0 = 대표 인사말, 1 = OUR MISSION, 2 ~ (1 + goalItems.length) = 학습목표 1스텝~4스텝
+    let currentPhilStudioTab = "greeting";
+    let philObserver = null;
+    let philStageTarget = 0;
+    let philStageRender = 0;
+    let currentPhilStageIdx = 0;
+    let philWheelLockUntil = 0;
+    let philLastStageReachedAt = 0;
+    let philIceScrollTargetY = 0;
+    let philIceScrollRenderY = 0;
+    let philIceScrollActive = false;
+    let philSmoothScrollY = 0;
+    let philActiveSectionKey = "greeting";
+
+    // 3) 커리큘럼 디지털 쇼룸 상태 변수
     let currTargetProgress = 0;
     let currRenderProgress = 0;
     let currentCurrSlideIdx = 0;
     let currSnapTimer = null;
     let currLastSlideReachedAt = 0;
 
-    // 3) 입학절차 수직 커튼 쇼룸 상태 변수
+    // 4) 입학절차 수직 커튼 쇼룸 상태 변수
     let admTargetProgress = 0;
     let admRenderProgress = 0;
     let currentAdmStepIdx = 0;
     let admSnapTimer = null;
     let admLastStepReachedAt = 0;
 
-    // 4) 캠퍼스 가로 확장형 아코디언 상태 변수
+    // 5) 캠퍼스 가로 확장형 아코디언 상태 변수
     let activeCampusAccordionIdx = 0;
 
     let currentViewId = "home";
@@ -2447,7 +3032,7 @@
       if (isVideoMediaUrl(safeUrl)) {
         return `<video src="${safeUrl}" class="${className}" style="${styleStr}" autoplay muted loop playsinline onerror="this.outerHTML='<img src=\\'${fallbackImg}\\' class=\\'${className}\\' style=\\'${styleStr}\\' />'"></video>`;
       }
-      return `<img src="${safeUrl}" class="${className}" style="${styleStr}" alt="미디어" onerror="if(this.src!=='${fallbackImg}') this.src='${fallbackImg}';" />`;
+      return `<img src="${safeUrl}" class="${className}" style="${styleStr}" alt="탑씨크리트학원 미디어" onerror="if(this.src!=='${fallbackImg}') this.src='${fallbackImg}';" />`;
     }
 
     function isLightHexColor(hex = "#141414") {
@@ -2484,7 +3069,7 @@
       autoSaveTimer = setTimeout(() => { saveAllChanges(true); }, 380);
     }
 
-    // 클라우드 DB 데이터 안전 병합
+    // 클라우드 DB 데이터 안전 병합 (학습목표 4스텝 자동 보강 & 명예전당 열 수 유지)
     function mergeWithDefaults(saved) {
       const merged = JSON.parse(JSON.stringify(defaultSiteData));
       if (!saved || typeof saved !== "object") return merged;
@@ -2547,6 +3132,54 @@
         });
       }
 
+      // 학원소개 4스텝 학습목표 & 명예의 전당 열 수 안전 병합
+      const defPhil = defaultSiteData.philosophy;
+      const svPhil = saved.philosophy || {};
+      merged.philosophy = { ...defPhil, ...svPhil };
+      if (!merged.philosophy.ceoImg) merged.philosophy.ceoImg = defPhil.ceoImg;
+      if (!merged.philosophy.ceoEyebrow) merged.philosophy.ceoEyebrow = defPhil.ceoEyebrow;
+      if (!merged.philosophy.missionEyebrow) merged.philosophy.missionEyebrow = defPhil.missionEyebrow;
+      if (!merged.philosophy.missionTitle) merged.philosophy.missionTitle = defPhil.missionTitle;
+      if (!merged.philosophy.missionSub) merged.philosophy.missionSub = defPhil.missionSub;
+      if (!merged.philosophy.historyEyebrow) merged.philosophy.historyEyebrow = defPhil.historyEyebrow;
+      if (!merged.philosophy.historyBgMedia) {
+        merged.philosophy.historyBgMedia = svPhil.historySideImg || defPhil.historyBgMedia;
+      }
+      if (merged.philosophy.historyDimOpacity === undefined) merged.philosophy.historyDimOpacity = defPhil.historyDimOpacity;
+
+      if (!merged.philosophy.honorsSubTitle) merged.philosophy.honorsSubTitle = defPhil.honorsSubTitle;
+      if (!merged.philosophy.honorsTitle) merged.philosophy.honorsTitle = defPhil.honorsTitle;
+      if (!merged.philosophy.honorsRegionTitle) merged.philosophy.honorsRegionTitle = defPhil.honorsRegionTitle;
+      if (!merged.philosophy.honorsWatermark) merged.philosophy.honorsWatermark = defPhil.honorsWatermark;
+      if (merged.philosophy.honorsBgImg === undefined) merged.philosophy.honorsBgImg = defPhil.honorsBgImg;
+      merged.philosophy.honorsColumns = Math.max(2, Math.min(6, Number(svPhil.honorsColumns || 3)));
+
+      if (!Array.isArray(svPhil.goalItems) || svPhil.goalItems.length === 0) {
+        merged.philosophy.goalItems = JSON.parse(JSON.stringify(defPhil.goalItems));
+      } else {
+        const mappedGoals = svPhil.goalItems.map((g, idx) => {
+          const defG = defPhil.goalItems[idx % defPhil.goalItems.length];
+          return {
+            engLabel: defG.engLabel,
+            title: defG.title,
+            sub: defG.sub,
+            desc: defG.desc,
+            media: defG.media,
+            accentColor: "#FF6B00",
+            ...g,
+            media: (g.media && String(g.media).trim()) ? g.media : defG.media
+          };
+        });
+        // 이전 3스텝 저장본에서 넘어온 경우 4스텝 자동 보강
+        if (!svPhil._v17Goal4Upgraded && mappedGoals.length < 4) {
+          for (let i = mappedGoals.length; i < 4; i++) {
+            mappedGoals.push(JSON.parse(JSON.stringify(defPhil.goalItems[i])));
+          }
+        }
+        merged.philosophy.goalItems = mappedGoals;
+      }
+      merged.philosophy._v17Goal4Upgraded = true;
+
       // 커리큘럼 쇼룸 필드 안전 병합
       if (!merged.curriculum) merged.curriculum = JSON.parse(JSON.stringify(defaultSiteData.curriculum));
       merged.curriculum.overview = {
@@ -2578,7 +3211,6 @@
 
       // 입학절차 커튼 쇼룸 필드 안전 병합
       if (!merged.admissionPage) merged.admissionPage = JSON.parse(JSON.stringify(defaultSiteData.admissionPage));
-      if (merged.admissionPage.glassOpacity === undefined) merged.admissionPage.glassOpacity = 0.16;
       if (!Array.isArray(merged.admissionPage.steps) || merged.admissionPage.steps.length === 0) {
         merged.admissionPage.steps = JSON.parse(JSON.stringify(defaultSiteData.admissionPage.steps));
       } else {
@@ -2655,8 +3287,6 @@
         });
       }
 
-      if (!merged.philosophy.historySideImg) merged.philosophy.historySideImg = defaultSiteData.philosophy.historySideImg;
-      if (!merged.philosophy.historySideCaption) merged.philosophy.historySideCaption = defaultSiteData.philosophy.historySideCaption;
       if (!merged.consult) merged.consult = JSON.parse(JSON.stringify(defaultSiteData.consult));
       if (!merged.consult.breadcrumbRoot) merged.consult.breadcrumbRoot = "학원 상담";
       if (!merged.consult.breadcrumbSub) merged.consult.breadcrumbSub = "상담신청";
@@ -2689,7 +3319,13 @@
       }
 
       if (!loadedFromCloud) {
-        const legacyKeys = [LOCAL_STORAGE_KEY, "topsecret_site_data_cloud_v12_showroom", "topsecret_site_data_cloud_v11_book"];
+        const legacyKeys = [
+          LOCAL_STORAGE_KEY,
+          "topsecret_site_data_cloud_v16_phil_motion",
+          "topsecret_site_data_cloud_v15_phil_showroom",
+          "topsecret_site_data_cloud_v14_official",
+          "topsecret_site_data_cloud_v13_campus_acc"
+        ];
         for (const k of legacyKeys) {
           const raw = localStorage.getItem(k);
           if (raw) {
@@ -2917,14 +3553,12 @@
 
     function applySectionDesigns() {
       const sd = siteData.sectionDesigns || {};
-      const map = { footer: "mainFooterSection", philosophyBanner: "philosophyBannerSection" };
-      Object.keys(map).forEach(key => {
-        const el = document.getElementById(map[key]);
-        if (!el || !sd[key]) return;
-        if (sd[key].bgColor) el.style.backgroundColor = sd[key].bgColor;
-        if (sd[key].bgImage) el.style.backgroundImage = `url('${sd[key].bgImage}')`;
-        else if (key !== "philosophyBanner") el.style.backgroundImage = "none";
-      });
+      const footerEl = document.getElementById("mainFooterSection");
+      if (footerEl && sd.footer) {
+        if (sd.footer.bgColor) footerEl.style.backgroundColor = sd.footer.bgColor;
+        if (sd.footer.bgImage) footerEl.style.backgroundImage = `url('${sd.footer.bgImage}')`;
+        else footerEl.style.backgroundImage = "none";
+      }
       if (typeof applyCampusMainBackground === "function") applyCampusMainBackground();
     }
 
@@ -3069,6 +3703,7 @@
       refreshViewBindings();
       if (isEditMode) {
         if (!document.getElementById("bookStudioPanel")?.classList.contains("hidden")) syncBookStudioControls();
+        if (!document.getElementById("philStudioPanel")?.classList.contains("hidden")) syncPhilStudioControls();
         if (!document.getElementById("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
         if (!document.getElementById("admStudioPanel")?.classList.contains("hidden")) syncAdmStudioControls();
       }
@@ -3262,12 +3897,18 @@
     }
 // ================= 관리자 스튜디오 패널 중복 열림 방지 헬퍼 =================
     function closeAllStudioPanels(exceptId = "") {
-      ["bookStudioPanel", "currStudioPanel", "admStudioPanel"].forEach(id => {
+      ["bookStudioPanel", "philStudioPanel", "currStudioPanel", "admStudioPanel"].forEach(id => {
         if (id !== exceptId) document.getElementById(id)?.classList.add("hidden");
       });
     }
 
-    // ================= 상단 중앙 5대 메뉴 및 라우팅 엔진 =================
+    // 학원소개 상단 풀스테이지 최대 인덱스 (0: 대표인사말, 1: MISSION, 2~N+1: 학습목표 1~4스텝)
+    function getPhilMaxTopStage() {
+      const count = siteData.philosophy?.goalItems?.length || 4;
+      return 1 + count;
+    }
+
+    // ================= 상단 중앙 5대 메뉴 및 클린 URL 라우팅 엔진 =================
     function renderDrawerMenus() {
       siteData.menus = (siteData.menus || []).filter(m => stripHtml(m.title) !== "공지사항").slice(0, 5);
       while (siteData.menus.length < 5) {
@@ -3403,7 +4044,7 @@
             ${subsLayoutHtml}
           </div>
           <div class="pt-7 mt-7 border-t border-neutral-100 flex items-center justify-start text-xs text-neutral-400">
-            <span>탑씨크리트 공식 홈페이지</span>
+            <span>탑씨크리트학원 공식 홈페이지</span>
           </div>
         </div>`;
 
@@ -3436,20 +4077,29 @@
       } else navigateTo(sub.view);
     }
 
-    function buildHistoryHash() {
-      if (currentViewId === "philosophy") return `#philosophy-${currentTopSecretTab}`;
-      if (currentViewId === "curriculum") return `#curriculum-${encodeURIComponent(currentCurriculumCat)}`;
-      if (currentViewId === "campus-detail") return `#campus-detail-${currentDetailCampusId}`;
-      return `#${currentViewId}`;
+    // 메인 화면에서는 주소 뒤에 #home이 붙지 않고 깨끗한 기본 도메인 유지
+    function buildHistoryUrl() {
+      const basePath = window.location.pathname || "/";
+      if (currentViewId === "home") return basePath;
+      if (currentViewId === "philosophy") return `${basePath}#philosophy-${currentTopSecretTab}`;
+      if (currentViewId === "curriculum") return `${basePath}#curriculum-${encodeURIComponent(currentCurriculumCat)}`;
+      if (currentViewId === "campus-detail") return `${basePath}#campus-detail-${currentDetailCampusId}`;
+      return `${basePath}#${currentViewId}`;
     }
 
     function isFullscreenShowroomView(viewId) {
       return viewId === "home" || viewId === "curriculum" || viewId === "admission";
     }
 
+    // 홈·학원소개·커리큘럼·입학절차·캠퍼스 메인에서 상단바 투명 연동
+    function isTransparentHeaderView(viewId) {
+      return viewId === "home" || viewId === "philosophy" || viewId === "curriculum" || viewId === "admission" || viewId === "campus";
+    }
+
     function navigateTo(viewId, pushHistory = true) {
       syncEditableElementsToData();
       closeCurrDetailModal();
+      philIceScrollActive = false;
       currentViewId = viewId;
       document.querySelectorAll(".view-section").forEach(sec => sec.classList.add("hidden"));
       const target = document.getElementById(`view-${viewId}`);
@@ -3459,20 +4109,27 @@
       }
       const topBar = document.getElementById("topFixedBar");
       if (topBar) {
-        if (!isFullscreenShowroomView(viewId)) {
+        if (!isTransparentHeaderView(viewId)) {
           topBar.classList.add("header-solid");
           topBar.classList.remove("header-light-bg");
         } else {
           topBar.classList.remove("header-solid", "header-scrolled");
+          if (viewId === "campus" || viewId === "admission") {
+            topBar.classList.remove("header-light-bg");
+          } else if (viewId === "philosophy") {
+            topBar.classList.add("header-light-bg");
+          }
         }
       }
       if (pushHistory) {
-        window.history.pushState({
-          viewId: currentViewId,
-          topSecretTab: currentTopSecretTab,
-          curriculumCat: currentCurriculumCat,
-          campusId: currentDetailCampusId
-        }, "", buildHistoryHash());
+        try {
+          window.history.pushState({
+            viewId: currentViewId,
+            topSecretTab: currentTopSecretTab,
+            curriculumCat: currentCurriculumCat,
+            campusId: currentDetailCampusId
+          }, "", buildHistoryUrl());
+        } catch (e) {}
       }
 
       if (viewId === "home") {
@@ -3505,7 +4162,18 @@
           } else if (viewId === "campus-detail") {
             renderCampusDetail(currentDetailCampusId);
           } else if (viewId === "philosophy") {
+            philStageTarget = 0;
+            philStageRender = 0;
+            currentPhilStageIdx = 0;
+            philIceScrollTargetY = 0;
+            philIceScrollRenderY = 0;
+            philSmoothScrollY = 0;
             renderTopSecretPage();
+            setTimeout(() => {
+              if (typeof triggerPhilCeoEntrance === "function") triggerPhilCeoEntrance();
+              if (typeof updatePhilosophyStageVisuals === "function") updatePhilosophyStageVisuals(0, true);
+              if (typeof updatePhilosophyLowerMotion === "function") updatePhilosophyLowerMotion(0, true);
+            }, 30);
           } else if (viewId === "consult") {
             renderConsultPage();
           } else if (viewId === "login") {
@@ -3526,11 +4194,13 @@
         currentDetailCampusId = event.state.campusId ?? 0;
         navigateTo(event.state.viewId, false);
         if (event.state.viewId === "curriculum") setTimeout(() => selectCurriculumCat(currentCurriculumCat), 40);
+        else if (event.state.viewId === "philosophy") setTimeout(() => scrollToPhilosophySection(currentTopSecretTab, false), 60);
       } else {
         const hash = window.location.hash.replace("#", "");
         if (hash.startsWith("philosophy-")) {
           currentTopSecretTab = hash.replace("philosophy-", "");
           navigateTo("philosophy", false);
+          setTimeout(() => scrollToPhilosophySection(currentTopSecretTab, false), 60);
         } else if (hash.startsWith("curriculum-")) {
           currentCurriculumCat = decodeURIComponent(hash.replace("curriculum-", ""));
           navigateTo("curriculum", false);
@@ -3538,7 +4208,7 @@
         } else if (hash.startsWith("campus-detail-")) {
           currentDetailCampusId = Number(hash.replace("campus-detail-", "")) || 0;
           navigateTo("campus-detail", false);
-        } else if (["home", "philosophy", "curriculum", "campus", "admission", "login", "consult"].includes(hash)) {
+        } else if (["philosophy", "curriculum", "campus", "admission", "login", "consult"].includes(hash)) {
           navigateTo(hash, false);
         } else navigateTo("home", false);
       }
@@ -3638,9 +4308,10 @@
             </div>
           `;
         } else {
+          // 2장 우측 주황바 1/7 축소 + 상하 여유 공간 확장 + 클릭 시 '학습목표'로 이동
           const steps = Array.isArray(sp.steps) && sp.steps.length ? sp.steps : defaultSiteData.bookConfig.spreads[1].steps;
           innerHtml = `
-            <div class="w-full h-full flex flex-col justify-center px-6 sm:px-10 md:px-14 py-10 md:py-14">
+            <div class="w-full h-full flex flex-col justify-center px-6 sm:px-10 md:px-14 py-12 md:py-16">
               <div id="bookStep2List" class="reveal-item reveal-from-bottom reveal-r1 book-step-list">
                 <div class="book-step-line"></div>
                 <div id="bookStep2Orb" class="book-step-orb"></div>
@@ -3648,17 +4319,17 @@
                 ${steps.map((st, sIdx) => `
                   <div class="book-step-row ${sIdx === bookStep2Index ? 'is-active' : ''}" data-step2-idx="${sIdx}"
                        onmouseenter="if(!isEditMode) previewBookStep2(${sIdx})"
-                       onclick="if(!isEditMode) navigateTo('curriculum')">
+                       onclick="if(!isEditMode) openTopSecretTab('goal')">
                     <div class="book-step-dot-slot">
                       <span class="book-step-muted-dot"></span>
                     </div>
                     <div class="book-step-card">
                       <div data-editable="true" data-path="bookConfig.spreads.1.steps.${sIdx}.label"
                            onclick="if(isEditMode) event.stopPropagation();"
-                           class="book-step-num mb-1" style="font-size: clamp(14px, 1.25vw, 19px);">${st.label}</div>
+                           class="book-step-num mb-0.5" style="font-size: clamp(13px, 1.15vw, 17px);">${st.label}</div>
                       <div data-editable="true" data-path="bookConfig.spreads.1.steps.${sIdx}.desc"
                            onclick="if(isEditMode) event.stopPropagation();"
-                           class="book-step-desc leading-snug" style="font-size: clamp(14px, 1.3vw, 20px);">${st.desc}</div>
+                           class="book-step-desc leading-snug" style="font-size: clamp(13px, 1.2vw, 18px);">${st.desc}</div>
                     </div>
                   </div>`).join("")}
               </div>
@@ -3730,6 +4401,7 @@
           `;
         }
       } else if (idx === 3) {
+        // 4번 책장 좌측 1~5단계: 마우스 커서만 올려도 우측 상세·상단 사진 즉시 상호작용
         const steps = Array.isArray(sp.steps) && sp.steps.length >= 5 ? sp.steps : defaultSiteData.bookConfig.spreads[3].steps;
         if (bookAdmSelectedIdx >= steps.length) bookAdmSelectedIdx = 0;
         const activeStep = steps[bookAdmSelectedIdx] || steps[0];
@@ -3751,6 +4423,7 @@
                 <div class="reveal-item reveal-l3 space-y-1.5 relative">
                   ${steps.map((st, sIdx) => `
                     <div class="adm-step-tab ${sIdx === bookAdmSelectedIdx ? 'active' : ''}" data-adm-idx="${sIdx}"
+                         onmouseenter="if(!isEditMode) selectBookAdmissionStep(${sIdx})"
                          onclick="selectBookAdmissionStep(${sIdx})">
                       <span class="adm-step-dot"></span>
                       <span data-editable="true" data-path="bookConfig.spreads.3.steps.${sIdx}.shortTitle"
@@ -4085,7 +4758,7 @@
         rotator.classList.add(goingDown ? "prep-from-down" : "prep-from-up");
         void rotator.offsetWidth;
         rotator.classList.remove("prep-from-down", "prep-from-up");
-      }, 220);
+      }, 170);
     }
 
     function previewBookCampus(cIdx) {
@@ -4323,7 +4996,7 @@
       scheduleAutoCloudSave();
     }
 
-    // ================= 3대 풀스크린 쇼룸(홈 책장 · 커리큘럼 · 입학절차) 통합 휠/터치/애니메이션 루프 =================
+    // ================= 4대 쇼룸 통합 관성(lerp) & 얼음 미끄러짐(Ice-Glide) 애니메이션 루프 =================
     function masterAnimationLoop() {
       if (currentViewId === "home") {
         const diff = bookTargetProgress - bookRenderProgress;
@@ -4333,6 +5006,52 @@
         } else if (bookRenderProgress !== bookTargetProgress) {
           bookRenderProgress = bookTargetProgress;
           updateBook3D(bookRenderProgress);
+        }
+      } else if (currentViewId === "philosophy") {
+        // 1) 상단 풀스테이지(대표 인사말 → MISSION → 학습목표 1~4스텝) 1회 휠 1단계 부드러운 보간
+        const sDiff = philStageTarget - philStageRender;
+        let stageChanged = false;
+        if (Math.abs(sDiff) > 0.0008) {
+          philStageRender += sDiff * 0.11;
+          stageChanged = true;
+        } else if (philStageRender !== philStageTarget) {
+          philStageRender = philStageTarget;
+          stageChanged = true;
+        }
+
+        // 2) 연혁·명예의 전당 구간 얼음 미끄러짐(Ice-Glide) 초저마찰 관성 스크롤
+        if (philIceScrollActive && !isEditMode) {
+          const yDiff = philIceScrollTargetY - philIceScrollRenderY;
+          if (Math.abs(yDiff) > 0.35) {
+            philIceScrollRenderY += yDiff * 0.056;
+            window.scrollTo(0, philIceScrollRenderY);
+          } else {
+            philIceScrollRenderY = philIceScrollTargetY;
+            window.scrollTo(0, philIceScrollRenderY);
+            if (philIceScrollTargetY <= 1) {
+              philIceScrollActive = false;
+              philWheelLockUntil = Date.now() + 340;
+            }
+          }
+        }
+
+        // 3) 하단 연혁 패럴랙스 & 스르르륵 관성 동기화
+        const curWinY = philIceScrollActive ? philIceScrollRenderY : (window.scrollY || window.pageYOffset || 0);
+        const smDiff = curWinY - philSmoothScrollY;
+        let scrollChanged = false;
+        if (Math.abs(smDiff) > 0.2) {
+          philSmoothScrollY += smDiff * 0.072;
+          scrollChanged = true;
+        } else if (philSmoothScrollY !== curWinY) {
+          philSmoothScrollY = curWinY;
+          scrollChanged = true;
+        }
+
+        if (stageChanged && typeof updatePhilosophyStageVisuals === "function") {
+          updatePhilosophyStageVisuals(philStageRender, false);
+        }
+        if ((scrollChanged || stageChanged) && typeof updatePhilosophyLowerMotion === "function") {
+          updatePhilosophyLowerMotion(philSmoothScrollY, false);
         }
       } else if (currentViewId === "curriculum") {
         const diff = currTargetProgress - currRenderProgress;
@@ -4390,14 +5109,85 @@
       );
     }
 
-    // 통합 마우스 휠 제어 (홈 3D 책장 / 커리큘럼 쇼룸 / 입학절차 커튼 쇼룸)
-    window.addEventListener("wheel", (e) => {
-      if (!isFullscreenShowroomView(currentViewId)) return;
-      if (isInteractiveOverlayTarget(e.target)) return;
+    // 스크롤바 직접 드래그·클릭 시 얼음 관성 스크롤 즉시 해제
+    window.addEventListener("pointerdown", () => {
+      if (philIceScrollActive) {
+        philIceScrollActive = false;
+        philIceScrollTargetY = window.scrollY || 0;
+        philIceScrollRenderY = philIceScrollTargetY;
+      }
+    }, { passive: true });
 
+    // 통합 마우스 휠 제어 (홈 책장 · 학원소개 1회 휠 1단계 + 연혁 얼음 미끄러짐 · 커리큘럼 · 입학절차)
+    window.addEventListener("wheel", (e) => {
+      if (isInteractiveOverlayTarget(e.target)) return;
+      const dy = e.deltaY;
+      if (Math.abs(dy) < 2) return;
+
+      // [학원소개 전용] 1회 스크롤 = 1단계 전환(인사말 → MISSION → 학습목표 1~4스텝) + 연혁 얼음 미끄러짐
+      if (currentViewId === "philosophy" && !isEditMode && window.innerWidth > 960) {
+        const now = Date.now();
+        const maxStage = getPhilMaxTopStage();
+        const curScrollY = window.scrollY || window.pageYOffset || 0;
+
+        // 1) 상단 풀스테이지(대표인사말 · MISSION · 학습목표 1~4스텝) 제어
+        if (curScrollY <= 5 && !philIceScrollActive) {
+          if (dy > 0) {
+            if (philStageTarget < maxStage) {
+              e.preventDefault();
+              if (now >= philWheelLockUntil) {
+                philStageTarget = Math.min(maxStage, philStageTarget + 1);
+                philWheelLockUntil = now + 520;
+                if (philStageTarget === maxStage) philLastStageReachedAt = now;
+              }
+              return;
+            }
+            // 학습목표 4스텝 완료 후 아래로 한 번 더 내리면 연혁으로 얼음 미끄러짐 진입
+            e.preventDefault();
+            if (Math.abs(philStageRender - maxStage) > 0.08 || now < philWheelLockUntil || (now - philLastStageReachedAt < 420)) {
+              return;
+            }
+            const histEl = document.getElementById("phil-sec-history");
+            const histTop = histEl ? histEl.offsetTop : window.innerHeight;
+            philIceScrollActive = true;
+            philIceScrollRenderY = curScrollY;
+            philIceScrollTargetY = histTop;
+            philWheelLockUntil = now + 500;
+            return;
+          } else if (dy < 0 && philStageTarget > 0) {
+            e.preventDefault();
+            if (now >= philWheelLockUntil) {
+              philStageTarget = Math.max(0, philStageTarget - 1);
+              philWheelLockUntil = now + 520;
+            }
+            return;
+          }
+          return;
+        }
+
+        // 2) 연혁 & 명예의 전당 구간: 얼음 미끄러짐(Ice-Glide) 초부드러운 관성 스크롤
+        e.preventDefault();
+        if (!philIceScrollActive) {
+          philIceScrollActive = true;
+          philIceScrollRenderY = curScrollY;
+          philIceScrollTargetY = curScrollY;
+        }
+        const maxDocY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const iceDelta = Math.sign(dy) * Math.min(270, Math.abs(dy) * 1.55);
+        philIceScrollTargetY = Math.max(0, Math.min(maxDocY, philIceScrollTargetY + iceDelta));
+
+        // 연혁 최상단 부근에서 위로 휠을 올리면 상단 풀스테이지(학습목표 4스텝)로 스르륵 복귀
+        const histEl = document.getElementById("phil-sec-history");
+        const histTop = histEl ? histEl.offsetTop : window.innerHeight;
+        if (dy < 0 && philIceScrollTargetY < histTop * 0.72) {
+          philIceScrollTargetY = 0;
+        }
+        return;
+      }
+
+      if (!isFullscreenShowroomView(currentViewId)) return;
       const atTop = window.scrollY <= 4;
       if (!atTop) return;
-      const dy = e.deltaY;
 
       if (currentViewId === "home") {
         const maxIdx = TOTAL_BOOK_SPREADS - 1;
@@ -4450,7 +5240,7 @@
       }
     }, { passive: false });
 
-    // 통합 터치 스와이프 제어 (모바일/태블릿 지원)
+    // 통합 터치 스와이프 제어
     let touchStartY = 0;
     let touchStartX = 0;
     window.addEventListener("touchstart", (e) => {
@@ -4526,20 +5316,34 @@
       const hideCurrDock = currentViewId !== "curriculum" || scrolledToFooter;
       document.getElementById("currBottomDock")?.classList.toggle("dock-hidden", hideCurrDock);
       document.getElementById("currProgressRail")?.classList.toggle("dock-hidden", hideCurrDock);
+
+      const hidePhilNav = currentViewId !== "philosophy";
+      document.getElementById("philFloatingNav")?.classList.toggle("nav-hidden", hidePhilNav);
     }
 
     window.addEventListener("scroll", () => {
       const topBar = document.getElementById("topFixedBar");
       const scrollY = window.scrollY || window.pageYOffset;
-      if (topBar) {
-        if (scrollY > 50 || !isFullscreenShowroomView(currentViewId)) topBar.classList.add("header-scrolled");
+      if (currentViewId === "philosophy") {
+        if (!philIceScrollActive) {
+          philIceScrollRenderY = scrollY;
+          philIceScrollTargetY = scrollY;
+        }
+      } else if (topBar) {
+        if (scrollY > 50 || !isTransparentHeaderView(currentViewId)) topBar.classList.add("header-scrolled");
         else topBar.classList.remove("header-scrolled");
       }
       updateShowroomChromes();
     }, { passive: true });
 
     window.addEventListener("resize", () => {
-      requestAnimationFrame(updateBookStep2Indicator);
+      requestAnimationFrame(() => {
+        updateBookStep2Indicator();
+        if (currentViewId === "philosophy") {
+          if (typeof updatePhilosophyStageVisuals === "function") updatePhilosophyStageVisuals(philStageRender, true);
+          if (typeof updatePhilosophyLowerMotion === "function") updatePhilosophyLowerMotion(window.scrollY || 0, true);
+        }
+      });
     });
 // ================= 커리큘럼 디지털 쇼룸 엔진 =================
     function getCurrTotalSlides() {
@@ -4565,7 +5369,7 @@
       const ovAccent = ov.accentColor || "#FF6B00";
       const ovTextColor = ov.textColor || "#FFFFFF";
 
-      // 0번 슬라이드: 전체보기 (풀스크린 사진·동영상 연동, 소개영상 버튼 제외)
+      // 0번 슬라이드: 전체보기 (풀스크린 사진·동영상 연동)
       const overviewSlideHtml = `
         <div class="curr-slide-layer" data-curr-slide="0">
           <div class="curr-overview-wrap" style="background-color:${ov.bgColor || '#14161B'};">
@@ -4601,7 +5405,7 @@
         </div>
       `;
 
-      // 1~N번 슬라이드: 좌측 타이포 + 우측 대형 사진/동영상 (스크롤 시 매끄럽게 대각선·수직 글라이딩)
+      // 1~N번 슬라이드: 좌측 타이포 + 우측 대형 사진/동영상
       const courseSlidesHtml = items.map((item, idx) => {
         const slideNo = idx + 1;
         const accent = item.accentColor || "#FF6B00";
@@ -4613,7 +5417,6 @@
         return `
           <div class="curr-slide-layer" data-curr-slide="${slideNo}">
             <div class="curr-course-inner" style="color:${txtColor};">
-              <!-- 좌측 과정 정보 블록 -->
               <div class="curr-course-text space-y-5">
                 <div class="flex flex-wrap items-center gap-2">
                   <span class="px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wider text-white shadow-sm" style="background-color:${accent};">0${slideNo}</span>
@@ -4655,7 +5458,6 @@
                 </div>
               </div>
 
-              <!-- 우측 대형 사진/동영상 쇼케이스 -->
               <div class="curr-course-visual-wrap">
                 <div class="curr-course-media-box group">
                   ${renderMediaTag(item.img, `w-full h-full ${fitClass} transition duration-700 group-hover:scale-[1.03]`)}
@@ -4672,7 +5474,6 @@
 
       slidesContainer.innerHTML = overviewSlideHtml + courseSlidesHtml;
 
-      // 하단 플로팅 메뉴 독 (전체보기 + 각 교육과정명)
       const dockLabels = [
         { label: stripHtml(ov.navLabel || "전체보기"), path: "curriculum.overview.navLabel" },
         ...items.map((it, idx) => ({ label: stripHtml(it.cat || it.title || `과정 ${idx + 1}`), path: `curriculum.items.${idx}.cat` }))
@@ -4693,7 +5494,6 @@
       refreshViewBindings();
     }
 
-    // 스크롤 진행도에 맞춰 좌측 텍스트·우측 미디어를 스윽스윽 매끄럽게 글라이딩
     function updateCurrShowroomVisuals(progress, forceBg = false) {
       const total = getCurrTotalSlides();
       if (total <= 0) return;
@@ -4801,7 +5601,7 @@
       jumpToCurrSlide(foundIdx >= 0 ? foundIdx + 1 : 0);
     }
 
-    // 커리큘럼 상세 로드맵 모달 열기/닫기
+    // 커리큘럼 상세 로드맵 모달
     function openCurrDetailModal(itemIdx) {
       const item = siteData.curriculum?.items?.[itemIdx];
       if (!item) return;
@@ -5112,7 +5912,7 @@
       saveAllChanges(true);
     }
 
-    // ================= 입학절차 수직 커튼 스크롤 쇼룸 엔진 =================
+    // ================= 입학절차 수직 커튼 쇼룸 엔진 (투명 상자바 제거 + 우측 1/5~5/5 계단식 배치) =================
     let admGlassSwitchTimer = null;
 
     function getAdmTotalSteps() {
@@ -5122,7 +5922,6 @@
     function renderAdmissionCurtain() {
       const bgStack = document.getElementById("admCurtainBgStack");
       const centerWrap = document.getElementById("admCenterTitleWrap");
-      const glassCard = document.getElementById("admGlassCard");
       if (!bgStack || !centerWrap) return;
 
       if (!siteData.admissionPage || !Array.isArray(siteData.admissionPage.steps) || !siteData.admissionPage.steps.length) {
@@ -5135,17 +5934,12 @@
       if (admTargetProgress > total - 1) admTargetProgress = Math.max(0, total - 1);
       if (admRenderProgress > total - 1) admRenderProgress = Math.max(0, total - 1);
 
-      if (glassCard) {
-        const gOp = siteData.admissionPage.glassOpacity !== undefined ? siteData.admissionPage.glassOpacity : 0.16;
-        glassCard.style.background = `rgba(255, 255, 255, ${gOp})`;
-      }
-
       bgStack.innerHTML = steps.map((st, idx) => {
         const dim = st.dimOpacity !== undefined ? st.dimOpacity : 0.48;
         return `
           <div class="adm-curtain-layer" data-adm-bg="${idx}" style="z-index:${idx + 1};">
             ${renderMediaTag(st.media, "adm-curtain-media")}
-            <div class="adm-curtain-dim" style="background: linear-gradient(120deg, rgba(8,10,16,${Math.min(0.9, dim + 0.16).toFixed(2)}) 0%, rgba(8,10,16,${dim.toFixed(2)}) 50%, rgba(8,10,16,${Math.min(0.88, dim + 0.12).toFixed(2)}) 100%);"></div>
+            <div class="adm-curtain-dim" style="background: linear-gradient(120deg, rgba(8,10,16,${Math.min(0.9, dim + 0.16).toFixed(2)}) 0%, rgba(8,10,16,${dim.toFixed(2)}) 50%, rgba(8,10,16,${Math.min(0.88, dim + 0.14).toFixed(2)}) 100%);"></div>
           </div>
         `;
       }).join("");
@@ -5178,7 +5972,6 @@
       const tagEl = document.getElementById("admGlassStepTag");
       const titleEl = document.getElementById("admGlassTitle");
       const descEl = document.getElementById("admGlassDesc");
-      const counterEl = document.getElementById("admGlassCounter");
       if (!bodyEl) return;
 
       const applyValues = () => {
@@ -5194,9 +5987,6 @@
           descEl.setAttribute("data-path", `admissionPage.steps.${idx}.desc`);
           descEl.innerHTML = st.desc || "";
         }
-        if (counterEl) {
-          counterEl.textContent = `${idx + 1} / ${steps.length}`;
-        }
         refreshViewBindings();
       };
 
@@ -5211,9 +6001,10 @@
       admGlassSwitchTimer = setTimeout(() => {
         applyValues();
         bodyEl.classList.remove("switching");
-      }, 160);
+      }, 150);
     }
 
+    // 스텝 진행도에 따라 배경 커튼·중앙 타이틀과 우측 설명의 1/5~5/5 계단식 높이를 부드럽게 연동
     function updateAdmCurtainVisuals(progress, forceUpdate = false) {
       const total = getAdmTotalSteps();
       if (total <= 0) return;
@@ -5252,6 +6043,19 @@
         slide.classList.toggle("is-current", idx === nearestIdx);
       });
 
+      // 우측 설명 위치: 1스텝(1/5: 좌측 제목과 동일한 16vh) → 2/5 → 3/5 → 4/5 → 5/5(화면 하단 안전영역)
+      const rightDock = document.getElementById("admRightStepDock");
+      const stageEl = document.getElementById("admCurtainStage");
+      if (rightDock && window.innerWidth > 900) {
+        const stageH = stageEl?.offsetHeight || window.innerHeight || 800;
+        const dockH = rightDock.offsetHeight || 190;
+        const minTopPx = stageH * 0.16; // 좌측 상단 제목(.adm-fixed-left-block)과 정확히 같은 1/5 기준선
+        const maxTopPx = Math.max(minTopPx, stageH - dockH - 36); // 5/5 지점 (하단 잘림 방지)
+        const ratio = total > 1 ? (clamped / (total - 1)) : 0;
+        const targetTopPx = minTopPx + ratio * (maxTopPx - minTopPx);
+        rightDock.style.top = `${targetTopPx.toFixed(1)}px`;
+      }
+
       if (currentViewId === "admission") {
         document.getElementById("topFixedBar")?.classList.remove("header-light-bg");
       }
@@ -5273,13 +6077,6 @@
       if (window.scrollY > 10) window.scrollTo({ top: 0, behavior: "smooth" });
       admTargetProgress = safeIdx;
       if (safeIdx === maxIdx) admLastStepReachedAt = Date.now();
-    }
-
-    function stepAdmCurtain(delta) {
-      const total = getAdmTotalSteps();
-      if (total <= 0) return;
-      const next = ((currentAdmStepIdx + delta) % total + total) % total;
-      jumpToAdmStep(next);
     }
 
     // ================= 입학절차 커튼 쇼룸 관리자 스튜디오 =================
@@ -5310,7 +6107,6 @@
       if (!st) return;
       const isVid = isVideoMediaUrl(st.media);
       const dimVal = st.dimOpacity !== undefined ? st.dimOpacity : 0.48;
-      const glassOp = siteData.admissionPage?.glassOpacity !== undefined ? siteData.admissionPage.glassOpacity : 0.16;
 
       bodyWrap.innerHTML = `
         <div class="bg-violet-500/10 rounded-xl p-3 space-y-2.5 border border-violet-400/40">
@@ -5336,13 +6132,7 @@
             <span class="font-bold text-neutral-200">포인트(STEP 배지) 색상</span>
             <input type="color" value="${st.accentColor || '#FFB800'}" oninput="updateAdmStepProp(${currentAdmStepIdx}, 'accentColor', this.value)" class="w-7 h-7 rounded border-0 bg-transparent cursor-pointer" />
           </div>
-          <div class="space-y-1 pt-1 border-t border-white/10">
-            <div class="flex justify-between text-[11px]">
-              <span class="text-neutral-300 font-bold">우측 유리 카드 투명도</span>
-              <span id="admGlassOpLabel" class="text-violet-300 font-extrabold">${Math.round(glassOp * 100)}%</span>
-            </div>
-            <input type="range" min="0.06" max="0.45" step="0.02" value="${glassOp}" oninput="updateAdmGlassOpacity(parseFloat(this.value))" class="w-full accent-violet-400" />
-          </div>
+          <p class="text-[11px] text-neutral-400 pt-1 border-t border-white/10">우측 설명은 투명 상자 없이 1/5~5/5 계단식 높이로 자동 정렬됩니다.</p>
         </div>
 
         <div class="flex items-center justify-between gap-1.5 pt-1">
@@ -5361,15 +6151,6 @@
         if (lbl) lbl.textContent = `${Math.round(val * 100)}%`;
       }
       renderAdmissionCurtain();
-      scheduleAutoCloudSave();
-    }
-
-    function updateAdmGlassOpacity(val) {
-      siteData.admissionPage.glassOpacity = val;
-      const lbl = document.getElementById("admGlassOpLabel");
-      if (lbl) lbl.textContent = `${Math.round(val * 100)}%`;
-      const glassCard = document.getElementById("admGlassCard");
-      if (glassCard) glassCard.style.background = `rgba(255, 255, 255, ${val})`;
       scheduleAutoCloudSave();
     }
 
@@ -5419,197 +6200,899 @@
       syncAdmStudioControls();
       saveAllChanges(false);
     }
-// ================= 학원 소개 (인사말 / 학습목표 / 연혁 / 명예의 전당) =================
-    function openTopSecretTab(tabKey) {
+// ================= [신규 개편] 학원소개 1회 스크롤 = 1단계 전환 & 연혁 얼음 미끄러짐 쇼룸 엔진 =================
+    function openTopSecretTab(tabKey = "greeting") {
       syncEditableElementsToData();
       currentTopSecretTab = tabKey;
-      renderTopSecretPage();
-      navigateTo("philosophy", true);
+      const alreadyInPhil = currentViewId === "philosophy";
+      if (!alreadyInPhil) {
+        navigateTo("philosophy", true);
+        setTimeout(() => scrollToPhilosophySection(tabKey, false), 90);
+      } else {
+        try {
+          window.history.pushState({
+            viewId: "philosophy",
+            topSecretTab: tabKey,
+            curriculumCat: currentCurriculumCat,
+            campusId: currentDetailCampusId
+          }, "", buildHistoryUrl());
+        } catch (e) {}
+        scrollToPhilosophySection(tabKey, true);
+      }
+    }
+
+    function jumpToPhilStage(stageIdx, immediate = false) {
+      const maxStage = getPhilMaxTopStage();
+      const safeIdx = Math.max(0, Math.min(maxStage, stageIdx));
+      philIceScrollActive = false;
+      if ((window.scrollY || 0) > 4) {
+        window.scrollTo({ top: 0, behavior: immediate ? "auto" : "smooth" });
+      }
+      philStageTarget = safeIdx;
+      if (immediate) {
+        philStageRender = safeIdx;
+        updatePhilosophyStageVisuals(safeIdx, true);
+      }
+      if (safeIdx === maxStage) philLastStageReachedAt = Date.now();
+    }
+
+    function scrollToPhilosophySection(tabKey, smooth = true) {
+      currentTopSecretTab = tabKey || "greeting";
+      const maxStage = getPhilMaxTopStage();
+      const isDesktopStepMode = !isEditMode && window.innerWidth > 960;
+
+      if (tabKey === "greeting") {
+        philIceScrollActive = false;
+        window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+        philStageTarget = 0;
+        if (!smooth) {
+          philStageRender = 0;
+          updatePhilosophyStageVisuals(0, true);
+          updatePhilosophyLowerMotion(0, true);
+        }
+        updatePhilFloatingNavActive("greeting");
+        return;
+      }
+
+      if (tabKey === "goal") {
+        if (isDesktopStepMode) {
+          // 학습목표 진입 시 무조건 1스텝(Stage 2)부터 시작
+          philIceScrollActive = false;
+          window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+          philStageTarget = 2;
+          if (!smooth) {
+            philStageRender = 2;
+            updatePhilosophyStageVisuals(2, true);
+            updatePhilosophyLowerMotion(0, true);
+          }
+        } else {
+          const stackEl = document.getElementById("philGoalMobileStack");
+          if (stackEl) {
+            const topY = Math.max(0, stackEl.getBoundingClientRect().top + window.scrollY - 84);
+            window.scrollTo({ top: topY, behavior: smooth ? "smooth" : "auto" });
+          }
+        }
+        updatePhilFloatingNavActive("goal");
+        return;
+      }
+
+      // 연혁 또는 명예의 전당 이동 시 상단 풀스테이지를 마지막(4스텝)으로 정렬해 복귀 시 자연스럽게 연결
+      if (isDesktopStepMode) {
+        philStageTarget = maxStage;
+        philStageRender = maxStage;
+        updatePhilosophyStageVisuals(maxStage, true);
+      }
+
+      const targetEl = document.getElementById(`phil-sec-${tabKey}`);
+      if (targetEl) {
+        const targetTop = Math.max(0, targetEl.getBoundingClientRect().top + window.scrollY);
+        if (smooth && isDesktopStepMode) {
+          philIceScrollRenderY = window.scrollY || 0;
+          philIceScrollTargetY = targetTop;
+          philIceScrollActive = true;
+        } else {
+          philIceScrollActive = false;
+          window.scrollTo({ top: targetTop, behavior: smooth ? "smooth" : "auto" });
+          philIceScrollTargetY = targetTop;
+          philIceScrollRenderY = targetTop;
+          philSmoothScrollY = targetTop;
+          updatePhilosophyLowerMotion(targetTop, true);
+        }
+      }
+      updatePhilFloatingNavActive(currentTopSecretTab);
+    }
+
+    function updatePhilFloatingNavActive(activeKey) {
+      philActiveSectionKey = activeKey;
+      document.querySelectorAll("#philFloatingNav .phil-nav-pill").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-phil-nav") === activeKey);
+      });
+    }
+
+    // 대표 인사말 0.3초 스르륵 진입 트리거
+    function triggerPhilCeoEntrance() {
+      const ceoLayer = document.getElementById("philCeoLayer");
+      if (!ceoLayer) return;
+      if (isEditMode) {
+        ceoLayer.classList.add("is-entered");
+        return;
+      }
+      ceoLayer.classList.remove("is-entered");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ceoLayer.classList.add("is-entered");
+        });
+      });
+    }
+
+    // 명예의 전당 좌·우 원근 이오니아식 신전 기둥 SVG 생성기 (좌측 / 우측 대칭)
+    function buildIonicPillarsSvg(side = "left") {
+      const mirror = side === "right" ? 'transform="translate(420, 0) scale(-1, 1)"' : "";
+      const uid = `hof_${side}`;
+      const drawColumn = (x, topY, w, h, opacity) => {
+        const capH = w * 0.44;
+        const shaftX = x + w * 0.14;
+        const shaftW = w * 0.72;
+        const shaftY = topY + capH;
+        const shaftH = h - capH;
+        const volR = w * 0.17;
+        const fluteCount = 5;
+        let flutes = "";
+        for (let i = 0; i < fluteCount; i++) {
+          const fx = shaftX + (shaftW / (fluteCount + 0.6)) * (i + 0.42);
+          const fw = (shaftW / (fluteCount + 1.4)) * 0.56;
+          flutes += `<rect x="${fx.toFixed(1)}" y="${(shaftY + 8).toFixed(1)}" width="${fw.toFixed(1)}" height="${Math.max(10, shaftH - 16).toFixed(1)}" rx="${(fw / 2).toFixed(1)}" fill="url(#${uid}_flute)" opacity="0.65" />`;
+        }
+        return `
+          <g opacity="${opacity}">
+            <rect x="${(x - w * 0.04).toFixed(1)}" y="${topY.toFixed(1)}" width="${(w * 1.08).toFixed(1)}" height="${(capH * 0.28).toFixed(1)}" rx="2" fill="url(#${uid}_stone)" stroke="#9DA1A8" stroke-width="1" />
+            <rect x="${(x + w * 0.06).toFixed(1)}" y="${(topY + capH * 0.28).toFixed(1)}" width="${(w * 0.88).toFixed(1)}" height="${(capH * 0.46).toFixed(1)}" fill="url(#${uid}_stone)" stroke="#A5A9B0" stroke-width="0.9" />
+            <circle cx="${(x + w * 0.12).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${volR.toFixed(1)}" fill="url(#${uid}_vol)" stroke="#8E929A" stroke-width="1.4" />
+            <circle cx="${(x + w * 0.12).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${(volR * 0.54).toFixed(1)}" fill="none" stroke="#858991" stroke-width="1.2" />
+            <circle cx="${(x + w * 0.12).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${(volR * 0.2).toFixed(1)}" fill="#858991" />
+            <circle cx="${(x + w * 0.88).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${volR.toFixed(1)}" fill="url(#${uid}_vol)" stroke="#8E929A" stroke-width="1.4" />
+            <circle cx="${(x + w * 0.88).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${(volR * 0.54).toFixed(1)}" fill="none" stroke="#858991" stroke-width="1.2" />
+            <circle cx="${(x + w * 0.88).toFixed(1)}" cy="${(topY + capH * 0.56).toFixed(1)}" r="${(volR * 0.2).toFixed(1)}" fill="#858991" />
+            <rect x="${(shaftX - 4).toFixed(1)}" y="${(shaftY - 4).toFixed(1)}" width="${(shaftW + 8).toFixed(1)}" height="8" rx="3" fill="#B5B9C0" stroke="#969AA2" stroke-width="0.8" />
+            <rect x="${shaftX.toFixed(1)}" y="${shaftY.toFixed(1)}" width="${shaftW.toFixed(1)}" height="${shaftH.toFixed(1)}" fill="url(#${uid}_stone)" stroke="#A7ABB2" stroke-width="0.9" />
+            ${flutes}
+          </g>
+        `;
+      };
+
+      return `
+        <svg viewBox="0 0 420 960" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="${uid}_stone" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9A9EA6" />
+              <stop offset="28%" stop-color="#E4E6EA" />
+              <stop offset="56%" stop-color="#F7F8FA" />
+              <stop offset="84%" stop-color="#C6C9D0" />
+              <stop offset="100%" stop-color="#989CA4" />
+            </linearGradient>
+            <linearGradient id="${uid}_flute" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8B8F97" />
+              <stop offset="55%" stop-color="#D7D9DE" />
+              <stop offset="100%" stop-color="#F5F6F8" />
+            </linearGradient>
+            <radialGradient id="${uid}_vol" cx="40%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#F6F7F9" />
+              <stop offset="70%" stop-color="#CFD2D8" />
+              <stop offset="100%" stop-color="#9A9EA6" />
+            </radialGradient>
+          </defs>
+          <g ${mirror}>
+            ${drawColumn(278, 355, 62, 605, 0.36)}
+            ${drawColumn(212, 265, 84, 695, 0.54)}
+            ${drawColumn(126, 150, 114, 810, 0.74)}
+            ${drawColumn(6, 18, 152, 942, 0.96)}
+          </g>
+        </svg>
+      `;
     }
 
     function renderTopSecretPage() {
-      if (!siteData.philosophy.tabNames) {
-        siteData.philosophy.tabNames = { greeting: "인사말", goal: "학습목표", history: "연혁", honors: "명예의 전당" };
-      }
-      const tn = siteData.philosophy.tabNames;
-      const tabs = [
-        { key: "greeting", label: tn.greeting, path: "philosophy.tabNames.greeting" },
-        { key: "goal", label: tn.goal, path: "philosophy.tabNames.goal" },
-        { key: "history", label: tn.history, path: "philosophy.tabNames.history" },
-        { key: "honors", label: tn.honors, path: "philosophy.tabNames.honors" }
-      ];
-      const activeObj = tabs.find(t => t.key === currentTopSecretTab) || tabs[0];
-      const bcEl = document.getElementById("topSecretBreadcrumb");
-      if (bcEl) bcEl.innerHTML = stripHtml(activeObj.label);
-
-      const sideTabsEl = document.getElementById("topSecretSideTabs");
-      if (sideTabsEl) {
-        sideTabsEl.innerHTML = tabs.map(t => {
-          const isAct = t.key === currentTopSecretTab;
-          return `
-            <div onclick="if(!isEditMode) openTopSecretTab('${t.key}')" class="unified-side-item ${isAct ? 'active' : 'inactive'}">
-              <span data-editable="true" data-path="${t.path}">${t.label}</span>
-              <button type="button" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation(); openTopSecretTab('${t.key}')" class="admin-only-control px-1.5 py-0.5 bg-orange-600 text-white text-[9px] rounded cursor-pointer">이동</button>
-            </div>`;
-        }).join("");
-      }
-
-      const contentEl = document.getElementById("topSecretTabContent");
-      if (!contentEl) return;
+      const defPhil = defaultSiteData.philosophy;
+      if (!siteData.philosophy) siteData.philosophy = JSON.parse(JSON.stringify(defPhil));
       const p = siteData.philosophy;
+      if (!p.tabNames) p.tabNames = { greeting: "인사말", goal: "학습목표", history: "연혁", honors: "명예의 전당" };
+      if (!Array.isArray(p.goalItems) || !p.goalItems.length) p.goalItems = JSON.parse(JSON.stringify(defPhil.goalItems));
 
-      if (currentTopSecretTab === "greeting") {
-        contentEl.innerHTML = `
-          <div class="philosophy-slide-up max-w-2xl w-full mx-auto text-center">
-            <h2 data-editable="true" data-path="philosophy.greetingTitle" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">${p.greetingTitle}</h2>
-            <p data-editable="true" data-path="philosophy.greetingHighlight" class="text-lg md:text-xl font-medium text-neutral-700 pb-6 mb-8 border-b border-neutral-200 leading-relaxed">${p.greetingHighlight}</p>
-            <div data-editable="true" data-path="philosophy.greetingBody" class="text-sm md:text-base text-neutral-600 leading-loose whitespace-pre-line text-center">${p.greetingBody}</div>
-          </div>`;
-      } else if (currentTopSecretTab === "goal") {
-        const borderColors = ['border-purple-200', 'border-purple-400', 'border-indigo-200'];
-        const badgeColors = ['bg-purple-50 text-purple-800', 'bg-purple-700 text-white', 'bg-indigo-50 text-indigo-800'];
-        contentEl.innerHTML = `
-          <div class="philosophy-slide-up w-full max-w-4xl mx-auto text-center">
-            <h2 data-editable="true" data-path="philosophy.purposeLabel" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">${p.purposeLabel}</h2>
-            <p data-editable="true" data-path="philosophy.purposeDesc" class="text-sm md:text-base text-neutral-500 mb-12">${p.purposeDesc}</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              ${[1, 2, 3].map(num => `
-                <div class="bg-[#FCFAFF] rounded-xl border ${borderColors[num - 1]} p-8 flex flex-col items-center justify-between hover:border-purple-600 transition">
-                  <div class="flex flex-col items-center">
-                    <span data-editable="true" data-path="philosophy.circle${num}Title" class="inline-block px-3 py-1 rounded text-xs font-semibold ${badgeColors[num - 1]} mb-6">${p['circle' + num + 'Title']}</span>
-                    <h3 data-editable="true" data-path="philosophy.circle${num}" class="text-xl font-bold text-purple-950 leading-snug whitespace-pre-line mb-4">${p['circle' + num]}</h3>
-                    <div class="w-8 h-[2px] bg-purple-300 mb-4 mx-auto"></div>
-                    <p data-editable="true" data-path="philosophy.circle${num}Desc" class="text-xs md:text-sm text-neutral-600 leading-relaxed">${p['circle' + num + 'Desc']}</p>
-                  </div>
-                </div>`).join("")}
-            </div>
-          </div>`;
-      } else if (currentTopSecretTab === "history") {
-        const sideImgUrl = p.historySideImg || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85";
-        contentEl.innerHTML = `
-          <div class="philosophy-slide-up w-full max-w-5xl mx-auto">
-            <div class="text-center mb-14 pb-8 border-b border-neutral-200 relative">
-              <div class="inline-flex items-center gap-2 text-xs text-neutral-400 font-semibold mb-3">
-                <i class="fa-solid fa-house text-[#0F3E66]"></i>
-                <span>&gt;</span><span>학원소개</span><span>&gt;</span>
-                <span class="text-[#0F3E66] font-bold">학원연혁</span>
+      // 0) 우측 플로팅 퀵 앵커 렌더링
+      const navEl = document.getElementById("philFloatingNav");
+      if (navEl) {
+        const navItems = [
+          { key: "greeting", label: stripHtml(p.tabNames.greeting || "인사말") },
+          { key: "goal", label: stripHtml(p.tabNames.goal || "학습목표") },
+          { key: "history", label: stripHtml(p.tabNames.history || "연혁") },
+          { key: "honors", label: stripHtml(p.tabNames.honors || "명예의 전당") }
+        ];
+        navEl.innerHTML = navItems.map(item => `
+          <button type="button" data-phil-nav="${item.key}" onclick="scrollToPhilosophySection('${item.key}', true)"
+                  class="phil-nav-pill ${item.key === philActiveSectionKey ? 'active' : ''}">${item.label}</button>
+        `).join("");
+      }
+
+      // 1-1) Stage 0: 대표 인사말 (0.3초 스르륵 진입)
+      const ceoLayer = document.getElementById("philCeoLayer");
+      if (ceoLayer) {
+        const ceoImgUrl = p.ceoImg || defPhil.ceoImg;
+        ceoLayer.innerHTML = `
+          <div class="phil-ceo-grid">
+            <div class="phil-ceo-text-col space-y-5">
+              <div class="phil-ceo-anim d1 space-y-2.5">
+                <p data-editable="true" data-path="philosophy.ceoEyebrow"
+                   class="text-xs md:text-sm font-extrabold tracking-[0.22em] text-[#FF6B00] uppercase">${p.ceoEyebrow || 'CEO MESSAGE'}</p>
+                <h1 data-editable="true" data-path="philosophy.greetingTitle"
+                    class="text-3xl md:text-5xl font-black text-neutral-900 tracking-tight leading-[1.18]">${p.greetingTitle}</h1>
               </div>
-              <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-3xl md:text-5xl font-extrabold text-neutral-900 tracking-tight mb-3">${p.historyTitle}</h2>
-              <p data-editable="true" data-path="philosophy.historySub" class="text-xs md:text-sm text-neutral-500 max-w-xl mx-auto">${p.historySub}</p>
-              <div class="admin-only-control justify-center gap-2 mt-5" onpointerdown="event.stopPropagation()">
-                <button type="button" onclick="addHistoryRow('top')" class="px-4 py-2 bg-[#0F3E66] hover:bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ 상단에 연혁 추가</button>
-                <button type="button" onclick="addHistoryRow('bottom')" class="px-4 py-2 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">+ 하단에 연혁 추가</button>
+
+              <p data-editable="true" data-path="philosophy.greetingHighlight"
+                 class="phil-ceo-anim d2 text-lg md:text-2xl font-extrabold text-[#FF6B00] leading-snug tracking-tight pt-1">${p.greetingHighlight}</p>
+
+              <div data-editable="true" data-path="philosophy.greetingBody"
+                   class="phil-ceo-anim d3 text-sm md:text-[15px] text-neutral-600 leading-[1.9] whitespace-pre-line max-w-xl">${p.greetingBody}</div>
+
+              <div class="phil-ceo-anim d4 pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-neutral-200 max-w-xl">
+                <span data-editable="true" data-path="philosophy.ceoSign" class="text-xs md:text-sm font-extrabold text-neutral-900">${p.ceoSign || '탑씨크리트 교육(주) 대표원장 드림'}</span>
+                <button type="button" onclick="if(!isEditMode) jumpToPhilStage(1)" class="text-[11px] font-bold text-neutral-400 hover:text-[#FF6B00] flex items-center gap-1.5 transition cursor-pointer">
+                  <i class="fa-solid fa-arrow-down-long text-[#FF6B00] animate-bounce"></i> 스크롤을 내려 확인하세요
+                </button>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-              <div class="lg:col-span-5 lg:sticky lg:top-28">
-                <div class="relative overflow-hidden bg-neutral-100 shadow-lg border border-neutral-200 group">
-                  <img src="${sideImgUrl}" alt="탑씨크리트 연혁 대표 이미지" class="w-full aspect-[4/3] object-cover object-center group-hover:scale-105 transition duration-700" />
-                  <div class="admin-only-control absolute top-3 right-3 z-20 gap-1.5 bg-black/80 p-2 rounded-lg border border-orange-500/60" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
-                    <button type="button" onclick="triggerImageFileUpload('philosophy.historySideImg')" class="px-3 py-1.5 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">사진파일 변경</button>
-                    <button type="button" onclick="triggerImageChange('philosophy.historySideImg')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">URL</button>
-                  </div>
+            <div class="phil-ceo-portrait-col phil-ceo-anim d3 group">
+              <img src="${ceoImgUrl}" alt="대표원장 프로필" class="phil-ceo-portrait-img shadow-2xl" />
+              <div class="admin-only-control absolute top-4 right-4 z-30 gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-emerald-400/70 shadow-xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                <button type="button" onclick="triggerImageFileUpload('philosophy.ceoImg')" class="px-3 py-1.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded cursor-pointer">대표사진 파일</button>
+                <button type="button" onclick="triggerImageChange('philosophy.ceoImg')" class="px-2.5 py-1.5 bg-neutral-700 hover:bg-neutral-600 text-white text-xs font-bold rounded cursor-pointer">URL</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 1-2) Stage 1: OUR MISSION 중앙 멘트
+      const missionLayer = document.getElementById("philMissionLayer");
+      if (missionLayer) {
+        missionLayer.innerHTML = `
+          <div class="max-w-4xl mx-auto space-y-5">
+            <span data-editable="true" data-path="philosophy.missionEyebrow"
+                  class="inline-block text-xs md:text-sm font-extrabold tracking-[0.28em] text-[#FF6B00] uppercase">${p.missionEyebrow || 'OUR MISSION'}</span>
+            <h2 data-editable="true" data-path="philosophy.missionTitle"
+                class="font-black text-neutral-900 leading-[1.28] tracking-tight whitespace-pre-line"
+                style="font-size: clamp(30px, 4.4vw, 62px);">${p.missionTitle || '배움은 펼치고, 생각은 더하고,\n학생의 내일을 풍요롭게.'}</h2>
+            <p data-editable="true" data-path="philosophy.missionSub"
+               class="text-sm md:text-lg text-neutral-500 font-medium leading-relaxed max-w-2xl mx-auto whitespace-pre-line pt-2">${p.missionSub || ''}</p>
+          </div>
+        `;
+      }
+
+      // 2) Stage 2~(N+1): 학습목표 1스텝 ~ 4스텝 좌·우 반대방향(카운터) 풀스크린 레일
+      const goalItems = p.goalItems;
+      const n = goalItems.length;
+      const leftRail = document.getElementById("philGoalLeftRail");
+      const rightRail = document.getElementById("philGoalRightRail");
+      const stepDotsEl = document.getElementById("philGoalStepDots");
+      const mobileStack = document.getElementById("philGoalMobileStack");
+
+      const buildGoalMediaPaneHtml = (g) => `
+        <div class="phil-goal-pane phil-goal-media-pane">
+          ${renderMediaTag(g.media, "w-full h-full object-cover object-center")}
+        </div>
+      `;
+
+      const buildGoalTextPaneHtml = (g, idx) => {
+        const acc = g.accentColor || "#FF6B00";
+        return `
+          <div class="phil-goal-pane phil-goal-text-pane">
+            <div class="max-w-lg space-y-4">
+              <span class="inline-block text-xs font-extrabold tracking-[0.2em] uppercase" style="color:${acc};">${g.engLabel || `STEP 0${idx + 1} · LEARNING GOAL`}</span>
+              <h3 class="font-black text-neutral-900 leading-[1.26] tracking-tight whitespace-pre-line" style="font-size: clamp(24px, 2.75vw, 42px);">${g.title}</h3>
+              <p class="text-sm md:text-base font-bold leading-snug pt-1" style="color:${acc};">${g.sub || ''}</p>
+              <p class="text-xs md:text-[15px] text-neutral-600 leading-[1.85] whitespace-pre-line pt-1">${g.desc}</p>
+            </div>
+          </div>
+        `;
+      };
+
+      if (leftRail && rightRail) {
+        // 좌측 레일: [0, 1, 2, 3] 순방향 (스크롤 다운 시 0% → -100% → -200% → -300% 위로 슬라이드)
+        leftRail.innerHTML = goalItems.map((g, idx) => (
+          idx % 2 === 0 ? buildGoalMediaPaneHtml(g) : buildGoalTextPaneHtml(g, idx)
+        )).join("");
+        leftRail.style.transform = "translate3d(0, 0%, 0)";
+
+        // 우측 레일: [3, 2, 1, 0] 역방향 (스크롤 다운 시 -300% → -200% → -100% → 0% 아래로 슬라이드 → 항상 1스텝부터 정확히 매칭)
+        rightRail.innerHTML = [...goalItems].map((g, idx) => ({ g, idx })).reverse().map(({ g, idx }) => (
+          idx % 2 === 0 ? buildGoalTextPaneHtml(g, idx) : buildGoalMediaPaneHtml(g)
+        )).join("");
+        rightRail.style.transform = `translate3d(0, ${-((n - 1) * 100)}%, 0)`;
+      }
+
+      if (stepDotsEl) {
+        stepDotsEl.innerHTML = goalItems.map((_, idx) => `
+          <button type="button" data-goal-dot="${idx}" onclick="jumpToPhilStage(${2 + idx})"
+                  class="phil-goal-dot-btn ${idx === 0 ? 'active' : ''}">STEP ${idx + 1}</button>
+        `).join("");
+      }
+
+      // 모바일 및 관리자 편집모드 전용 50:50 세로 스택 (텍스트·사진 직접 편집)
+      if (mobileStack) {
+        mobileStack.innerHTML = goalItems.map((g, idx) => {
+          const acc = g.accentColor || "#FF6B00";
+          return `
+            <div class="grid grid-cols-1 md:grid-cols-2 border-b border-neutral-200 bg-white">
+              <div class="relative min-h-[300px] md:min-h-[420px] overflow-hidden bg-neutral-100 ${idx % 2 === 1 ? 'md:order-2' : ''}">
+                ${renderMediaTag(g.media, "w-full h-full object-cover object-center")}
+                <div class="admin-only-control absolute top-4 right-4 z-30 flex-wrap gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-emerald-400/70 shadow-xl" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
+                  <button type="button" onclick="triggerMediaUrlChange('philosophy.goalItems.${idx}.media', '학습목표 ${idx + 1} 사진/동영상')" class="px-2.5 py-1.5 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer"><i class="fa-solid fa-link mr-1"></i>링크</button>
+                  <button type="button" onclick="triggerImageFileUpload('philosophy.goalItems.${idx}.media')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
+                  <button type="button" onclick="movePhilGoalItem(${idx}, -1)" class="px-2 py-1.5 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▲</button>
+                  <button type="button" onclick="movePhilGoalItem(${idx}, 1)" class="px-2 py-1.5 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▼</button>
+                  <button type="button" onclick="deletePhilGoalItem(${idx})" class="px-2 py-1.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
                 </div>
-                <p data-editable="true" data-path="philosophy.historySideCaption" class="text-xs text-neutral-400 mt-3 font-medium tracking-wide">${p.historySideCaption || '행복하게 배우며 나만의 꿈을 키우는 탑씨크리트'}</p>
               </div>
+              <div class="flex flex-col justify-center p-8 md:p-14 space-y-3.5 ${idx % 2 === 1 ? 'md:order-1' : ''}">
+                <span data-editable="true" data-path="philosophy.goalItems.${idx}.engLabel" class="inline-block text-xs font-extrabold tracking-[0.2em] uppercase" style="color:${acc};">${g.engLabel || `STEP 0${idx + 1} · LEARNING GOAL`}</span>
+                <h3 data-editable="true" data-path="philosophy.goalItems.${idx}.title" class="text-2xl md:text-4xl font-black text-neutral-900 leading-[1.26] whitespace-pre-line">${g.title}</h3>
+                <p data-editable="true" data-path="philosophy.goalItems.${idx}.sub" class="text-sm md:text-base font-bold" style="color:${acc};">${g.sub || ''}</p>
+                <p data-editable="true" data-path="philosophy.goalItems.${idx}.desc" class="text-xs md:text-sm text-neutral-600 leading-[1.85] whitespace-pre-line">${g.desc}</p>
+              </div>
+            </div>
+          `;
+        }).join("") + `
+          <div class="admin-only-control w-full justify-center py-6 bg-neutral-50 border-b border-neutral-200" onpointerdown="event.stopPropagation()">
+            <button type="button" onclick="addPhilGoalItem()" class="px-5 py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-extrabold rounded-xl shadow cursor-pointer">
+              + 새 학습목표 스텝 추가
+            </button>
+          </div>
+        `;
+      }
 
-              <div class="lg:col-span-7 history-timeline-wrap">
+      // 3) 연혁: 투명 상자바 제거 + 다크 커튼 위 얼음 미끄러짐 연속 스크롤 타임라인 (간격 1/4 축소)
+      const histBg = document.getElementById("philHistoryBgSticky");
+      const histFg = document.getElementById("philHistoryForeground");
+      if (histBg) {
+        const hDim = p.historyDimOpacity !== undefined ? p.historyDimOpacity : 0.62;
+        histBg.innerHTML = `
+          ${renderMediaTag(p.historyBgMedia || defPhil.historyBgMedia, "phil-curtain-media")}
+          <div class="phil-curtain-dim" style="background: linear-gradient(125deg, rgba(6,8,15,${Math.min(0.92, hDim + 0.14).toFixed(2)}) 0%, rgba(6,8,15,${hDim.toFixed(2)}) 55%, rgba(6,8,15,${Math.min(0.9, hDim + 0.1).toFixed(2)}) 100%);"></div>
+          <div class="phil-curtain-top-blend"></div>
+        `;
+      }
+      if (histFg) {
+        histFg.innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div class="lg:col-span-5 lg:sticky lg:top-32 space-y-5">
+              <span data-editable="true" data-path="philosophy.historyEyebrow"
+                    class="inline-block text-xs font-extrabold tracking-[0.24em] text-[#FFB800] uppercase">${p.historyEyebrow || 'OUR HISTORY'}</span>
+              <h2 data-editable="true" data-path="philosophy.historyTitle"
+                  class="text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.14]">${p.historyTitle}</h2>
+              <p data-editable="true" data-path="philosophy.historySub"
+                 class="text-sm md:text-base text-white/80 leading-relaxed whitespace-pre-line max-w-md">${p.historySub}</p>
+
+              <div class="admin-only-control flex-wrap gap-2 pt-3" onpointerdown="event.stopPropagation()">
+                <button type="button" onclick="addHistoryRow('top')" class="px-3.5 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-bold rounded-lg cursor-pointer">+ 상단에 연혁 추가</button>
+                <button type="button" onclick="addHistoryRow('bottom')" class="px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white text-xs font-bold rounded-lg border border-white/25 cursor-pointer">+ 하단에 연혁 추가</button>
+                <button type="button" onclick="triggerMediaUrlChange('philosophy.historyBgMedia', '연혁 배경 사진/동영상')" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg cursor-pointer">배경 사진/영상 링크</button>
+                <button type="button" onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold rounded-lg cursor-pointer">배경 파일</button>
+              </div>
+            </div>
+
+            <!-- 투명 상자바 없이 배경 위로 얼음 미끄러지듯 흐르는 개방형 연혁 타임라인 -->
+            <div id="philHistoryGlideCol" class="lg:col-span-7 pt-2 phil-history-glide-col">
+              <div class="phil-history-timeline-wrap">
                 ${(p.historyList || []).map((h, idx) => `
-                  <div class="history-year-block group" style="animation-delay: ${idx * 0.08}s;">
-                    <span class="history-node-dot"></span>
+                  <div class="phil-history-year-block group">
+                    <span class="phil-history-node-dot"></span>
                     <div class="flex items-start justify-between gap-4">
-                      <div class="flex-1">
-                        <div data-editable="true" data-path="philosophy.historyList.${idx}.year" class="text-3xl md:text-4xl font-extrabold text-[#0F3E66] group-hover:text-[#FF6B00] transition-colors tracking-tight leading-none mb-4">${h.year}</div>
-                        <div class="flex items-baseline gap-4 md:gap-6">
-                          <span data-editable="true" data-path="philosophy.historyList.${idx}.month" class="text-sm md:text-base font-extrabold text-neutral-900 shrink-0 min-w-[44px]">${h.month}</span>
-                          <div class="flex-1 space-y-1.5 pb-4 border-b border-neutral-100">
-                            <h4 data-editable="true" data-path="philosophy.historyList.${idx}.title" class="text-sm md:text-base font-bold text-neutral-800 leading-snug">${h.title}</h4>
-                            <p data-editable="true" data-path="philosophy.historyList.${idx}.content" class="text-xs md:text-sm text-neutral-500 leading-relaxed">${h.content}</p>
+                      <div class="flex-1 min-w-0">
+                        <div data-editable="true" data-path="philosophy.historyList.${idx}.year"
+                             class="text-2xl md:text-3xl font-black text-[#FFB800] group-hover:text-[#FF6B00] transition-colors tracking-tight leading-none mb-2.5">${h.year}</div>
+                        <div class="flex items-baseline gap-4 md:gap-5">
+                          <span data-editable="true" data-path="philosophy.historyList.${idx}.month"
+                                class="text-xs md:text-sm font-extrabold text-white shrink-0 min-w-[36px]">${h.month}</span>
+                          <div class="flex-1 space-y-1 pb-3 border-b border-white/18">
+                            <h4 data-editable="true" data-path="philosophy.historyList.${idx}.title"
+                                class="text-sm md:text-base font-bold text-white leading-snug">${h.title}</h4>
+                            <p data-editable="true" data-path="philosophy.historyList.${idx}.content"
+                               class="text-xs md:text-sm text-white/80 leading-relaxed">${h.content}</p>
                           </div>
                         </div>
                       </div>
                       <div class="admin-only-control items-center gap-1 shrink-0 pt-1" onpointerdown="event.stopPropagation()">
-                        <button type="button" onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">▲</button>
-                        <button type="button" onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-neutral-100 text-black text-xs rounded hover:bg-neutral-200 cursor-pointer">▼</button>
+                        <button type="button" onclick="moveHistoryRow(${idx}, -1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded hover:bg-white/25 cursor-pointer">▲</button>
+                        <button type="button" onclick="moveHistoryRow(${idx}, 1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded hover:bg-white/25 cursor-pointer">▼</button>
                         <button type="button" onclick="deleteHistoryRow(${idx})" class="px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button>
                       </div>
                     </div>
                   </div>`).join("")}
               </div>
             </div>
-          </div>`;
-      } else if (currentTopSecretTab === "honors") {
-        const rawList = (p.honorsList || []).map((item, originalIdx) => {
-          let yr = stripHtml(item.year || "");
-          if (!yr) {
-            const m = String(item.category || "").match(/20\d{2}/);
-            yr = m ? m[0] : "2026";
-            item.year = yr;
-          }
-          return { ...item, originalIdx, cleanYear: yr };
-        });
-        const yearGroups = {};
-        rawList.forEach(item => {
-          if (!yearGroups[item.cleanYear]) yearGroups[item.cleanYear] = [];
-          yearGroups[item.cleanYear].push(item);
-        });
-        const sortedYears = Object.keys(yearGroups).sort((a, b) => b.localeCompare(a, undefined, { numeric: true }));
+          </div>
+        `;
+      }
 
-        contentEl.innerHTML = `
-          <div class="philosophy-slide-up w-full max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-              <h2 data-editable="true" data-path="philosophy.honorsTitle" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-2">${p.honorsTitle}</h2>
-              <p data-editable="true" data-path="philosophy.honorsSub" class="text-xs md:text-sm text-neutral-500">${p.honorsSub}</p>
-              <div class="mt-5 flex flex-wrap justify-center gap-2" onpointerdown="event.stopPropagation()">
-                <button type="button" onclick="addHonorCard()" class="admin-only-control px-4 py-2 bg-[#FF6B00] text-white text-xs font-bold rounded shadow cursor-pointer">+ 새 합격생 카드 추가 (년도 입력)</button>
+      // 4) 명예의 전당: 클래식 이오니아식 신전 기둥 + 학생 1줄 통일 + 관리자 열 수(2~6열) 실시간 조절
+      const honSection = document.getElementById("phil-sec-honors");
+      if (honSection) {
+        const colCount = Math.max(2, Math.min(6, Number(p.honorsColumns || 3)));
+        const rawList = (p.honorsList || []).map((item, originalIdx) => ({
+          ...item,
+          originalIdx,
+          cleanCat: stripHtml(item.category || "우수 합격자") || "우수 합격자"
+        }));
+
+        const catOrder = [];
+        const catGroups = {};
+        rawList.forEach(item => {
+          if (!catGroups[item.cleanCat]) {
+            catGroups[item.cleanCat] = [];
+            catOrder.push(item.cleanCat);
+          }
+          catGroups[item.cleanCat].push(item);
+        });
+
+        honSection.innerHTML = `
+          ${p.honorsBgImg ? `<img src="${p.honorsBgImg}" alt="명예의 전당 배경" class="hof-temple-bg-img" />` : ""}
+          <div data-editable="true" data-path="philosophy.honorsWatermark" class="hof-temple-watermark">${p.honorsWatermark || 'TOP SECRET'}</div>
+
+          <div class="hof-pillars-wrap">
+            <div class="hof-pillar-side">${buildIonicPillarsSvg("left")}</div>
+            <div class="hof-pillar-side">${buildIonicPillarsSvg("right")}</div>
+          </div>
+
+          <div class="hof-temple-inner">
+            <div class="hof-header-block">
+              <p data-editable="true" data-path="philosophy.honorsSubTitle" class="hof-title-sub">${p.honorsSubTitle || '2026학년도 입시·정기평가 우수'}</p>
+              <h2 data-editable="true" data-path="philosophy.honorsTitle" class="hof-title-main">${p.honorsTitle || '명예의 전당'}</h2>
+              <p data-editable="true" data-path="philosophy.honorsRegionTitle" class="hof-title-region">${p.honorsRegionTitle || '천안 · 아산 탑씨크리트'}</p>
+
+              <div class="admin-only-control justify-center items-center flex-wrap gap-2 mt-6" onpointerdown="event.stopPropagation()">
+                <div class="inline-flex items-center gap-1.5 bg-neutral-900 text-white px-2.5 py-1.5 rounded-lg text-xs font-bold shadow">
+                  <span class="text-emerald-400">가로 열 수:</span>
+                  <button type="button" onclick="changeHonorsColumns(-1)" class="px-2 py-0.5 bg-neutral-700 hover:bg-[#FF6B00] rounded cursor-pointer">- 열 줄이기</button>
+                  <span class="px-1.5 text-[#FFB800] font-extrabold">${colCount}열</span>
+                  <button type="button" onclick="changeHonorsColumns(1)" class="px-2 py-0.5 bg-[#FF6B00] hover:bg-[#F39200] rounded cursor-pointer">+ 열 추가</button>
+                </div>
+                <button type="button" onclick="addHonorCard()" class="px-4 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-extrabold rounded-lg shadow cursor-pointer">+ 새 부문 / 학생 추가</button>
+                <button type="button" onclick="triggerImageFileUpload('philosophy.honorsBgImg')" class="px-3.5 py-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold rounded-lg cursor-pointer">배경 텍스처 파일</button>
+                ${p.honorsBgImg ? `<button type="button" onclick="updatePhilProp('honorsBgImg', '')" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded-lg cursor-pointer">배경사진 제거</button>` : ""}
               </div>
             </div>
-            <div class="space-y-14">
-              ${sortedYears.map(yr => `
-                <div class="space-y-5">
-                  <div class="flex items-center justify-between border-b-2 border-neutral-900 pb-3">
-                    <div class="flex items-baseline gap-3">
-                      <span class="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">${yr}</span>
-                      <span class="text-xs md:text-sm font-bold text-[#FF6B00] uppercase tracking-wider">HONORS & ACHIEVEMENTS</span>
-                    </div>
-                    <button type="button" onpointerdown="event.stopPropagation()" onclick="addHonorCard('${yr}')" class="admin-only-control px-3 py-1.5 bg-neutral-900 text-white text-[11px] font-bold rounded cursor-pointer">+ ${yr}년 카드 추가</button>
+
+            <div class="hof-cat-grid" style="--hof-cols: ${colCount};">
+              ${catOrder.map(catName => `
+                <div class="hof-col-block">
+                  <div class="hof-cat-heading">
+                    <span class="truncate">${catName}</span>
+                    <button type="button" onpointerdown="event.stopPropagation()" onclick="addHonorCard('${catName.replace(/'/g, "\\'")}')" class="admin-only-control shrink-0 px-2 py-0.5 bg-neutral-900 hover:bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button>
                   </div>
-                  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3.5 text-center">
-                    ${yearGroups[yr].map(h => {
+                  <div class="hof-student-list">
+                    ${catGroups[catName].map(h => {
                       const idx = h.originalIdx;
                       return `
-                        <div class="bg-white p-4 border border-neutral-200 hover:border-neutral-400 transition flex flex-col justify-between items-center shadow-sm">
-                          <div class="w-full">
-                            <div class="admin-only-control justify-center items-center gap-1 mb-2 bg-neutral-100 py-0.5 px-2 rounded text-[10px] text-neutral-600">
-                              <span>년도:</span>
-                              <span data-editable="true" data-path="philosophy.honorsList.${idx}.year" class="font-extrabold text-[#FF6B00]">${h.year || yr}</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 mb-2.5">
-                              <span data-editable="true" data-path="philosophy.honorsList.${idx}.category" class="inline-block px-2 py-0.5 bg-neutral-100 text-neutral-600 border border-neutral-200 text-[10px] font-semibold">${h.category}</span>
-                              <div class="text-[11px] text-neutral-500 font-medium truncate max-w-full">
-                                <span data-editable="true" data-path="philosophy.honorsList.${idx}.studentSchool">${h.studentSchool}</span>
-                                <span> · </span>
-                                <span data-editable="true" data-path="philosophy.honorsList.${idx}.studentGrade" class="text-neutral-800 font-bold">${h.studentGrade}</span>
-                              </div>
-                            </div>
-                            <h3 data-editable="true" data-path="philosophy.honorsList.${idx}.targetUniv" class="text-base font-extrabold text-neutral-900 mb-0.5 leading-snug">${h.targetUniv}</h3>
-                            <p data-editable="true" data-path="philosophy.honorsList.${idx}.targetDept" class="text-xs font-bold text-[#FF6B00] mb-2.5 pb-2 border-b border-neutral-100">${h.targetDept}</p>
-                            <p data-editable="true" data-path="philosophy.honorsList.${idx}.note" class="text-[11px] text-neutral-500 leading-snug">${h.note}</p>
+                        <div class="hof-student-row group">
+                          <div class="hof-student-one-line" title="${stripHtml(h.studentGrade)} ${stripHtml(h.targetUniv)} ${stripHtml(h.targetDept)} (${stripHtml(h.studentSchool)})">
+                            <span data-editable="true" data-path="philosophy.honorsList.${idx}.studentGrade">${h.studentGrade}</span>
+                            <span class="mx-1"></span>
+                            <span data-editable="true" data-path="philosophy.honorsList.${idx}.targetUniv">${h.targetUniv}</span>
+                            <span class="mx-0.5"></span>
+                            <span data-editable="true" data-path="philosophy.honorsList.${idx}.targetDept">${h.targetDept}</span>
+                            <span class="hof-s-school ml-1">(<span data-editable="true" data-path="philosophy.honorsList.${idx}.studentSchool">${h.studentSchool}</span>)</span>
                           </div>
-                          <div class="admin-only-control pt-2.5 mt-2.5 border-t border-neutral-100 justify-center gap-1 w-full" onpointerdown="event.stopPropagation()">
-                            <button type="button" onclick="moveHonorCard(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px] cursor-pointer">◀</button>
-                            <button type="button" onclick="moveHonorCard(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-100 border text-[10px] cursor-pointer">▶</button>
-                            <button type="button" onclick="deleteHonorCard(${idx})" class="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
+                          <div class="admin-only-control items-center flex-wrap gap-1.5 pt-1 border-t border-black/10 text-[10px]" onpointerdown="event.stopPropagation()">
+                            <span class="text-neutral-600 font-bold">부문:</span>
+                            <span data-editable="true" data-path="philosophy.honorsList.${idx}.category" class="px-1.5 py-0.5 bg-white/80 rounded font-extrabold text-[#FF6B00]">${h.category}</span>
+                            <button type="button" onclick="moveHonorCard(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▲</button>
+                            <button type="button" onclick="moveHonorCard(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▼</button>
+                            <button type="button" onclick="deleteHonorCard(${idx})" class="px-2 py-0.5 bg-red-600 text-white font-bold rounded cursor-pointer">삭제</button>
                           </div>
-                        </div>`;
+                        </div>
+                      `;
                     }).join("")}
                   </div>
-                </div>`).join("")}
+                </div>
+              `).join("")}
             </div>
-          </div>`;
+          </div>
+        `;
       }
+
+      setupPhilosophyObservers();
+      triggerPhilCeoEntrance();
+      updatePhilosophyStageVisuals(philStageRender, true);
+      updatePhilosophyLowerMotion(philSmoothScrollY, true);
       refreshViewBindings();
+    }
+
+    // ================= 상단 풀스테이지(대표 인사말 → MISSION → 학습목표 1~4스텝) 1회 휠 1단계 비주얼 엔진 =================
+    function updatePhilosophyStageVisuals(stageProgress, force = false) {
+      if (currentViewId !== "philosophy") return;
+      const ceoLayer = document.getElementById("philCeoLayer");
+      const missionLayer = document.getElementById("philMissionLayer");
+      const goalLayer = document.getElementById("philGoalStageLayer");
+      const leftRail = document.getElementById("philGoalLeftRail");
+      const rightRail = document.getElementById("philGoalRightRail");
+      const stepDotsEl = document.getElementById("philGoalStepDots");
+
+      const n = Math.max(1, siteData.philosophy?.goalItems?.length || 4);
+      const maxStage = 1 + n;
+
+      if (isEditMode || window.innerWidth <= 960) {
+        if (ceoLayer) { ceoLayer.style.opacity = ""; ceoLayer.style.transform = ""; ceoLayer.style.pointerEvents = ""; }
+        if (missionLayer) { missionLayer.style.opacity = ""; missionLayer.style.transform = ""; missionLayer.classList.add("is-active"); }
+        if (stepDotsEl) stepDotsEl.classList.remove("is-visible");
+        return;
+      }
+
+      const s = Math.max(0, Math.min(maxStage, stageProgress));
+      const smoothStep = (t) => {
+        const c = Math.max(0, Math.min(1, t));
+        return c * c * (3 - 2 * c);
+      };
+
+      // Stage 0 -> 1: 대표 인사말 부드럽게 페이드 아웃
+      if (ceoLayer) {
+        const ceoOut = smoothStep(s);
+        const ceoOpacity = 1 - ceoOut;
+        ceoLayer.style.opacity = ceoOpacity.toFixed(4);
+        ceoLayer.style.transform = `translate3d(0, ${(-ceoOut * 42).toFixed(2)}px, 0) scale(${(1 - ceoOut * 0.03).toFixed(4)})`;
+        ceoLayer.style.pointerEvents = ceoOpacity > 0.35 ? "auto" : "none";
+      }
+
+      // Stage 0 -> 1 -> 2: 중앙 MISSION 페이드 인 → 페이드 아웃
+      if (missionLayer) {
+        const missionIn = smoothStep((s - 0.16) / 0.84);
+        const missionOut = smoothStep((s - 1.0) / 0.78);
+        const missionOpacity = missionIn * (1 - missionOut);
+        missionLayer.style.opacity = missionOpacity.toFixed(4);
+        missionLayer.style.transform = `translate3d(0, ${((1 - missionIn) * 44 - missionOut * 36).toFixed(2)}px, 0) scale(${(0.96 + missionIn * 0.04 - missionOut * 0.02).toFixed(4)})`;
+        missionLayer.classList.toggle("is-active", missionOpacity > 0.35);
+      }
+
+      // Stage 2 ~ (1 + n): 학습목표 1스텝 ~ 4스텝 좌·우 반대방향 카운터 슬라이드
+      const goalIn = smoothStep((s - 1.14) / 0.86);
+      const goalStep = Math.max(0, Math.min(n - 1, s - 2));
+
+      if (goalLayer) {
+        goalLayer.style.opacity = goalIn.toFixed(4);
+        goalLayer.style.transform = `translate3d(0, ${((1 - goalIn) * 32).toFixed(2)}px, 0)`;
+        goalLayer.classList.toggle("is-active", goalIn > 0.35);
+      }
+
+      if (leftRail && rightRail) {
+        const leftPct = -goalStep * 100;
+        const rightPct = -((n - 1) - goalStep) * 100;
+        leftRail.style.transform = `translate3d(0, ${leftPct.toFixed(3)}%, 0)`;
+        rightRail.style.transform = `translate3d(0, ${rightPct.toFixed(3)}%, 0)`;
+      }
+
+      const nearestStage = Math.round(s);
+      currentPhilStageIdx = nearestStage;
+
+      if (stepDotsEl) {
+        const atTop = (window.scrollY || 0) < 40;
+        stepDotsEl.classList.toggle("is-visible", goalIn > 0.45 && atTop);
+        const activeGoalIdx = Math.round(goalStep);
+        stepDotsEl.querySelectorAll(".phil-goal-dot-btn").forEach((btn, idx) => {
+          btn.classList.toggle("active", idx === activeGoalIdx);
+        });
+      }
+
+      if (force) {
+        updatePhilosophyLowerMotion(philSmoothScrollY, true);
+      }
+    }
+
+    // ================= 하단 연혁 얼음 미끄러짐 패럴랙스 & 상단바/로고 구간 연동 =================
+    function updatePhilosophyLowerMotion(smoothY, force = false) {
+      if (currentViewId !== "philosophy") return;
+      const vh = window.innerHeight || 800;
+
+      // 연혁 다크 커튼 배경 미세 패럴랙스 + 타임라인 얼음 미끄러짐 잔여 탄성
+      const histSec = document.getElementById("phil-sec-history");
+      const histMedia = document.querySelector("#philHistoryBgSticky .phil-curtain-media");
+      const glideCol = document.getElementById("philHistoryGlideCol");
+
+      if (!isEditMode && histSec) {
+        const hTop = histSec.offsetTop;
+        const hHeight = Math.max(1, histSec.offsetHeight);
+        if (histMedia) {
+          const hP = Math.max(0, Math.min(1, (smoothY - hTop + vh * 0.5) / (hHeight + vh)));
+          const hScale = 1.02 + hP * 0.06;
+          const hTy = (0.5 - hP) * 34;
+          histMedia.style.transform = `translate3d(0, ${hTy.toFixed(2)}px, 0) scale(${hScale.toFixed(4)})`;
+        }
+        if (glideCol) {
+          const curY = philIceScrollActive ? philIceScrollRenderY : (window.scrollY || 0);
+          const glideLag = Math.max(-26, Math.min(26, (curY - smoothY) * 0.14));
+          glideCol.style.transform = `translate3d(0, ${glideLag.toFixed(2)}px, 0)`;
+        }
+      }
+
+      // 학습목표 미니 스텝 도트 가시성 업데이트
+      const stepDotsEl = document.getElementById("philGoalStepDots");
+      if (stepDotsEl && !isEditMode && window.innerWidth > 960) {
+        stepDotsEl.classList.toggle("is-visible", philStageRender > 1.5 && smoothY < 45);
+      }
+
+      // 현재 구간 감지 → 상단바 배경·로고 글자 자동 전환 & 플로팅 앵커 활성화
+      const topBar = document.getElementById("topFixedBar");
+      const honSec = document.getElementById("phil-sec-honors");
+      const checkY = smoothY + 120;
+
+      let activeSection = "greeting";
+      if (honSec && checkY >= honSec.offsetTop) {
+        activeSection = "honors";
+      } else if (histSec && checkY >= histSec.offsetTop) {
+        activeSection = "history";
+      } else if (!isEditMode && window.innerWidth > 960) {
+        activeSection = currentPhilStageIdx >= 2 ? "goal" : "greeting";
+      } else {
+        const mobileStack = document.getElementById("philGoalMobileStack");
+        if (mobileStack && checkY >= mobileStack.offsetTop) activeSection = "goal";
+      }
+
+      if (activeSection !== philActiveSectionKey || force) {
+        updatePhilFloatingNavActive(activeSection);
+      }
+
+      if (topBar) {
+        if (activeSection === "history") {
+          // 연혁 다크 커튼 구간: 상단바 완전 투명 + 흰색 메뉴 + 로고 글자 자동 흰색 반전
+          topBar.classList.remove("header-scrolled", "header-light-bg");
+        } else if (activeSection === "goal") {
+          // 학습목표 50:50 사진+텍스트 구간: 깔끔한 순백색 상단바
+          topBar.classList.add("header-scrolled", "header-light-bg");
+        } else {
+          // 대표 인사말·MISSION(순백색) 및 명예의 전당(밝은 신전 대리석): 투명 상단바 + 어두운 글자·원본 로고
+          topBar.classList.remove("header-scrolled");
+          topBar.classList.add("header-light-bg");
+        }
+      }
+    }
+
+    function setupPhilosophyObservers() {
+      if (philObserver) philObserver.disconnect();
+      const targets = document.querySelectorAll("#view-philosophy .phil-history-year-block, #view-philosophy .hof-col-block");
+      if (!targets.length) return;
+
+      if (isEditMode || typeof IntersectionObserver === "undefined") {
+        targets.forEach(el => el.classList.add("is-visible"));
+        return;
+      }
+
+      philObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -24px 0px" });
+
+      targets.forEach(el => philObserver.observe(el));
+    }
+
+    // ================= 학원소개 통합 쇼룸 관리자 스튜디오 =================
+    function togglePhilStudioPanel() {
+      const panel = document.getElementById("philStudioPanel");
+      if (!panel) return;
+      const willShow = panel.classList.contains("hidden");
+      closeAllStudioPanels("philStudioPanel");
+      panel.classList.toggle("hidden", !willShow);
+      if (willShow) {
+        if (currentViewId !== "philosophy") navigateTo("philosophy");
+        syncPhilStudioControls();
+      }
+    }
+
+    function selectPhilStudioTab(tabKey) {
+      currentPhilStudioTab = tabKey;
+      scrollToPhilosophySection(tabKey, true);
+      syncPhilStudioControls();
+    }
+
+    function syncPhilStudioControls() {
+      const tabsWrap = document.getElementById("philStudioTabs");
+      const bodyWrap = document.getElementById("philStudioControlsBody");
+      if (!tabsWrap || !bodyWrap) return;
+
+      const p = siteData.philosophy || defaultSiteData.philosophy;
+      const tabDefs = [
+        { key: "greeting", label: "인사말" },
+        { key: "goal", label: "학습목표" },
+        { key: "history", label: "연혁" },
+        { key: "honors", label: "명예전당" }
+      ];
+
+      tabsWrap.innerHTML = tabDefs.map(t => `
+        <button type="button" onclick="selectPhilStudioTab('${t.key}')"
+                class="py-1.5 rounded-lg font-bold text-[11px] cursor-pointer transition ${t.key === currentPhilStudioTab ? 'bg-emerald-400 text-black font-extrabold' : 'bg-white/10 text-neutral-300 hover:bg-white/20'}">${t.label}</button>
+      `).join("");
+
+      if (currentPhilStudioTab === "greeting") {
+        bodyWrap.innerHTML = `
+          <div class="bg-emerald-500/10 rounded-xl p-3 space-y-2.5 border border-emerald-400/40">
+            <span class="font-extrabold text-emerald-300 block">1. 대표 인사말 프로필 사진</span>
+            <div class="flex gap-1.5">
+              <button type="button" onclick="triggerImageFileUpload('philosophy.ceoImg')" class="flex-1 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold rounded-lg cursor-pointer">대표 사진 파일 업로드</button>
+              <button type="button" onclick="triggerImageChange('philosophy.ceoImg')" class="px-3 py-2 bg-neutral-700 hover:bg-neutral-600 text-white font-bold rounded-lg cursor-pointer">URL</button>
+            </div>
+          </div>
+
+          <div class="bg-white/5 rounded-xl p-3 space-y-2.5 border border-white/10">
+            <span class="font-bold text-amber-300 block">2. 스크롤 전환 MISSION 멘트</span>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">상단 영문 라벨</span>
+              <input type="text" value="${stripHtml(p.missionEyebrow || 'OUR MISSION')}" oninput="updatePhilProp('missionEyebrow', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
+            </label>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">중앙 대형 멘트 (엔터로 줄바꿈)</span>
+              <textarea rows="3" oninput="updatePhilProp('missionTitle', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold leading-relaxed">${stripHtml(p.missionTitle || '')}</textarea>
+            </label>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">하단 보조 설명</span>
+              <textarea rows="2" oninput="updatePhilProp('missionSub', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs">${stripHtml(p.missionSub || '')}</textarea>
+            </label>
+          </div>
+        `;
+      } else if (currentPhilStudioTab === "goal") {
+        const items = p.goalItems || [];
+        bodyWrap.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-neutral-200">학습목표 1~${items.length}스텝 (1회 휠 1단계)</span>
+            <button type="button" onclick="addPhilGoalItem()" class="px-2.5 py-1 bg-[#FF6B00] hover:bg-[#F39200] text-white text-[10px] font-bold rounded cursor-pointer">+ 스텝 추가</button>
+          </div>
+          <div class="space-y-2.5">
+            ${items.map((g, idx) => `
+              <div class="bg-black/45 p-2.5 rounded-xl border border-white/10 space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-extrabold text-emerald-300 truncate">STEP ${idx + 1}. ${stripHtml(g.title).slice(0, 16)}</span>
+                  <div class="flex gap-1">
+                    <button type="button" onclick="movePhilGoalItem(${idx}, -1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">▲</button>
+                    <button type="button" onclick="movePhilGoalItem(${idx}, 1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">▼</button>
+                    <button type="button" onclick="deletePhilGoalItem(${idx})" class="px-1.5 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button>
+                  </div>
+                </div>
+                <div class="flex gap-1.5">
+                  <button type="button" onclick="triggerMediaUrlChange('philosophy.goalItems.${idx}.media', '학습목표 ${idx + 1} 사진/동영상')" class="flex-1 py-1.5 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer"><i class="fa-solid fa-link mr-1"></i>사진/영상 링크</button>
+                  <button type="button" onclick="triggerImageFileUpload('philosophy.goalItems.${idx}.media')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
+                  <input type="color" value="${g.accentColor || '#FF6B00'}" oninput="updatePhilGoalProp(${idx}, 'accentColor', this.value)" class="w-7 h-7 rounded border-0 bg-transparent cursor-pointer" title="포인트 색상" />
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else if (currentPhilStudioTab === "history") {
+        const hDim = p.historyDimOpacity !== undefined ? p.historyDimOpacity : 0.62;
+        bodyWrap.innerHTML = `
+          <div class="bg-emerald-500/10 rounded-xl p-3 space-y-2.5 border border-emerald-400/40">
+            <span class="font-extrabold text-emerald-300 block">연혁 다크 커튼 배경 (사진/동영상)</span>
+            <div class="flex gap-1.5">
+              <button type="button" onclick="triggerMediaUrlChange('philosophy.historyBgMedia', '연혁 배경 사진/동영상')" class="flex-1 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold rounded-lg cursor-pointer"><i class="fa-solid fa-link mr-1"></i>사진/동영상 링크</button>
+              <button type="button" onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-2 bg-neutral-700 hover:bg-neutral-600 text-white font-bold rounded-lg cursor-pointer">사진파일</button>
+            </div>
+            <div class="space-y-1 pt-1">
+              <div class="flex justify-between text-[11px]">
+                <span class="text-neutral-300 font-bold">배경 어두움 필터</span>
+                <span id="philHistDimLabel" class="text-emerald-300 font-extrabold">${Math.round(hDim * 100)}%</span>
+              </div>
+              <input type="range" min="0.2" max="0.88" step="0.04" value="${hDim}" oninput="updatePhilProp('historyDimOpacity', parseFloat(this.value))" class="w-full accent-emerald-400" />
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="addHistoryRow('top')" class="flex-1 py-2 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">+ 상단 연혁 추가</button>
+            <button type="button" onclick="addHistoryRow('bottom')" class="flex-1 py-2 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">+ 하단 연혁 추가</button>
+          </div>
+        `;
+      } else if (currentPhilStudioTab === "honors") {
+        const colCount = Math.max(2, Math.min(6, Number(p.honorsColumns || 3)));
+        bodyWrap.innerHTML = `
+          <div class="bg-amber-500/15 rounded-xl p-3 space-y-2 border border-amber-400/50">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-[#FFB800]">가로 열(Column) 개수 설정</span>
+              <span class="text-white font-extrabold">${colCount}열</span>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" onclick="changeHonorsColumns(-1)" class="flex-1 py-2 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">- 열 줄이기</button>
+              <button type="button" onclick="changeHonorsColumns(1)" class="flex-1 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white font-extrabold rounded-lg cursor-pointer">+ 열 추가</button>
+            </div>
+            <p class="text-[10px] text-neutral-300">2열 ~ 최대 6열까지 자유롭게 조절되며 학생마다 1줄로 깔끔하게 정렬됩니다.</p>
+          </div>
+
+          <div class="bg-emerald-500/10 rounded-xl p-3 space-y-2.5 border border-emerald-400/40">
+            <span class="font-extrabold text-emerald-300 block">신전 명예의 전당 타이틀 & 워터마크</span>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">상단 소제목</span>
+              <input type="text" value="${stripHtml(p.honorsSubTitle || '')}" oninput="updatePhilProp('honorsSubTitle', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
+            </label>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">메인 제목</span>
+              <input type="text" value="${stripHtml(p.honorsTitle || '명예의 전당')}" oninput="updatePhilProp('honorsTitle', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
+            </label>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">하단 지역/학원명</span>
+              <input type="text" value="${stripHtml(p.honorsRegionTitle || '')}" oninput="updatePhilProp('honorsRegionTitle', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
+            </label>
+            <label class="block space-y-1">
+              <span class="text-[10px] text-neutral-400">배경 중앙 대형 워터마크</span>
+              <input type="text" value="${stripHtml(p.honorsWatermark || 'TOP SECRET')}" oninput="updatePhilProp('honorsWatermark', this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
+            </label>
+          </div>
+          <div class="flex gap-1.5">
+            <button type="button" onclick="triggerImageFileUpload('philosophy.honorsBgImg')" class="flex-1 py-2 bg-neutral-700 hover:bg-neutral-600 text-white font-bold rounded-lg cursor-pointer">배경 질감 사진</button>
+            <button type="button" onclick="updatePhilProp('honorsBgImg', '')" class="px-3 py-2 bg-neutral-800 hover:bg-red-600 text-white font-bold rounded-lg cursor-pointer">질감 제거</button>
+          </div>
+          <button type="button" onclick="addHonorCard()" class="w-full py-2.5 bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold rounded-lg cursor-pointer">+ 새 부문 / 학생 추가</button>
+        `;
+      }
+    }
+
+    function changeHonorsColumns(delta) {
+      const curr = Number(siteData.philosophy?.honorsColumns || 3);
+      const next = Math.max(2, Math.min(6, curr + delta));
+      if (next === curr) return;
+      siteData.philosophy.honorsColumns = next;
+      renderTopSecretPage();
+      if (!document.getElementById("philStudioPanel")?.classList.contains("hidden")) {
+        syncPhilStudioControls();
+      }
+      scheduleAutoCloudSave();
+    }
+
+    function updatePhilProp(prop, val) {
+      siteData.philosophy[prop] = val;
+      if (prop === "historyDimOpacity") {
+        const lbl = document.getElementById("philHistDimLabel");
+        if (lbl) lbl.textContent = `${Math.round(val * 100)}%`;
+      }
+      renderTopSecretPage();
+      scheduleAutoCloudSave();
+    }
+
+    function updatePhilGoalProp(idx, prop, val) {
+      if (!siteData.philosophy?.goalItems?.[idx]) return;
+      siteData.philosophy.goalItems[idx][prop] = val;
+      renderTopSecretPage();
+      scheduleAutoCloudSave();
+    }
+
+    function addPhilGoalItem() {
+      syncEditableElementsToData();
+      const nextNo = (siteData.philosophy.goalItems?.length || 0) + 1;
+      siteData.philosophy.goalItems.push({
+        engLabel: `STEP 0${nextNo} · LEARNING GOAL`,
+        title: `새로운 핵심 학습목표\n제목을 입력하세요.`,
+        sub: "핵심 부제목을 입력하세요",
+        desc: "학생의 성장을 이끄는 탑씨크리트만의 학습목표 상세 설명을 자유롭게 입력해 주세요.",
+        media: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=85",
+        accentColor: "#FF6B00"
+      });
+      renderTopSecretPage();
+      syncPhilStudioControls();
+      saveAllChanges(false);
+    }
+
+    function movePhilGoalItem(idx, dir) {
+      moveItemInArray(siteData.philosophy.goalItems, idx, dir, () => {
+        renderTopSecretPage();
+        syncPhilStudioControls();
+      });
+    }
+
+    function deletePhilGoalItem(idx) {
+      if ((siteData.philosophy.goalItems?.length || 0) <= 1) return alert("최소 1개 학습목표는 유지해야 합니다.");
+      if (!confirm("이 학습목표 스텝을 삭제하시겠습니까?")) return;
+      syncEditableElementsToData();
+      siteData.philosophy.goalItems.splice(idx, 1);
+      const maxStage = getPhilMaxTopStage();
+      if (philStageTarget > maxStage) philStageTarget = maxStage;
+      if (philStageRender > maxStage) philStageRender = maxStage;
+      renderTopSecretPage();
+      syncPhilStudioControls();
+      saveAllChanges(false);
     }
 
     function moveItemInArray(arr, idx, dir, afterRenderFn) {
@@ -5637,12 +7120,17 @@
       saveAllChanges(true);
     }
 
-    function addHonorCard(presetYear = null) {
+    function addHonorCard(presetCat = null) {
       syncEditableElementsToData();
-      const yr = (presetYear || prompt("추가할 명예의 전당 [년도]를 입력하세요 (예: 2026):", "2026") || "2026").trim();
-      siteData.philosophy.honorsList.unshift({
-        year: yr, category: `${yr} 대입 합격`, targetUniv: "합격 대학교명",
-        targetDept: "합격 학과 입력", studentSchool: "출신 학교명", studentGrade: "고3 홍O동", note: "성적 향상 또는 합격 상세 내용을 입력하세요."
+      const cat = (presetCat || prompt("추가할 명예의 전당 [부문/카테고리]를 입력하세요 (예: SKY · 의치한, 특목 · 자사고, 중등 내신 만점):", "SKY · 의치한") || "우수 합격자").trim();
+      siteData.philosophy.honorsList.push({
+        year: "2026",
+        category: cat,
+        targetUniv: "합격대학",
+        targetDept: "학과/성과",
+        studentSchool: "출신학교",
+        studentGrade: "홍O동",
+        note: "합격"
       });
       renderTopSecretPage();
       saveAllChanges(true);
@@ -5674,13 +7162,15 @@
         viewEl.style.background = `radial-gradient(circle at 50% 0%, ${bgHex} 0%, #020E29 100%)`;
       }
       if (picker) picker.value = bgHex;
+      if (currentViewId === "campus") {
+        document.getElementById("topFixedBar")?.classList.toggle("header-light-bg", isLightHexColor(bgHex));
+      }
     }
 
     function renderCampusRegionFilter() {
       applyCampusMainBackground();
     }
 
-    // 호버 시 DOM을 다시 그리지 않고 클래스만 전환하여 부드러운 아코디언 모션 유지
     function setCampusAccordionActive(realIdx) {
       activeCampusAccordionIdx = realIdx;
       document.querySelectorAll("#campusPageGrid .campus-acc-card").forEach((card) => {
@@ -5732,12 +7222,10 @@
                onmouseenter="setCampusAccordionActive(${idx})"
                onclick="handleCampusAccordionClick(${idx})">
 
-            <!-- 배경 대표 사진 -->
             <img src="${c.mainImg}" alt="${stripHtml(c.name)}" class="campus-acc-bg" />
             <div class="campus-acc-veil"></div>
             <div class="campus-acc-active-grad"></div>
 
-            <!-- 상단 타이틀 영역 -->
             <div class="campus-acc-head">
               <span class="campus-acc-sub">탑씨크리트학원</span>
               <div class="campus-acc-title-row">
@@ -5746,7 +7234,6 @@
               </div>
             </div>
 
-            <!-- 관리자 전용 컨트롤 -->
             <div class="admin-only-control absolute top-3 right-3 z-30 flex-wrap gap-1 bg-black/80 p-1.5 rounded-xl border border-orange-500/60" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
               <button type="button" onclick="triggerImageFileUpload('campuses.${idx}.mainImg')" class="px-2 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">사진파일</button>
               <button type="button" onclick="triggerImageChange('campuses.${idx}.mainImg')" class="px-2 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">URL</button>
@@ -5756,7 +7243,6 @@
               <button type="button" onclick="deleteCampusItem(${idx})" class="px-2 py-1 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
             </div>
 
-            <!-- 하단 상세 정보 영역 (확장 시 부드럽게 등장) -->
             <div class="campus-acc-bottom">
               <div class="campus-acc-bottom-inner flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div class="space-y-1.5 min-w-0">
@@ -6159,7 +7645,7 @@
         document.getElementById("adminToolbar").classList.remove("hidden");
         enableEditMode(true);
         navigateTo("home");
-        showToast("관리자 로그인 완료! 상단 툴바에서 3D 책장·커리큘럼 쇼룸·입학절차 슬라이드를 정밀 제어할 수 있습니다.");
+        showToast("관리자 로그인 완료! 상단 툴바에서 3D 책장·학원소개·커리큘럼·입학절차를 정밀 제어할 수 있습니다.");
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }
@@ -6177,6 +7663,7 @@
     function toggleEditMode() { enableEditMode(!isEditMode); }
     function enableEditMode(state) {
       isEditMode = state;
+      philIceScrollActive = false;
       document.body.classList.toggle("admin-edit-mode", isEditMode);
       const label = document.getElementById("editModeLabel");
       if (label) label.textContent = isEditMode ? "편집모드 ON" : "편집 일시정지";
@@ -6188,7 +7675,16 @@
         startBookStep2Cycle();
       }
       refreshViewBindings();
-      requestAnimationFrame(updateBookStep2Indicator);
+      requestAnimationFrame(() => {
+        updateBookStep2Indicator();
+        if (currentViewId === "philosophy") {
+          philSmoothScrollY = window.scrollY || 0;
+          setupPhilosophyObservers();
+          triggerPhilCeoEntrance();
+          updatePhilosophyStageVisuals(philStageRender, true);
+          updatePhilosophyLowerMotion(philSmoothScrollY, true);
+        }
+      });
     }
 
     function applyEditModeAttributes() {
@@ -6251,7 +7747,7 @@
           const dockBtn = document.querySelector(`#currBottomDock [data-curr-dock-idx="${dockIdx}"]`);
           if (dockBtn) dockBtn.textContent = stripHtml(editable.innerHTML);
           if (!document.getElementById("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
-        } else if (path.startsWith("philosophy.honorsList.") && path.endsWith(".year")) {
+        } else if (path.startsWith("philosophy.goalItems.") || (path.startsWith("philosophy.honorsList.") && (path.endsWith(".category") || path.endsWith(".year")))) {
           renderTopSecretPage();
         } else if (path.startsWith("bookConfig.spreads.1.")) {
           requestAnimationFrame(updateBookStep2Indicator);
@@ -6275,14 +7771,41 @@
       setTimeout(() => { toast.style.opacity = "0"; }, 3400);
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      window.history.replaceState({
-        viewId: "home",
-        topSecretTab: "greeting",
-        curriculumCat: "전체보기",
-        campusId: 0
-      }, "", "#home");
-      loadSiteData();
+    // 메인 접속 시 주소 뒤에 #home이 붙지 않도록 클린 URL 유지 및 초기 해시 라우팅 처리
+    window.addEventListener("DOMContentLoaded", async () => {
+      const initialHash = window.location.hash.replace("#", "");
+      const cleanRootPath = window.location.pathname || "/";
+
+      if (!initialHash || initialHash === "home") {
+        try {
+          window.history.replaceState({
+            viewId: "home",
+            topSecretTab: "greeting",
+            curriculumCat: "전체보기",
+            campusId: 0
+          }, "", cleanRootPath);
+        } catch (e) {}
+      }
+
+      await loadSiteData();
+
+      if (initialHash && initialHash !== "home") {
+        if (initialHash.startsWith("philosophy-")) {
+          currentTopSecretTab = initialHash.replace("philosophy-", "");
+          navigateTo("philosophy", false);
+          setTimeout(() => scrollToPhilosophySection(currentTopSecretTab, false), 100);
+        } else if (initialHash.startsWith("curriculum-")) {
+          currentCurriculumCat = decodeURIComponent(initialHash.replace("curriculum-", ""));
+          navigateTo("curriculum", false);
+          setTimeout(() => selectCurriculumCat(currentCurriculumCat), 40);
+        } else if (initialHash.startsWith("campus-detail-")) {
+          currentDetailCampusId = Number(initialHash.replace("campus-detail-", "")) || 0;
+          navigateTo("campus-detail", false);
+        } else if (["philosophy", "curriculum", "campus", "admission", "login", "consult"].includes(initialHash)) {
+          navigateTo(initialHash, false);
+        }
+      }
+
       requestAnimationFrame(masterAnimationLoop);
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {

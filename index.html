@@ -12,11 +12,10 @@
   <meta property="og:site_name" content="탑씨크리트학원" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:title" content="탑씨크리트학원 | 천안·아산 초중고 영어·수학 전문학원" />
-  <meta property="og:description" content="천안·아산 초중고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다. 1:1 맞춤 커리큘럼과 전 분원 안내를 확인하세요." />
+  <meta property="og:description" content="천안·아산 초중고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="탑씨크리트학원 | 천안·아산 초중고 영어·수학 전문학원" />
   <meta name="twitter:description" content="천안·아산 초중고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다." />
-  <!-- <meta name="naver-site-verification" content="소유확인_코드" /> -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"탑씨크리트학원","alternateName":["탑씨크리트","탑씨크리트 교육(주)","㈜탑씨크리트에듀케이션","TOP SECRET ACADEMY"],"description":"천안·아산 초·중·고 영어·수학 전문 탑씨크리트학원 공식 홈페이지입니다.","areaServed":["충청남도 천안시","충청남도 아산시"],"telephone":"041-555-0001","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"충청남도","addressLocality":"천안시 서북구 불당동"}}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,8 +34,8 @@
     html,body,h1,h2,h3,h4,h5,h6,p,span,div,li,button,input,select,textarea { font-family:var(--global-font); }
     body { margin:0; background:#fff; color:var(--brand-charcoal); overflow-x:hidden; scroll-behavior:smooth; }
 
-    /* 상단 헤더 (64px / 로고·글자 자동 반전 기능 완전 제거 — 항상 원본 로고·선명한 다크 텍스트 유지) */
-    .top-fixed-bar { position:fixed; top:0; left:0; width:100%; z-index:150; background:rgba(255,255,255,.96); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(0,0,0,.06); box-shadow:0 4px 18px rgba(0,0,0,.05); transition:background-color .3s var(--ease),box-shadow .3s var(--ease); }
+    /* 상단 헤더 (64px / 반전 없음 — 항상 원본 로고 & 선명한 텍스트) */
+    .top-fixed-bar { position:fixed; top:0; left:0; width:100%; z-index:150; background:rgba(255,255,255,.97); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(0,0,0,.06); box-shadow:0 4px 18px rgba(0,0,0,.05); transition:background-color .3s var(--ease),box-shadow .3s var(--ease); }
     .top-fixed-bar:hover,.top-fixed-bar.mega-active,.top-fixed-bar.header-scrolled { background:#fff; box-shadow:0 6px 24px rgba(0,0,0,.08); }
     .header-main-row { position:relative; height:var(--topbar-h); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
     .top-left-logo-wrap { display:flex; align-items:center; gap:10px; position:relative; z-index:110; flex-shrink:0; }
@@ -67,32 +66,35 @@
     .book-base-left,.book-base-right { position:absolute; top:0; width:50%; height:100%; overflow:hidden; z-index:10; }
     .book-base-left { left:0; border-radius:14px 2px 2px 14px; }
     .book-base-right { left:50%; border-radius:2px 14px 14px 2px; }
-    /* .book-leaf 래퍼는 항상 pointer-events:none으로 두어 4장 등 비활성 리프의 클릭/호버 가로채기 원천 차단 */
     .book-leaf { position:absolute; top:0; left:50%; width:50%; height:100%; transform-origin:left center; transform-style:preserve-3d; will-change:transform; pointer-events:none; }
     .leaf-face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; overflow:hidden; pointer-events:none; }
     .leaf-front { transform:rotateY(0); border-radius:2px 14px 14px 2px; }
     .leaf-back { transform:rotateY(180deg); border-radius:14px 2px 2px 14px; }
     .spine-shadow-left,.spine-shadow-right { position:absolute; top:0; width:48px; height:100%; pointer-events:none; z-index:35; }
-    .spine-shadow-left { right:0; background:linear-gradient(to left,rgba(0,0,0,.2) 0%,rgba(0,0,0,.06) 32%,transparent 100%); }
-    .spine-shadow-right { left:0; background:linear-gradient(to right,rgba(0,0,0,.18) 0%,rgba(0,0,0,.05) 32%,transparent 100%); }
+    .spine-shadow-left { right:0; background:linear-gradient(to left,rgba(0,0,0,.22) 0%,rgba(0,0,0,.07) 32%,transparent 100%); }
+    .spine-shadow-right { left:0; background:linear-gradient(to right,rgba(0,0,0,.2) 0%,rgba(0,0,0,.06) 32%,transparent 100%); }
     .dynamic-shade { position:absolute; inset:0; pointer-events:none; z-index:40; opacity:0; transition:opacity .08s linear; }
     .spread-mirror-backdrop { position:absolute; top:0; width:200%; height:100%; pointer-events:none; z-index:1; overflow:hidden; }
     .half-left .spread-mirror-backdrop { left:0; }
     .half-right .spread-mirror-backdrop { left:-100%; }
     .page-content { position:relative; z-index:20; width:100%; height:100%; display:flex; flex-direction:column; justify-content:space-between; }
-    .book-left-unified { width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; padding:clamp(22px,3.4vh,40px) clamp(26px,3.2vw,52px) clamp(52px,6.5vh,72px) clamp(36px,5vw,82px); }
 
-    /* 단일 동영상 무절단(Seamless) 레이어 — 넘길 때 즉시 숨기고 정착 시 즉시 복귀해 검정화면/잔상 제거 */
+    /* ★ 1·2·3·4장 공통 통일 좌측 제목 기준선 & 글자 크기 시스템 (넘길 때/안 넘길 때 100% 동일 좌표) */
+    .book-unified-left-pane { width:100%; height:100%; display:flex; flex-direction:column; justify-content:flex-start; padding:clamp(36px,5.6vh,62px) clamp(28px,3.2vw,52px) clamp(64px,7.5vh,84px) clamp(38px,5vw,82px); }
+    .book-title-header { display:flex; flex-direction:column; gap:10px; max-width:540px; }
+    .book-title-eyebrow { font-size:clamp(11.5px,.92vw,13.5px); font-weight:800; letter-spacing:.2em; text-transform:uppercase; line-height:1.35; }
+    .book-title-main { font-size:clamp(28px,3.15vw,48px); font-weight:900; line-height:1.18; letter-spacing:-.02em; white-space:pre-line; word-break:keep-all; margin:0; }
+    .book-title-sub { font-size:clamp(14px,1.2vw,18px); font-weight:700; line-height:1.45; white-space:pre-line; margin:0; }
+    .book-title-desc { font-size:clamp(12px,.95vw,14.5px); font-weight:500; line-height:1.72; white-space:pre-line; margin:0; }
+
+    /* 1장·3장(전체보기 전용) 단일 동영상 무절단 레이어 — 넘길 때만 즉시 숨겨 아래 분할 미러 동영상 노출 */
     .book-seamless-overlay { position:absolute; inset:0; z-index:230; border-radius:14px; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; transform:translateZ(3px); }
     .book-seamless-overlay.is-active { opacity:1; visibility:visible; pointer-events:auto; }
     .media-drop-active { outline:3px dashed #FF6B00!important; outline-offset:-4px; filter:brightness(1.08); }
     .book-hero-seamless-media { position:absolute; top:0; right:0; bottom:0; width:75%; overflow:hidden; -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.22) 8%,rgba(0,0,0,.78) 18%,#000 30%,#000 100%); mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.22) 8%,rgba(0,0,0,.78) 18%,#000 30%,#000 100%); }
     .book-auto-fit-media { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
     .book-auto-fit-media.fit-contain { object-fit:contain; background:#111318; }
-    #bookSpread2Seamless { background:#14161B; transition:background-color .55s var(--ease); }
-    #bookSpread2Seamless .curr-course-inner { padding:clamp(24px,3.6vh,42px) clamp(32px,4.8vw,80px) 84px; gap:clamp(20px,3.8vw,60px); }
-    #bookSpread2Seamless .curr-course-visual-wrap { height:clamp(250px,52vh,470px); }
-    #bookSpread2Seamless .curr-overview-content { padding:0 clamp(36px,5vw,82px) 52px; }
+    #bookSpread2Seamless { background:#14161B; }
     #bookCampusAccOverlay { display:flex; flex-direction:column; padding:18px 24px 64px; background:radial-gradient(circle at 50% 0%,#052058 0%,#020E29 100%); transition:opacity .22s var(--ease),visibility .22s ease; }
     #bookCampusAccOverlay .campus-acc-head { padding:clamp(16px,2.4vh,28px) 8px 0; }
     #bookCampusAccOverlay .campus-acc-title { font-size:clamp(13px,1.15vw,20px); }
@@ -118,7 +120,7 @@
     .curr-dock-tab.active { color:#FF6B00; font-weight:800; }
     .curr-dock-tab.active::after { content:''; position:absolute; left:12px; right:12px; bottom:2px; height:3px; border-radius:9999px; background:#FF6B00; }
 
-    /* 진입 모션 & 2장 좌측 소개 → 우측 STEP 호버 시 좌측 전체 미리보기 스르륵 전환 */
+    /* 진입 모션 & 2장 좌측 통일 제목 페이드아웃 → 학원소개 메인 내용 페이드인 */
     .reveal-item { opacity:0; transform:translate3d(-14px,8px,0); transition:opacity .32s var(--ease),transform .32s var(--ease); will-change:opacity,transform; }
     .reveal-item.reveal-from-bottom { transform:translate3d(0,14px,0); }
     .reveal-item.reveal-from-right { transform:translate3d(14px,8px,0); }
@@ -130,20 +132,20 @@
     body.admin-edit-mode :is(.reveal-item,.phil-ceo-anim,.phil-history-year-block,.hof-col-block) { opacity:1!important; transform:none!important; filter:none!important; transition:none!important; }
 
     .step2-left-stage { position:relative; width:100%; height:100%; overflow:hidden; }
-    .step2-left-intro { width:100%; height:100%; transition:opacity .45s var(--ease),transform .48s var(--ease); will-change:opacity,transform; }
-    .step2-left-stage.preview-open .step2-left-intro { opacity:0; transform:translate3d(0,-14px,0) scale(.985); pointer-events:none; }
-    .step2-left-preview-overlay { position:absolute; inset:0; z-index:25; opacity:0; pointer-events:none; transform:translate3d(0,18px,0) scale(.985); transition:opacity .48s var(--ease),transform .52s var(--ease); will-change:opacity,transform; }
-    .step2-left-stage.preview-open .step2-left-preview-overlay { opacity:1; pointer-events:auto; transform:translate3d(0,0,0) scale(1); }
-    .step2-preview-pane { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .42s var(--ease); }
-    .step2-preview-pane.is-shown { opacity:1; pointer-events:auto; }
+    .step2-left-intro { width:100%; height:100%; opacity:1; transform:translate3d(0,0,0); transition:opacity .44s var(--ease),transform .46s var(--ease); will-change:opacity,transform; }
+    .step2-left-stage.preview-open .step2-left-intro { opacity:0; transform:translate3d(0,-14px,0); pointer-events:none; }
+    .step2-left-preview-overlay { position:absolute; inset:0; z-index:25; opacity:0; pointer-events:none; transform:translate3d(0,22px,0); transition:opacity .46s var(--ease),transform .52s var(--ease); will-change:opacity,transform; }
+    .step2-left-stage.preview-open .step2-left-preview-overlay { opacity:1; pointer-events:auto; transform:translate3d(0,0,0); }
+    .step2-preview-pane { position:absolute; inset:0; opacity:0; pointer-events:none; transform:translate3d(0,14px,0); transition:opacity .4s var(--ease),transform .45s var(--ease); }
+    .step2-preview-pane.is-shown { opacity:1; pointer-events:auto; transform:translate3d(0,0,0); }
     body.admin-edit-mode .step2-left-stage.preview-open .step2-left-intro { opacity:1!important; transform:none!important; pointer-events:auto!important; }
     body.admin-edit-mode .step2-left-preview-overlay { display:none!important; }
 
     .book-step-list { position:relative; display:flex; flex-direction:column; justify-content:space-between; height:88%; max-height:560px; width:100%; margin:auto 0; gap:clamp(24px,3.8vh,42px); }
     .book-step-line { position:absolute; left:16px; top:28px; bottom:28px; width:1.5px; background:#E4E4E7; z-index:1; pointer-events:none; }
-    .book-step-orb { position:absolute; left:16px; top:0; width:22px; height:22px; border-radius:9999px; background:rgba(255,122,0,.25); transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center; z-index:4; pointer-events:none; transition:top .85s var(--ease); }
+    .book-step-orb { position:absolute; left:16px; top:0; width:22px; height:22px; border-radius:9999px; background:rgba(255,122,0,.25); transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center; z-index:4; pointer-events:none; transition:top .72s var(--ease); }
     .book-step-orb::after { content:''; width:11px; height:11px; border-radius:9999px; background:#FF7A00; box-shadow:0 0 12px rgba(255,107,0,.5); }
-    .book-step-bar { position:absolute; left:52px; right:0; top:0; height:74px; border-radius:12px; background:linear-gradient(95deg,#FF7D00 0%,#FF6B00 100%); box-shadow:0 14px 30px rgba(255,107,0,.26); z-index:2; pointer-events:none; will-change:transform,height; transition:transform .85s var(--ease),height .85s var(--ease); }
+    .book-step-bar { position:absolute; left:52px; right:0; top:0; height:74px; border-radius:12px; background:linear-gradient(95deg,#FF7D00 0%,#FF6B00 100%); box-shadow:0 14px 30px rgba(255,107,0,.26); z-index:2; pointer-events:none; will-change:transform,height; transition:transform .72s var(--ease),height .72s var(--ease); }
     .book-step-row { position:relative; z-index:3; display:flex; align-items:center; flex:0 0 auto; cursor:pointer; }
     .book-step-dot-slot { width:34px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
     .book-step-muted-dot { width:10px; height:10px; border-radius:9999px; background:#D4D4D8; transition:opacity .4s ease; }
@@ -153,22 +155,23 @@
     .book-step-desc { color:#A1A1AA; font-weight:600; transition:color .45s ease; }
     .book-step-row.is-active :is(.book-step-num,.book-step-desc) { color:#fff; }
 
-    /* 4장 입학절차 */
-    .adm-top-media-layer { position:absolute; inset:0; opacity:0; transform:scale(1.05); transition:opacity .72s var(--ease),transform .85s var(--ease); will-change:opacity,transform; }
+    /* 3장 소메뉴 2쪽 책장 내부 전환 상승 모션 */
+    .book-curr-course-anim { animation:bookRiseIn .46s var(--ease) both; }
+    @keyframes bookRiseIn { from { opacity:0; transform:translate3d(0,26px,0); } to { opacity:1; transform:translate3d(0,0,0); } }
+
+    /* 4장 입학절차 — 좌측 메뉴 호버 시 우측 상세 위로 올라가는 자연스러운 모션 */
+    .adm-top-media-layer { position:absolute; inset:0; opacity:0; transform:scale(1.04); transition:opacity .65s var(--ease),transform .8s var(--ease); will-change:opacity,transform; }
     .adm-top-media-layer.active { opacity:.68; transform:scale(1); }
-    .adm-step-tab { display:flex; align-items:center; gap:14px; padding:10px 8px; cursor:pointer; color:rgba(255,255,255,.45); font-size:clamp(12px,1.05vw,15px); font-weight:500; transition:color .35s ease,transform .35s var(--ease); }
-    .adm-step-tab:hover { color:rgba(255,255,255,.92); transform:translateX(4px); }
-    .adm-step-tab.active { color:#fff; font-weight:700; }
-    .adm-step-dot { position:relative; width:24px; height:24px; border-radius:9999px; border:1px solid transparent; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color .4s ease,transform .4s ease; }
-    .adm-step-dot::after { content:''; width:5px; height:5px; border-radius:9999px; background:rgba(255,255,255,.42); transition:background .35s ease,transform .35s ease; }
-    .adm-step-tab.active .adm-step-dot { border-color:rgba(255,255,255,.88); transform:scale(1.06); }
-    .adm-step-tab.active .adm-step-dot::after { background:#fff; transform:scale(1.15); }
-    .adm-detail-stage { perspective:960px; transform-style:preserve-3d; }
-    .adm-detail-rotator { transform-origin:center; transition:opacity .34s var(--ease),transform .38s var(--ease); will-change:opacity,transform; }
-    .adm-detail-rotator.flip-out-up { opacity:0; transform:translate3d(0,-34px,-28px) rotateX(34deg); }
-    .adm-detail-rotator.flip-out-down { opacity:0; transform:translate3d(0,34px,-28px) rotateX(-34deg); }
-    .adm-detail-rotator.prep-from-down { opacity:0; transform:translate3d(0,34px,-28px) rotateX(-34deg); transition:none!important; }
-    .adm-detail-rotator.prep-from-up { opacity:0; transform:translate3d(0,-34px,-28px) rotateX(34deg); transition:none!important; }
+    .adm-step-tab { display:flex; align-items:center; gap:14px; padding:10px 8px; cursor:pointer; color:rgba(255,255,255,.45); font-size:clamp(12px,1.05vw,15px); font-weight:500; transition:color .3s ease,transform .3s var(--ease); }
+    .adm-step-tab:hover { color:rgba(255,255,255,.94); transform:translateX(5px); }
+    .adm-step-tab.active { color:#fff; font-weight:800; }
+    .adm-step-dot { position:relative; width:24px; height:24px; border-radius:9999px; border:1px solid transparent; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color .35s ease,transform .35s ease; }
+    .adm-step-dot::after { content:''; width:5px; height:5px; border-radius:9999px; background:rgba(255,255,255,.42); transition:background .3s ease,transform .3s ease; }
+    .adm-step-tab.active .adm-step-dot { border-color:#FF6B00; transform:scale(1.08); }
+    .adm-step-tab.active .adm-step-dot::after { background:#FF6B00; transform:scale(1.25); }
+    .adm-detail-rotator { opacity:1; transform:translate3d(0,0,0); transition:opacity .42s var(--ease),transform .46s var(--ease); will-change:opacity,transform; }
+    .adm-detail-rotator.rise-exit { opacity:0; transform:translate3d(0,-22px,0); transition:opacity .16s ease,transform .16s ease; }
+    .adm-detail-rotator.rise-prep { opacity:0; transform:translate3d(0,32px,0); transition:none!important; }
 
     /* 학원소개 4단계 · 연혁 · 명예의 전당 */
     #view-philosophy { background:#fff; color:#141414; position:relative; }
@@ -245,7 +248,7 @@
     .phil-nav-pill:hover { color:#fff; background:rgba(255,255,255,.12); }
     .phil-nav-pill.active { background:#FF6B00; color:#fff; }
 
-    /* 커리큘럼 쇼룸 */
+    /* 커리큘럼 전용 쇼룸 */
     #currShowroomStage { position:relative; width:100%; height:100vh; min-height:620px; overflow:hidden; background:#F6F7FA; transition:background-color .65s var(--ease); }
     .curr-showroom-grid-bg { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.55; background-image:linear-gradient(30deg,rgba(15,23,42,.03) 1px,transparent 1px),linear-gradient(150deg,rgba(15,23,42,.03) 1px,transparent 1px); background-size:64px 37px; transition:opacity .5s ease; }
     .curr-slide-layer { position:absolute; inset:0; z-index:10; pointer-events:none; will-change:opacity,transform; }
@@ -258,7 +261,7 @@
     .curr-course-text,.curr-course-visual-wrap { will-change:transform,opacity; }
     .curr-course-visual-wrap { position:relative; width:100%; height:clamp(320px,58vh,560px); display:flex; align-items:center; justify-content:center; }
     .curr-course-media-box { position:relative; width:100%; height:100%; border-radius:24px; overflow:hidden; background:#fff; box-shadow:0 30px 70px rgba(15,23,42,.14),0 8px 22px rgba(15,23,42,.06); border:1px solid rgba(15,23,42,.06); }
-    .curr-pill-cta { display:inline-flex; align-items:center; justify-content:space-between; gap:20px; padding:13px 24px; border-radius:10px; background:#fff; color:#141414; font-size:13.5px; font-weight:700; box-shadow:0 10px 28px rgba(15,23,42,.09); border:1px solid rgba(15,23,42,.06); cursor:pointer; transition:all .28s var(--ease); }
+    .curr-pill-cta { display:inline-flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 22px; border-radius:10px; background:#fff; color:#141414; font-size:13px; font-weight:700; box-shadow:0 10px 28px rgba(15,23,42,.09); border:1px solid rgba(15,23,42,.06); cursor:pointer; transition:all .28s var(--ease); }
     .curr-pill-cta:hover { background:var(--brand-orange); color:#fff; border-color:var(--brand-orange); transform:translateY(-2px); box-shadow:0 14px 32px rgba(255,107,0,.26); }
     .curr-progress-rail { position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:142; display:flex; flex-direction:column; gap:9px; transition:opacity .3s ease; }
     .curr-progress-rail.dock-hidden { opacity:0; pointer-events:none; }
@@ -319,7 +322,8 @@
     .legal-doc-body { font-size:13.5px; line-height:1.9; color:#374151; white-space:pre-line; word-break:keep-all; }
     .view-section { animation:fadeIn .4s var(--ease); }
     @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-    body.admin-edit-mode [data-editable="true"] { outline:1.5px dashed rgba(255,107,0,.9); outline-offset:2px; cursor:text; border-radius:3px; min-width:16px; min-height:1em; }
+    body.admin-edit-mode [data-editable="true"] { outline:1.5px dashed rgba(255,107,0,.9); outline-offset:2px; cursor:text; border-radius:3px; min-width:16px; min-height:1em; display:inline-block; }
+    body.admin-edit-mode :is(p,h1,h2,h3,h4,div)[data-editable="true"] { display:block; }
     body.admin-edit-mode [data-editable="true"]:empty::before { content:"[클릭하여 입력]"; color:rgba(255,107,0,.65); font-size:12px; }
     body.admin-edit-mode [data-editable="true"]:hover { outline:2px solid #FF6B00; background:rgba(255,107,0,.16); }
     body.admin-edit-mode [data-editable="true"].active-selected-target { outline:3px solid #10B981!important; background:rgba(16,185,129,.2)!important; }
@@ -356,8 +360,8 @@
       #bookCampusAccOverlay .campus-acc-bottom-inner { min-width:0; }
     }
     @media (max-width:900px) {
-      .curr-course-inner,#bookSpread2Seamless .curr-course-inner { grid-template-columns:1fr; padding:24px 20px 84px; gap:16px; align-content:center; }
-      .curr-course-visual-wrap,#bookSpread2Seamless .curr-course-visual-wrap { height:clamp(190px,30vh,280px); }
+      .curr-course-inner { grid-template-columns:1fr; padding:24px 20px 84px; gap:16px; align-content:center; }
+      .curr-course-visual-wrap { height:clamp(190px,30vh,280px); }
     }
     @media (max-width:768px) {
       :root { --topbar-h:56px; }
@@ -381,7 +385,7 @@
 
   <!-- 1. 이미지 확대 모달 -->
   <div id="imageZoomModal" class="fixed inset-0 z-[380] bg-black/90 hidden items-center justify-center p-6 md:p-12" onclick="closeModal('imageZoomModal')">
-    <button onclick="closeModal('imageZoomModal')" class="absolute top-6 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-neutral-700 text-white text-xl flex items-center justify-center transition cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+    <button type="button" onclick="closeModal('imageZoomModal')" class="absolute top-6 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-neutral-700 text-white text-xl flex items-center justify-center transition cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     <div class="max-w-6xl max-h-[88vh] relative flex flex-col items-center" onclick="event.stopPropagation()">
       <img id="zoomedModalImg" src="" alt="확대 이미지" class="max-w-full max-h-[82vh] object-contain shadow-2xl border border-white/15" />
       <p class="text-white/70 text-xs mt-3">닫으려면 바깥 영역이나 X 버튼을 누르세요.</p>
@@ -468,11 +472,11 @@
     <div class="bg-neutral-900 text-white w-full max-w-lg rounded-2xl border-2 border-[#FF6B00] p-6 shadow-2xl space-y-5" onclick="event.stopPropagation()">
       <div class="flex items-center justify-between border-b border-neutral-700 pb-3">
         <h3 id="sectionDesignModalTitle" class="text-base font-extrabold text-[#FFB800]">섹션 디자인 설정</h3>
-        <button onclick="closeModal('sectionDesignModal',true)" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" onclick="closeModal('sectionDesignModal',true)" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div id="sectionDesignModalBody" class="space-y-4 text-xs"></div>
       <div class="flex justify-end pt-3 border-t border-neutral-700">
-        <button onclick="closeModal('sectionDesignModal',true)" class="px-5 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold rounded-lg text-xs cursor-pointer">확인 및 저장</button>
+        <button type="button" onclick="closeModal('sectionDesignModal',true)" class="px-5 py-2 bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold rounded-lg text-xs cursor-pointer">확인 및 저장</button>
       </div>
     </div>
   </div>
@@ -486,24 +490,24 @@
         <span id="cloudSyncBadge" class="ml-2 px-2.5 py-0.5 bg-black/85 text-emerald-400 rounded-full text-[11px] font-bold">🟢 전용 DB 연동됨</span>
       </div>
       <div class="flex items-center gap-1.5" onmousedown="event.stopPropagation()">
-        <button onclick="snapToolbarPosition('top')" class="px-2 py-0.5 bg-black/80 text-white rounded text-[11px] hover:bg-black">상단</button>
-        <button onclick="snapToolbarPosition('bottom')" class="px-2 py-0.5 bg-black/80 text-white rounded text-[11px] hover:bg-black">하단</button>
-        <button onclick="toggleToolbarCollapse()" id="collapseToolbarBtn" class="px-2.5 py-0.5 bg-white text-black font-extrabold rounded text-[11px] hover:bg-neutral-200">접기</button>
+        <button type="button" onclick="snapToolbarPosition('top')" class="px-2 py-0.5 bg-black/80 text-white rounded text-[11px] hover:bg-black cursor-pointer">상단</button>
+        <button type="button" onclick="snapToolbarPosition('bottom')" class="px-2 py-0.5 bg-black/80 text-white rounded text-[11px] hover:bg-black cursor-pointer">하단</button>
+        <button type="button" onclick="toggleToolbarCollapse()" id="collapseToolbarBtn" class="px-2.5 py-0.5 bg-white text-black font-extrabold rounded text-[11px] hover:bg-neutral-200 cursor-pointer">접기</button>
       </div>
     </div>
     <div id="adminToolbarBody" class="p-3 flex flex-col gap-2.5">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-700 pb-2">
         <div class="flex flex-wrap items-center gap-1.5">
-          <button onclick="enableEditMode(!isEditMode)" class="px-3 py-1.5 rounded-lg bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-pen-to-square"></i> <span id="editModeLabel">편집모드 ON</span></button>
-          <button onclick="toggleStudioPanel('bookStudioPanel','home',syncBookStudioControls)" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-book-open mr-1"></i>3D 책장</button>
-          <button onclick="toggleStudioPanel('philStudioPanel','philosophy',syncPhilStudioControls)" class="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-building-columns mr-1"></i>학원소개</button>
-          <button onclick="toggleStudioPanel('currStudioPanel','curriculum',syncCurrStudioControls)" class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-layer-group mr-1"></i>커리큘럼</button>
-          <button onclick="openConsultPopupModal()" class="px-3 py-1.5 rounded-lg bg-violet-400 hover:bg-violet-300 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-comments mr-1"></i>상담팝업</button>
-          <button onclick="openLegalModal('terms')" class="px-3 py-1.5 rounded-lg bg-neutral-700 hover:bg-neutral-600 text-white font-bold cursor-pointer"><i class="fa-solid fa-file-contract mr-1"></i>약관편집</button>
+          <button type="button" onclick="enableEditMode(!isEditMode)" class="px-3 py-1.5 rounded-lg bg-[#FF6B00] hover:bg-[#F39200] text-white font-bold flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-pen-to-square"></i> <span id="editModeLabel">편집모드 ON</span></button>
+          <button type="button" onclick="toggleStudioPanel('bookStudioPanel','home',syncBookStudioControls)" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-book-open mr-1"></i>3D 책장</button>
+          <button type="button" onclick="toggleStudioPanel('philStudioPanel','philosophy',syncPhilStudioControls)" class="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-building-columns mr-1"></i>학원소개</button>
+          <button type="button" onclick="toggleStudioPanel('currStudioPanel','curriculum',syncCurrStudioControls)" class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-layer-group mr-1"></i>커리큘럼</button>
+          <button type="button" onclick="openConsultPopupModal()" class="px-3 py-1.5 rounded-lg bg-violet-400 hover:bg-violet-300 text-black font-extrabold cursor-pointer"><i class="fa-solid fa-comments mr-1"></i>상담팝업</button>
+          <button type="button" onclick="openLegalModal('terms')" class="px-3 py-1.5 rounded-lg bg-neutral-700 hover:bg-neutral-600 text-white font-bold cursor-pointer"><i class="fa-solid fa-file-contract mr-1"></i>약관편집</button>
           <div class="flex items-center gap-1 bg-neutral-800 px-2 py-1 rounded-lg border border-neutral-600">
-            <button onclick="undoAction()" class="px-1.5 py-0.5 hover:bg-[#FF6B00] rounded font-bold" title="Ctrl+Z"><i class="fa-solid fa-rotate-left"></i> 취소</button>
+            <button type="button" onclick="undoAction()" class="px-1.5 py-0.5 hover:bg-[#FF6B00] rounded font-bold cursor-pointer" title="Ctrl+Z"><i class="fa-solid fa-rotate-left"></i> 취소</button>
             <span class="text-neutral-600">|</span>
-            <button onclick="redoAction()" class="px-1.5 py-0.5 hover:bg-[#FF6B00] rounded font-bold" title="Ctrl+Y">재실행 <i class="fa-solid fa-rotate-right"></i></button>
+            <button type="button" onclick="redoAction()" class="px-1.5 py-0.5 hover:bg-[#FF6B00] rounded font-bold cursor-pointer" title="Ctrl+Y">재실행 <i class="fa-solid fa-rotate-right"></i></button>
           </div>
           <select id="adminCampusJumpSelect" onchange="if(this.value!==''){openCampusDetail(Number(this.value));this.value='';}" class="bg-neutral-800 text-white px-2.5 py-1.5 rounded-lg border border-orange-500/50 text-xs font-semibold cursor-pointer"></select>
           <div class="flex items-center gap-1.5 bg-emerald-950/90 border border-emerald-500/60 px-2.5 py-1.5 rounded-lg text-emerald-300">
@@ -511,11 +515,11 @@
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-1.5">
-          <button onclick="saveAllChanges(false)" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-bold shadow cursor-pointer"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>전체 저장</button>
-          <button onclick="forcePullFromCloud()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 font-bold text-white cursor-pointer">DB 불러오기</button>
-          <button onclick="exportDataJson()" class="px-2.5 py-1.5 rounded-lg bg-neutral-700 hover:bg-neutral-600 cursor-pointer">백업</button>
-          <button onclick="resetToDefault()" class="px-2.5 py-1.5 rounded-lg bg-neutral-800 hover:bg-red-700 text-neutral-300 hover:text-white cursor-pointer">초기화</button>
-          <button onclick="adminLogout()" class="px-2.5 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg text-neutral-300 hover:text-white cursor-pointer">로그아웃</button>
+          <button type="button" onclick="saveAllChanges(false)" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-bold shadow cursor-pointer"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>전체 저장</button>
+          <button type="button" onclick="forcePullFromCloud()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 font-bold text-white cursor-pointer">DB 불러오기</button>
+          <button type="button" onclick="exportDataJson()" class="px-2.5 py-1.5 rounded-lg bg-neutral-700 hover:bg-neutral-600 cursor-pointer">백업</button>
+          <button type="button" onclick="resetToDefault()" class="px-2.5 py-1.5 rounded-lg bg-neutral-800 hover:bg-red-700 text-neutral-300 hover:text-white cursor-pointer">초기화</button>
+          <button type="button" onclick="adminLogout()" class="px-2.5 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg text-neutral-300 hover:text-white cursor-pointer">로그아웃</button>
         </div>
       </div>
 
@@ -523,28 +527,28 @@
         <div class="flex items-center gap-1.5 bg-neutral-800 px-2.5 py-1.5 rounded-lg border border-neutral-600">
           <span class="text-orange-400 font-bold">전체폰트:</span>
           <select id="globalFontSelect" onchange="changeGlobalFont(this.value)" class="bg-neutral-900 text-white px-2 py-1 rounded text-xs font-semibold border border-neutral-700 cursor-pointer"></select>
-          <button onclick="resetAllIndividualFonts()" class="px-2 py-1 bg-neutral-700 hover:bg-orange-600 text-[11px] rounded">통일</button>
+          <button type="button" onclick="resetAllIndividualFonts()" class="px-2 py-1 bg-neutral-700 hover:bg-orange-600 text-[11px] rounded cursor-pointer">통일</button>
         </div>
         <div class="flex flex-wrap items-center gap-1.5 bg-neutral-800 px-3 py-1.5 rounded-lg border border-emerald-500/50">
           <span class="text-emerald-400 font-bold">서식:</span>
           <select id="selectedFontSelect" onchange="if(this.value) updateSelectedStyle(st=>st.fontFamily=this.value)" class="bg-neutral-900 text-white px-2 py-1 rounded text-xs font-semibold border border-neutral-700 cursor-pointer"></select>
-          <button onclick="toggleSelectedBold()" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-extrabold border border-neutral-700">B</button>
-          <button onclick="changeSelectedFontSize(-1)" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-bold border border-neutral-700">A-</button>
+          <button type="button" onclick="toggleSelectedBold()" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-extrabold border border-neutral-700 cursor-pointer">B</button>
+          <button type="button" onclick="changeSelectedFontSize(-1)" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-bold border border-neutral-700 cursor-pointer">A-</button>
           <input type="number" id="directFontSizeInput" placeholder="px" onchange="setDirectFontSize(this.value)" class="w-12 bg-neutral-900 text-white text-center py-0.5 rounded border border-neutral-700 text-xs" />
-          <button onclick="changeSelectedFontSize(1)" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-bold border border-neutral-700">A+</button>
+          <button type="button" onclick="changeSelectedFontSize(1)" class="px-2 py-1 bg-neutral-900 hover:bg-orange-600 rounded font-bold border border-neutral-700 cursor-pointer">A+</button>
           <label class="flex items-center gap-1 bg-neutral-900 px-1.5 py-0.5 rounded border border-neutral-700 cursor-pointer"><span class="text-[10px]">글자</span><input type="color" id="inlineColorPicker" value="#FF6B00" oninput="updateSelectedStyle(st=>st.color=this.value)" class="w-4 h-4 bg-transparent border-0 cursor-pointer" /></label>
           <label class="flex items-center gap-1 bg-neutral-900 px-1.5 py-0.5 rounded border border-neutral-700 cursor-pointer"><span class="text-[10px]">배경</span><input type="color" id="inlineBgColorPicker" value="#000000" oninput="updateSelectedStyle(st=>st.backgroundColor=this.value)" class="w-4 h-4 bg-transparent border-0 cursor-pointer" /></label>
-          <button onclick="updateSelectedStyle(st=>delete st.backgroundColor)" class="px-1.5 py-1 bg-neutral-900 hover:bg-neutral-700 rounded border border-neutral-700 text-[10px]">투명</button>
+          <button type="button" onclick="updateSelectedStyle(st=>delete st.backgroundColor)" class="px-1.5 py-1 bg-neutral-900 hover:bg-neutral-700 rounded border border-neutral-700 text-[10px] cursor-pointer">투명</button>
           <div class="flex bg-neutral-900 rounded border border-neutral-700 overflow-hidden">
-            <button onclick="updateSelectedStyle(st=>st.textAlign='left')" class="px-1.5 py-1 hover:bg-orange-600"><i class="fa-solid fa-align-left"></i></button>
-            <button onclick="updateSelectedStyle(st=>st.textAlign='center')" class="px-1.5 py-1 hover:bg-orange-600"><i class="fa-solid fa-align-center"></i></button>
-            <button onclick="updateSelectedStyle(st=>st.textAlign='right')" class="px-1.5 py-1 hover:bg-orange-600"><i class="fa-solid fa-align-right"></i></button>
+            <button type="button" onclick="updateSelectedStyle(st=>st.textAlign='left')" class="px-1.5 py-1 hover:bg-orange-600 cursor-pointer"><i class="fa-solid fa-align-left"></i></button>
+            <button type="button" onclick="updateSelectedStyle(st=>st.textAlign='center')" class="px-1.5 py-1 hover:bg-orange-600 cursor-pointer"><i class="fa-solid fa-align-center"></i></button>
+            <button type="button" onclick="updateSelectedStyle(st=>st.textAlign='right')" class="px-1.5 py-1 hover:bg-orange-600 cursor-pointer"><i class="fa-solid fa-align-right"></i></button>
           </div>
-          <button onclick="adjustSelectedSpacing('letterSpacing',-0.02,'em',-0.15,0.6,0)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px]">자간-</button>
-          <button onclick="adjustSelectedSpacing('letterSpacing',0.02,'em',-0.15,0.6,0)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px]">자간+</button>
-          <button onclick="adjustSelectedSpacing('lineHeight',-0.1,'',0.9,3,1.5)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px]">행간-</button>
-          <button onclick="adjustSelectedSpacing('lineHeight',0.1,'',0.9,3,1.5)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px]">행간+</button>
-          <button onclick="resetSelectedElementStyle()" class="px-2 py-1 bg-neutral-700 hover:bg-red-600 rounded text-[10px]">초기화</button>
+          <button type="button" onclick="adjustSelectedSpacing('letterSpacing',-0.02,'em',-0.15,0.6,0)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px] cursor-pointer">자간-</button>
+          <button type="button" onclick="adjustSelectedSpacing('letterSpacing',0.02,'em',-0.15,0.6,0)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px] cursor-pointer">자간+</button>
+          <button type="button" onclick="adjustSelectedSpacing('lineHeight',-0.1,'',0.9,3,1.5)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px] cursor-pointer">행간-</button>
+          <button type="button" onclick="adjustSelectedSpacing('lineHeight',0.1,'',0.9,3,1.5)" class="px-1.5 py-1 bg-neutral-900 hover:bg-orange-600 rounded border border-neutral-700 text-[10px] cursor-pointer">행간+</button>
+          <button type="button" onclick="resetSelectedElementStyle()" class="px-2 py-1 bg-neutral-700 hover:bg-red-600 rounded text-[10px] cursor-pointer">초기화</button>
         </div>
       </div>
     </div>
@@ -553,8 +557,8 @@
   <!-- 스튜디오 패널 3종 (3D 책장 · 학원소개 · 커리큘럼) -->
   <aside id="bookStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs">
     <div class="flex items-center justify-between border-b border-white/15 pb-3">
-      <div><h3 class="text-sm font-extrabold text-[#FFB800]">3D 책장 디자인·배경·미디어</h3><p class="text-[11px] text-neutral-400 mt-0.5">책장별 배경·내부색·단일 동영상(드래그&amp;드롭) 설정</p></div>
-      <button onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      <div><h3 class="text-sm font-extrabold text-[#FFB800]">3D 책장 디자인·배경·미디어</h3><p class="text-[11px] text-neutral-400 mt-0.5">책장별 배경·내부색·동영상(드래그&amp;드롭) 설정</p></div>
+      <button type="button" onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div id="studioSpreadTabs" class="grid grid-cols-5 gap-1"></div>
     <div class="bg-amber-500/10 rounded-xl p-3 space-y-2.5 border border-amber-500/40">
@@ -588,7 +592,7 @@
   <aside id="philStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs" style="border-color:#34D399;">
     <div class="flex items-center justify-between border-b border-white/15 pb-3">
       <div><h3 class="text-sm font-extrabold text-emerald-400">학원소개 쇼룸 설정</h3><p class="text-[11px] text-neutral-400 mt-0.5">CEO·MISSION·학습목표·연혁·명예전당</p></div>
-      <button onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      <button type="button" onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div id="philStudioTabs" class="grid grid-cols-4 gap-1"></div>
     <div id="philStudioControlsBody" class="space-y-3"></div>
@@ -597,7 +601,7 @@
   <aside id="currStudioPanel" class="admin-studio-panel hidden space-y-4 text-xs" style="border-color:#38BDF8;">
     <div class="flex items-center justify-between border-b border-white/15 pb-3">
       <div><h3 class="text-sm font-extrabold text-sky-400">커리큘럼 쇼룸 설정</h3><p class="text-[11px] text-neutral-400 mt-0.5">전체보기 및 교육과정 미디어·색상·순서 제어</p></div>
-      <button onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      <button type="button" onclick="closeAllStudioPanels()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="space-y-1.5">
       <div class="flex items-center justify-between"><span class="font-bold text-neutral-300">슬라이드 선택</span><button type="button" onclick="addCurriculumItem()" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">+ 과정 추가</button></div>
@@ -614,7 +618,7 @@
           <img id="sidebarLogoImg" src="remove_background.png" alt="탑씨크리트학원 공식 로고" class="object-contain transition-all duration-300" style="width:240px; max-height:52px;" onerror="this.style.display='none';document.getElementById('fallbackSidebarLogo').style.display='flex';" />
           <div id="fallbackSidebarLogo" style="display:none;" class="flex-col leading-tight select-none">
             <span data-editable="true" data-path="branding.logoMainText" class="fallback-logo-text text-lg md:text-xl font-bold tracking-[0.14em]" style="font-family:'Cormorant Garamond','Noto Serif KR',serif;"></span>
-            <span class="fallback-logo-sub text-[9px] font-bold tracking-wider opacity-90">탑씨크리트 교육(주)</span>
+            <span data-editable="true" data-path="branding.logoSubText" class="fallback-logo-sub text-[9px] font-bold tracking-wider opacity-90">탑씨크리트 교육(주)</span>
           </div>
         </div>
         <div class="admin-only-control items-center gap-1 ml-1 bg-neutral-900/95 p-1 rounded-lg shadow-lg border border-orange-500/50 z-30" onpointerdown="event.stopPropagation()">
@@ -630,10 +634,10 @@
       <nav class="header-center-nav" id="topHorizontalNavList" aria-label="주요 메뉴"></nav>
 
       <div class="flex items-center gap-4 relative z-10">
-        <button onclick="openSectionDesignModal('topbar')" class="admin-only-control px-2.5 py-1 bg-neutral-900 text-[#FFB800] text-[10px] font-bold rounded border border-orange-500/40 cursor-pointer">상단바</button>
-        <button onclick="if(!isEditMode) openConsultPopupModal()" class="quick-item flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+        <button type="button" onclick="openSectionDesignModal('topbar')" class="admin-only-control px-2.5 py-1 bg-neutral-900 text-[#FFB800] text-[10px] font-bold rounded border border-orange-500/40 cursor-pointer">상단바</button>
+        <div role="button" tabindex="0" onclick="if(!isEditMode) openConsultPopupModal()" class="quick-item flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
           <i class="fa-regular fa-bell text-xs"></i><span data-editable="true" data-path="branding.quick3">상담신청</span>
-        </button>
+        </div>
       </div>
     </div>
     <div id="megaDropdownPanel" class="mega-dropdown-panel" onmouseenter="keepMegaMenuOpen()" onmouseleave="hideMegaMenu()">
@@ -645,8 +649,8 @@
   <main id="mainViewport" class="main-viewport">
     <!-- 1. 홈: 5장 3D 양장본 책장 -->
     <div id="view-home" class="view-section">
-      <button id="bookArrowPrev" class="stage-arrow left-3" onclick="stepBookPage(-1)" title="이전 책장"><i class="fa-solid fa-chevron-left"></i></button>
-      <button id="bookArrowNext" class="stage-arrow right-3" onclick="stepBookPage(1)" title="다음 책장"><i class="fa-solid fa-chevron-right"></i></button>
+      <button type="button" id="bookArrowPrev" class="stage-arrow left-3" onclick="stepBookPage(-1)" title="이전 책장"><i class="fa-solid fa-chevron-left"></i></button>
+      <button type="button" id="bookArrowNext" class="stage-arrow right-3" onclick="stepBookPage(1)" title="다음 책장"><i class="fa-solid fa-chevron-right"></i></button>
 
       <section id="bookStage">
         <div id="stageBgStack">
@@ -662,11 +666,11 @@
             <div class="book-shell" id="bookShell">
               <div id="baseLeft" class="book-base-left half-left"></div>
               <div id="baseRight" class="book-base-right half-right"></div>
+              <!-- 1장 정착 시 단일 동영상 무절단 레이어 -->
               <div id="bookSpread0Seamless" class="book-seamless-overlay"></div>
-              <div id="bookSpread2Seamless" class="book-seamless-overlay">
-                <div id="bookCurrGridPattern" class="curr-showroom-grid-bg"></div>
-                <div id="bookCurrSlidesContainer" class="relative w-full h-full"></div>
-              </div>
+              <!-- 3장 '전체보기' 정착 시 단일 동영상 무절단 레이어 (소메뉴 선택 시 비활성 → 2쪽 책장 레이아웃 그대로 유지) -->
+              <div id="bookSpread2Seamless" class="book-seamless-overlay"></div>
+              <!-- 5장 캠퍼스 풀폭 가로 아코디언 레이어 -->
               <div id="bookCampusAccOverlay" class="book-seamless-overlay"></div>
             </div>
           </div>
@@ -725,17 +729,17 @@
             <form onsubmit="handleAdminLogin(event)" class="space-y-3.5">
               <input id="loginIdInput" type="text" placeholder="관리자 아이디" class="w-full px-4 py-4 border border-neutral-300 text-sm focus:outline-none focus:border-[#FF6B00]" required />
               <input id="loginPwInput" type="password" placeholder="비밀번호" class="w-full px-4 py-4 border border-neutral-300 text-sm focus:outline-none focus:border-[#FF6B00]" required />
-              <button type="submit" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-base font-bold transition cursor-pointer"><span data-editable="true" data-path="loginPage.loginBtnText" onclick="if(isEditMode) event.stopPropagation();">로그인</span></button>
+              <button type="submit" class="w-full py-4 bg-[#FF6B00] hover:bg-[#F39200] text-white text-base font-bold transition cursor-pointer"><span data-editable="true" data-path="loginPage.loginBtnText" onclick="if(isEditMode){event.preventDefault();event.stopPropagation();}">로그인</span></button>
               <label class="inline-flex items-center gap-2 text-xs text-neutral-600 cursor-pointer pt-1"><input type="checkbox" checked class="w-4 h-4 accent-[#FF6B00]" /><span data-editable="true" data-path="loginPage.saveIdText">아이디 저장</span></label>
             </form>
             <div class="mt-12 pt-6 space-y-5 border-t border-neutral-200">
               <div class="flex items-center justify-between gap-4 pb-5 border-b border-neutral-200">
                 <div><p data-editable="true" data-path="loginPage.signupQuestion" class="text-xs font-extrabold text-[#FF6B00] mb-0.5"></p><p data-editable="true" data-path="loginPage.signupSub" class="text-xs text-neutral-600 font-medium"></p></div>
-                <button type="button" onclick="if(!isEditMode) openConsultPopupModal()" class="px-6 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold shrink-0 cursor-pointer"><span data-editable="true" data-path="loginPage.signupBtnText">상담신청 열기</span></button>
+                <div role="button" tabindex="0" onclick="if(!isEditMode) openConsultPopupModal()" class="px-6 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold shrink-0 cursor-pointer"><span data-editable="true" data-path="loginPage.signupBtnText">상담신청 열기</span></div>
               </div>
               <div class="flex items-center justify-between gap-4">
                 <div><p data-editable="true" data-path="loginPage.findQuestion" class="text-xs font-extrabold text-[#FF6B00] mb-0.5"></p><p data-editable="true" data-path="loginPage.findSub" class="text-xs text-neutral-600 font-medium"></p></div>
-                <button type="button" onclick="if(!isEditMode) alert('본원 행정실 또는 시스템 관리자에게 문의해 주세요.')" class="px-5 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold shrink-0 cursor-pointer"><span data-editable="true" data-path="loginPage.findBtnText">관리자 안내</span></button>
+                <div role="button" tabindex="0" onclick="if(!isEditMode) alert('본원 행정실 또는 시스템 관리자에게 문의해 주세요.')" class="px-5 py-2.5 bg-[#B5B5B5] hover:bg-neutral-600 text-white text-xs font-bold shrink-0 cursor-pointer"><span data-editable="true" data-path="loginPage.findBtnText">관리자 안내</span></div>
               </div>
             </div>
           </div>
@@ -785,8 +789,6 @@
   </footer>
 <script>
     // ================= [이 파일 전용 독립 DB 설정] =================
-    // 기존 파일(site_content)과 완전히 분리된 전용 테이블/키를 사용합니다.
-    // 완전히 새 Supabase 프로젝트로 옮길 경우 아래 URL과 KEY만 새 프로젝트 값으로 교체하세요.
     const SUPABASE_URL = "https://ffwnvinumptkyqfweqnt.supabase.co";
     const SUPABASE_KEY = "sb_publishable_2lhZiBL6SSOIvZjWUE7WAA_64jh6-gN";
     const DB_TABLE = "topsecret_v2_site_content";
@@ -852,7 +854,7 @@
       return !isNaN(r) && ((0.299 * r + 0.587 * g + 0.114 * b) / 255) > 0.62;
     }
 
-    // 책 화면 크기에 맞춰 동영상/이미지를 자동 맞춤하는 미디어 태그 생성기 (넘김용 미러 동기화 클래스 지원)
+    // 책 화면 크기에 맞춰 동영상/이미지를 자동 맞춤하는 미디어 태그 생성기
     function renderMediaTag(url, cls = "w-full h-full object-cover", style = "", fb = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85", autoFit = false, fitMode = "auto", syncKey = "") {
       const src = String(url || "").trim() || fb;
       const fitAttr = autoFit ? `data-fit-mode="${fitMode}" onloadedmetadata="autoFitBookMedia(this)" onload="autoFitBookMedia(this)"` : "";
@@ -877,7 +879,7 @@
       else { el.style.objectFit = "cover"; el.style.objectPosition = mr > br * 1.45 ? "center center" : "center 45%"; }
     }
 
-    // 책장 넘길 때 단일(Seamless) 동영상의 재생 시점을 양면 미러 동영상에 즉시 동기화 (검정 화면·끊김 방지)
+    // 책장 넘김 순간 검정 화면 제거: 단일(Seamless) 동영상 ↔ 양면 미러 동영상 재생 시점 즉시 동기화
     function syncMirrorVideosFromSeamless(syncKey) {
       const master = document.querySelector(`.book-seamless-overlay video[data-video-sync="${syncKey}"]`);
       const mirrors = $$(`.spread-mirror-backdrop video[data-video-sync="${syncKey}"]`);
@@ -885,7 +887,8 @@
       const t = master && isFinite(master.currentTime) ? master.currentTime : 0;
       mirrors.forEach(v => {
         try {
-          if (Math.abs((v.currentTime || 0) - t) > 0.12 && v.readyState >= 1) v.currentTime = t;
+          v.muted = true;
+          if (v.readyState >= 1 && Math.abs((v.currentTime || 0) - t) > 0.1) v.currentTime = t;
           if (v.paused) v.play().catch(() => {});
         } catch {}
       });
@@ -896,11 +899,17 @@
       const mirror = document.querySelector(`.spread-mirror-backdrop video[data-video-sync="${syncKey}"]`);
       if (!master) return;
       try {
-        if (mirror && isFinite(mirror.currentTime) && Math.abs((master.currentTime || 0) - mirror.currentTime) > 0.15 && master.readyState >= 1) {
+        master.muted = true;
+        if (mirror && isFinite(mirror.currentTime) && master.readyState >= 1 && Math.abs((master.currentTime || 0) - mirror.currentTime) > 0.12) {
           master.currentTime = mirror.currentTime;
         }
         if (master.paused) master.play().catch(() => {});
       } catch {}
+    }
+
+    function ensureContainerVideosPlaying(root) {
+      if (!root) return;
+      $$("video", root).forEach(v => { v.muted = true; if (v.paused) v.play().catch(() => {}); });
     }
 
     // 이미지 리사이즈·압축 및 전용 Storage 폴더/DataURL 업로드
@@ -956,8 +965,7 @@
     const defaultSiteData = {
       branding: {
         sidebarLogo: "remove_background.png", useTextLogo: false, logoWidth: 240,
-        _v21IsolatedInit: true,
-        logoMainText: "TOP SECRET", globalFont: "'Pretendard', sans-serif",
+        logoMainText: "TOP SECRET", logoSubText: "탑씨크리트 교육(주)", globalFont: "'Pretendard', sans-serif",
         quick3: "상담신청", topbarBgColor: "", defaultDetailLink: "https://blog.naver.com/topsecret_edu", defaultConsultLink: ""
       },
       bookConfig: {
@@ -973,9 +981,10 @@
             id: "intro", navTitle: "2장 학원 소개", pageLabel: "학원 소개",
             pageColor1: "#FFFFFF", pageColor2: "#FFFDF9", stageBg1: "#FFF2E6", stageBg2: "#FFD8B5", stageBgImg: "",
             textColor: "#141414", accentColor: "#FF6B00",
+            eyebrow: "ABOUT TOP SECRET",
             mainHeadline: "학생의 내일을 바꾸는\n탑씨크리트학원 이야기", headlineDot: ".",
-            eyebrow: "ABOUT TOP SECRET", subTitle: "탑씨크리트학원 소개 4 STEP",
-            desc: "우측 단계에 커서를 올리면 해당 메인화면을 미리 볼 수 있고,\n클릭하면 해당 페이지로 바로 이동합니다.",
+            subTitle: "탑씨크리트학원 소개 4 STEP",
+            desc: "우측 단계에 마우스 커서를 올리면 해당 학원소개 메인 내용이 나타나며,\n클릭하시면 전체 페이지로 바로 이동합니다.",
             steps: [
               { label: "STEP 1", title: "대표 인삿말", desc: "탑씨크리트 교육 철학과 대표원장 인사말", targetTab: "greeting" },
               { label: "STEP 2", title: "학습목표", desc: "스스로 증명하고 완성하는 4단계 핵심 목표", targetTab: "goal" },
@@ -1011,9 +1020,8 @@
         ]
       },
       sectionDesigns: { footer: { bgColor: "#141414", bgImage: "" }, campusMain: { bgColor: "#052058" } },
+      // 1·2·3·4장 제목 규격 통일을 위해 기본 개별 스타일 오버라이드 최소화 (관리자가 원할 때만 개별 서식 적용)
       styles: {
-        "bookConfig.spreads.0.mainTitle": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
-        "bookConfig.spreads.0.slogan": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" },
         "campusPage.title": { fontFamily: "'Cormorant Garamond', 'Noto Serif KR', serif" }
       },
       menus: [
@@ -1121,11 +1129,9 @@
     let bookTargetProgress = 0, bookRenderProgress = 0, currentBookSpreadIdx = 0, bookSnapTimer = null, bookLastPageReachedAt = 0, activeRevealedSpreadIdx = -1;
     let bookStep2Index = 0, bookStep2Timer = null, bookStep2PreviewOpen = false, bookStep2LeaveTimer = null;
     let bookAdmSelectedIdx = 0, bookAdmAnimTimer = null, activeBookCampusAccIdx = 0;
-    let prevSp0Active = true, prevSp2Active = false;
-    let currState = {
-      book: { target: 0, render: 0, idx: 0 },
-      page: { target: 0, render: 0, idx: 0, snapTimer: null, lastAt: 0 }
-    };
+    let prevSp0Active = false, prevSp2Active = false;
+    let bookCurrIdx = 0; // 3장: 0=전체보기(무절단 동영상), 1~N=소메뉴(진짜 2쪽 책장 레이아웃)
+    let pageCurrState = { target: 0, render: 0, idx: 0, snapTimer: null, lastAt: 0 };
     let currentPhilStudioTab = "greeting", philObserver = null, philStageTarget = 0, philStageRender = 0, currentPhilStageIdx = 0;
     let philWheelLockUntil = 0, philLastStageReachedAt = 0, philIceScrollTargetY = 0, philIceScrollRenderY = 0, philIceScrollActive = false, philSmoothScrollY = 0, philActiveSectionKey = "greeting";
     let currentViewId = "home", currentTopSecretTab = "greeting", currentCurriculumCat = "전체보기", currentDetailCampusId = 0, currentLegalDocKey = "terms";
@@ -1196,7 +1202,6 @@
       return m;
     }
 
-    // 오직 이 파일 전용 DB(topsecret_v2_site_content)와 전용 캐시(LOCAL_KEY)만 조회 (타 파일 DB와 완벽 격리)
     async function loadSiteData() {
       initSupabaseClient();
       let loaded = false;
@@ -1208,7 +1213,7 @@
             safeSaveLocal(LOCAL_KEY, JSON.stringify(siteData));
             updateSyncStatusBadge("saved", "전용 DB 동기화됨");
           } else if (error) {
-            updateSyncStatusBadge("error", `전용 테이블(${DB_TABLE}) 생성 필요`);
+            updateSyncStatusBadge("error", `전용 테이블(${DB_TABLE}) 확인 필요`);
           }
         } catch {}
       }
@@ -1245,9 +1250,9 @@
           if (r1.error) err = r1.error;
         } else err = new Error("Supabase 미초기화");
         if (err) {
-          updateSyncStatusBadge("error", "전용 DB 테이블 확인 필요");
-          if (!silent) alert(`⚠️ 전용 DB(${DB_TABLE}) 저장 오류:\n${err.message || JSON.stringify(err)}\n\nSupabase SQL Editor에서 전용 테이블을 먼저 생성해 주세요.`);
-          else showToast(`⚠️ 전용 DB(${DB_TABLE}) 저장 실패 — 테이블 설정을 확인해 주세요.`);
+          updateSyncStatusBadge("error", "전용 DB 저장 오류");
+          if (!silent) alert(`⚠️ 전용 DB(${DB_TABLE}) 저장 오류:\n${err.message || JSON.stringify(err)}`);
+          else showToast(`⚠️ 전용 DB 저장 실패 — 연결을 확인해 주세요.`);
           return false;
         }
         updateSyncStatusBadge("saved", "전용 DB 저장 완료");
@@ -1306,7 +1311,7 @@
         renderAll(); await saveAllChanges(false);
       }
     }
-// ================= 공통 모달 · 툴바 초기화 · 서식 CMS 엔진 =================
+// ================= 공통 모달 · 툴바 초기화 · 전체 수정 동기화 CMS 엔진 =================
     function syncBodyModalLock() {
       document.body.style.overflow = MODAL_IDS.some(id => $(id) && !$(id).classList.contains("hidden")) ? "hidden" : "";
     }
@@ -1327,7 +1332,7 @@
       if (gSel) gSel.innerHTML = FONT_LIST.map(([v, l], i) => `<option value="${v}">${i + 1}. ${l}</option>`).join("");
       if (sSel) sSel.innerHTML = `<option value="">-- 개별 글씨체 --</option>` + FONT_LIST.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
       const pre = $("bookOuterBgPresets");
-      if (pre) pre.innerHTML = OUTER_BG_PRESETS.map(([c1, c2, t]) => `<button onclick="applyOuterBgPreset('${c1}','${c2}')" class="w-6 h-6 rounded-full border border-white/50 cursor-pointer" style="background:linear-gradient(135deg,${c1},${c2})" title="${t}"></button>`).join("");
+      if (pre) pre.innerHTML = OUTER_BG_PRESETS.map(([c1, c2, t]) => `<button type="button" onclick="applyOuterBgPreset('${c1}','${c2}')" class="w-6 h-6 rounded-full border border-white/50 cursor-pointer" style="background:linear-gradient(135deg,${c1},${c2})" title="${t}"></button>`).join("");
 
       const tb = $("adminToolbar"), hd = $("adminToolbarHeader");
       if (!tb || !hd) return;
@@ -1351,8 +1356,8 @@
       if (key === "topbar") {
         titleEl.textContent = "상단 고정바 배경 설정";
         bodyEl.innerHTML = `<div class="flex flex-wrap items-center gap-2">
-          <button onclick="siteData.branding.topbarBgColor='';applyBrandingAndFont();scheduleAutoCloudSave();" class="px-3 py-1.5 bg-[#FF6B00] text-white font-bold rounded cursor-pointer">기본(밝은 반투명 화이트)</button>
-          <button onclick="siteData.branding.topbarBgColor='#ffffff';applyBrandingAndFont();scheduleAutoCloudSave();" class="px-3 py-1.5 bg-neutral-700 rounded cursor-pointer">순백색 고정</button>
+          <button type="button" onclick="siteData.branding.topbarBgColor='';applyBrandingAndFont();scheduleAutoCloudSave();" class="px-3 py-1.5 bg-[#FF6B00] text-white font-bold rounded cursor-pointer">기본(밝은 화이트)</button>
+          <button type="button" onclick="siteData.branding.topbarBgColor='#ffffff';applyBrandingAndFont();scheduleAutoCloudSave();" class="px-3 py-1.5 bg-neutral-700 rounded cursor-pointer">순백색 고정</button>
           <input type="color" value="#ffffff" oninput="siteData.branding.topbarBgColor=this.value;applyBrandingAndFont();scheduleAutoCloudSave();" class="w-9 h-9 rounded cursor-pointer border-0" />
         </div>`;
       } else {
@@ -1364,13 +1369,13 @@
             <span class="font-bold">배경 색상</span>
             <div class="flex items-center gap-2">
               <input type="color" value="${sd.bgColor || '#141414'}" oninput="siteData.sectionDesigns['${key}'].bgColor=this.value;applySectionDesigns();scheduleAutoCloudSave();" class="w-9 h-9 rounded cursor-pointer" />
-              <button onclick="siteData.sectionDesigns['${key}'].bgColor='#ffffff';applySectionDesigns();scheduleAutoCloudSave();" class="px-2.5 py-1 bg-neutral-700 rounded cursor-pointer">흰색</button>
-              <button onclick="siteData.sectionDesigns['${key}'].bgColor='#141414';applySectionDesigns();scheduleAutoCloudSave();" class="px-2.5 py-1 bg-black rounded border border-neutral-600 cursor-pointer">검정</button>
+              <button type="button" onclick="siteData.sectionDesigns['${key}'].bgColor='#ffffff';applySectionDesigns();scheduleAutoCloudSave();" class="px-2.5 py-1 bg-neutral-700 rounded cursor-pointer">흰색</button>
+              <button type="button" onclick="siteData.sectionDesigns['${key}'].bgColor='#141414';applySectionDesigns();scheduleAutoCloudSave();" class="px-2.5 py-1 bg-black rounded border border-neutral-600 cursor-pointer">검정</button>
             </div>
           </div>
           <div class="bg-neutral-800 p-3 rounded-xl flex gap-2">
-            <button onclick="triggerImageFileUpload('sectionDesigns.${key}.bgImage',false,applySectionDesigns)" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">배경 사진파일</button>
-            <button onclick="siteData.sectionDesigns['${key}'].bgImage='';applySectionDesigns();scheduleAutoCloudSave();" class="px-3 py-2 bg-red-600 text-white font-bold rounded-lg cursor-pointer">제거</button>
+            <button type="button" onclick="triggerImageFileUpload('sectionDesigns.${key}.bgImage',false,applySectionDesigns)" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">배경 사진파일</button>
+            <button type="button" onclick="siteData.sectionDesigns['${key}'].bgImage='';applySectionDesigns();scheduleAutoCloudSave();" class="px-3 py-2 bg-red-600 text-white font-bold rounded-lg cursor-pointer">제거</button>
           </div>`;
       }
       m.classList.remove("hidden"); m.classList.add("flex");
@@ -1489,7 +1494,7 @@
         map.forEach(([jk, ck]) => st?.[jk] ? el.style.setProperty(ck, st[jk], "important") : el.style.removeProperty(ck));
       });
       if (isEditMode && currentSelectedPath) {
-        const live = document.querySelector(`[data-path="${currentSelectedPath}"]`);
+        const live = [...$$(`[data-path="${currentSelectedPath}"]`)].find(isEditableNodeActive) || document.querySelector(`[data-path="${currentSelectedPath}"]`);
         if (live) { currentSelectedEl = live; live.classList.add("active-selected-target"); }
       }
     }
@@ -1553,6 +1558,8 @@
       const txt = (el.innerText || "").trim().replace(/\s+/g, " ");
       if ($("currentSelectedLabel")) $("currentSelectedLabel").textContent = txt ? `"${txt.slice(0, 18)}"` : currentSelectedPath;
       if ($("directFontSizeInput")) $("directFontSizeInput").value = Math.round(parseFloat(getComputedStyle(el).fontSize) || 16);
+      const sSel = $("selectedFontSelect");
+      if (sSel) sSel.value = siteData.styles?.[currentSelectedPath]?.fontFamily || "";
     }
 
     function renderAdminCampusJumpSelect() {
@@ -1562,16 +1569,40 @@
     function renderStaticBindings() {
       $$("[data-path]").forEach(el => { const v = getByPath(siteData, el.getAttribute("data-path")); if (v !== undefined && typeof v !== "object") el.innerHTML = v; });
     }
+
+    // 현재 화면에 실제로 보이는 활성 편집 요소만 판별 (숨겨진 중복 레이어가 수정값을 덮어쓰는 버그 원천 차단)
+    function isEditableNodeActive(el) {
+      if (!el || !el.isConnected) return false;
+      if (el.closest(".swiper-slide-duplicate")) return false;
+      const pm = el.closest("#campusDetailModal,#currDetailModal,#consultPopupModal,#legalDocModal");
+      if (pm?.classList.contains("hidden")) return false;
+      const pv = el.closest(".view-section");
+      if (pv?.classList.contains("hidden")) return false;
+      const ov = el.closest(".book-seamless-overlay");
+      if (ov && !ov.classList.contains("is-active")) return false;
+      if (el.closest("#baseLeft,#baseRight,.book-leaf")) {
+        if ($("bookSpread0Seamless")?.classList.contains("is-active") && currentBookSpreadIdx === 0) return false;
+        if ($("bookSpread2Seamless")?.classList.contains("is-active") && currentBookSpreadIdx === 2) return false;
+        if ($("bookCampusAccOverlay")?.classList.contains("is-active") && currentBookSpreadIdx === 4) return false;
+        const lf = el.closest(".leaf-face");
+        if (lf && lf.style.pointerEvents === "none") return false;
+      }
+      return true;
+    }
+
     function syncEditableElementsToData() {
       const seen = new Set();
-      if (currentSelectedEl && currentSelectedPath) { setByPath(siteData, currentSelectedPath, currentSelectedEl.innerHTML); seen.add(currentSelectedPath); }
-      $$("[data-path]").forEach(el => {
-        if (el.closest(".swiper-slide-duplicate")) return;
-        const pm = el.closest("#campusDetailModal,#currDetailModal,#consultPopupModal,#legalDocModal");
-        if (pm?.classList.contains("hidden")) return;
-        if (el.closest(".view-section")?.classList.contains("hidden")) return;
+      if (currentSelectedEl && currentSelectedPath && isEditableNodeActive(currentSelectedEl)) {
+        setByPath(siteData, currentSelectedPath, currentSelectedEl.innerHTML);
+        seen.add(currentSelectedPath);
+      }
+      $$('[data-editable="true"][data-path]').forEach(el => {
+        if (!isEditableNodeActive(el)) return;
         const p = el.getAttribute("data-path");
-        if (p && !seen.has(p)) { setByPath(siteData, p, el.innerHTML); seen.add(p); }
+        if (p && !seen.has(p)) {
+          setByPath(siteData, p, el.innerHTML);
+          seen.add(p);
+        }
       });
     }
 
@@ -1604,7 +1635,7 @@
 
       if ($("topHorizontalNavList")) {
         $("topHorizontalNavList").innerHTML = siteData.menus.map((m, i) => `
-          <div class="top-nav-item" data-menu-idx="${i}" onmouseenter="openMegaMenu(${i})" onclick="handleTopNavRootClick(${i})">
+          <div class="top-nav-item" data-menu-idx="${i}" onmouseenter="if(!isEditMode) openMegaMenu(${i})" onclick="handleTopNavRootClick(${i})">
             <span data-editable="true" data-path="menus.${i}.title">${m.title}</span>
           </div>`).join("");
       }
@@ -1633,8 +1664,8 @@
       const m = siteData.menus[i]; if (!m) return;
       hideMegaMenu();
       if (m.externalUrl || i === 4) return window.open(m.externalUrl || "https://www.ibexhyper.kr/", "_blank", "noopener,noreferrer");
-      if (i === 2) return flipToBookPage(3); // 학원 상담 → 4장
-      if (i === 3) return flipToBookPage(4); // 캠퍼스 소개 → 5장
+      if (i === 2) return flipToBookPage(3);
+      if (i === 3) return flipToBookPage(4);
       if (m.subs?.[0]) handleSubMenuClick(i, 0);
     }
 
@@ -1712,7 +1743,7 @@
         stopBookStep2Cycle();
         if (viewId === "curriculum") {
           renderCurriculumShowroom();
-          setTimeout(() => { updateShowroomChromes(); updateUnifiedCurrVisuals("page", currState.page.render, true); }, 30);
+          setTimeout(() => { updateShowroomChromes(); updatePageCurrVisuals(pageCurrState.render, true); }, 30);
         } else {
           updateShowroomChromes();
           if (viewId === "philosophy") {
@@ -1749,7 +1780,49 @@
       } else applyInitialHash(window.location.hash.replace("#", ""));
     });
 // ================= 1) 메인 5장 3D 양장본 책장 엔진 =================
-    // 넘기는 순간에도 검정 화면 없이 좌·우로 갈라지며 재생되도록 1장·3장 미러에도 동기화 동영상 배치
+
+    // 1장·2장·3장·4장 좌측 통일 제목 HTML 생성기 (넘길 때/정착 시 픽셀 단위 100% 동일 좌표·크기 보장)
+    function buildHeroLeftUnifiedHtml(sp, editable = false) {
+      const ed = (p) => editable ? `data-editable="true" data-path="${p}"` : "";
+      const acc = sp.accentColor || "#FF6B00";
+      return `
+        <div class="book-unified-left-pane">
+          <div class="book-title-header">
+            <p ${ed("bookConfig.spreads.0.subTitle")} class="book-title-eyebrow" style="color:${acc};">${sp.subTitle}</p>
+            <h1 ${ed("bookConfig.spreads.0.mainTitle")} class="book-title-main" style="color:${sp.textColor};">${sp.mainTitle}</h1>
+            <div class="pt-3 inline-block">
+              <p ${ed("bookConfig.spreads.0.slogan")} class="book-title-sub pb-2 border-b border-neutral-400/70 tracking-[0.18em]" style="color:${sp.textColor};">${sp.slogan}</p>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function buildCurrOverviewLeftHtml(ov, editable = false) {
+      const ed = (p) => editable ? `data-editable="true" data-path="${p}"` : "";
+      const acc = ov.accentColor || "#FF6B00", tc = ov.textColor || "#FFFFFF";
+      return `
+        <div class="book-unified-left-pane" style="color:${tc};">
+          <div class="book-title-header">
+            <p ${ed("curriculum.overview.eyebrow")} class="book-title-eyebrow" style="color:${acc};">${ov.eyebrow || 'TOP SECRET CURRICULUM SHOWROOM'}</p>
+            <h2 ${ed("curriculum.overview.title")} class="book-title-main drop-shadow-lg" style="color:${tc};">${ov.title}</h2>
+            <p ${ed("curriculum.overview.subTitle")} class="book-title-desc pt-1.5" style="color:${tc};opacity:.88;">${ov.subTitle}</p>
+            <div class="pt-5 flex flex-wrap items-center gap-3">
+              <div role="button" tabindex="0" onclick="if(!isEditMode) selectBookCurrSlide(1)"
+                   class="px-6 py-3 rounded-full font-extrabold text-xs md:text-sm shadow-xl transition hover:scale-105 cursor-pointer inline-flex items-center gap-2"
+                   style="background:${acc};color:#fff;">
+                <span>교육과정 둘러보기</span><i class="fa-solid fa-arrow-right text-xs"></i>
+              </div>
+              ${editable ? `
+                <div class="admin-only-control items-center gap-1.5 bg-black/80 p-1.5 rounded-xl border border-sky-400/60" onpointerdown="event.stopPropagation()">
+                  <button type="button" onclick="triggerMediaUrlChange('curriculum.overview.media','3장 전체보기 동영상/사진')" class="px-2.5 py-1 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">링크</button>
+                  <button type="button" onclick="triggerImageFileUpload('curriculum.overview.media')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
+                </div>` : ""}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    // 페이지 넘김 시 좌·우로 갈라지는 배경 미러 (1장·3장 전체보기 동영상은 syncKey로 프레임 실시간 동기화)
     function buildBookMirrorBackdropHtml(sp, idx) {
       let extra = "", bg = `background:linear-gradient(135deg,${sp.pageColor1} 0%,${sp.pageColor2} 100%);`;
       if (idx === 0) {
@@ -1757,20 +1830,20 @@
         extra = `<div class="book-hero-seamless-media">${renderMediaTag(sp.heroMedia, `book-auto-fit-media ${fit === 'contain' ? 'fit-contain' : ''}`, "", undefined, true, fit, "hero")}</div>`;
       } else if (idx === 2) {
         const ov = siteData.curriculum?.overview || defaultSiteData.curriculum.overview, items = siteData.curriculum?.items || [];
-        if (currState.book.idx === 0) {
+        if (bookCurrIdx === 0) {
           const op = ov.overlayOpacity ?? 0.45;
           bg = `background-color:${ov.bgColor || '#14161B'};`;
           extra = `${ov.media ? renderMediaTag(ov.media, "w-full h-full object-cover book-auto-fit-media", "", undefined, true, "auto", "curr-ov") : ""}<div style="position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,12,18,${Math.min(.92,op+.22).toFixed(2)}),rgba(10,12,18,${op.toFixed(2)}) 52%,rgba(10,12,18,${Math.max(.12,op-.15).toFixed(2)}));"></div>`;
         } else {
-          bg = `background-color:${(items[currState.book.idx - 1] || items[0])?.bgColor || '#F6F7FA'};`;
+          bg = `background-color:${(items[bookCurrIdx - 1] || items[0])?.bgColor || '#F6F7FA'};`;
           extra = `<div class="curr-showroom-grid-bg" style="opacity:.55;"></div>`;
         }
       } else if (idx === 3) {
         const steps = sp.steps?.length >= 5 ? sp.steps : defaultSiteData.bookConfig.spreads[3].steps;
         const fb = sp.topMedia || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85";
-        extra = `<div style="position:absolute;top:0;left:36%;right:0;height:38%;overflow:hidden;">
+        extra = `<div style="position:absolute;top:0;left:42%;right:0;height:38%;overflow:hidden;">
           ${steps.map((st, i) => `<div class="adm-top-media-layer ${i === bookAdmSelectedIdx ? 'active' : ''}" data-adm-media-idx="${i}">${renderMediaTag(st.media || fb, "w-full h-full object-cover")}</div>`).join("")}
-          <div style="position:absolute;inset:0;z-index:4;background:linear-gradient(to right,${sp.pageColor1 || '#141417'} 0%,rgba(20,20,23,.48) 26%,rgba(20,20,23,.16) 100%);"></div>
+          <div style="position:absolute;inset:0;z-index:4;background:linear-gradient(to right,${sp.pageColor1 || '#141417'} 0%,rgba(20,20,23,.52) 28%,rgba(20,20,23,.16) 100%);"></div>
           <div style="position:absolute;inset:0;z-index:5;background:linear-gradient(to top,${sp.pageColor1 || '#141417'} 0%,rgba(20,20,23,0) 48%);"></div>
         </div>`;
       } else if (idx === 4) {
@@ -1779,13 +1852,13 @@
       return `<div class="spread-mirror-backdrop" style="${bg}">${extra}</div>`;
     }
 
-    // 2장 좌측: 우측 STEP 바에 마우스를 올렸을 때 스르륵 전환되는 4대 학원소개 메인화면 풀 미리보기
+    // 2장 좌측: 우측 STEP 호버 시 좌측 제목이 페이드아웃되고 나타나는 학원소개 메인 내용
     function buildStep2LeftPreviewsHtml() {
       const p = siteData.philosophy || defaultSiteData.philosophy;
       const g0 = p.goalItems?.[0] || defaultSiteData.philosophy.goalItems[0];
       return `
         <div id="bookStep2PreviewOverlay" class="step2-left-preview-overlay" onmouseenter="cancelLeaveBookStep2()" onmouseleave="scheduleLeaveBookStep2()">
-          <!-- 0: 대표 인삿말 풀 미리보기 -->
+          <!-- 0: 대표 인삿말 -->
           <div class="step2-preview-pane ${bookStep2Index === 0 ? 'is-shown' : ''}" data-step2-preview="0" onclick="if(!isEditMode) openTopSecretTab('greeting')">
             <div class="w-full h-full bg-white grid grid-cols-12 items-stretch cursor-pointer group">
               <div class="col-span-7 p-7 md:p-10 pb-16 flex flex-col justify-between">
@@ -1804,7 +1877,7 @@
             </div>
           </div>
 
-          <!-- 1: 학습목표 풀 미리보기 -->
+          <!-- 1: 학습목표 -->
           <div class="step2-preview-pane ${bookStep2Index === 1 ? 'is-shown' : ''}" data-step2-preview="1" onclick="if(!isEditMode) openTopSecretTab('goal')">
             <div class="w-full h-full bg-white flex flex-col cursor-pointer group">
               <div class="relative h-[48%] bg-neutral-100 overflow-hidden">
@@ -1823,7 +1896,7 @@
             </div>
           </div>
 
-          <!-- 2: 연혁 풀 미리보기 -->
+          <!-- 2: 연혁 -->
           <div class="step2-preview-pane ${bookStep2Index === 2 ? 'is-shown' : ''}" data-step2-preview="2" onclick="if(!isEditMode) openTopSecretTab('history')">
             <div class="w-full h-full relative bg-[#09090D] text-white p-7 md:p-10 pb-16 flex flex-col justify-between overflow-hidden cursor-pointer group">
               ${!isVideoMediaUrl(p.historyBgMedia) ? `<img src="${p.historyBgMedia}" alt="연혁" class="absolute inset-0 w-full h-full object-cover opacity-35" />` : ""}
@@ -1840,7 +1913,7 @@
             </div>
           </div>
 
-          <!-- 3: 명예의 전당 풀 미리보기 -->
+          <!-- 3: 명예의 전당 -->
           <div class="step2-preview-pane ${bookStep2Index === 3 ? 'is-shown' : ''}" data-step2-preview="3" onclick="if(!isEditMode) openTopSecretTab('honors')">
             <div class="w-full h-full relative p-7 md:p-10 pb-16 flex flex-col justify-between overflow-hidden cursor-pointer group" style="background:radial-gradient(ellipse 85% 75% at 50% 40%,#EFEFF2,#D5D8DD);">
               <div class="absolute inset-x-0 top-3 text-center font-black tracking-widest text-white/45 text-5xl select-none pointer-events-none" style="font-family:'Montserrat',sans-serif;">${stripHtml(p.honorsWatermark || 'TOP SECRET')}</div>
@@ -1858,31 +1931,26 @@
         </div>`;
     }
 
-    function buildBookSpreadHalfHtml(idx, side) {
+    function buildBookSpreadHalfHtml(idx, side, animateCurr = false) {
       const sp = siteData.bookConfig.spreads[idx] || defaultSiteData.bookConfig.spreads[idx];
       const accent = sp.accentColor || "#FF6B00";
       let txtColor = sp.textColor || "#141414", inner = "";
 
       if (idx === 0) {
-        inner = side === "left"
-          ? `<div class="book-left-unified"><div class="max-w-lg space-y-3"><p class="text-xs md:text-sm font-bold tracking-[0.14em]" style="color:${accent};">${sp.subTitle}</p><h1 class="font-normal leading-[1.08] tracking-[0.04em] whitespace-pre-line" style="font-size:clamp(36px,4.4vw,72px);font-family:'Cormorant Garamond','Noto Serif KR',serif;color:${sp.textColor};">${sp.mainTitle}</h1><div class="pt-3 inline-block"><p class="text-sm md:text-lg tracking-[0.22em] font-medium pb-2 border-b border-neutral-400" style="font-family:'Cormorant Garamond','Noto Serif KR',serif;color:${sp.textColor};">${sp.slogan}</p></div></div></div>`
-          : `<div class="w-full h-full"></div>`;
+        // 1장 넘김용 미러 (정착 레이어 #bookSpread0Seamless와 100% 동일한 제목 위치·크기)
+        inner = side === "left" ? buildHeroLeftUnifiedHtml(sp, false) : `<div class="w-full h-full"></div>`;
       } else if (idx === 1) {
-        // 2장 좌측: 기본 상태는 "학생의 내일을 바꾸는~" 소개 문구만 깔끔히 노출, 우측 바 호버 시 미리보기로 스르륵 전환
+        // 2장 학원 소개: 좌측 통일 제목/소개 → 우측 STEP 호버 시 제목 페이드아웃 + 학원소개 메인 내용 페이드인
         if (side === "left") {
           inner = `<div id="bookStep2LeftStage" class="step2-left-stage ${bookStep2PreviewOpen ? 'preview-open' : ''}">
-            <div class="step2-left-intro book-left-unified">
-              <div class="max-w-lg">
-                <div class="reveal-item reveal-l1 mb-9 md:mb-12">
-                  <h2 class="font-extrabold tracking-tight leading-[1.24]" style="font-size:clamp(26px,2.85vw,46px);color:${sp.textColor};">
-                    <span data-editable="true" data-path="bookConfig.spreads.1.mainHeadline" class="whitespace-pre-line">${sp.mainHeadline}</span><span data-editable="true" data-path="bookConfig.spreads.1.headlineDot" style="color:${accent};">${sp.headlineDot || '.'}</span>
-                  </h2>
-                </div>
-                <div class="space-y-2.5">
-                  <p data-editable="true" data-path="bookConfig.spreads.1.eyebrow" class="reveal-item reveal-l2 font-extrabold tracking-tight" style="font-size:clamp(13px,1.05vw,16px);color:${accent};">${sp.eyebrow}</p>
-                  <h3 data-editable="true" data-path="bookConfig.spreads.1.subTitle" class="reveal-item reveal-l2 font-extrabold tracking-tight leading-[1.35] whitespace-pre-line" style="font-size:clamp(19px,1.75vw,28px);color:${sp.textColor};">${sp.subTitle}</h3>
-                  <p data-editable="true" data-path="bookConfig.spreads.1.desc" class="reveal-item reveal-l3 leading-[1.75] whitespace-pre-line pt-2 font-medium" style="font-size:clamp(13px,1vw,16px);color:rgba(20,20,20,.75);">${sp.desc}</p>
-                </div>
+            <div class="step2-left-intro book-unified-left-pane">
+              <div class="book-title-header">
+                <p data-editable="true" data-path="bookConfig.spreads.1.eyebrow" class="reveal-item reveal-l1 book-title-eyebrow" style="color:${accent};">${sp.eyebrow}</p>
+                <h2 class="reveal-item reveal-l1 book-title-main" style="color:${sp.textColor};">
+                  <span data-editable="true" data-path="bookConfig.spreads.1.mainHeadline">${sp.mainHeadline}</span><span data-editable="true" data-path="bookConfig.spreads.1.headlineDot" style="color:${accent};">${sp.headlineDot || '.'}</span>
+                </h2>
+                <h3 data-editable="true" data-path="bookConfig.spreads.1.subTitle" class="reveal-item reveal-l2 book-title-sub pt-3" style="color:${sp.textColor};">${sp.subTitle}</h3>
+                <p data-editable="true" data-path="bookConfig.spreads.1.desc" class="reveal-item reveal-l3 book-title-desc pt-1" style="color:rgba(20,20,20,.72);">${sp.desc}</p>
               </div>
             </div>
             ${buildStep2LeftPreviewsHtml()}
@@ -1911,39 +1979,86 @@
           </div>`;
         }
       } else if (idx === 2) {
-        // 3장 넘김용 미러 (정착 시 #bookSpread2Seamless가 단일 동영상 & 관성 전환 담당, 넘길 때 갈라짐 연출)
+        // 3장 커리큘럼: 0=전체보기(넘김용 미러 — 정착 시 #bookSpread2Seamless와 100% 동일 좌표), 1~N=소메뉴(진짜 2쪽 책장 레이아웃 그대로!)
         const ov = siteData.curriculum?.overview || defaultSiteData.curriculum.overview, items = siteData.curriculum?.items || [];
-        if (currState.book.idx === 0) {
+        if (bookCurrIdx === 0) {
           txtColor = ov.textColor || "#FFFFFF";
-          inner = side === "left"
-            ? `<div class="book-left-unified" style="color:${txtColor};"><div class="max-w-xl space-y-4"><p class="text-xs md:text-sm font-extrabold tracking-[0.22em] uppercase" style="color:${ov.accentColor || '#FF6B00'};">${stripHtml(ov.eyebrow || '')}</p><h2 class="font-black leading-[1.16] whitespace-pre-line" style="font-size:clamp(28px,3.4vw,50px);">${stripHtml(ov.title || '')}</h2><p class="text-xs md:text-base whitespace-pre-line opacity-85">${stripHtml(ov.subTitle || '')}</p></div></div>`
-            : `<div class="w-full h-full"></div>`;
+          inner = side === "left" ? buildCurrOverviewLeftHtml(ov, false) : `<div class="w-full h-full"></div>`;
         } else {
-          const it = items[currState.book.idx - 1] || items[0];
-          txtColor = it?.textColor || "#141414";
-          const fitCls = it?.mediaFit === "contain" ? "object-contain p-4 bg-white" : "object-cover";
-          inner = side === "left"
-            ? `<div class="book-left-unified" style="color:${txtColor};"><div class="space-y-3"><p class="text-xs md:text-sm font-extrabold uppercase" style="color:${it?.accentColor || '#FF6B00'};">${stripHtml(it?.cat || '')}</p><h2 class="font-black leading-[1.18] whitespace-pre-line" style="font-size:clamp(24px,2.75vw,42px);">${stripHtml(it?.title || '')}</h2><p class="text-xs md:text-sm opacity-70 whitespace-pre-line">${stripHtml(it?.desc || '')}</p></div></div>`
-            : `<div class="w-full h-full flex items-center justify-center px-8 pb-20"><div class="w-full rounded-3xl overflow-hidden bg-white shadow-2xl" style="height:clamp(250px,52vh,470px);">${renderMediaTag(it?.img, `w-full h-full ${fitCls}`, "", undefined, true, it?.mediaFit || "auto", `curr-item-${currState.book.idx - 1}`)}</div></div>`;
+          const ci = clamp(bookCurrIdx - 1, 0, Math.max(0, items.length - 1));
+          const it = items[ci] || items[0];
+          const acc = it.accentColor || "#FF6B00", light = isLightHexColor(it.bgColor || "#F6F7FA");
+          const muted = light ? "rgba(20,20,20,.68)" : "rgba(255,255,255,.78)";
+          const fitCls = it.mediaFit === "contain" ? "object-contain p-4 bg-white" : "object-cover";
+          const animCls = animateCurr ? "book-curr-course-anim" : "";
+          txtColor = it.textColor || "#141414";
+
+          if (side === "left") {
+            inner = `<div class="book-unified-left-pane justify-between ${animCls}" style="color:${txtColor};">
+              <div class="book-title-header">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold text-white" style="background:${acc};">0${ci + 1}</span>
+                  <span data-editable="true" data-path="curriculum.items.${ci}.cat" class="book-title-eyebrow" style="color:${acc};">${it.cat}</span>
+                  <span data-editable="true" data-path="curriculum.items.${ci}.badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border" style="border-color:${light ? 'rgba(15,23,42,.18)' : 'rgba(255,255,255,.3)'};">${it.badge || '핵심과정'}</span>
+                </div>
+                <h2 data-editable="true" data-path="curriculum.items.${ci}.title" class="book-title-main" style="color:${txtColor};">${it.title}</h2>
+                <p data-editable="true" data-path="curriculum.items.${ci}.sub" class="book-title-sub pt-1" style="color:${muted};">${it.sub}</p>
+                <p data-editable="true" data-path="curriculum.items.${ci}.desc" class="book-title-desc pt-1" style="color:${muted};">${it.desc}</p>
+              </div>
+              <div class="space-y-3 pt-4 border-t ${light ? 'border-neutral-200/80' : 'border-white/15'}">
+                <div class="space-y-0.5 text-[11.5px] md:text-xs font-semibold" style="color:${muted};">
+                  <p data-editable="true" data-path="curriculum.items.${ci}.target">${it.target || ''}</p>
+                  <p data-editable="true" data-path="curriculum.items.${ci}.method">${it.method || ''}</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <div role="button" tabindex="0" onclick="if(!isEditMode) openCurrDetailModal(${ci})" class="curr-pill-cta">
+                    <span data-editable="true" data-path="curriculum.items.${ci}.ctaText" onclick="if(isEditMode) event.stopPropagation();">${it.ctaText || '자세히 보기'}</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                  </div>
+                  <div role="button" tabindex="0" onclick="if(!isEditMode) openConsultPopupModal()"
+                       class="px-4 py-3 rounded-[10px] text-xs font-bold border transition cursor-pointer ${light ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-900 hover:text-white' : 'border-white/30 text-white hover:bg-white hover:text-black'}">
+                    상담 신청
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          } else {
+            inner = `<div class="w-full h-full flex flex-col justify-center px-6 sm:px-10 md:px-12 pt-8 pb-20 ${animCls}">
+              <div class="relative w-full rounded-2xl overflow-hidden bg-white shadow-2xl border border-black/10 group" style="height:clamp(260px,58vh,500px);"
+                   ondragover="handleMediaDragOver(event)" ondragleave="handleMediaDragLeave(event)" ondrop="handleMediaDrop(event,'curriculum.items.${ci}.img','${stripHtml(it.cat)}')">
+                ${renderMediaTag(it.img, `w-full h-full ${fitCls} transition duration-700 group-hover:scale-[1.03]`, "", undefined, true, it.mediaFit || "auto")}
+                <div class="admin-only-control absolute top-3.5 right-3.5 z-30 gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-sky-400/70 shadow-xl" onpointerdown="event.stopPropagation()">
+                  <button type="button" onclick="triggerMediaUrlChange('curriculum.items.${ci}.img','${stripHtml(it.cat)}')" class="px-2.5 py-1 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">링크</button>
+                  <button type="button" onclick="triggerImageFileUpload('curriculum.items.${ci}.img')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
+                </div>
+              </div>
+            </div>`;
+          }
         }
       } else if (idx === 3) {
-        // 4장 입학절차: 좌측 5단계 호버·클릭 → 우측 3D 전환 + 1:1 상담 신청 팝업 완전 복구
+        // 4장 입학절차: 진짜 2쪽 책장 레이아웃 + 통일 좌측 제목 + 좌측 5단계 호버 → 우측 맞춤 상세(상승 모션) & 1:1 상담 신청
         const steps = sp.steps?.length >= 5 ? sp.steps : defaultSiteData.bookConfig.spreads[3].steps;
         if (bookAdmSelectedIdx >= steps.length) bookAdmSelectedIdx = 0;
         const act = steps[bookAdmSelectedIdx] || steps[0];
         if (side === "left") {
-          inner = `<div class="w-full h-full flex flex-col" style="color:${sp.textColor};">
-            <div class="h-[38%] flex flex-col justify-center gap-2.5 border-b border-white/15" style="padding:clamp(20px,3vh,34px) clamp(24px,3vw,48px) clamp(14px,2vh,22px) clamp(36px,5vw,82px);">
-              <p data-editable="true" data-path="bookConfig.spreads.3.topEyebrow" class="reveal-item reveal-l1 text-xs md:text-sm font-extrabold tracking-[0.22em] uppercase" style="color:${accent};">${sp.topEyebrow || 'TOP SECRET ADMISSION PROCESS'}</p>
-              <h2 data-editable="true" data-path="bookConfig.spreads.3.topTitle" class="reveal-item reveal-l1 font-black leading-[1.16] tracking-tight whitespace-pre-line" style="font-size:clamp(28px,3.4vw,50px);color:#fff;">${sp.topTitle}</h2>
-              <div class="reveal-item reveal-l2 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-5 pt-0.5">
+          inner = `<div class="book-unified-left-pane justify-between border-r border-white/15" style="color:${sp.textColor};">
+            <div class="book-title-header">
+              <p data-editable="true" data-path="bookConfig.spreads.3.topEyebrow" class="reveal-item reveal-l1 book-title-eyebrow" style="color:${accent};">${sp.topEyebrow || 'TOP SECRET ADMISSION PROCESS'}</p>
+              <h2 data-editable="true" data-path="bookConfig.spreads.3.topTitle" class="reveal-item reveal-l1 book-title-main" style="color:#fff;">${sp.topTitle}</h2>
+              <div class="reveal-item reveal-l2 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 pt-1">
                 <span data-editable="true" data-path="bookConfig.spreads.3.topSubLabel" class="text-xs md:text-sm font-bold shrink-0 text-white">${sp.topSubLabel}</span>
-                <p data-editable="true" data-path="bookConfig.spreads.3.topSubDesc" class="text-[11px] md:text-xs text-white/75 leading-relaxed whitespace-pre-line max-w-sm">${sp.topSubDesc}</p>
+                <p data-editable="true" data-path="bookConfig.spreads.3.topSubDesc" class="book-title-desc text-white/75 max-w-sm">${sp.topSubDesc}</p>
               </div>
             </div>
-            <div class="h-[62%] pt-5 pb-14 flex flex-col justify-center border-r border-white/15" style="padding-left:clamp(36px,5vw,82px);padding-right:clamp(24px,3vw,48px);">
+            <div class="pt-5 border-t border-white/15">
               <div class="reveal-item reveal-l3 space-y-1.5 relative z-30">
-                ${steps.map((st, i) => `<div class="adm-step-tab ${i === bookAdmSelectedIdx ? 'active' : ''}" data-adm-idx="${i}" onmouseenter="if(!isEditMode) selectBookAdmissionStep(${i})" onclick="event.stopPropagation(); selectBookAdmissionStep(${i});"><span class="adm-step-dot"></span><span data-editable="true" data-path="bookConfig.spreads.3.steps.${i}.shortTitle" onclick="if(isEditMode) event.stopPropagation();" class="flex-1 truncate">${st.shortTitle}</span></div>`).join("")}
+                ${steps.map((st, i) => `
+                  <div class="adm-step-tab ${i === bookAdmSelectedIdx ? 'active' : ''}" data-adm-idx="${i}"
+                       onmouseenter="if(!isEditMode) selectBookAdmissionStep(${i})"
+                       onclick="event.stopPropagation(); selectBookAdmissionStep(${i});">
+                    <span class="adm-step-dot"></span>
+                    <span data-editable="true" data-path="bookConfig.spreads.3.steps.${i}.shortTitle" onclick="if(isEditMode) event.stopPropagation();" class="flex-1 truncate">${st.shortTitle}</span>
+                  </div>`).join("")}
               </div>
             </div>
           </div>`;
@@ -1955,7 +2070,7 @@
                 <button type="button" onclick="triggerImageFileUpload('bookConfig.spreads.3.steps.'+bookAdmSelectedIdx+'.media')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">파일</button>
               </div>
             </div>
-            <div class="h-[62%] px-8 sm:px-12 md:px-14 py-8 flex flex-col justify-center adm-detail-stage relative z-30">
+            <div class="h-[62%] px-8 sm:px-12 md:px-14 py-8 flex flex-col justify-center relative z-30 overflow-hidden">
               <div class="reveal-item reveal-from-right reveal-r1 w-full max-w-xl">
                 <div id="bookAdmDetailRotator" class="adm-detail-rotator space-y-5">
                   <div class="flex items-center gap-3"><span id="bookAdmStepNumBadge" class="text-xs font-extrabold tracking-widest uppercase" style="color:${accent};">STEP 0${bookAdmSelectedIdx + 1}</span><span class="h-[1px] w-10 bg-white/25"></span></div>
@@ -1963,7 +2078,7 @@
                   <p id="bookAdmDetailBody" data-editable="true" data-path="bookConfig.spreads.3.steps.${bookAdmSelectedIdx}.body" class="text-xs md:text-sm text-white/80 leading-[1.9] whitespace-pre-line">${act.body}</p>
                   <div class="pt-3 flex items-center justify-between gap-4 border-t border-white/10">
                     <span id="bookAdmDetailSign" data-editable="true" data-path="bookConfig.spreads.3.steps.${bookAdmSelectedIdx}.sign" class="text-xs font-semibold text-white/75">${act.sign || 'TOP SECRET 입학상담팀'}</span>
-                    <button type="button" onclick="event.stopPropagation(); if(!isEditMode) openConsultPopupModal();" class="px-5 py-2.5 rounded-full bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-extrabold shadow-lg transition cursor-pointer">1:1 상담 신청 →</button>
+                    <div role="button" tabindex="0" onclick="event.stopPropagation(); if(!isEditMode) openConsultPopupModal();" class="px-5 py-2.5 rounded-full bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs font-extrabold shadow-lg transition cursor-pointer">1:1 상담 신청 →</div>
                   </div>
                 </div>
               </div>
@@ -1981,7 +2096,7 @@
       return `${buildBookMirrorBackdropHtml(sp, idx)}<div class="spine-shadow-${side}"></div><div class="dynamic-shade"></div><div class="page-content" style="color:${txtColor};">${inner}</div>`;
     }
 
-    // 1장 히어로: 단일 무절단 동영상/이미지 (책 폭 3/4 자동 맞춤 + 드래그&드롭 + 미러 동기화 키 "hero")
+    // 1장 정착 전용 단일 동영상 무절단 레이어 (좌측 50%는 넘김용 미러와 100% 동일 좌표)
     function renderBookSpread0Seamless() {
       const ov = $("bookSpread0Seamless"); if (!ov) return;
       const sp = siteData.bookConfig.spreads[0] || defaultSiteData.bookConfig.spreads[0];
@@ -1989,19 +2104,57 @@
       ov.style.background = `linear-gradient(135deg,${sp.pageColor1 || '#fff'} 0%,${sp.pageColor2 || '#fff'} 100%)`;
       ov.innerHTML = `<div class="relative w-full h-full overflow-hidden" ondragover="handleMediaDragOver(event)" ondragleave="handleMediaDragLeave(event)" ondrop="handleMediaDrop(event,'bookConfig.spreads.0.heroMedia','1장 메인 배경')">
         <div class="book-hero-seamless-media">${renderMediaTag(sp.heroMedia, `book-auto-fit-media ${fit === 'contain' ? 'fit-contain' : ''}`, "", undefined, true, fit, "hero")}</div>
-        <div class="relative z-20 w-[52%] h-full flex flex-col justify-center" style="padding:clamp(22px,3.4vh,40px) clamp(26px,3vw,48px) clamp(56px,7vh,72px) clamp(36px,5vw,82px);">
-          <div class="max-w-lg space-y-3">
-            <p data-editable="true" data-path="bookConfig.spreads.0.subTitle" class="text-xs md:text-sm font-bold tracking-[0.14em]" style="color:${sp.accentColor || '#FF6B00'};">${sp.subTitle}</p>
-            <h1 data-editable="true" data-path="bookConfig.spreads.0.mainTitle" class="font-normal leading-[1.08] tracking-[0.04em] whitespace-pre-line" style="font-size:clamp(36px,4.4vw,72px);font-family:'Cormorant Garamond','Noto Serif KR',serif;color:${sp.textColor};">${sp.mainTitle}</h1>
-            <div class="pt-3 inline-block"><p data-editable="true" data-path="bookConfig.spreads.0.slogan" class="text-sm md:text-lg tracking-[0.22em] font-medium pb-2 border-b border-neutral-400" style="font-family:'Cormorant Garamond','Noto Serif KR',serif;color:${sp.textColor};">${sp.slogan}</p></div>
-          </div>
-        </div>
+        <div class="relative z-20 w-1/2 h-full">${buildHeroLeftUnifiedHtml(sp, true)}</div>
         <div class="admin-only-control absolute top-5 right-6 z-30 items-center gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-orange-500/70 shadow-xl" onpointerdown="event.stopPropagation()">
           <button type="button" onclick="triggerMediaUrlChange('bookConfig.spreads.0.heroMedia','1장 메인 배경')" class="px-3 py-1.5 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">동영상/사진 링크</button>
           <button type="button" onclick="triggerImageFileUpload('bookConfig.spreads.0.heroMedia')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">파일</button>
           <span class="text-[10px] text-amber-300 font-bold px-1 hidden xl:inline">드래그&amp;드롭 가능</span>
         </div>
       </div>`;
+    }
+
+    // 3장 '전체보기' 정착 전용 단일 동영상 무절단 레이어 (좌측 50%는 넘김용 미러와 100% 동일 좌표 / 소메뉴 선택 시 숨김)
+    function renderBookSpread2Seamless() {
+      const wrap = $("bookSpread2Seamless"); if (!wrap) return;
+      const ov = siteData.curriculum?.overview || defaultSiteData.curriculum.overview;
+      const op = ov.overlayOpacity ?? 0.45;
+      wrap.style.backgroundColor = ov.bgColor || "#14161B";
+      wrap.innerHTML = `<div class="relative w-full h-full overflow-hidden" ondragover="handleMediaDragOver(event)" ondragleave="handleMediaDragLeave(event)" ondrop="handleMediaDrop(event,'curriculum.overview.media','3장 전체보기 동영상/사진')">
+        ${ov.media ? renderMediaTag(ov.media, "curr-overview-media book-auto-fit-media", "", undefined, true, "auto", "curr-ov") : ""}
+        <div class="curr-overview-overlay" style="background:linear-gradient(95deg,rgba(10,12,18,${Math.min(.92,op+.22).toFixed(2)}) 0%,rgba(10,12,18,${op.toFixed(2)}) 52%,rgba(10,12,18,${Math.max(.12,op-.15).toFixed(2)}) 100%);"></div>
+        <div class="relative z-20 w-1/2 h-full">${buildCurrOverviewLeftHtml(ov, true)}</div>
+      </div>`;
+    }
+
+    function renderBookCurrDock() {
+      const dock = $("bookCurrDock"); if (!dock) return;
+      const ov = siteData.curriculum?.overview || defaultSiteData.curriculum.overview;
+      const items = siteData.curriculum?.items || [];
+      const labels = [stripHtml(ov.navLabel || "전체보기"), ...items.map((it, i) => stripHtml(it.cat || `과정 ${i + 1}`))];
+      dock.innerHTML = labels.map((l, i) => `<button type="button" onclick="selectBookCurrSlide(${i})" class="curr-dock-tab ${i === bookCurrIdx ? 'active' : ''}" data-dock-idx="${i}">${l}</button>`).join("");
+    }
+
+    function refreshBookSpread2Halves(animate = false) {
+      const [l2, r2] = getSpreadHalfElements(2);
+      if (l2) l2.innerHTML = buildBookSpreadHalfHtml(2, "left", animate);
+      if (r2) r2.innerHTML = buildBookSpreadHalfHtml(2, "right", animate);
+      ensureContainerVideosPlaying(l2);
+      ensureContainerVideosPlaying(r2);
+      refreshViewBindings();
+    }
+
+    // 3장 하단 탭 선택: 0(전체보기)=무절단 동영상 / 1~N(소메뉴)=진짜 2쪽 책장 레이아웃으로 즉시 전환 (책을 넘겨도 변화 없음)
+    function selectBookCurrSlide(sIdx) {
+      const max = Math.max(0, getCurrTotalSlides() - 1);
+      const nextIdx = clamp(Number(sIdx) || 0, 0, max);
+      if (isEditMode) syncEditableElementsToData();
+      bookCurrIdx = nextIdx;
+      refreshBookSpread2Halves(nextIdx > 0);
+      renderBookCurrDock();
+      updateBook3D(bookRenderProgress, true);
+      updateBookPageBadge(currentBookSpreadIdx);
+      const activeTab = document.querySelector(`#bookCurrDock [data-dock-idx="${nextIdx}"]`);
+      activeTab?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
     }
 
     // 5장 캠퍼스 풀폭 가로 확장형 아코디언
@@ -2045,7 +2198,7 @@
                     <p class="text-[11px] md:text-xs text-white/85 truncate"><i class="fa-solid fa-location-dot text-[#FFB800] mr-1.5"></i><span data-editable="true" data-path="campuses.${i}.addr" onclick="if(isEditMode) event.stopPropagation();">${c.addr}</span></p>
                     <p class="text-[11px] md:text-xs text-white/85 truncate"><i class="fa-solid fa-phone text-[#FFB800] mr-1.5"></i><span data-editable="true" data-path="campuses.${i}.tel" onclick="if(isEditMode) event.stopPropagation();">${c.tel}</span></p>
                   </div>
-                  <button type="button" onclick="event.stopPropagation();if(!isEditMode) openCampusDetail(${i});" class="shrink-0 px-4 py-2 rounded-full bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-extrabold shadow-lg transition cursor-pointer">상세 보기 →</button>
+                  <div role="button" tabindex="0" onclick="event.stopPropagation();if(!isEditMode) openCampusDetail(${i});" class="shrink-0 px-4 py-2 rounded-full bg-[#FF6B00] hover:bg-[#F39200] text-white text-[11px] font-extrabold shadow-lg transition cursor-pointer">상세 보기 →</div>
                 </div>
               </div>
             </div>`).join("")}
@@ -2069,7 +2222,7 @@
       let dark = idx === 3 || idx === 4 || !isLightHexColor(sp?.pageColor1 || "#fff");
       if (idx === 2) {
         const ov = siteData.curriculum?.overview || defaultSiteData.curriculum.overview;
-        dark = currState.book.idx === 0 ? (Boolean(ov.media) || !isLightHexColor(ov.bgColor || "#14161B")) : !isLightHexColor(siteData.curriculum?.items?.[currState.book.idx - 1]?.bgColor || "#F6F7FA");
+        dark = bookCurrIdx === 0 ? (Boolean(ov.media) || !isLightHexColor(ov.bgColor || "#14161B")) : !isLightHexColor(siteData.curriculum?.items?.[bookCurrIdx - 1]?.bgColor || "#F6F7FA");
       }
       badge.classList.toggle("is-dark-page", dark);
     }
@@ -2087,7 +2240,8 @@
         firstOv ? shell.insertBefore(leaf, firstOv) : shell.appendChild(leaf);
       }
       renderBookSpread0Seamless();
-      renderUnifiedCurrShowroom("book");
+      renderBookSpread2Seamless();
+      renderBookCurrDock();
       renderBookCampusAccOverlay();
       activeRevealedSpreadIdx = -1;
       prevSp0Active = false; prevSp2Active = false;
@@ -2096,11 +2250,6 @@
       updateShowroomChromes();
       revealSpreadNow(currentBookSpreadIdx);
       requestAnimationFrame(() => { updateBookStep2Indicator(); startBookStep2Cycle(); ensureContainerVideosPlaying(shell); });
-    }
-
-    function ensureContainerVideosPlaying(root) {
-      if (!root) return;
-      $$("video", root).forEach(v => { v.muted = true; if (v.paused) v.play().catch(() => {}); });
     }
 
     function applyAllStageBgLayers() {
@@ -2128,7 +2277,7 @@
       requestAnimationFrame(() => { if (currentViewId !== "home") return; halves.forEach(el => el.classList.add("spread-revealed")); if (idx === 1) requestAnimationFrame(updateBookStep2Indicator); });
     }
 
-    // 2장 4 STEP: 평소엔 좌측 소개만 노출, 우측 바 호버 시 좌측이 해당 페이지 미리보기로 스르륵 전환 (10초 자동 순환)
+    // 2장 4 STEP: 평소엔 좌측 통일 제목만 표시 → 우측 바에 커서 올리면 주황 바 이동 + 좌측 제목 페이드아웃 + 학원소개 내용 페이드인
     function updateBookStep2Indicator() {
       const list = $("bookStep2List"), orb = $("bookStep2Orb"), bar = $("bookStep2Bar");
       if (!list || !orb || !bar) return;
@@ -2174,34 +2323,40 @@
       }, 10000);
     }
 
-    // 4장 좌측 메뉴 호버/클릭 → 우측 상세 3D 전환
+    // 4장 좌측 메뉴 호버·클릭 → 해당 단계 맞춤 상세 설명이 아래에서 위로 부드럽게 상승 전환
     function selectBookAdmissionStep(sIdx) {
       const steps = siteData.bookConfig?.spreads?.[3]?.steps || [];
       if (!steps[sIdx] || sIdx === bookAdmSelectedIdx) return;
-      const down = sIdx > bookAdmSelectedIdx; bookAdmSelectedIdx = sIdx;
+      if (isEditMode) syncEditableElementsToData();
+      bookAdmSelectedIdx = sIdx;
       $$(".adm-step-tab").forEach((t, i) => t.classList.toggle("active", i === sIdx));
       $$(".adm-top-media-layer").forEach(l => l.classList.toggle("active", Number(l.getAttribute("data-adm-media-idx")) === sIdx));
+
       const rot = $("bookAdmDetailRotator"); if (!rot) return;
       clearTimeout(bookAdmAnimTimer);
-      rot.classList.remove("flip-out-up","flip-out-down","prep-from-up","prep-from-down");
-      rot.classList.add(down ? "flip-out-up" : "flip-out-down");
+      rot.classList.remove("rise-exit", "rise-prep");
+      rot.classList.add("rise-exit");
+
       const t = steps[sIdx];
       bookAdmAnimTimer = setTimeout(() => {
         if ($("bookAdmStepNumBadge")) $("bookAdmStepNumBadge").textContent = `STEP 0${sIdx + 1}`;
         [["bookAdmDetailTitle","detailTitle"],["bookAdmDetailBody","body"],["bookAdmDetailSign","sign"]].forEach(([id, k]) => {
-          const el = $(id); if (el) { el.setAttribute("data-path", `bookConfig.spreads.3.steps.${sIdx}.${k}`); el.innerHTML = t[k] || ""; }
+          const el = $(id);
+          if (el) { el.setAttribute("data-path", `bookConfig.spreads.3.steps.${sIdx}.${k}`); el.innerHTML = t[k] || ""; }
         });
         refreshViewBindings();
-        rot.classList.remove("flip-out-up","flip-out-down");
-        rot.classList.add(down ? "prep-from-down" : "prep-from-up");
+
+        rot.classList.remove("rise-exit");
+        rot.classList.add("rise-prep");
         void rot.offsetWidth;
-        rot.classList.remove("prep-from-down","prep-from-up");
-      }, 170);
+        rot.classList.remove("rise-prep");
+      }, 155);
     }
 
+    // 3D 책장 업데이트 (비디오가 검게 변하지 않도록 leaf-face에 visibility:hidden 미사용, pointer-events만 정밀 제어)
     function updateBook3D(progress, forceBg = false) {
       const c = clamp(progress, 0, TOTAL_BOOK_SPREADS - 1), near = Math.round(c);
-      const isTurning = Math.abs(c - near) > 0.008;
+      const isTurning = Math.abs(c - near) > 0.006;
 
       for (let i = 0; i < TOTAL_BOOK_SPREADS - 1; i++) {
         const leaf = $(`bookLeaf-${i}`); if (!leaf) continue;
@@ -2213,21 +2368,17 @@
         if (fs) { fs.style.background = `linear-gradient(to left,rgba(0,0,0,${(ci*.34).toFixed(3)}),rgba(255,255,255,${(ci*.14).toFixed(3)}))`; fs.style.opacity = lp < .5 ? "1" : "0"; }
         if (bs) { bs.style.background = `linear-gradient(to right,rgba(0,0,0,${(ci*.34).toFixed(3)}),rgba(255,255,255,${(ci*.14).toFixed(3)}))`; bs.style.opacity = lp >= .5 ? "1" : "0"; }
 
-        // 4장 호버/클릭 차단 방지를 위해 현재 정면으로 보이는 면만 pointer-events & visibility 활성화
-        const frontVis = isTurning ? lp < 0.999 : near === i;
-        const backVis = isTurning ? lp > 0.001 : near === i + 1;
-        front.style.visibility = frontVis ? "visible" : "hidden";
-        back.style.visibility = backVis ? "visible" : "hidden";
+        // 현재 정면으로 펼쳐진 책장 면만 마우스 이벤트 수신 (4장/3장 소메뉴/2장 클릭·호버 100% 보장)
         front.style.pointerEvents = (!isTurning && near === i) ? "auto" : "none";
         back.style.pointerEvents = (!isTurning && near === i + 1) ? "auto" : "none";
       }
-      if ($("baseLeft")) { $("baseLeft").style.pointerEvents = (!isTurning && near === 0) ? "auto" : "none"; }
-      if ($("baseRight")) { $("baseRight").style.pointerEvents = (!isTurning && near === TOTAL_BOOK_SPREADS - 1) ? "auto" : "none"; }
+      if ($("baseLeft")) $("baseLeft").style.pointerEvents = (!isTurning && near === 0) ? "auto" : "none";
+      if ($("baseRight")) $("baseRight").style.pointerEvents = (!isTurning && near === TOTAL_BOOK_SPREADS - 1) ? "auto" : "none";
 
-      // 1장·3장: 정착 시 단일 Seamless 동영상(세로줄 없음) ↔ 넘기는 순간 프레임 동기화된 분할 미러로 즉시 전환
+      // 1장·3장(전체보기만): 정착 시 단일 Seamless 동영상 ↔ 넘길 때 동기화된 양면 분할 미러 즉시 전환 (검정화면 0)
       const isHome = currentViewId === "home";
-      const sp0Now = isHome && c <= 0.008;
-      const sp2Now = isHome && Math.abs(c - 2) <= 0.008;
+      const sp0Now = isHome && c <= 0.006;
+      const sp2Now = isHome && bookCurrIdx === 0 && Math.abs(c - 2) <= 0.006;
       const sp4Now = isHome && c >= 3.92;
 
       if (sp0Now !== prevSp0Active) {
@@ -2236,9 +2387,8 @@
         prevSp0Active = sp0Now;
       }
       if (sp2Now !== prevSp2Active) {
-        const sKey = currState.book.idx === 0 ? "curr-ov" : `curr-item-${currState.book.idx - 1}`;
-        if (!sp2Now) syncMirrorVideosFromSeamless(sKey);
-        else { syncSeamlessVideoFromMirror(sKey); ensureContainerVideosPlaying($("bookSpread2Seamless")); }
+        if (!sp2Now && bookCurrIdx === 0) syncMirrorVideosFromSeamless("curr-ov");
+        else if (sp2Now) { syncSeamlessVideoFromMirror("curr-ov"); ensureContainerVideosPlaying($("bookSpread2Seamless")); }
         prevSp2Active = sp2Now;
       }
 
@@ -2267,6 +2417,8 @@
       const t = clamp(idx, 0, TOTAL_BOOK_SPREADS - 1);
       if (currentViewId !== "home") navigateTo("home");
       if (window.scrollY > 10) window.scrollTo({ top: 0, behavior: "smooth" });
+      if (currentBookSpreadIdx === 0 && t !== 0) syncMirrorVideosFromSeamless("hero");
+      if (currentBookSpreadIdx === 2 && bookCurrIdx === 0 && t !== 2) syncMirrorVideosFromSeamless("curr-ov");
       bookTargetProgress = t;
       if (t === TOTAL_BOOK_SPREADS - 1) bookLastPageReachedAt = Date.now();
     }
@@ -2290,16 +2442,16 @@
         const f = sp.heroMediaFit || "auto";
         list.innerHTML = `<div class="bg-black/45 p-2.5 rounded-lg border border-white/10 space-y-2">
           <div class="flex justify-between font-bold"><span>1장 3/4 단일 동영상/사진</span><span class="px-1.5 py-0.5 rounded text-[9px] bg-sky-700">${isVideoMediaUrl(sp.heroMedia) ? 'VIDEO' : 'IMAGE'}</span></div>
-          <div class="flex gap-1.5"><button onclick="triggerMediaUrlChange('bookConfig.spreads.0.heroMedia','1장 메인 배경')" class="flex-1 py-1.5 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크 입력</button><button onclick="triggerImageFileUpload('bookConfig.spreads.0.heroMedia')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button></div>
-          <div class="flex items-center justify-between pt-1 border-t border-white/10"><span class="text-[10px] text-neutral-300">화면 맞춤</span><div class="flex gap-1">${[["auto","자동"],["cover","꽉채움"],["contain","원본"]].map(([m, l]) => `<button onclick="updateBookSpreadProp('heroMediaFit','${m}')" class="px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer ${f === m ? 'bg-amber-400 text-black' : 'bg-neutral-800 text-neutral-300'}">${l}</button>`).join("")}</div></div>
+          <div class="flex gap-1.5"><button type="button" onclick="triggerMediaUrlChange('bookConfig.spreads.0.heroMedia','1장 메인 배경')" class="flex-1 py-1.5 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크 입력</button><button type="button" onclick="triggerImageFileUpload('bookConfig.spreads.0.heroMedia')" class="px-2.5 py-1.5 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button></div>
+          <div class="flex items-center justify-between pt-1 border-t border-white/10"><span class="text-[10px] text-neutral-300">화면 맞춤</span><div class="flex gap-1">${[["auto","자동"],["cover","꽉채움"],["contain","원본"]].map(([m, l]) => `<button type="button" onclick="updateBookSpreadProp('heroMediaFit','${m}')" class="px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer ${f === m ? 'bg-amber-400 text-black' : 'bg-neutral-800 text-neutral-300'}">${l}</button>`).join("")}</div></div>
         </div>`;
       } else if (currentBookSpreadIdx === 3) {
-        list.innerHTML = (sp.steps || []).map((st, i) => `<div class="bg-black/45 p-2 rounded-lg border border-white/10 flex items-center justify-between gap-2"><span class="font-bold truncate">4장 ${i + 1}단계</span><div class="flex gap-1"><button onclick="triggerMediaUrlChange('bookConfig.spreads.3.steps.${i}.media','4장 ${i + 1}단계')" class="px-2 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">링크</button><button onclick="triggerImageFileUpload('bookConfig.spreads.3.steps.${i}.media')" class="px-2 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">파일</button></div></div>`).join("");
+        list.innerHTML = (sp.steps || []).map((st, i) => `<div class="bg-black/45 p-2 rounded-lg border border-white/10 flex items-center justify-between gap-2"><span class="font-bold truncate">4장 ${i + 1}단계</span><div class="flex gap-1"><button type="button" onclick="triggerMediaUrlChange('bookConfig.spreads.3.steps.${i}.media','4장 ${i + 1}단계')" class="px-2 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">링크</button><button type="button" onclick="triggerImageFileUpload('bookConfig.spreads.3.steps.${i}.media')" class="px-2 py-1 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">파일</button></div></div>`).join("");
       } else {
-        const msg = currentBookSpreadIdx === 1 ? ["2장 학원 소개 4 STEP (10초 자동 · 호버 시 좌측 미리보기)", "toggleStudioPanel('philStudioPanel','philosophy',syncPhilStudioControls)", "학원소개 설정 열기"]
-                  : currentBookSpreadIdx === 2 ? ["3장 커리큘럼은 커리큘럼 쇼룸 설정과 실시간 연동됩니다.", "toggleStudioPanel('currStudioPanel','curriculum',syncCurrStudioControls)", "커리큘럼 설정 열기"]
+        const msg = currentBookSpreadIdx === 1 ? ["2장 학원 소개 (호버 시 좌측 페이드아웃 → 학원소개 메인 표시)", "toggleStudioPanel('philStudioPanel','philosophy',syncPhilStudioControls)", "학원소개 설정 열기"]
+                  : currentBookSpreadIdx === 2 ? ["3장 커리큘럼 (전체보기 동영상 · 소메뉴 2쪽 책장 레이아웃)", "toggleStudioPanel('currStudioPanel','curriculum',syncCurrStudioControls)", "커리큘럼 설정 열기"]
                   : ["5장 캠퍼스 아코디언은 화면 위 버튼이나 상세 팝업에서 직접 편집하세요.", "", ""];
-        list.innerHTML = `<div class="bg-black/35 p-2.5 rounded-lg space-y-2"><p class="text-[11px] text-neutral-300">${msg[0]}</p>${msg[1] ? `<button onclick="${msg[1]}" class="w-full py-1.5 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">${msg[2]}</button>` : ""}</div>`;
+        list.innerHTML = `<div class="bg-black/35 p-2.5 rounded-lg space-y-2"><p class="text-[11px] text-neutral-300">${msg[0]}</p>${msg[1] ? `<button type="button" onclick="${msg[1]}" class="w-full py-1.5 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">${msg[2]}</button>` : ""}</div>`;
       }
     }
     function triggerBookOuterBgUrl() { triggerMediaUrlChange(`bookConfig.spreads.${currentBookSpreadIdx}.stageBgImg`, `${currentBookSpreadIdx + 1}장 바깥 배경`, applyAllStageBgLayers); }
@@ -2316,42 +2468,29 @@
       renderBookMain(); refreshViewBindings(); syncBookStudioControls(); scheduleAutoCloudSave();
     }
 
-    // ================= 2) 단일화 커리큘럼 쇼룸 엔진 (책장 3장 + 전용 페이지 공통) =================
+    // ================= 2) 커리큘럼 전용 풀스크린 쇼룸 엔진 (3장 책장과 데이터 실시간 연동) =================
     const getCurrTotalSlides = () => 1 + (siteData.curriculum?.items?.length || 0);
 
-    function refreshBookSpread2Mirrors() {
-      const [l2, r2] = getSpreadHalfElements(2);
-      if (l2) l2.innerHTML = buildBookSpreadHalfHtml(2, "left");
-      if (r2) r2.innerHTML = buildBookSpreadHalfHtml(2, "right");
-    }
-
-    function renderUnifiedCurrShowroom(mode = "page") {
-      const isBook = mode === "book";
-      const container = $(isBook ? "bookCurrSlidesContainer" : "currSlidesContainer");
-      const dockEl = $(isBook ? "bookCurrDock" : "currBottomDock");
-      const railEl = isBook ? null : $("currProgressRail");
+    function renderCurriculumShowroom() {
+      const container = $("currSlidesContainer"), dockEl = $("currBottomDock"), railEl = $("currProgressRail");
       if (!container || !dockEl) return;
 
       const ov = siteData.curriculum.overview || defaultSiteData.curriculum.overview;
-      const items = siteData.curriculum.items || [], total = 1 + items.length, st = currState[mode];
+      const items = siteData.curriculum.items || [], total = 1 + items.length, st = pageCurrState;
       st.idx = Math.min(st.idx, total - 1); st.target = Math.min(st.target, total - 1); st.render = Math.min(st.render, total - 1);
 
-      const clickFn = isBook ? "selectBookCurrSlide" : "jumpToCurrSlide";
       const ovOp = ov.overlayOpacity ?? 0.45, ovAcc = ov.accentColor || "#FF6B00";
-      const hSize = isBook ? "clamp(28px,3.4vw,50px)" : "clamp(34px,4.6vw,68px)";
-      const cSize = isBook ? "clamp(24px,2.75vw,42px)" : "clamp(26px,3vw,48px)";
-
       const ovHtml = `<div class="curr-slide-layer" data-curr-slide="0">
         <div class="curr-overview-wrap" style="background-color:${ov.bgColor || '#14161B'};" ondragover="handleMediaDragOver(event)" ondragleave="handleMediaDragLeave(event)" ondrop="handleMediaDrop(event,'curriculum.overview.media','커리큘럼 전체보기')">
-          ${ov.media ? renderMediaTag(ov.media, "curr-overview-media book-auto-fit-media", "", undefined, true, "auto", isBook ? "curr-ov" : "") : ""}
+          ${ov.media ? renderMediaTag(ov.media, "curr-overview-media book-auto-fit-media", "", undefined, true) : ""}
           <div class="curr-overview-overlay" style="background:linear-gradient(95deg,rgba(10,12,18,${Math.min(.92,ovOp+.22).toFixed(2)}) 0%,rgba(10,12,18,${ovOp.toFixed(2)}) 52%,rgba(10,12,18,${Math.max(.12,ovOp-.15).toFixed(2)}) 100%);"></div>
           <div class="curr-overview-content" style="color:${ov.textColor || '#fff'};">
             <div class="max-w-2xl space-y-4">
               <p data-editable="true" data-path="curriculum.overview.eyebrow" class="text-xs md:text-sm font-extrabold tracking-[0.22em] uppercase" style="color:${ovAcc};">${ov.eyebrow || 'TOP SECRET CURRICULUM SHOWROOM'}</p>
-              <h2 data-editable="true" data-path="curriculum.overview.title" class="font-black leading-[1.16] tracking-tight whitespace-pre-line drop-shadow-lg" style="font-size:${hSize};">${ov.title}</h2>
-              <p data-editable="true" data-path="curriculum.overview.subTitle" class="text-xs md:text-base leading-relaxed whitespace-pre-line max-w-xl" style="opacity:.88;">${ov.subTitle}</p>
-              <div class="pt-2 flex flex-wrap items-center gap-3">
-                <button type="button" onclick="if(!isEditMode) ${clickFn}(1)" class="px-6 py-3 rounded-full font-extrabold text-xs md:text-sm shadow-xl transition hover:scale-105 cursor-pointer flex items-center gap-2" style="background:${ovAcc};color:#fff;"><span>교육과정 둘러보기</span><i class="fa-solid fa-arrow-${isBook ? 'right' : 'down'} text-xs"></i></button>
+              <h1 data-editable="true" data-path="curriculum.overview.title" class="font-black leading-[1.16] tracking-tight whitespace-pre-line drop-shadow-lg" style="font-size:clamp(34px,4.6vw,68px);">${ov.title}</h1>
+              <p data-editable="true" data-path="curriculum.overview.subTitle" class="text-sm md:text-lg leading-relaxed whitespace-pre-line max-w-xl" style="opacity:.88;">${ov.subTitle}</p>
+              <div class="pt-3 flex flex-wrap items-center gap-3">
+                <div role="button" tabindex="0" onclick="if(!isEditMode) jumpToCurrSlide(1)" class="px-7 py-3.5 rounded-full font-extrabold text-xs md:text-sm shadow-xl transition hover:scale-105 cursor-pointer inline-flex items-center gap-2" style="background:${ovAcc};color:#fff;"><span>교육과정 둘러보기</span><i class="fa-solid fa-arrow-down text-xs"></i></div>
                 <div class="admin-only-control items-center gap-1.5 bg-black/80 p-1.5 rounded-xl border border-sky-400/60" onpointerdown="event.stopPropagation()">
                   <button type="button" onclick="triggerMediaUrlChange('curriculum.overview.media','커리큘럼 전체보기')" class="px-2.5 py-1 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">링크</button>
                   <button type="button" onclick="triggerImageFileUpload('curriculum.overview.media')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
@@ -2375,19 +2514,19 @@
               </div>
               <div class="space-y-1.5">
                 <p data-editable="true" data-path="curriculum.items.${i}.cat" class="text-xs md:text-sm font-extrabold tracking-wider uppercase" style="color:${acc};">${it.cat}</p>
-                <h2 data-editable="true" data-path="curriculum.items.${i}.title" class="font-black leading-[1.18] tracking-tight whitespace-pre-line" style="font-size:${cSize};">${it.title}</h2>
-                <p data-editable="true" data-path="curriculum.items.${i}.sub" class="text-xs md:text-base font-bold leading-snug" style="color:${muted};">${it.sub}</p>
+                <h2 data-editable="true" data-path="curriculum.items.${i}.title" class="font-black leading-[1.18] tracking-tight whitespace-pre-line" style="font-size:clamp(26px,3vw,48px);">${it.title}</h2>
+                <p data-editable="true" data-path="curriculum.items.${i}.sub" class="text-sm md:text-lg font-bold leading-snug" style="color:${muted};">${it.sub}</p>
               </div>
-              <p data-editable="true" data-path="curriculum.items.${i}.desc" class="text-xs md:text-sm leading-[1.75] max-w-lg whitespace-pre-line" style="color:${muted};">${it.desc}</p>
-              <div class="space-y-0.5 text-[11px] md:text-xs font-semibold" style="color:${muted};"><p data-editable="true" data-path="curriculum.items.${i}.target">${it.target || ''}</p><p data-editable="true" data-path="curriculum.items.${i}.method">${it.method || ''}</p></div>
-              <div class="pt-2 flex flex-wrap items-center gap-2.5">
-                <button type="button" onclick="if(!isEditMode) openCurrDetailModal(${i})" class="curr-pill-cta"><span data-editable="true" data-path="curriculum.items.${i}.ctaText" onclick="if(isEditMode) event.stopPropagation();">${it.ctaText || '자세히 보기'}</span><i class="fa-solid fa-arrow-right text-xs"></i></button>
-                <button type="button" onclick="if(!isEditMode) openConsultPopupModal()" class="px-4 py-3 rounded-[10px] text-xs font-bold border transition cursor-pointer ${light ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-900 hover:text-white' : 'border-white/30 text-white hover:bg-white hover:text-black'}">상담 신청</button>
+              <p data-editable="true" data-path="curriculum.items.${i}.desc" class="text-xs md:text-base leading-[1.8] max-w-lg whitespace-pre-line" style="color:${muted};">${it.desc}</p>
+              <div class="space-y-0.5 text-xs font-semibold" style="color:${muted};"><p data-editable="true" data-path="curriculum.items.${i}.target">${it.target || ''}</p><p data-editable="true" data-path="curriculum.items.${i}.method">${it.method || ''}</p></div>
+              <div class="pt-3 flex flex-wrap items-center gap-2.5">
+                <div role="button" tabindex="0" onclick="if(!isEditMode) openCurrDetailModal(${i})" class="curr-pill-cta"><span data-editable="true" data-path="curriculum.items.${i}.ctaText" onclick="if(isEditMode) event.stopPropagation();">${it.ctaText || '자세히 보기'}</span><i class="fa-solid fa-arrow-right text-xs"></i></div>
+                <div role="button" tabindex="0" onclick="if(!isEditMode) openConsultPopupModal()" class="px-5 py-3 rounded-[10px] text-xs md:text-sm font-bold border transition cursor-pointer ${light ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-900 hover:text-white' : 'border-white/30 text-white hover:bg-white hover:text-black'}">상담 신청</div>
               </div>
             </div>
             <div class="curr-course-visual-wrap">
               <div class="curr-course-media-box group" ondragover="handleMediaDragOver(event)" ondragleave="handleMediaDragLeave(event)" ondrop="handleMediaDrop(event,'curriculum.items.${i}.img','${stripHtml(it.cat)}')">
-                ${renderMediaTag(it.img, `w-full h-full ${fitCls} transition duration-700 group-hover:scale-[1.03]`, "", undefined, true, it.mediaFit || "auto", isBook ? `curr-item-${i}` : "")}
+                ${renderMediaTag(it.img, `w-full h-full ${fitCls} transition duration-700 group-hover:scale-[1.03]`, "", undefined, true, it.mediaFit || "auto")}
                 <div class="admin-only-control absolute top-3 right-3 z-30 gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-sky-400/70 shadow-xl" onpointerdown="event.stopPropagation()">
                   <button type="button" onclick="triggerMediaUrlChange('curriculum.items.${i}.img','${stripHtml(it.cat)}')" class="px-2.5 py-1 bg-sky-500 text-black text-[11px] font-extrabold rounded cursor-pointer">링크</button>
                   <button type="button" onclick="triggerImageFileUpload('curriculum.items.${i}.img')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] font-bold rounded cursor-pointer">파일</button>
@@ -2400,17 +2539,18 @@
 
       container.innerHTML = ovHtml + coursesHtml;
       const labels = [stripHtml(ov.navLabel || "전체보기"), ...items.map((it, i) => stripHtml(it.cat || `과정 ${i + 1}`))];
-      dockEl.innerHTML = labels.map((l, i) => `<button type="button" onclick="${clickFn}(${i})" class="curr-dock-tab ${i === st.idx ? 'active' : ''}" data-dock-idx="${i}">${l}</button>`).join("");
+      dockEl.innerHTML = labels.map((l, i) => `<button type="button" onclick="jumpToCurrSlide(${i})" class="curr-dock-tab ${i === st.idx ? 'active' : ''}" data-dock-idx="${i}">${l}</button>`).join("");
       if (railEl) railEl.innerHTML = labels.map((l, i) => `<button type="button" onclick="jumpToCurrSlide(${i})" class="curr-rail-dot ${i === st.idx ? 'active' : ''}" title="${l}"></button>`).join("");
-      updateUnifiedCurrVisuals(mode, st.render, true);
+      renderDrawerMenus();
+      updatePageCurrVisuals(st.render, true);
       ensureContainerVideosPlaying(container);
+      refreshViewBindings();
     }
 
-    function updateUnifiedCurrVisuals(mode, progress, forceBg = false) {
-      const isBook = mode === "book", total = getCurrTotalSlides(); if (total <= 0) return;
-      const c = clamp(progress, 0, total - 1), near = Math.round(c), st = currState[mode];
-      const container = $(isBook ? "bookCurrSlidesContainer" : "currSlidesContainer");
-      if (!container) return;
+    function updatePageCurrVisuals(progress, forceBg = false) {
+      const total = getCurrTotalSlides(); if (total <= 0) return;
+      const c = clamp(progress, 0, total - 1), near = Math.round(c), st = pageCurrState;
+      const container = $("currSlidesContainer"); if (!container) return;
 
       $$(".curr-slide-layer", container).forEach((layer, idx) => {
         const off = idx - c, abs = Math.abs(off);
@@ -2418,51 +2558,34 @@
         layer.style.visibility = "visible";
         layer.classList.toggle("is-current", idx === near);
         layer.style.opacity = Math.max(0, 1 - abs * 1.25).toFixed(3);
-        if (idx === 0) {
-          layer.style.transform = `translate3d(0,${(off * (isBook ? 52 : 60)).toFixed(1)}px,0) scale(${(1 + abs * 0.05).toFixed(4)})`;
-        } else {
+        if (idx === 0) layer.style.transform = `translate3d(0,${(off * 60).toFixed(1)}px,0) scale(${(1 + abs * 0.05).toFixed(4)})`;
+        else {
           layer.style.transform = "none";
           const tEl = layer.querySelector(".curr-course-text"), vEl = layer.querySelector(".curr-course-visual-wrap");
-          if (tEl) tEl.style.transform = `translate3d(${(-off * 24).toFixed(1)}px,${(off * (isBook ? 60 : 68)).toFixed(1)}px,0)`;
-          if (vEl) vEl.style.transform = `translate3d(${(off * (isBook ? 88 : 95)).toFixed(1)}px,${(off * (isBook ? 46 : 52)).toFixed(1)}px,0) scale(${Math.max(.88, 1 - abs * .11).toFixed(4)})`;
+          if (tEl) tEl.style.transform = `translate3d(${(-off * 24).toFixed(1)}px,${(off * 68).toFixed(1)}px,0)`;
+          if (vEl) vEl.style.transform = `translate3d(${(off * 95).toFixed(1)}px,${(off * 52).toFixed(1)}px,0) scale(${Math.max(.88, 1 - abs * .11).toFixed(4)})`;
         }
         if (idx === near) ensureContainerVideosPlaying(layer);
       });
 
       if (near !== st.idx || forceBg) {
-        const changed = near !== st.idx;
         st.idx = near;
         const ov = siteData.curriculum.overview, actItem = near > 0 ? siteData.curriculum.items[near - 1] : null;
-        const bg = near === 0 ? (ov.bgColor || "#14161B") : (actItem?.bgColor || "#F6F7FA");
-        const stage = $(isBook ? "bookSpread2Seamless" : "currShowroomStage");
-        const grid = $(isBook ? "bookCurrGridPattern" : "currGridPattern");
-        if (stage) stage.style.backgroundColor = bg;
-        if (grid) grid.style.opacity = near === 0 ? "0" : "0.55";
-
-        $$(`#${isBook ? "bookCurrDock" : "currBottomDock"} .curr-dock-tab`).forEach((tab, i) => {
-          tab.classList.toggle("active", i === near);
-          if (i === near) tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        });
-
-        if (isBook) {
-          if (changed) refreshBookSpread2Mirrors();
-          if (currentBookSpreadIdx === 2) updateBookPageBadge(2);
-        } else {
-          $$("#currProgressRail .curr-rail-dot").forEach((d, i) => d.classList.toggle("active", i === near));
-          currentCurriculumCat = near === 0 ? stripHtml(ov.navLabel || "전체보기") : stripHtml(actItem?.cat || "");
-          if (isEditMode && !$("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
-        }
+        if ($("currShowroomStage")) $("currShowroomStage").style.backgroundColor = near === 0 ? (ov.bgColor || "#14161B") : (actItem?.bgColor || "#F6F7FA");
+        if ($("currGridPattern")) $("currGridPattern").style.opacity = near === 0 ? "0" : "0.55";
+        $$("#currBottomDock .curr-dock-tab").forEach((tab, i) => { tab.classList.toggle("active", i === near); if (i === near) tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }); });
+        $$("#currProgressRail .curr-rail-dot").forEach((d, i) => d.classList.toggle("active", i === near));
+        currentCurriculumCat = near === 0 ? stripHtml(ov.navLabel || "전체보기") : stripHtml(actItem?.cat || "");
+        if (isEditMode && !$("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
       }
     }
 
-    function renderCurriculumShowroom() { renderUnifiedCurrShowroom("page"); renderDrawerMenus(); refreshViewBindings(); }
-    function selectBookCurrSlide(i) { currState.book.target = clamp(Number(i) || 0, 0, Math.max(0, getCurrTotalSlides() - 1)); }
     function jumpToCurrSlide(i) {
-      clearTimeout(currState.page.snapTimer);
+      clearTimeout(pageCurrState.snapTimer);
       const max = Math.max(0, getCurrTotalSlides() - 1), t = clamp(Number(i) || 0, 0, max);
       if (window.scrollY > 10) window.scrollTo({ top: 0, behavior: "smooth" });
-      currState.page.target = t;
-      if (t === max) currState.page.lastAt = Date.now();
+      pageCurrState.target = t;
+      if (t === max) pageCurrState.lastAt = Date.now();
     }
     function selectCurriculumCat(cat) {
       const c = stripHtml(cat), ovL = stripHtml(siteData.curriculum?.overview?.navLabel || "전체보기");
@@ -2488,7 +2611,7 @@
         </div>
         <div class="w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-100">${renderMediaTag(it.img, "w-full h-full object-cover")}</div>
         <div class="space-y-3 pt-2">
-          <div class="flex items-center justify-between"><h3 class="text-sm font-extrabold uppercase">${stripHtml(siteData.curriculum?.roadmapLabel || '단계별 커리큘럼 로드맵')}</h3><button type="button" onclick="addCurriculumStep(${i})" class="admin-only-control px-3 py-1 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ STEP</button></div>
+          <div class="flex items-center justify-between"><h3 data-editable="true" data-path="curriculum.roadmapLabel" class="text-sm font-extrabold uppercase">${siteData.curriculum?.roadmapLabel || '단계별 커리큘럼 로드맵'}</h3><button type="button" onclick="addCurriculumStep(${i})" class="admin-only-control px-3 py-1 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">+ STEP</button></div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">${(it.steps || []).map((st, s) => `<div class="bg-neutral-50 rounded-2xl border border-neutral-200 p-5 space-y-2.5"><div class="flex items-center justify-between"><span class="px-2.5 py-0.5 rounded bg-neutral-900 text-white text-[10px] font-extrabold">STEP 0${s + 1}</span><button type="button" onclick="deleteCurriculumStep(${i},${s})" class="admin-only-control px-2 py-0.5 bg-red-600 text-white text-[10px] rounded cursor-pointer">삭제</button></div><p data-editable="true" data-path="curriculum.items.${i}.steps.${s}" class="text-xs md:text-sm font-bold leading-relaxed">${st}</p></div>`).join("")}</div>
         </div>
         <div class="pt-4 border-t border-neutral-200 flex justify-end gap-2.5">
@@ -2501,12 +2624,12 @@
 
     function syncCurrStudioControls() {
       const tabs = $("currStudioSlideTabs"), body = $("currStudioControlsBody"); if (!tabs || !body) return;
-      const ov = siteData.curriculum.overview, items = siteData.curriculum.items || [], cur = currState.page.idx;
+      const ov = siteData.curriculum.overview, items = siteData.curriculum.items || [], cur = pageCurrState.idx;
       tabs.innerHTML = [stripHtml(ov.navLabel || "전체보기"), ...items.map((it, i) => stripHtml(it.cat || `과정${i + 1}`))].map((n, i) => `<button type="button" onclick="jumpToCurrSlide(${i})" class="px-2.5 py-1.5 rounded-lg font-bold text-[11px] cursor-pointer ${i === cur ? 'bg-sky-500 text-black font-extrabold' : 'bg-white/10 text-neutral-300'}">${i}. ${n}</button>`).join("");
       if (cur === 0) {
         const op = ov.overlayOpacity ?? 0.45;
         body.innerHTML = `<div class="bg-sky-500/10 rounded-xl p-3 space-y-2.5 border border-sky-400/40">
-          <div class="flex gap-1.5"><button onclick="triggerMediaUrlChange('curriculum.overview.media','전체보기 배경')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진/동영상 링크</button><button onclick="triggerImageFileUpload('curriculum.overview.media')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div>
+          <div class="flex gap-1.5"><button type="button" onclick="triggerMediaUrlChange('curriculum.overview.media','전체보기 배경')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진/동영상 링크</button><button type="button" onclick="triggerImageFileUpload('curriculum.overview.media')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div>
           <div class="flex justify-between text-[11px]"><span>어두움 농도</span><span id="currOvDimLabel" class="text-sky-300 font-extrabold">${Math.round(op * 100)}%</span></div>
           <input type="range" min="0" max="0.85" step="0.05" value="${op}" oninput="updateCurrOverviewProp('overlayOpacity',parseFloat(this.value))" class="w-full accent-sky-400" />
         </div>
@@ -2517,27 +2640,27 @@
       } else {
         const i = cur - 1, it = items[i]; if (!it) return;
         body.innerHTML = `<div class="bg-sky-500/10 rounded-xl p-3 space-y-2.5 border border-sky-400/40">
-          <div class="flex gap-1.5"><button onclick="triggerMediaUrlChange('curriculum.items.${i}.img','${stripHtml(it.cat)}')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진/동영상 링크</button><button onclick="triggerImageFileUpload('curriculum.items.${i}.img')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div>
-          <div class="flex justify-between items-center text-[11px]"><span>채우기</span><div class="flex gap-1"><button onclick="updateCurrItemProp(${i},'mediaFit','cover')" class="px-2 py-1 rounded text-[10px] font-bold cursor-pointer ${it.mediaFit !== 'contain' ? 'bg-sky-500 text-black' : 'bg-neutral-800'}">꽉채움</button><button onclick="updateCurrItemProp(${i},'mediaFit','contain')" class="px-2 py-1 rounded text-[10px] font-bold cursor-pointer ${it.mediaFit === 'contain' ? 'bg-sky-500 text-black' : 'bg-neutral-800'}">원본</button></div></div>
+          <div class="flex gap-1.5"><button type="button" onclick="triggerMediaUrlChange('curriculum.items.${i}.img','${stripHtml(it.cat)}')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진/동영상 링크</button><button type="button" onclick="triggerImageFileUpload('curriculum.items.${i}.img')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div>
+          <div class="flex justify-between items-center text-[11px]"><span>채우기</span><div class="flex gap-1"><button type="button" onclick="updateCurrItemProp(${i},'mediaFit','cover')" class="px-2 py-1 rounded text-[10px] font-bold cursor-pointer ${it.mediaFit !== 'contain' ? 'bg-sky-500 text-black' : 'bg-neutral-800'}">꽉채움</button><button type="button" onclick="updateCurrItemProp(${i},'mediaFit','contain')" class="px-2 py-1 rounded text-[10px] font-bold cursor-pointer ${it.mediaFit === 'contain' ? 'bg-sky-500 text-black' : 'bg-neutral-800'}">원본</button></div></div>
         </div>
         <div class="bg-white/5 rounded-xl p-3 space-y-2 border border-white/10">
           <div class="grid grid-cols-3 gap-2">${[["배경","bgColor","#F6F7FA"],["글자","textColor","#141414"],["포인트","accentColor","#FF6B00"]].map(([l, k, d]) => `<label class="bg-black/40 p-2 rounded-lg flex flex-col items-center gap-1 cursor-pointer"><span class="text-[10px]">${l}</span><input type="color" value="${it[k] || d}" oninput="updateCurrItemProp(${i},'${k}',this.value)" class="w-6 h-6 bg-transparent border-0 cursor-pointer" /></label>`).join("")}</div>
           <div class="flex gap-1.5 pt-2 border-t border-white/10">
-            <button onclick="openCurrDetailModal(${i})" class="px-2.5 py-1.5 bg-emerald-600 text-white text-[10px] font-bold rounded cursor-pointer">로드맵 편집</button>
-            <button onclick="moveCurriculumItem(${i},-1)" class="flex-1 py-1.5 bg-neutral-800 text-white text-[11px] font-bold rounded cursor-pointer">◀</button>
-            <button onclick="moveCurriculumItem(${i},1)" class="flex-1 py-1.5 bg-neutral-800 text-white text-[11px] font-bold rounded cursor-pointer">▶</button>
-            <button onclick="deleteCurriculumItem(${i})" class="px-2.5 py-1.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
+            <button type="button" onclick="openCurrDetailModal(${i})" class="px-2.5 py-1.5 bg-emerald-600 text-white text-[10px] font-bold rounded cursor-pointer">로드맵 편집</button>
+            <button type="button" onclick="moveCurriculumItem(${i},-1)" class="flex-1 py-1.5 bg-neutral-800 text-white text-[11px] font-bold rounded cursor-pointer">◀</button>
+            <button type="button" onclick="moveCurriculumItem(${i},1)" class="flex-1 py-1.5 bg-neutral-800 text-white text-[11px] font-bold rounded cursor-pointer">▶</button>
+            <button type="button" onclick="deleteCurriculumItem(${i})" class="px-2.5 py-1.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
           </div>
         </div>`;
       }
     }
-    function syncAllCurriculums() { renderCurriculumShowroom(); renderUnifiedCurrShowroom("book"); refreshBookSpread2Mirrors(); refreshViewBindings(); }
+    function syncAllCurriculums() { renderCurriculumShowroom(); renderBookSpread2Seamless(); renderBookCurrDock(); refreshBookSpread2Halves(false); refreshViewBindings(); }
     function updateCurrOverviewProp(k, v) { siteData.curriculum.overview[k] = v; if (k === "overlayOpacity" && $("currOvDimLabel")) $("currOvDimLabel").textContent = `${Math.round(v * 100)}%`; syncAllCurriculums(); scheduleAutoCloudSave(); }
     function updateCurrItemProp(i, k, v) { if (!siteData.curriculum.items?.[i]) return; siteData.curriculum.items[i][k] = v; syncAllCurriculums(); syncCurrStudioControls(); scheduleAutoCloudSave(); }
     function moveCurriculumItem(i, d) {
       const a = siteData.curriculum.items, t = i + d; if (!a || t < 0 || t >= a.length) return;
       syncEditableElementsToData(); [a[i], a[t]] = [a[t], a[i]];
-      currState.page.target = currState.page.render = currState.page.idx = t + 1;
+      pageCurrState.target = pageCurrState.render = pageCurrState.idx = t + 1;
       syncAllCurriculums(); syncCurrStudioControls(); saveAllChanges(true);
     }
     function addCurriculumItem() {
@@ -2551,7 +2674,8 @@
       if (siteData.curriculum.items.length <= 1) return alert("최소 1개 과정은 유지해야 합니다.");
       if (!confirm("이 교육과정을 삭제하시겠습니까?")) return;
       syncEditableElementsToData(); siteData.curriculum.items.splice(i, 1);
-      currState.page.target = currState.page.render = currState.page.idx = Math.min(currState.page.idx, siteData.curriculum.items.length);
+      pageCurrState.target = pageCurrState.render = pageCurrState.idx = Math.min(pageCurrState.idx, siteData.curriculum.items.length);
+      bookCurrIdx = Math.min(bookCurrIdx, siteData.curriculum.items.length);
       syncAllCurriculums(); syncCurrStudioControls(); saveAllChanges(false);
     }
     function addCurriculumStep(i) { syncEditableElementsToData(); (siteData.curriculum.items[i].steps ||= []).push(`${siteData.curriculum.items[i].steps.length + 1}단계: 세부 내용을 입력하세요.`); openCurrDetailModal(i); saveAllChanges(true); }
@@ -2563,9 +2687,6 @@
         const d = bookTargetProgress - bookRenderProgress;
         if (Math.abs(d) > 0.0006) { bookRenderProgress += d * 0.14; updateBook3D(bookRenderProgress); }
         else if (bookRenderProgress !== bookTargetProgress) { bookRenderProgress = bookTargetProgress; updateBook3D(bookRenderProgress); }
-        const cd = currState.book.target - currState.book.render;
-        if (Math.abs(cd) > 0.0005) { currState.book.render += cd * 0.12; updateUnifiedCurrVisuals("book", currState.book.render); }
-        else if (currState.book.render !== currState.book.target) { currState.book.render = currState.book.target; updateUnifiedCurrVisuals("book", currState.book.render); }
       } else if (currentViewId === "philosophy") {
         const sd = philStageTarget - philStageRender; let sc = false, yc = false;
         if (Math.abs(sd) > 0.0008) { philStageRender += sd * 0.11; sc = true; }
@@ -2581,15 +2702,15 @@
         if (sc) updatePhilosophyStageVisuals(philStageRender, false);
         if (sc || yc) updatePhilosophyLowerMotion(philSmoothScrollY, false);
       } else if (currentViewId === "curriculum") {
-        const d = currState.page.target - currState.page.render;
-        if (Math.abs(d) > 0.0005) { currState.page.render += d * 0.12; updateUnifiedCurrVisuals("page", currState.page.render); }
-        else if (currState.page.render !== currState.page.target) { currState.page.render = currState.page.target; updateUnifiedCurrVisuals("page", currState.page.render); }
+        const d = pageCurrState.target - pageCurrState.render;
+        if (Math.abs(d) > 0.0005) { pageCurrState.render += d * 0.12; updatePageCurrVisuals(pageCurrState.render); }
+        else if (pageCurrState.render !== pageCurrState.target) { pageCurrState.render = pageCurrState.target; updatePageCurrVisuals(pageCurrState.render); }
       }
       requestAnimationFrame(masterAnimationLoop);
     }
 
     const scheduleBookSoftSnap = () => { clearTimeout(bookSnapTimer); bookSnapTimer = setTimeout(() => { bookTargetProgress = clamp(Math.round(bookTargetProgress), 0, TOTAL_BOOK_SPREADS - 1); }, 220); };
-    const scheduleCurrSoftSnap = () => { clearTimeout(currState.page.snapTimer); currState.page.snapTimer = setTimeout(() => { currState.page.target = clamp(Math.round(currState.page.target), 0, Math.max(0, getCurrTotalSlides() - 1)); }, 210); };
+    const scheduleCurrSoftSnap = () => { clearTimeout(pageCurrState.snapTimer); pageCurrState.snapTimer = setTimeout(() => { pageCurrState.target = clamp(Math.round(pageCurrState.target), 0, Math.max(0, getCurrTotalSlides() - 1)); }, 210); };
     const isInteractiveOverlayTarget = (t) => MODAL_IDS.some(id => $(id) && !$(id).classList.contains("hidden")) || Boolean(t.closest(".admin-studio-panel,#adminToolbar,#sectionDesignModal,#megaDropdownPanel"));
 
     window.addEventListener("pointerdown", () => { if (philIceScrollActive) { philIceScrollActive = false; philIceScrollTargetY = philIceScrollRenderY = window.scrollY || 0; } }, { passive: true });
@@ -2625,11 +2746,23 @@
       if (currentViewId === "home") {
         const max = TOTAL_BOOK_SPREADS - 1;
         if (dy > 0) {
-          if (bookTargetProgress < max - 0.001) { e.preventDefault(); bookTargetProgress = Math.min(max, bookTargetProgress + Math.min(180, dy) * 0.0032); if (bookTargetProgress >= max - 0.001) { bookTargetProgress = max; bookLastPageReachedAt = Date.now(); } scheduleBookSoftSnap(); return; }
+          if (bookTargetProgress < max - 0.001) {
+            e.preventDefault();
+            if (bookRenderProgress <= 0.006) syncMirrorVideosFromSeamless("hero");
+            if (Math.abs(bookRenderProgress - 2) <= 0.006 && bookCurrIdx === 0) syncMirrorVideosFromSeamless("curr-ov");
+            bookTargetProgress = Math.min(max, bookTargetProgress + Math.min(180, dy) * 0.0032);
+            if (bookTargetProgress >= max - 0.001) { bookTargetProgress = max; bookLastPageReachedAt = Date.now(); }
+            scheduleBookSoftSnap(); return;
+          }
           if (bookRenderProgress < max - 0.04 || Date.now() - bookLastPageReachedAt < 320) e.preventDefault();
-        } else if (dy < 0 && bookTargetProgress > 0.001) { e.preventDefault(); bookTargetProgress = Math.max(0, bookTargetProgress - Math.min(180, Math.abs(dy)) * 0.0032); scheduleBookSoftSnap(); }
+        } else if (dy < 0 && bookTargetProgress > 0.001) {
+          e.preventDefault();
+          if (Math.abs(bookRenderProgress - 2) <= 0.006 && bookCurrIdx === 0) syncMirrorVideosFromSeamless("curr-ov");
+          bookTargetProgress = Math.max(0, bookTargetProgress - Math.min(180, Math.abs(dy)) * 0.0032);
+          scheduleBookSoftSnap();
+        }
       } else {
-        const max = Math.max(0, getCurrTotalSlides() - 1), st = currState.page;
+        const max = Math.max(0, getCurrTotalSlides() - 1), st = pageCurrState;
         if (dy > 0) {
           if (st.target < max - 0.001) { e.preventDefault(); st.target = Math.min(max, st.target + Math.min(180, dy) * 0.0034); if (st.target >= max - 0.001) { st.target = max; st.lastAt = Date.now(); } scheduleCurrSoftSnap(); return; }
           if (st.render < max - 0.04 || Date.now() - st.lastAt < 320) e.preventDefault();
@@ -2646,12 +2779,15 @@
       if (currentViewId === "home") {
         const max = TOTAL_BOOK_SPREADS - 1;
         if ((d > 0 && bookTargetProgress < max - 0.001) || (d < 0 && bookTargetProgress > 0.001)) {
-          e.preventDefault(); bookTargetProgress = clamp(bookTargetProgress + d * 0.0045, 0, max);
+          e.preventDefault();
+          if (bookRenderProgress <= 0.006) syncMirrorVideosFromSeamless("hero");
+          if (Math.abs(bookRenderProgress - 2) <= 0.006 && bookCurrIdx === 0) syncMirrorVideosFromSeamless("curr-ov");
+          bookTargetProgress = clamp(bookTargetProgress + d * 0.0045, 0, max);
           if (bookTargetProgress >= max - 0.001) bookLastPageReachedAt = Date.now();
           tStartY = cy; tStartX = cx; scheduleBookSoftSnap();
         }
       } else {
-        const max = Math.max(0, getCurrTotalSlides() - 1), st = currState.page;
+        const max = Math.max(0, getCurrTotalSlides() - 1), st = pageCurrState;
         if ((d > 0 && st.target < max - 0.001) || (d < 0 && st.target > 0.001)) {
           e.preventDefault(); st.target = clamp(st.target + d * 0.0048, 0, max);
           if (st.target >= max - 0.001) st.lastAt = Date.now();
@@ -2820,11 +2956,11 @@
           <div class="relative min-h-[300px] md:min-h-[420px] overflow-hidden bg-neutral-100 ${i % 2 ? 'md:order-2' : ''}">
             ${renderMediaTag(g.media, "w-full h-full object-cover")}
             <div class="admin-only-control absolute top-4 right-4 z-30 gap-1.5 bg-neutral-900/90 p-2 rounded-xl border border-emerald-400/70" onpointerdown="event.stopPropagation()">
-              <button onclick="triggerMediaUrlChange('philosophy.goalItems.${i}.media','학습목표 ${i + 1}')" class="px-2 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크</button>
-              <button onclick="triggerImageFileUpload('philosophy.goalItems.${i}.media')" class="px-2 py-1 bg-neutral-700 text-white text-[11px] rounded cursor-pointer">파일</button>
-              <button onclick="movePhilGoalItem(${i},-1)" class="px-1.5 py-1 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▲</button>
-              <button onclick="movePhilGoalItem(${i},1)" class="px-1.5 py-1 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▼</button>
-              <button onclick="deletePhilGoalItem(${i})" class="px-2 py-1 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
+              <button type="button" onclick="triggerMediaUrlChange('philosophy.goalItems.${i}.media','학습목표 ${i + 1}')" class="px-2 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크</button>
+              <button type="button" onclick="triggerImageFileUpload('philosophy.goalItems.${i}.media')" class="px-2 py-1 bg-neutral-700 text-white text-[11px] rounded cursor-pointer">파일</button>
+              <button type="button" onclick="movePhilGoalItem(${i},-1)" class="px-1.5 py-1 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▲</button>
+              <button type="button" onclick="movePhilGoalItem(${i},1)" class="px-1.5 py-1 bg-neutral-800 text-white text-[10px] rounded cursor-pointer">▼</button>
+              <button type="button" onclick="deletePhilGoalItem(${i})" class="px-2 py-1 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
             </div>
           </div>
           <div class="flex flex-col justify-center p-8 md:p-14 space-y-3.5 ${i % 2 ? 'md:order-1' : ''}">
@@ -2833,7 +2969,7 @@
             <p data-editable="true" data-path="philosophy.goalItems.${i}.sub" class="text-sm md:text-base font-bold" style="color:${g.accentColor || '#FF6B00'};">${g.sub || ''}</p>
             <p data-editable="true" data-path="philosophy.goalItems.${i}.desc" class="text-xs md:text-sm text-neutral-600 leading-[1.85] whitespace-pre-line">${g.desc}</p>
           </div>
-        </div>`).join("") + `<div class="admin-only-control w-full justify-center py-6 bg-neutral-50 border-b border-neutral-200"><button onclick="addPhilGoalItem()" class="px-5 py-2.5 bg-[#FF6B00] text-white text-xs font-extrabold rounded-xl cursor-pointer">+ 학습목표 스텝 추가</button></div>`;
+        </div>`).join("") + `<div class="admin-only-control w-full justify-center py-6 bg-neutral-50 border-b border-neutral-200"><button type="button" onclick="addPhilGoalItem()" class="px-5 py-2.5 bg-[#FF6B00] text-white text-xs font-extrabold rounded-xl cursor-pointer">+ 학습목표 스텝 추가</button></div>`;
       }
 
       if ($("philHistoryBgSticky")) {
@@ -2847,16 +2983,16 @@
             <h2 data-editable="true" data-path="philosophy.historyTitle" class="text-4xl md:text-6xl font-black text-white leading-[1.14]">${p.historyTitle}</h2>
             <p data-editable="true" data-path="philosophy.historySub" class="text-sm md:text-base text-white/80 leading-relaxed whitespace-pre-line max-w-md">${p.historySub}</p>
             <div class="admin-only-control flex-wrap gap-2 pt-3" onpointerdown="event.stopPropagation()">
-              <button onclick="addHistoryRow('top')" class="px-3 py-1.5 bg-[#FF6B00] text-white text-xs font-bold rounded-lg cursor-pointer">+ 상단 추가</button>
-              <button onclick="addHistoryRow('bottom')" class="px-3 py-1.5 bg-white/15 text-white text-xs font-bold rounded-lg border border-white/25 cursor-pointer">+ 하단 추가</button>
-              <button onclick="triggerMediaUrlChange('philosophy.historyBgMedia','연혁 배경')" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg cursor-pointer">배경 링크</button>
-              <button onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-1.5 bg-neutral-800 text-white text-xs font-bold rounded-lg cursor-pointer">파일</button>
+              <button type="button" onclick="addHistoryRow('top')" class="px-3 py-1.5 bg-[#FF6B00] text-white text-xs font-bold rounded-lg cursor-pointer">+ 상단 추가</button>
+              <button type="button" onclick="addHistoryRow('bottom')" class="px-3 py-1.5 bg-white/15 text-white text-xs font-bold rounded-lg border border-white/25 cursor-pointer">+ 하단 추가</button>
+              <button type="button" onclick="triggerMediaUrlChange('philosophy.historyBgMedia','연혁 배경')" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg cursor-pointer">배경 링크</button>
+              <button type="button" onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-1.5 bg-neutral-800 text-white text-xs font-bold rounded-lg cursor-pointer">파일</button>
             </div>
           </div>
           <div id="philHistoryGlideCol" class="lg:col-span-7 pt-2 phil-history-glide-col"><div class="phil-history-timeline-wrap">
             ${(p.historyList || []).map((h, i) => `<div class="phil-history-year-block group"><span class="phil-history-node-dot"></span><div class="flex items-start justify-between gap-4">
               <div class="flex-1 min-w-0"><div data-editable="true" data-path="philosophy.historyList.${i}.year" class="text-2xl md:text-3xl font-black text-[#FFB800] group-hover:text-[#FF6B00] transition-colors leading-none mb-2.5">${h.year}</div><div class="flex items-baseline gap-4"><span data-editable="true" data-path="philosophy.historyList.${i}.month" class="text-xs md:text-sm font-extrabold text-white shrink-0 min-w-[36px]">${h.month}</span><div class="flex-1 space-y-1 pb-3 border-b border-white/18"><h4 data-editable="true" data-path="philosophy.historyList.${i}.title" class="text-sm md:text-base font-bold text-white">${h.title}</h4><p data-editable="true" data-path="philosophy.historyList.${i}.content" class="text-xs md:text-sm text-white/80">${h.content}</p></div></div></div>
-              <div class="admin-only-control gap-1 shrink-0 pt-1" onpointerdown="event.stopPropagation()"><button onclick="moveHistoryRow(${i},-1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded cursor-pointer">▲</button><button onclick="moveHistoryRow(${i},1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded cursor-pointer">▼</button><button onclick="deleteHistoryRow(${i})" class="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button></div>
+              <div class="admin-only-control gap-1 shrink-0 pt-1" onpointerdown="event.stopPropagation()"><button type="button" onclick="moveHistoryRow(${i},-1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded cursor-pointer">▲</button><button type="button" onclick="moveHistoryRow(${i},1)" class="px-2 py-1 bg-white/15 text-white text-xs rounded cursor-pointer">▼</button><button type="button" onclick="deleteHistoryRow(${i})" class="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded cursor-pointer">삭제</button></div>
             </div></div>`).join("")}
           </div></div>
         </div>`;
@@ -2875,21 +3011,21 @@
               <p data-editable="true" data-path="philosophy.honorsRegionTitle" class="hof-title-region">${p.honorsRegionTitle || ''}</p>
               <div class="admin-only-control justify-center items-center flex-wrap gap-2 mt-6" onpointerdown="event.stopPropagation()">
                 <div class="inline-flex items-center gap-1.5 bg-neutral-900 text-white px-2.5 py-1.5 rounded-lg text-xs font-bold">
-                  <button onclick="changeHonorsColumns(-1)" class="px-2 py-0.5 bg-neutral-700 hover:bg-[#FF6B00] rounded cursor-pointer">- 열</button>
+                  <button type="button" onclick="changeHonorsColumns(-1)" class="px-2 py-0.5 bg-neutral-700 hover:bg-[#FF6B00] rounded cursor-pointer">- 열</button>
                   <span class="px-1 text-[#FFB800]">${cols}열</span>
-                  <button onclick="changeHonorsColumns(1)" class="px-2 py-0.5 bg-[#FF6B00] rounded cursor-pointer">+ 열</button>
+                  <button type="button" onclick="changeHonorsColumns(1)" class="px-2 py-0.5 bg-[#FF6B00] rounded cursor-pointer">+ 열</button>
                 </div>
-                <button onclick="addHonorCard()" class="px-4 py-2 bg-[#FF6B00] text-white text-xs font-extrabold rounded-lg cursor-pointer">+ 학생 추가</button>
-                <button onclick="triggerImageFileUpload('philosophy.honorsBgImg')" class="px-3 py-2 bg-neutral-900 text-white text-xs font-bold rounded-lg cursor-pointer">배경 질감</button>
-                ${p.honorsBgImg ? `<button onclick="updatePhilProp('honorsBgImg','')" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded-lg cursor-pointer">질감 제거</button>` : ""}
+                <button type="button" onclick="addHonorCard()" class="px-4 py-2 bg-[#FF6B00] text-white text-xs font-extrabold rounded-lg cursor-pointer">+ 학생 추가</button>
+                <button type="button" onclick="triggerImageFileUpload('philosophy.honorsBgImg')" class="px-3 py-2 bg-neutral-900 text-white text-xs font-bold rounded-lg cursor-pointer">배경 질감</button>
+                ${p.honorsBgImg ? `<button type="button" onclick="updatePhilProp('honorsBgImg','')" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded-lg cursor-pointer">질감 제거</button>` : ""}
               </div>
             </div>
             <div class="hof-cat-grid" style="--hof-cols:${cols};">
               ${order.map(cat => `<div class="hof-col-block">
-                <div class="hof-cat-heading"><span class="truncate">${cat}</span><button onpointerdown="event.stopPropagation()" onclick="addHonorCard('${cat.replace(/'/g, "\\'")}')" class="admin-only-control shrink-0 px-2 py-0.5 bg-neutral-900 text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button></div>
+                <div class="hof-cat-heading"><span class="truncate">${cat}</span><button type="button" onpointerdown="event.stopPropagation()" onclick="addHonorCard('${cat.replace(/'/g, "\\'")}')" class="admin-only-control shrink-0 px-2 py-0.5 bg-neutral-900 text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button></div>
                 <div class="hof-student-list">${groups[cat].map(h => `<div class="hof-student-row">
                   <div class="hof-student-one-line"><span data-editable="true" data-path="philosophy.honorsList.${h.idx}.studentGrade">${h.studentGrade}</span> <span data-editable="true" data-path="philosophy.honorsList.${h.idx}.targetUniv">${h.targetUniv}</span> <span data-editable="true" data-path="philosophy.honorsList.${h.idx}.targetDept">${h.targetDept}</span> <span class="hof-s-school">(<span data-editable="true" data-path="philosophy.honorsList.${h.idx}.studentSchool">${h.studentSchool}</span>)</span></div>
-                  <div class="admin-only-control items-center gap-1 pt-1 border-t border-black/10 text-[10px]" onpointerdown="event.stopPropagation()"><span data-editable="true" data-path="philosophy.honorsList.${h.idx}.category" class="px-1.5 py-0.5 bg-white/80 rounded font-extrabold text-[#FF6B00]">${h.category}</span><button onclick="moveHonorCard(${h.idx},-1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▲</button><button onclick="moveHonorCard(${h.idx},1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▼</button><button onclick="deleteHonorCard(${h.idx})" class="px-1.5 py-0.5 bg-red-600 text-white font-bold rounded cursor-pointer">삭제</button></div>
+                  <div class="admin-only-control items-center gap-1 pt-1 border-t border-black/10 text-[10px]" onpointerdown="event.stopPropagation()"><span data-editable="true" data-path="philosophy.honorsList.${h.idx}.category" class="px-1.5 py-0.5 bg-white/80 rounded font-extrabold text-[#FF6B00]">${h.category}</span><button type="button" onclick="moveHonorCard(${h.idx},-1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▲</button><button type="button" onclick="moveHonorCard(${h.idx},1)" class="px-1.5 py-0.5 bg-neutral-800 text-white rounded cursor-pointer">▼</button><button type="button" onclick="deleteHonorCard(${h.idx})" class="px-1.5 py-0.5 bg-red-600 text-white font-bold rounded cursor-pointer">삭제</button></div>
                 </div>`).join("")}</div>
               </div>`).join("")}
             </div>
@@ -2955,25 +3091,25 @@
     function syncPhilStudioControls() {
       const tabs = $("philStudioTabs"), body = $("philStudioControlsBody"); if (!tabs || !body) return;
       const p = siteData.philosophy;
-      tabs.innerHTML = [["greeting","인사말"],["goal","학습목표"],["history","연혁"],["honors","명예전당"]].map(([k, l]) => `<button onclick="selectPhilStudioTab('${k}')" class="py-1.5 rounded-lg font-bold text-[11px] cursor-pointer ${k === currentPhilStudioTab ? 'bg-emerald-400 text-black font-extrabold' : 'bg-white/10 text-neutral-300'}">${l}</button>`).join("");
+      tabs.innerHTML = [["greeting","인사말"],["goal","학습목표"],["history","연혁"],["honors","명예전당"]].map(([k, l]) => `<button type="button" onclick="selectPhilStudioTab('${k}')" class="py-1.5 rounded-lg font-bold text-[11px] cursor-pointer ${k === currentPhilStudioTab ? 'bg-emerald-400 text-black font-extrabold' : 'bg-white/10 text-neutral-300'}">${l}</button>`).join("");
       if (currentPhilStudioTab === "greeting") {
-        body.innerHTML = `<div class="bg-emerald-500/10 rounded-xl p-3 space-y-2 border border-emerald-400/40"><span class="font-extrabold text-emerald-300 block">대표 사진</span><div class="flex gap-1.5"><button onclick="triggerImageFileUpload('philosophy.ceoImg')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진파일</button><button onclick="triggerImageChange('philosophy.ceoImg')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">URL</button></div></div>
+        body.innerHTML = `<div class="bg-emerald-500/10 rounded-xl p-3 space-y-2 border border-emerald-400/40"><span class="font-extrabold text-emerald-300 block">대표 사진</span><div class="flex gap-1.5"><button type="button" onclick="triggerImageFileUpload('philosophy.ceoImg')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">사진파일</button><button type="button" onclick="triggerImageChange('philosophy.ceoImg')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">URL</button></div></div>
         <div class="bg-white/5 rounded-xl p-3 space-y-2 border border-white/10"><span class="font-bold text-amber-300 block">MISSION 멘트</span>
           <input type="text" value="${stripHtml(p.missionEyebrow || '')}" oninput="updatePhilProp('missionEyebrow',this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />
           <textarea rows="3" oninput="updatePhilProp('missionTitle',this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold">${stripHtml(p.missionTitle || '')}</textarea>
           <textarea rows="2" oninput="updatePhilProp('missionSub',this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs">${stripHtml(p.missionSub || '')}</textarea>
         </div>`;
       } else if (currentPhilStudioTab === "goal") {
-        body.innerHTML = `<div class="flex justify-between items-center"><span class="font-bold">학습목표 (${p.goalItems.length}스텝)</span><button onclick="addPhilGoalItem()" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button></div>` +
-          p.goalItems.map((g, i) => `<div class="bg-black/45 p-2.5 rounded-xl border border-white/10 space-y-2"><div class="flex justify-between gap-2"><span class="font-extrabold text-emerald-300 truncate">STEP ${i + 1}. ${stripHtml(g.title).slice(0, 14)}</span><div class="flex gap-1"><button onclick="movePhilGoalItem(${i},-1)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">▲</button><button onclick="movePhilGoalItem(${i},1)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">▼</button><button onclick="deletePhilGoalItem(${i})" class="px-1.5 py-0.5 bg-red-600 rounded cursor-pointer">삭제</button></div></div><div class="flex gap-1.5"><button onclick="triggerMediaUrlChange('philosophy.goalItems.${i}.media','학습목표 ${i + 1}')" class="flex-1 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크</button><button onclick="triggerImageFileUpload('philosophy.goalItems.${i}.media')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] rounded cursor-pointer">파일</button><input type="color" value="${g.accentColor || '#FF6B00'}" oninput="updatePhilGoalProp(${i},'accentColor',this.value)" class="w-7 h-7 bg-transparent border-0 cursor-pointer" /></div></div>`).join("");
+        body.innerHTML = `<div class="flex justify-between items-center"><span class="font-bold">학습목표 (${p.goalItems.length}스텝)</span><button type="button" onclick="addPhilGoalItem()" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[10px] font-bold rounded cursor-pointer">+ 추가</button></div>` +
+          p.goalItems.map((g, i) => `<div class="bg-black/45 p-2.5 rounded-xl border border-white/10 space-y-2"><div class="flex justify-between gap-2"><span class="font-extrabold text-emerald-300 truncate">STEP ${i + 1}. ${stripHtml(g.title).slice(0, 14)}</span><div class="flex gap-1"><button type="button" onclick="movePhilGoalItem(${i},-1)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">▲</button><button type="button" onclick="movePhilGoalItem(${i},1)" class="px-1.5 py-0.5 bg-neutral-700 rounded cursor-pointer">▼</button><button type="button" onclick="deletePhilGoalItem(${i})" class="px-1.5 py-0.5 bg-red-600 rounded cursor-pointer">삭제</button></div></div><div class="flex gap-1.5"><button type="button" onclick="triggerMediaUrlChange('philosophy.goalItems.${i}.media','학습목표 ${i + 1}')" class="flex-1 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">링크</button><button type="button" onclick="triggerImageFileUpload('philosophy.goalItems.${i}.media')" class="px-2.5 py-1 bg-neutral-700 text-white text-[11px] rounded cursor-pointer">파일</button><input type="color" value="${g.accentColor || '#FF6B00'}" oninput="updatePhilGoalProp(${i},'accentColor',this.value)" class="w-7 h-7 bg-transparent border-0 cursor-pointer" /></div></div>`).join("");
       } else if (currentPhilStudioTab === "history") {
         const d = p.historyDimOpacity ?? 0.62;
-        body.innerHTML = `<div class="bg-emerald-500/10 rounded-xl p-3 space-y-2 border border-emerald-400/40"><span class="font-extrabold text-emerald-300 block">연혁 배경</span><div class="flex gap-1.5"><button onclick="triggerMediaUrlChange('philosophy.historyBgMedia','연혁 배경')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">링크</button><button onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div><div class="flex justify-between text-[11px]"><span>어두움</span><span id="philHistDimLabel" class="text-emerald-300 font-extrabold">${Math.round(d * 100)}%</span></div><input type="range" min="0.2" max="0.88" step="0.04" value="${d}" oninput="updatePhilProp('historyDimOpacity',parseFloat(this.value))" class="w-full accent-emerald-400" /></div><div class="flex gap-2"><button onclick="addHistoryRow('top')" class="flex-1 py-2 bg-neutral-800 rounded-lg font-bold cursor-pointer">+ 상단 연혁</button><button onclick="addHistoryRow('bottom')" class="flex-1 py-2 bg-neutral-800 rounded-lg font-bold cursor-pointer">+ 하단 연혁</button></div>`;
+        body.innerHTML = `<div class="bg-emerald-500/10 rounded-xl p-3 space-y-2 border border-emerald-400/40"><span class="font-extrabold text-emerald-300 block">연혁 배경</span><div class="flex gap-1.5"><button type="button" onclick="triggerMediaUrlChange('philosophy.historyBgMedia','연혁 배경')" class="flex-1 py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">링크</button><button type="button" onclick="triggerImageFileUpload('philosophy.historyBgMedia')" class="px-3 py-2 bg-neutral-700 text-white font-bold rounded-lg cursor-pointer">파일</button></div><div class="flex justify-between text-[11px]"><span>어두움</span><span id="philHistDimLabel" class="text-emerald-300 font-extrabold">${Math.round(d * 100)}%</span></div><input type="range" min="0.2" max="0.88" step="0.04" value="${d}" oninput="updatePhilProp('historyDimOpacity',parseFloat(this.value))" class="w-full accent-emerald-400" /></div><div class="flex gap-2"><button type="button" onclick="addHistoryRow('top')" class="flex-1 py-2 bg-neutral-800 rounded-lg font-bold cursor-pointer">+ 상단 연혁</button><button type="button" onclick="addHistoryRow('bottom')" class="flex-1 py-2 bg-neutral-800 rounded-lg font-bold cursor-pointer">+ 하단 연혁</button></div>`;
       } else {
         const cols = clamp(Number(p.honorsColumns || 3), 2, 6);
-        body.innerHTML = `<div class="bg-amber-500/15 rounded-xl p-3 space-y-2 border border-amber-400/50"><div class="flex justify-between"><span class="font-extrabold text-[#FFB800]">가로 열 개수</span><span class="font-extrabold">${cols}열</span></div><div class="flex gap-1.5"><button onclick="changeHonorsColumns(-1)" class="flex-1 py-1.5 bg-neutral-800 rounded-lg font-bold cursor-pointer">- 줄이기</button><button onclick="changeHonorsColumns(1)" class="flex-1 py-1.5 bg-[#FF6B00] rounded-lg font-extrabold cursor-pointer">+ 늘리기</button></div></div>
+        body.innerHTML = `<div class="bg-amber-500/15 rounded-xl p-3 space-y-2 border border-amber-400/50"><div class="flex justify-between"><span class="font-extrabold text-[#FFB800]">가로 열 개수</span><span class="font-extrabold">${cols}열</span></div><div class="flex gap-1.5"><button type="button" onclick="changeHonorsColumns(-1)" class="flex-1 py-1.5 bg-neutral-800 rounded-lg font-bold cursor-pointer">- 줄이기</button><button type="button" onclick="changeHonorsColumns(1)" class="flex-1 py-1.5 bg-[#FF6B00] rounded-lg font-extrabold cursor-pointer">+ 늘리기</button></div></div>
         <div class="bg-emerald-500/10 rounded-xl p-3 space-y-2 border border-emerald-400/40">${[["상단 소제목","honorsSubTitle"],["메인 제목","honorsTitle"],["하단 지역명","honorsRegionTitle"],["배경 워터마크","honorsWatermark"]].map(([l, k]) => `<input type="text" placeholder="${l}" value="${stripHtml(p[k] || '')}" oninput="updatePhilProp('${k}',this.value)" class="w-full px-2.5 py-1.5 rounded bg-black/50 border border-white/20 text-white text-xs font-bold" />`).join("")}</div>
-        <button onclick="addHonorCard()" class="w-full py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">+ 학생 추가</button>`;
+        <button type="button" onclick="addHonorCard()" class="w-full py-2 bg-[#FF6B00] text-white font-bold rounded-lg cursor-pointer">+ 학생 추가</button>`;
       }
     }
 
@@ -3062,33 +3198,33 @@
               </div>
             </div>
             <div class="flex flex-col items-end gap-2 shrink-0">
-              <div class="grid grid-cols-3 gap-1.5 w-48">${(c.gallery || []).map((g, gi) => `<div class="relative aspect-square bg-neutral-100 cursor-pointer overflow-hidden rounded border border-neutral-200" onclick="campusDetailSwiperInstance?.slideToLoop(${gi + 1})"><img src="${g}" class="w-full h-full object-cover" /><div class="admin-only-control absolute inset-x-0 bottom-0 bg-black/85 justify-between px-1 py-0.5 text-[9px] text-white" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()"><button onclick="triggerImageFileUpload('campuses.${i}.gallery.${gi}')" class="cursor-pointer">파일</button><button onclick="triggerImageChange('campuses.${i}.gallery.${gi}')" class="cursor-pointer">URL</button><button onclick="deleteGalleryThumb(${i},${gi})" class="text-red-400 cursor-pointer">삭제</button></div></div>`).join("")}</div>
-              <div class="admin-only-control gap-1" onpointerdown="event.stopPropagation()"><button onclick="addGalleryThumbWithFile(${i})" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">+ 사진파일</button><button onclick="addGalleryThumb(${i})" class="px-2 py-1 bg-neutral-900 text-white text-[11px] font-bold rounded cursor-pointer">+ 기본</button></div>
+              <div class="grid grid-cols-3 gap-1.5 w-48">${(c.gallery || []).map((g, gi) => `<div class="relative aspect-square bg-neutral-100 cursor-pointer overflow-hidden rounded border border-neutral-200" onclick="campusDetailSwiperInstance?.slideToLoop(${gi + 1})"><img src="${g}" class="w-full h-full object-cover" /><div class="admin-only-control absolute inset-x-0 bottom-0 bg-black/85 justify-between px-1 py-0.5 text-[9px] text-white" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()"><button type="button" onclick="triggerImageFileUpload('campuses.${i}.gallery.${gi}')" class="cursor-pointer">파일</button><button type="button" onclick="triggerImageChange('campuses.${i}.gallery.${gi}')" class="cursor-pointer">URL</button><button type="button" onclick="deleteGalleryThumb(${i},${gi})" class="text-red-400 cursor-pointer">삭제</button></div></div>`).join("")}</div>
+              <div class="admin-only-control gap-1" onpointerdown="event.stopPropagation()"><button type="button" onclick="addGalleryThumbWithFile(${i})" class="px-2.5 py-1 bg-[#FF6B00] text-white text-[11px] font-bold rounded cursor-pointer">+ 사진파일</button><button type="button" onclick="addGalleryThumb(${i})" class="px-2 py-1 bg-neutral-900 text-white text-[11px] font-bold rounded cursor-pointer">+ 기본</button></div>
             </div>
           </div>
           <div class="relative aspect-[4/3] bg-neutral-100 overflow-hidden rounded-xl border border-neutral-200">
             <div class="admin-only-control absolute top-3 left-3 z-30 gap-1.5 bg-neutral-900/95 p-2 rounded-lg border border-orange-500/70" onpointerdown="event.stopPropagation()">
-              <button onclick="triggerImageFileUpload('campuses.${i}.mainImg')" class="px-3 py-1 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">대표사진 파일</button>
-              <button onclick="triggerImageChange('campuses.${i}.mainImg')" class="px-2.5 py-1 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">URL</button>
+              <button type="button" onclick="triggerImageFileUpload('campuses.${i}.mainImg')" class="px-3 py-1 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">대표사진 파일</button>
+              <button type="button" onclick="triggerImageChange('campuses.${i}.mainImg')" class="px-2.5 py-1 bg-neutral-700 text-white text-xs font-bold rounded cursor-pointer">URL</button>
             </div>
             <div class="swiper campusDetailSwiper w-full h-full"><div class="swiper-wrapper">${imgs.map(u => `<div class="swiper-slide w-full h-full cursor-zoom-in relative" onclick="handleCampusBigImageClick('${u}')"><img src="${u}" class="w-full h-full object-cover" /><div class="absolute bottom-3 right-3 bg-black/60 text-white text-[11px] px-3 py-1 rounded">클릭하여 확대</div></div>`).join("")}</div></div>
           </div>
         </div>
         <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
           <div class="border border-neutral-200 bg-[#FAFAFA] p-5 rounded-2xl">
-            <div class="flex justify-between items-center mb-3.5"><h3 data-editable="true" data-path="campusPage.mapHeading" class="text-base md:text-lg font-bold"><i class="fa-solid fa-map-location-dot text-[#FF6B00] mr-2"></i>${siteData.campusPage.mapHeading || '찾아오시는 길'}</h3><button onpointerdown="event.stopPropagation()" onclick="changeCampusMapAddress(${i})" class="admin-only-control px-3 py-1.5 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">지도 주소 변경</button></div>
+            <div class="flex justify-between items-center mb-3.5"><h3 data-editable="true" data-path="campusPage.mapHeading" class="text-base md:text-lg font-bold"><i class="fa-solid fa-map-location-dot text-[#FF6B00] mr-2"></i>${siteData.campusPage.mapHeading || '찾아오시는 길'}</h3><button type="button" onpointerdown="event.stopPropagation()" onclick="changeCampusMapAddress(${i})" class="admin-only-control px-3 py-1.5 bg-neutral-900 text-white text-xs font-bold rounded cursor-pointer">지도 주소 변경</button></div>
             <div class="w-full h-64 sm:h-72 bg-neutral-200 overflow-hidden rounded-xl border border-neutral-300"><iframe width="100%" height="100%" style="border:0;" loading="lazy" src="https://maps.google.com/maps?q=${encodeURIComponent(mapQ)}&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe></div>
           </div>
           <div class="bg-[#141414] text-white p-6 md:p-7 rounded-2xl border border-neutral-800 space-y-5">
             <div>
-              <div class="flex flex-wrap justify-between gap-2 mb-2.5"><span class="text-[11px] font-extrabold tracking-widest text-[#FFB800]">BRANCH DETAIL &amp; LINK</span><div class="admin-only-control gap-1.5" onpointerdown="event.stopPropagation()"><button onclick="setCampusLink(${i},'detail',false)" class="px-2.5 py-1 bg-emerald-600 text-white text-xs font-bold rounded cursor-pointer">분원 링크</button><button onclick="setCampusLink(${i},'detail',true)" class="px-2.5 py-1 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">일괄 링크</button></div></div>
+              <div class="flex flex-wrap justify-between gap-2 mb-2.5"><span class="text-[11px] font-extrabold tracking-widest text-[#FFB800]">BRANCH DETAIL &amp; LINK</span><div class="admin-only-control gap-1.5" onpointerdown="event.stopPropagation()"><button type="button" onclick="setCampusLink(${i},'detail',false)" class="px-2.5 py-1 bg-emerald-600 text-white text-xs font-bold rounded cursor-pointer">분원 링크</button><button type="button" onclick="setCampusLink(${i},'detail',true)" class="px-2.5 py-1 bg-[#FF6B00] text-white text-xs font-bold rounded cursor-pointer">일괄 링크</button></div></div>
               <h3 data-editable="true" data-path="campuses.${i}.detailTitle" class="text-xl md:text-2xl font-bold mb-2">${c.detailTitle}</h3>
               <p data-editable="true" data-path="campuses.${i}.detailDesc" class="text-xs md:text-sm text-neutral-300 leading-relaxed">${c.detailDesc}</p>
               <p class="admin-only-control mt-2 text-[11px] text-emerald-400 truncate">이동 링크: ${link}</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button onclick="if(!isEditMode) openCustomUrl('',${i},'detail')" class="w-full py-3.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs md:text-sm font-extrabold rounded-xl cursor-pointer"><span data-editable="true" data-path="campuses.${i}.detailBtnText" onclick="if(isEditMode) event.stopPropagation();">${c.detailBtnText}</span> ↗</button>
-              <button onclick="if(!isEditMode) openCustomUrl('',${i},'consult')" class="w-full py-3.5 bg-white/10 hover:bg-white hover:text-neutral-900 border border-white/25 text-white text-xs md:text-sm font-extrabold rounded-xl cursor-pointer">1:1 상담 신청 →</button>
+              <div role="button" tabindex="0" onclick="if(!isEditMode) openCustomUrl('',${i},'detail')" class="w-full py-3.5 bg-[#FF6B00] hover:bg-[#F39200] text-white text-xs md:text-sm font-extrabold rounded-xl text-center cursor-pointer"><span data-editable="true" data-path="campuses.${i}.detailBtnText" onclick="if(isEditMode) event.stopPropagation();">${c.detailBtnText}</span> ↗</div>
+              <div role="button" tabindex="0" onclick="if(!isEditMode) openCustomUrl('',${i},'consult')" class="w-full py-3.5 bg-white/10 hover:bg-white hover:text-neutral-900 border border-white/25 text-white text-xs md:text-sm font-extrabold rounded-xl text-center cursor-pointer">1:1 상담 신청 →</div>
             </div>
           </div>
         </div>`;
@@ -3114,10 +3250,10 @@
         const lk = getResolvedCampusLink(i, "consult");
         return `<div class="consult-sharp-card group" onclick="if(!isEditMode) openCustomUrl('',${i},'consult')">
           <div class="admin-only-control absolute top-2.5 right-2.5 z-20 gap-1 bg-neutral-900/90 p-1 rounded-lg border border-orange-500/50" onpointerdown="event.stopPropagation()" onclick="event.stopPropagation()">
-            <button onclick="setCampusLink(${i},'consult',false)" class="px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded cursor-pointer">🔗 링크</button>
-            <button onclick="moveCampusItem(${i},-1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">◀</button>
-            <button onclick="moveCampusItem(${i},1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">▶</button>
-            <button onclick="deleteCampusItem(${i})" class="px-1.5 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
+            <button type="button" onclick="setCampusLink(${i},'consult',false)" class="px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded cursor-pointer">🔗 링크</button>
+            <button type="button" onclick="moveCampusItem(${i},-1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">◀</button>
+            <button type="button" onclick="moveCampusItem(${i},1)" class="px-1.5 py-0.5 bg-neutral-700 text-white text-[10px] rounded cursor-pointer">▶</button>
+            <button type="button" onclick="deleteCampusItem(${i})" class="px-1.5 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded cursor-pointer">삭제</button>
           </div>
           <div>
             <div class="consult-sharp-brand-row"><span data-editable="true" data-path="consult.brandPrefix" onclick="if(isEditMode) event.stopPropagation();" class="consult-sharp-brand-en">${bp}</span><span data-editable="true" data-path="campuses.${i}.region" onclick="if(isEditMode) event.stopPropagation();" class="consult-sharp-region">${c.region}</span></div>
@@ -3182,16 +3318,18 @@
       renderAll(); saveAllChanges(false);
     }
 
-    // ================= 6) 관리자 로그인 · 실시간 편집 이벤트 · 부트스트랩 =================
+    // ================= 6) 관리자 로그인 · 전체 수정 동기화 이벤트 · 부트스트랩 =================
     function handleAdminLogin(e) {
       e.preventDefault();
       if ($("loginIdInput").value.trim() === "admin" && $("loginPwInput").value.trim() === "1234") {
         isAdminLoggedIn = true; $("adminToolbar").classList.remove("hidden"); enableEditMode(true); navigateTo("home");
-        showToast("관리자 로그인 완료! 이 홈페이지 전용 DB에 실시간 저장됩니다.");
+        showToast("관리자 로그인 완료! 모든 텍스트·서식·미디어를 자유롭게 수정할 수 있습니다.");
       } else alert("아이디 또는 비밀번호가 올바르지 않습니다.");
     }
     function adminLogout() { saveAllChanges(true); isAdminLoggedIn = false; enableEditMode(false); $("adminToolbar").classList.add("hidden"); closeAllStudioPanels(); showToast("로그아웃 되었습니다."); }
+
     function enableEditMode(state) {
+      if (isEditMode && !state) syncEditableElementsToData();
       isEditMode = state; philIceScrollActive = false;
       document.body.classList.toggle("admin-edit-mode", isEditMode);
       if ($("editModeLabel")) $("editModeLabel").textContent = isEditMode ? "편집모드 ON" : "편집 일시정지";
@@ -3201,7 +3339,11 @@
         $("bookStep2LeftStage")?.classList.remove("preview-open");
         getSpreadHalfElements(currentBookSpreadIdx).forEach(el => el.classList.add("spread-revealed"));
         activeRevealedSpreadIdx = currentBookSpreadIdx;
-      } else if (currentViewId === "home") startBookStep2Cycle();
+      } else {
+        // 편집 종료 시 학원소개 데스크톱 분할 레일·책장 미러에 수정사항 최종 반영
+        if (currentViewId === "philosophy") renderTopSecretPage();
+        else if (currentViewId === "home") startBookStep2Cycle();
+      }
       refreshViewBindings();
       requestAnimationFrame(() => {
         updateBookStep2Indicator();
@@ -3209,13 +3351,33 @@
         else if (currentViewId === "philosophy") { philSmoothScrollY = window.scrollY || 0; setupPhilosophyObservers(); triggerPhilCeoEntrance(); updatePhilosophyStageVisuals(philStageRender, true); updatePhilosophyLowerMotion(philSmoothScrollY, true); }
       });
     }
-    function applyEditModeAttributes() { $$('[data-editable="true"]').forEach(el => isEditMode ? (el.setAttribute("contenteditable", "true"), el.setAttribute("spellcheck", "false")) : el.removeAttribute("contenteditable")); }
 
-    document.addEventListener("click", e => { if (!isEditMode || e.target.closest("button,.admin-only-control")) return; const ed = e.target.closest('[data-editable="true"]'); if (ed) selectEditableTarget(ed); });
-    document.addEventListener("focusin", e => { if (!isEditMode) return; const ed = e.target.closest('[data-editable="true"]'); if (ed) selectEditableTarget(ed); });
+    function applyEditModeAttributes() {
+      $$('[data-editable="true"]').forEach(el => {
+        if (isEditMode) { el.setAttribute("contenteditable", "true"); el.setAttribute("spellcheck", "false"); }
+        else el.removeAttribute("contenteditable");
+      });
+    }
+
+    // 관리자 모드에서 편집 가능한 모든 요소 우선 선택 (버튼 안의 문구까지 100% 선택 가능)
+    document.addEventListener("click", e => {
+      if (!isEditMode) return;
+      if (e.target.closest(".admin-only-control,#adminToolbar,.admin-studio-panel,#sectionDesignModal")) return;
+      const ed = e.target.closest('[data-editable="true"]');
+      if (ed) {
+        selectEditableTarget(ed);
+        return;
+      }
+    });
+    document.addEventListener("focusin", e => {
+      if (!isEditMode) return;
+      const ed = e.target.closest('[data-editable="true"]');
+      if (ed) selectEditableTarget(ed);
+    });
     document.addEventListener("input", e => {
       if (!isEditMode) return;
-      const ed = e.target.closest('[data-editable="true"]'), p = ed?.getAttribute("data-path"); if (!p) return;
+      const ed = e.target.closest('[data-editable="true"]'), p = ed?.getAttribute("data-path");
+      if (!p) return;
       setByPath(siteData, p, ed.innerHTML);
       $$(`[data-path="${p}"]`).forEach(n => { if (n !== ed) n.innerHTML = ed.innerHTML; });
       if (p.startsWith("bookConfig.spreads.1.")) requestAnimationFrame(updateBookStep2Indicator);
@@ -3223,25 +3385,47 @@
     });
     document.addEventListener("blur", e => {
       if (!isEditMode) return;
-      const ed = e.target.closest('[data-editable="true"]'), p = ed?.getAttribute("data-path"); if (!p) return;
+      const ed = e.target.closest('[data-editable="true"]'), p = ed?.getAttribute("data-path");
+      if (!p) return;
+      const nextFocus = e.relatedTarget;
       setByPath(siteData, p, ed.innerHTML);
       $$(`[data-path="${p}"]`).forEach(n => { if (n !== ed) n.innerHTML = ed.innerHTML; });
-      if (p.startsWith("bookConfig.spreads.0.")) { if ($("baseLeft")) $("baseLeft").innerHTML = buildBookSpreadHalfHtml(0, "left"); }
-      else if (p.startsWith("campuses.") && /\.(name|region|addr|tel)$/.test(p)) { renderAdminCampusJumpSelect(); renderDrawerMenus(); renderBookCampusAccOverlay(); renderConsultPage(); }
-      else if (p.startsWith("curriculum.items.") && p.endsWith(".cat")) {
-        renderDrawerMenus(); refreshBookSpread2Mirrors();
-        const di = Number(p.split(".")[2]) + 1;
-        $$(`#currBottomDock [data-dock-idx="${di}"], #bookCurrDock [data-dock-idx="${di}"]`).forEach(b => b.textContent = stripHtml(ed.innerHTML));
-        if (!$("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
-      } else if (p === "curriculum.overview.navLabel") {
-        renderDrawerMenus(); refreshBookSpread2Mirrors();
-        $$(`#currBottomDock [data-dock-idx="0"], #bookCurrDock [data-dock-idx="0"]`).forEach(b => b.textContent = stripHtml(ed.innerHTML));
-      } else if (p.startsWith("curriculum.")) {
-        refreshBookSpread2Mirrors();
+
+      // 편집 중인 영역의 포커스를 깨지 않으면서 반대쪽 미러·메뉴·미리보기만 정밀 동기화
+      if (p.startsWith("bookConfig.spreads.0.")) {
+        if ($("baseLeft")) $("baseLeft").innerHTML = buildBookSpreadHalfHtml(0, "left");
+      } else if (p.startsWith("curriculum.overview.")) {
+        if (bookCurrIdx === 0 && !ed.closest("#bookLeaf-1,#bookLeaf-2")) refreshBookSpread2Halves(false);
+        if (ed.closest("#currSlidesContainer")) renderBookSpread2Seamless();
+        if (p === "curriculum.overview.navLabel") {
+          renderDrawerMenus(); renderBookCurrDock();
+          $$('#currBottomDock [data-dock-idx="0"]').forEach(b => b.textContent = stripHtml(ed.innerHTML));
+        }
+      } else if (p.startsWith("curriculum.items.")) {
+        if (p.endsWith(".cat")) {
+          renderDrawerMenus(); renderBookCurrDock();
+          const di = Number(p.split(".")[2]) + 1;
+          $$(`#currBottomDock [data-dock-idx="${di}"]`).forEach(b => b.textContent = stripHtml(ed.innerHTML));
+          if (!$("currStudioPanel")?.classList.contains("hidden")) syncCurrStudioControls();
+        }
+      } else if (p.startsWith("campuses.") && /\.(name|region|addr|tel)$/.test(p)) {
+        renderAdminCampusJumpSelect();
+        if (!nextFocus?.closest("#topHorizontalNavList")) renderDrawerMenus();
+        if (ed.closest("#campusDetailModal") && $("detailBreadcrumbName") && p.endsWith(".name")) {
+          $("detailBreadcrumbName").textContent = stripHtml(ed.innerHTML);
+        }
       } else if (p.startsWith("philosophy.")) {
-        (p.startsWith("philosophy.goalItems.") || (p.startsWith("philosophy.honorsList.") && /\.(category|year)$/.test(p))) ? renderTopSecretPage() : syncBookStep2Preview();
-      } else if (p.startsWith("bookConfig.spreads.1.")) requestAnimationFrame(updateBookStep2Indicator);
-      safeSaveLocal(LOCAL_KEY, JSON.stringify(siteData)); recordActionSnapshot(); saveAllChanges(true);
+        syncBookStep2Preview();
+        if ((p.startsWith("philosophy.honorsList.") && p.endsWith(".category")) && !nextFocus?.closest("#phil-sec-honors")) {
+          renderTopSecretPage();
+        }
+      } else if (p.startsWith("bookConfig.spreads.1.")) {
+        requestAnimationFrame(updateBookStep2Indicator);
+      }
+
+      safeSaveLocal(LOCAL_KEY, JSON.stringify(siteData));
+      recordActionSnapshot();
+      saveAllChanges(true);
     }, true);
 
     function showToast(msg) {
@@ -3261,6 +3445,7 @@
       else { updateBookPageBadge(currentBookSpreadIdx); syncTopNavHighlight(); }
       requestAnimationFrame(masterAnimationLoop);
       document.fonts?.ready?.then(() => { updateBookStep2Indicator(); $$(".book-auto-fit-media").forEach(autoFitBookMedia); });
+      window.addEventListener("pointerdown", () => ensureContainerVideosPlaying($("bookShell")), { once: true, passive: true });
     });
   </script>
 </body>
